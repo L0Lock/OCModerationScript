@@ -11,38 +11,35 @@
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // ==/UserScript==
 
-const ansewrFileLink = "https://share.ramelot-loic.be/ocreply.json";
+const answerFileLink = "https://raw.githubusercontent.com/Sakuto/OCModerationScript/master/ocreply.json";
+
 const answerFileIndex = "answers";
 const answerFileLastFetchIndex = "answersLastFetch";
+const threadLockingIndex = "threadtolock";
+
 const delayBetweenConfigurationFetch = 86400000;
 
 const $submitFormButtton = $("input[name=submit_comment]");
   
 // Main function
 $(function () {  
-    GM_setValue(answerFileIndex, {"configuration":{"headers":"<em>Le message qui suit est une réponse automatique activée par un membre de l'équipe.</em> <em>Les réponses automatiques leur permettent d'éviter d'avoir à répéter de nombreuses fois la même chose ce qui leur fait gagner du temps et leur permet de s'occuper des sujets qui méritent plus d'attention plus facilement.</em><br /><em>Nous sommes néanmoins ouverts et si vous avez une question ou une remarque, n'hésitez pas à contacter la personne en question par Message Privé.</em><br /><br /><center>"},"answers":[{"id":1,"section":["Recrutements pour vos projets"],"title":"Mauvais format","message":"<h1>Mauvais format de recrutement</h1> <br></center><br /><br />Bonjour,<br /><br />Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de message, donc certaines règles. Ces règles sont listées dans le <a href=\"http://www.siteduzero.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1\">post-it de ce forum</a>et doivent impérativement être respectées. Tout sujet ne les respectant pas sera irrémédiablement fermé, comme c'est le cas ici.<center><strong><a href=\"http://www.siteduzero.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1\">LE FORMAT D'ANNONCE DE RECRUTEMENT DONNÉ EST À RESPECTER IMPÉRATIVEMENT</a></strong></center>Tu es autorisé à créer à nouveau un sujet à condition que celui-ci respecte les règles et suive le format demandé.<br /><br />Merci de ta compréhension.","hasHeader":true,"shouldLock":true},{"id":2,"section":["Recrutements pour vos projets"],"title":"Mauvais titre","message":"<h1>Mauvais format de titre</h1> </center> <br><p><br /><br />Bonjour,<br /><br />Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Recrutement\" n'est pas un type correct, nous nous doutons que vous recrutez pour votre projet si vous postez un message ici. </p> <br><p>Quelques exemples de titres correct : </p> <br><ul> <br><li>[Application] Tinder</li><br><li>[MOBA] Heres Of The Storm</li> <br><li>[Site Web]OpenClassRooms</li> <br></ul> <br><p>Merci de ta compréhension.</p>","hasHeader":true,"shouldLock":false}]});
+    getConfigurationFile().then(() => {
+        for(message of getMessageBySection())
+            addButton(message);
+    });
 
-   // getConfigurationFile().then(() => console.log(GM_getValue(answerFileIndex)));
-
-   for(message of getMessageBySection())
-       addButton(message);
-
+    // Si on a un sujet a fermer
+    if(GM_getValue('threadToClose') != '') {
+        promiseRequest("GET", GM_getValue('threadToClose'))
+            .then(() => GM_setValue('threadToClose', ''));
+    }
 });
   
-  
-function addMessage(message) {
-    var $iFrame = $("iframe");
-    var $textArea = ($iFrame.length) ? $iFrame[0].contentDocument.body : $("#Comment_wysiwyg_message");
-  
-    $textArea.innerHTML = message;
-}
-  
-function getCloseLink() {
-    var $closeElement = $(".closeAction");
-    return "https://openclassrooms.com" + $closeElement.attr('href');
-}
+$("#newComment").on('click', ".oc-moderation", function() {
+    let action = GM_getValue(answerFileIndex).answers.filter(a => a.id == $(this).attr('id'));
 
-
+    performAction(action[0]);
+});
 
 /**
  * Récupère la section actuellement visité
@@ -61,13 +58,13 @@ function getCurrentSection() {
  * @returns Promise avec les valeurs
  */
 function getConfigurationFile() {
-    if(GM_getValue(answerFileLastFetchIndex) === undefined || GM_getValue(answerFileLastFetchIndex) + delayBetweenConfigurationFetch < Date.now()) {
-        return fetch(replyFile, { mode: 'no-cors' }).then(answer => {
-            GM_setValue(answerFileIndex, answer);
-        });
+    if(GM_getValue(answerFileLastFetchIndex) === undefined || GM_getValue(answerFileLastFetchIndex) + delayBetweenConfigurationFetch > Date.now()) {
+        return promiseRequest("GET", answerFileLink)
+            .then(response => GM_setValue(answerFileIndex, JSON.parse(response.responseText)))
+            .then(() => GM_setValue(answerFileLastFetchIndex, Date.now()));
     }
 
-    return new Promise(() => wait(0));
+    return new Promise((resolve, reject) => resolve());
 }
 
 /**
@@ -87,9 +84,63 @@ function getMessageBySection() {
  * @param {any} answerObject
  */
 function addButton(answerObject) {
-    $submitFormButtton.before('<a class="btn btn-primary" style="float: right; margin: 10px 0 0 5px;" id="' + answerObject.id + '">' + answerObject.title + '</a>');
+    $submitFormButtton.before('<a class="btn btn-primary oc-moderation" style="float: right; margin: 10px 0 0 5px;" id="' + answerObject.id + '">' + answerObject.title + '</a>');
 }
 
 function performAction(answerObject) {
+    let moderationMessage = "";
 
+    if(answerObject.hasHeader) moderationMessage += GM_getValue(answerFileIndex).configuration.headers;
+    moderationMessage += answerObject.message;
+
+    addMessage(moderationMessage);
+
+    if(answerObject.shouldLock) {
+        GM_setValue(threadLockingIndex, getCloseLink());
+    }
+
+    $("input[name=submit_comment]").click();
+}
+
+/**
+ * Crée une XML request sous forme de promise
+ * 
+ * @param {any} method GET, POST, PUT, DELETE
+ * @param {any} url URL à exploiter
+ * @returns Promise contenant la requête
+ */
+function promiseRequest(method, url) {
+    return new Promise((resolve, reject) => {
+        let xhr = GM_xmlhttpRequest({
+            method: method,
+            url: url,
+            onload: resolve,
+            onerror: reject
+        }); 
+    })
+}
+
+/**
+ * Ajoute le message dans le textarea
+ * 
+ * @param {any} message
+ */
+function addMessage(message) {
+    let textareaHolder = $("iframe");
+
+    if(textareaHolder.length) {
+        textareaHolder.contentDocument.body.innerHTML = message;
+    } else {
+        $("#Comment_wysiwyg_message")[0].value = message;
+    }
+}
+  
+/**
+ * Récupère le lien de fermeture du topic
+ * 
+ * @returns
+ */
+function getCloseLink() {
+    var $closeElement = $(".closeAction");
+    return "https://openclassrooms.com" + $closeElement.attr('href');
 }

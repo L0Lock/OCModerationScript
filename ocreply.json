@@ -8,7 +8,7 @@
     [
         {
             "id": 1,
-            "section": ["Recrutements pour vos projets"],
+            "section": ["Recrutements pour vos projets", "Forum du staff"],
             "title": "Mauvais format",
             "message": "<h1>Mauvais format de recrutement</h1> <br></center><br /><br />Bonjour,<br /><br />Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de message, donc certaines règles. Ces règles sont listées dans le <a href=\"http://www.siteduzero.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1\">post-it de ce forum</a>et doivent impérativement être respectées. Tout sujet ne les respectant pas sera irrémédiablement fermé, comme c'est le cas ici.<center><strong><a href=\"http://www.siteduzero.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1\">LE FORMAT D'ANNONCE DE RECRUTEMENT DONNÉ EST À RESPECTER IMPÉRATIVEMENT</a></strong></center>Tu es autorisé à créer à nouveau un sujet à condition que celui-ci respecte les règles et suive le format demandé.<br /><br />Merci de ta compréhension.",
             "hasHeader": true,
@@ -17,7 +17,7 @@
 
         {
             "id": 2,
-            "section": ["Recrutements pour vos projets"],
+            "section": ["Recrutements pour vos projets", "Forum du staff"],
             "title": "Mauvais titre",
             "message": "<h1>Mauvais format de titre</h1> </center> <br><p><br /><br />Bonjour,<br /><br />Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Recrutement\" n'est pas un type correct, nous nous doutons que vous recrutez pour votre projet si vous postez un message ici. </p> <br><p>Quelques exemples de titres correct : </p> <br><ul> <br><li>[Application] Tinder</li><br><li>[MOBA] Heres Of The Storm</li> <br><li>[Site Web]OpenClassRooms</li> <br></ul> <br><p>Merci de ta compréhension.</p>",
             "hasHeader": true,
