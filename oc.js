@@ -23,15 +23,17 @@ const $submitFormButtton = $("input[name=submit_comment]");
   
 // Main function
 $(function () {  
+    console.log("Locked thread", GM_getValue(threadLockingIndex))
+
     getConfigurationFile().then(() => {
         for(message of getMessageBySection())
-            addButton(message);
-    });
+            addButton(message)
+    })
 
     // Si on a un sujet a fermer
-    if(GM_getValue('threadToClose') != '') {
-        promiseRequest("GET", GM_getValue('threadToClose'))
-            .then(() => GM_setValue('threadToClose', ''));
+    if(GM_getValue(threadLockingIndex) != '') {
+        promiseRequest("GET", GM_getValue(threadLockingIndex))
+            .then(() => GM_setValue(threadLockingIndex, ''));
     }
 });
   
@@ -142,5 +144,6 @@ function addMessage(message) {
  */
 function getCloseLink() {
     var $closeElement = $(".closeAction");
+    console.log($closeElement);
     return "https://openclassrooms.com" + $closeElement.attr('href');
 }
