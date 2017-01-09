@@ -6,7 +6,6 @@
 
     "answers" : 
     [
-        // Recrutements
         {
             "id": 1,
             "section": ["Recrutements pour vos projets"],
@@ -34,7 +33,6 @@
             "shouldLock": true
         },
 
-        // Coding sections
         {
             "id": 4,
             "section": ["HTML / CSS", "Javascript", "PHP", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement"],
