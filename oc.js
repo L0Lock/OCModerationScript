@@ -22,16 +22,17 @@ const delayBetweenConfigurationFetch = 86400000;
 const $submitFormButtton = $("input[name=submit_comment]");
   
 // Main function
-$(function () {  
-    console.log("Locked thread", GM_getValue(threadLockingIndex))
+$(function () {    
+    $("#myFollowedThreads").after("<li><a href=\"#\" id=\"updateReply\">Mettre à jour les réponses</a></li>");
 
-    getConfigurationFile().then(() => {
+    // Mise à jour de la configuration
+    getConfigurationFile(false).then(() => {
         for(message of getMessageBySection())
             addButton(message)
     })
 
     // Si on a un sujet a fermer
-    if(GM_getValue(threadLockingIndex) != '') {
+    if(GM_getValue(threadLockingIndex) !== '' && GM_getValue(threadLockingIndex) != undefined) {
         promiseRequest("GET", GM_getValue(threadLockingIndex))
             .then(() => GM_setValue(threadLockingIndex, ''));
     }
@@ -41,6 +42,11 @@ $("#newComment").on('click', ".oc-moderation", function() {
     let action = GM_getValue(answerFileIndex).answers.filter(a => a.id == $(this).attr('id'));
 
     performAction(action[0]);
+});
+
+// Gestion de la mise à jour manuelle
+$("#secondMenu").on('click', '#updateReply', () => {
+    getConfigurationFile(true).then(() => alert('Update done'));
 });
 
 /**
@@ -59,8 +65,8 @@ function getCurrentSection() {
  * 
  * @returns Promise avec les valeurs
  */
-function getConfigurationFile() {
-    if(GM_getValue(answerFileLastFetchIndex) === undefined || GM_getValue(answerFileLastFetchIndex) + delayBetweenConfigurationFetch > Date.now()) {
+function getConfigurationFile(forceCheck) {
+    if(forceCheck || (GM_getValue(answerFileLastFetchIndex) === undefined || GM_getValue(answerFileLastFetchIndex) + delayBetweenConfigurationFetch > Date.now())) {
         return promiseRequest("GET", answerFileLink)
             .then(response => GM_setValue(answerFileIndex, JSON.parse(response.responseText)))
             .then(() => GM_setValue(answerFileLastFetchIndex, Date.now()));
