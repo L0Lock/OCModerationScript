@@ -1,7 +1,7 @@
 {
     "configuration": 
     {
-        "headers": "<em>Le message qui suit est une réponse automatique activée par un membre de l'équipe.</em> <em>Les réponses automatiques leur permettent d'éviter d'avoir à répéter de nombreuses fois la même chose ce qui leur fait gagner du temps et leur permet de s'occuper des sujets qui méritent plus d'attention plus facilement.</em><br /><em>Nous sommes néanmoins ouverts et si vous avez une question ou une remarque, n'hésitez pas à contacter la personne en question par Message Privé.</em><br /><br /><center>"
+        "headers": "<em>Le message qui suit est une réponse automatique activée par un membre de l'équipe.</em> <em>Les réponses automatiques leur permettent d'éviter d'avoir à répéter de nombreuses fois la même chose ce qui leur fait gagner du temps et leur permet de s'occuper des sujets qui méritent plus d'attention plus facilement.</em><br /><em>Nous sommes néanmoins ouverts et si vous avez une question ou une remarque, n'hésitez pas à contacter la personne en question par Message Privé.</em><br /><br />"
     },
 
     "answers" : 
