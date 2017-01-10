@@ -137,7 +137,7 @@ function addMessage(message) {
     let textareaHolder = $("iframe");
 
     if(textareaHolder.length) {
-        textareaHolder.contentDocument.body.innerHTML = message;
+        textareaHolder[0].contentDocument.body.innerHTML = message;
     } else {
         $("#Comment_wysiwyg_message")[0].value = message;
     }
