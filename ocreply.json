@@ -35,7 +35,7 @@
 
         {
             "id": 4,
-            "section": ["HTML / CSS", "Javascript", "PHP", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement", "Windows", "Linux & FreeBSD", "Mac OS X", "Graphisme 2D", "Graphisme 3D", "Design Thinking", "Discussion Hardware", "Discussion Software", "Choix du matériel & configuration", "Problèmes techniques", "Vos réseaux", "Discussions jeux vidéo", "Mapping & modding", "Mathématiques", "Physique", "Chimie", "Biologie et Géologie", "Électronique", "Autres Sciences", "Vos Études", "Recrutements pour vos projets", "Présentation de vos projets", "Fonctionnement du site", "Forum des Premiums Plus", "JSdZ et évènements", "Do It Yourself"],
+            "section": ["HTML / CSS", "Javascript", "PHP", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement", "Windows", "Linux & FreeBSD", "Mac OS X", "Graphisme 2D", "Graphisme 3D", "Design Thinking", "Discussion Hardware", "Discussion Software", "Problèmes techniques", "Vos réseaux", "Discussions jeux vidéo", "Mapping & modding", "Mathématiques", "Physique", "Chimie", "Biologie et Géologie", "Électronique", "Autres Sciences", "Vos Études", "Do It Yourself"],
             "title": "Aucune recherche",
             "message": "<h1>Manque de recherche</h1><p>Vous êtes ici sur un forum d'entraide communautaire et non pas sur un forum de demande de service, le but n'est donc pas de fournir une réponse toute faite ou de directement fournir la solution à quiconque viendrait sans la moindre trace. Afin d'obtenir de l'aide et une solution à votre problème, il est fortement recommandé de présenter clairement l'état actuel du problème en nous fournissant : </p> <ul> <li>Un descriptif clair et précis du problème</li> <li>La tentative actuelle de résolution que vous avez effectué</li> <li>Le résultat attendu et le résultat actuel</li> <li>Toutes pistes de recherches pouvant aider à la résolution</li> </ul> <p>Je ferme ce sujet et je vous invite à en ouvrir un nouveau présentant ces différentes informations.</p>",
             "hasHeader": true,
@@ -46,9 +46,27 @@
             "id": 5,
             "section": ["Fonctionnement du site"],
             "title": "Hello",
-            "message": "<p>Bonjour</p><p>Afin de vous assurer d'avoir une réponse le plus rapidement possible, je vous invite à directement contacter l'équipe du site via l'adresse <a href=\"mailto:hello@openclassrooms.com\">hello@openclassrooms.com</a>. Je ferme donc ce sujet. </p>",
+            "message": "<p>Bonjour</p><p>Afin de vous assurer d'avoir une réponse le plus rapidement possible, je vous invite à directement contacter l'équipe du site via l'adresse <a href=\"mailto:hello@openclassrooms.com\">hello@openclassrooms.com</a>. En effet, l'équipe du site ne passant que très rarement sur les forums, il vous sera beaucoup plus simple de les contacter directement. Je ferme donc ce sujet. </p>",
             "hasHeader": false,
             "shouldLock": true
-        }    
+        },
+
+        {
+            "id": 6,
+            "section": ["Présentation de vos projets"],
+            "title": "Mauvais format",
+            "message": "<h1>Mauvais format de présentation</h1> <br></center><br /><br />Bonjour,<br /><br />Afin de maintenir le forum <em>Présentation</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de message, donc certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-2\">post-it de ce forum</a>et doivent impérativement être respectées. Tout sujet ne les respectant pas sera irrémédiablement fermé, comme c'est le cas ici.<center><strong><a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-2\">LE FORMAT D'ANNONCE DE RECRUTEMENT DONNÉ EST À RESPECTER IMPÉRATIVEMENT</a></strong></center>Tu es autorisé à créer à nouveau un sujet à condition que celui-ci respecte les règles et suive le format demandé.<br /><br />Merci de ta compréhension.",
+            "hasHeader": true,
+            "shouldLock": true
+        },
+
+        {
+            "id": 7,
+            "section": ["Présentation de vos projets"],
+            "title": "Mauvais titre",
+            "message": "<h1>Mauvais format de titre</h1> </center> <br><p><br /><br />Bonjour,<br /><br />Afin de maintenir le forum <em>Présentation</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Présentation\" n'est pas un type correct, nous nous doutons que vous présentez votre projet si vous postez un message ici. </p> <br><p>Quelques exemples de titres correct : </p> <br><ul> <br><li>[Application] Tinder</li><br><li>[MOBA] Heres Of The Storm</li> <br><li>[Site Web]OpenClassRooms</li> <br></ul> <br><p>Merci de ta compréhension.</p>",
+            "hasHeader": true,
+            "shouldLock": false
+        },    
     ]
 }
