@@ -19,7 +19,7 @@
             "id": 2,
             "section": ["Recrutements pour vos projets"],
             "title": "Mauvais titre",
-            "message": "<h1>Mauvais format de titre</h1> </center> <br><p><br /><br />Bonjour,<br /><br />Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Recrutement\" n'est pas un type correct, nous nous doutons que vous recrutez pour votre projet si vous postez un message ici. </p> <br><p>Quelques exemples de titres correct : </p> <br><ul> <br><li>[Application] Tinder</li><br><li>[MOBA] Heres Of The Storm</li> <br><li>[Site Web]OpenClassRooms</li> <br></ul> <br><p>Merci de ta compréhension.</p>",
+            "message": "<h1>Mauvais format de titre</h1> </center> <br><p><br /><br />Bonjour,<br /><br />Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Recrutement\" n'est pas un type correct, nous nous doutons que vous recrutez pour votre projet si vous postez un message ici. </p> <br><p>Quelques exemples de titres correct : </p> <br><ul><li>[Application] Tinder</li><li>[MOBA] Heroes Of The Storm</li><li>[Site Web]OpenClassRooms</li></ul> <br><p>Merci de ta compréhension.</p>",
             "hasHeader": true,
             "shouldLock": false
         },
@@ -64,7 +64,7 @@
             "id": 7,
             "section": ["Présentation de vos projets"],
             "title": "Mauvais titre",
-            "message": "<h1>Mauvais format de titre</h1> </center> <br><p><br /><br />Bonjour,<br /><br />Afin de maintenir le forum <em>Présentation</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Présentation\" n'est pas un type correct, nous nous doutons que vous présentez votre projet si vous postez un message ici. </p> <br><p>Quelques exemples de titres correct : </p> <br><ul> <br><li>[Application] Tinder</li><br><li>[MOBA] Heres Of The Storm</li> <br><li>[Site Web]OpenClassRooms</li> <br></ul> <br><p>Merci de ta compréhension.</p>",
+            "message": "<h1>Mauvais format de titre</h1> </center> <br><p><br /><br />Bonjour,<br /><br />Afin de maintenir le forum <em>Présentation</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Présentation\" n'est pas un type correct, nous nous doutons que vous présentez votre projet si vous postez un message ici. </p> <br><p>Quelques exemples de titres correct : </p> <br><ul><li>[Application] Tinder</li><li>[MOBA] Heroes Of The Storm</li><li>[Site Web]OpenClassRooms</li></ul><p>Merci de ta compréhension.</p>",
             "hasHeader": true,
             "shouldLock": false
         }
