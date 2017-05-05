@@ -20,16 +20,16 @@ const threadLockingIndex = "threadtolock";
 const delayBetweenConfigurationFetch = 86400000;
 
 const $submitFormButtton = $("input[name=submit_comment]");
-  
+
 // Main function
 $(function () {    
     $("#myFollowedThreads").after("<li><a href=\"#\" id=\"updateReply\">Mettre à jour les réponses</a></li>");
 
     // Mise à jour de la configuration
     getConfigurationFile(false).then(() => {
-        for(message of getMessageBySection())
-            addButton(message)
-    })
+        for(var message of getMessageBySection())
+            addButton(message);
+    });
 
     // Si on a un sujet a fermer
     if(GM_getValue(threadLockingIndex) !== '' && GM_getValue(threadLockingIndex) != undefined) {
@@ -37,7 +37,7 @@ $(function () {
             .then(() => GM_setValue(threadLockingIndex, ''));
     }
 });
-  
+
 $("#newComment").on('click', ".oc-moderation", function() {
     let action = GM_getValue(answerFileIndex).answers.filter(a => a.id == $(this).attr('id'));
 
@@ -125,7 +125,7 @@ function promiseRequest(method, url) {
             onload: resolve,
             onerror: reject
         }); 
-    })
+    });
 }
 
 /**
@@ -134,7 +134,7 @@ function promiseRequest(method, url) {
  * @param {any} message
  */
 function addMessage(message) {
-    let textareaHolder = $("iframe");
+    let textareaHolder = $("#Comment_wysiwyg_message_ifr");
 
     if(textareaHolder.length) {
         textareaHolder[0].contentDocument.body.innerHTML = message;
@@ -142,7 +142,7 @@ function addMessage(message) {
         $("#Comment_wysiwyg_message")[0].value = message;
     }
 }
-  
+
 /**
  * Récupère le lien de fermeture du topic
  * 
@@ -150,6 +150,5 @@ function addMessage(message) {
  */
 function getCloseLink() {
     var $closeElement = $(".closeAction");
-    console.log($closeElement);
     return "https://openclassrooms.com" + $closeElement.attr('href');
 }
