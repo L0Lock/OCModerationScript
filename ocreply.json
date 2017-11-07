@@ -73,8 +73,26 @@
             "id": 8,
             "section": ["HTML / CSS", "Javascript", "PHP", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement", "Windows", "Linux & FreeBSD", "Mac OS X", "Graphisme 2D", "Graphisme 3D", "Design Thinking", "Discussion Hardware", "Discussion Software", "Problèmes techniques", "Vos réseaux", "Discussions jeux vidéo", "Mapping & modding", "Mathématiques", "Physique", "Chimie", "Biologie et Géologie", "Électronique", "Autres Sciences", "Vos Études", "Do It Yourself"],
             "title": "Redirection vers recrutement",
-            "message": "<center><h1>Mauvais forum</h1></center> <p>Bonjour, ce genre de demandes doivent se faire dans le <a href=\"https://openclassrooms.com/forum/categorie/recrutement-pour-vos-projets\">forum recrutement</a>, et respecter le <a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1\">format obligatoire</a>.</p> <p>Je ferme ce topic et vous invite à en ouvrir un au bon endroit en suivant attentivement les règles pour avoir une réponse optimale.</p>",
+            "message": "<center><h1>Mauvais forum</h1></center><p>Bonjour, ce genre de demandes doivent se faire dans le <a href=\"https://openclassrooms.com/forum/categorie/recrutement-pour-vos-projets\">forum recrutement</a>, et respecter le <a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1\">format obligatoire</a>.</p> <p>Je ferme ce topic et vous invite à en ouvrir un au bon endroit en suivant attentivement les règles pour avoir une réponse optimale.</p>",
             "hasHeader": false,
+            "shouldLock": true
+        },
+        
+        {
+            "id": 9,
+            "section": ["HTML / CSS", "Javascript", "PHP", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement", "Windows", "Linux & FreeBSD", "Mac OS X", "Graphisme 2D", "Graphisme 3D", "Design Thinking", "Discussion Hardware", "Discussion Software", "Problèmes techniques", "Vos réseaux", "Discussions jeux vidéo", "Mapping & modding", "Mathématiques", "Physique", "Chimie", "Biologie et Géologie", "Électronique", "Autres Sciences", "Vos Études", "Do It Yourself"],
+            "title": "Manque de Politesse",
+            "message": "<center><h1>Manque de politesse</h1></center><p>Votre message ne comporte pas ou peu de formules de politesse (« Bonjour », « Merci », « Au revoir », etc.). Les règles du site exigent que chaque nouveau message comporte un minimum de politesse. Après tout, les gens qui répondent le font gratuitement, sur leur temps libre. Ils méritent bien un minimum de considération, n'est-ce pas ?</p><p>Je ferme ce sujet et je vous invite à en ouvrir un nouveau présentant ces différentes informations.</p>",
+            "hasHeader": true,
+            "shouldLock": true
+        },
+        
+        {
+            "id": 10,
+            "section": ["HTML / CSS", "Javascript", "PHP", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement"],
+            "title": "Merci d'utiliser les balises de code",
+            "message": "<center><h1>Merci d'utiliser les balises de code</h1></center><p>Les forums d'Openclassrooms disposent d'une fonctionnalité permettant de colorer et mettre en forme les codes source afin de les rendre plus lisibles et faciles à manipuler par les intervenants. Pour celà, il faut utiliser le bouton <img src=\"https://sdz-upload.s3.amazonaws.com/prod/upload/code.gif\" alt=\"Image\" /> . Si vous utilisez l'éditeur de messages en mode Markdown, il faut utiliser les balises <code>&lt;pre class=\"brush: c;\"&gt;Votre code ici&lt;/pre&gt;</code>.</p>",
+            "hasHeader": true,
             "shouldLock": true
         }
     ]
