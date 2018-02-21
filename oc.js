@@ -92,7 +92,7 @@ function getMessageBySection() {
  * @param {any} answerObject
  */
 function addButton(answerObject) {
-    $submitFormButtton.before('<br /><a class="btn btn-primary oc-moderation" style="float: right; margin: 10px 0 0 5px; border: 1px solid #380e00; box-shadow: inset 0 1px 1px 0 #a95f47; background-color: #691c02; background-image: linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%); text-shadow: 0 -1px 0 #1c181b;" id="' + answerObject.id + '">' + answerObject.title + '</a>');
+    $submitFormButtton.after('<a class="btn btn-primary oc-moderation" style="float: right; margin: 10px 0 0 5px; border: 1px solid #380e00; box-shadow: inset 0 1px 1px 0 #a95f47; background-color: #691c02; background-image: linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%); text-shadow: 0 -1px 0 #1c181b;" id="' + answerObject.id + '">' + answerObject.title + '</a>');
 }
 
 function performAction(answerObject) {
