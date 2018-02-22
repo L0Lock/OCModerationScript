@@ -18,7 +18,7 @@
         {
             "id": 2,
             "section": ["Recrutements pour vos projets"],
-            "title": "Mauvais titre &#128275;",
+            "title": "Mauvais titre",
             "message": "<center><h1>Mauvais format de titre</h1></center> <p>Bonjour. Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Recrutement\" n'est pas un type correct, nous nous doutons que vous recrutez pour votre projet si vous postez un message ici.</p> <p>Quelques exemples de titres correct :</p> <ul> <li>[Application] Tinder</li> <li>[MOBA] Heroes Of The Storm</li> <li>[Site Web]OpenClassRooms</li> </ul> <p>Merci de ta compréhension.</p>",
             "hasHeader": true,
             "shouldLock": false
@@ -63,7 +63,7 @@
         {
             "id": 7,
             "section": ["Présentation de vos projets"],
-            "title": "Mauvais titre &#128275;",
+            "title": "Mauvais titre",
             "message": "<center><h1>Mauvais format de titre</h1></center> <p>Bonjour. Afin de maintenir le forum <em>Présentation</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Présentation\" n'est pas un type correct, nous nous doutons que vous présentez votre projet si vous postez un message ici.</p> <p>Quelques exemples de titres correct :</p> <ul> <li>[Application] Tinder</li> <li>[MOBA] Heroes Of The Storm</li> <li>[Site Web] OpenClassrooms</li> </ul> <p>Merci de ta compréhension.</p> <p>Merci de modifier votre message en conséquence via le bouton \"Modifier\" situé sur son coin supérieur droit, sans quoi le sujet sera fermé.",
             "hasHeader": true,
             "shouldLock": false
@@ -81,7 +81,7 @@
         {
             "id": 9,
             "section": ["HTML / CSS", "Javascript", "PHP", "Discussions entreprise", "Communication et marketing", "Entrepreneuriat", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement", "Windows", "Linux & FreeBSD", "Mac OS X", "Graphisme 3D", "Graphisme 2D", "Design Thinking", "Discussions Hardware", "Disscussions Software", "Choix du matériel & configuration", "Problèmes techniques", "Vos réseaux", "Discussions jeux vidéo", "Mapping & modding", "Mathématiques", "Physique", "Chimie", "Biologie et Géologie", "Électronique", "Autres sciences", "Discussions générales", "Let's talk!", "Vos études", "Recrutement pour vos projets", "Présentation de vos projets", "Rédaction de cours", "Fonctionnement du site", "Forum des Premiums Plus", "JSdZ et évènements", "Do It Yourself"],
-            "title": "Manque de Politesse &#128275;",
+            "title": "Manque de Politesse",
             "message": "<center><h1>Manque de politesse</h1></center><p>Votre message ne comporte pas ou peu de formules de politesse (« Bonjour », « Merci », « Au revoir », etc.). Les règles du site exigent que chaque nouveau message comporte un minimum de politesse. Après tout, les gens qui répondent le font gratuitement, sur leur temps libre. Ils méritent bien un minimum de considération, n'est-ce pas ?</p> <p>Merci de modifier votre message en conséquence via le bouton \"Modifier\" situé sur son coin supérieur droit, sans quoi le sujet sera fermé."",
             "hasHeader": true,
             "shouldLock": false
@@ -90,7 +90,7 @@
         {
             "id": 10,
             "section": ["HTML / CSS", "Javascript", "PHP", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement"],
-            "title": "Merci d'utiliser les balises de code &#128275;",
+            "title": "Merci d'utiliser les balises de code",
             "message": "<center><h1>Merci d'utiliser les balises de code</h1></center><p>Les forums d'Openclassrooms disposent d'une fonctionnalité permettant de colorer et mettre en forme les codes source afin de les rendre plus lisibles et faciles à manipuler par les intervenants. Pour celà, il faut utiliser le bouton <img src=\"https://sdz-upload.s3.amazonaws.com/prod/upload/code.gif\" alt=\"Image\" /> . Si vous utilisez l'éditeur de messages en mode Markdown, il faut utiliser les balises <code>&lt;pre class=\"brush: c;\"&gt;Votre code ici&lt;/pre&gt;</code>.</p> <p>Merci de modifier votre message en conséquence via le bouton \"Modifier\" situé sur son coin supérieur droit, sans quoi le sujet sera fermé.",
             "hasHeader": true,
             "shouldLock": false
