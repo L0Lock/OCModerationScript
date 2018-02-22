@@ -86,13 +86,6 @@ function getMessageBySection() {
 }
 
 /**
- * Ajoute un bouton à côté du bouton d'envoi du formulaire
- * contenant le titre et référencant une action en particulier
- * 
- * @param {any} answerObject
- */
-
-/**
  * l0lock le noob du js ajoute un hr
  * pas taper ! pas taper !!
  */
@@ -100,6 +93,13 @@ function getMessageBySection() {
 var sheet = document.createElement('style');
 sheet.innerHTML = "input[name=submit_comment] {display: block; box-shadow: 0 0 20px 0px #808080;}";
 document.body.appendChild(sheet);
+
+/**
+ * Ajoute un bouton à côté du bouton d'envoi du formulaire
+ * contenant le titre et référencant une action en particulier
+ * 
+ * @param {any} answerObject
+ */
 
 function addButton(answerObject) {
     $submitFormButtton.before('<a class="btn btn-primary oc-moderation" style=" margin: 10px 0 0 5px; border: 1px solid #380e00; box-shadow: inset 0 1px 1px 0 #a95f47; background-color: #691c02; background-image: linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%); text-shadow: 0 -1px 0 #1c181b;" id="' + answerObject.id + '">' + answerObject.title + '</a>');
