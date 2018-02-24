@@ -121,6 +121,15 @@
             "message": "<p>Votre message enfreint beaucoup de règles basiques du forum à tel point qu'il serait peut judicieux de les énumérer dans ce message. Je vous invite donc à lire de toute urgence les <a href=\"regles-et-bonnes-pratiques-du-forum-9#message-84002601\">règles générales du forum</a> ainsi que <a href=\"../../terms-conditions#code-of-conduct\">la Charte de Bonne Conduite</a> et les éventuelles règles additionnelles de la section du forum dans laquelle vous postez, visibles parmi les sujets épinglés lorsqu'il y en a.</p> <p>Je ferme ce sujet et je vous invite à en ouvrir un nouveau présentant ces différentes informations.</p>",
             "hasHeader": true,
             "shouldLock": true
+        },
+        
+        {
+            "id": 14,
+            "section": ["Graphisme 3D"],
+            "title": "Le tuto Blender est dépassé",
+            "message": "<p>Bonjour.</p><p>Le cours Blender d'OpenClassrooms étant vastement obsolète et même faux par endroits, je te conseille vivement de t'orienter vers cette suite de tutos qui a l'avantage d'être à jour et d'être faite par un professionnel expérimenté :</p><p><a href=\"https://www.youtube.com/playlist?list=PLuZVx6uIcP-QSUx9zyGto6ZWSABeAH_76\">Formation Blender 2.73</a></p><p>Tu trouveras également d'autres tutos sur d'autres sujets plus poussés sur la même chaîne, et ailleurs. En tout cas, méfie-toi des tutos faits sur des versions antérieures à Blender 2.60.</p>",
+            "hasHeader": false,
+            "shouldLock": false
         }
     ]
 }
