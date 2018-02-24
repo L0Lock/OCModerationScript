@@ -24,6 +24,7 @@ const $submitFormButtton = $("input[name=submit_comment]");
 // Main function
 $(function () {    
     $("#myFollowedThreads").after("<li><a href=\"#\" id=\"updateReply\">Mettre à jour les réponses</a></li>");
+    $(".nav-tabs--searchField").css("width", "40%");
 
     // Mise à jour de la configuration
     getConfigurationFile(false).then(() => {
