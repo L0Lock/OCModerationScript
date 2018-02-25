@@ -4,7 +4,7 @@
 // @namespace   http://ramelot-loic.be
 // @description Make the moderation easiest
 // @include     *openclassrooms.com/*
-// @version     0.1
+// @version     1.0
 // @grant       GM_xmlhttpRequest
 // @grant       GM_getValue
 // @grant       GM_setValue
