@@ -4,7 +4,7 @@ Moderation userscript for Openclassrooms
 ## Add a new quick answer
     {
         "id": 1,
-        "section": [],
+        "section": [], // "all", "Parent section" or array of sections
         "title": "",
         "message": "",
         "hasHeader": true,
