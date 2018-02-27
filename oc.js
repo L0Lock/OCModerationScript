@@ -167,10 +167,10 @@ function getMessageBySection() {
 		var sections = messages[i].section;
 		var excludes = messages[i].exclude;
 		
-		if( $.inArray( section, excludes ) > -1 || $.inArray( forum, excludes ) > -1 )
+		if( $.inArray( section, excludes ) > -1 || $.inArray( forum, excludes ) > -1 || $.inArray( "all", excludes ) > -1 )
 			break;
 		
-		if( $.inArray( section, sections ) > - 1 || $.inArray( forum, sections ) > -1 || sections == "all" )
+		if( $.inArray( section, sections ) > - 1 || $.inArray( forum, sections ) > -1 || $.inArray( "all", sections ) > -1 )
 			retour.push( messages[i] );
 	}
 	
