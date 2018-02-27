@@ -1,17 +1,17 @@
 // ==UserScript==
-// @name	OC Moderation +
-// @author	Sakuto
+// @name	OC Moderation Script
+// @author	Sakuto, -L0Lock-, benzouye
 // @namespace   http://ramelot-loic.be
-// @description Make the moderation easiest
+// @description Rendre la modération plus facile sur Openclassrooms
 // @include	*openclassrooms.com/*
-// @version	0.2
+// @version	1.0.2
 // @grant	GM_xmlhttpRequest
 // @grant	GM_getValue
 // @grant	GM_setValue
 // @require	http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // ==/UserScript==
 
-const answerFileLink = "https://raw.githubusercontent.com/Benzouye/OCModerationScript/master/ocreply.json";
+const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
 
 const answerFileIndex = "answers";
 const answerFileLastFetchIndex = "answersLastFetch";
