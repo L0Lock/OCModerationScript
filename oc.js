@@ -19,8 +19,6 @@ const threadLockingIndex = "threadtolock";
 
 const delayBetweenConfigurationFetch = 86400000;
 
-const $submitFormButtton = $("input[name=submit_comment]");
-
 const forums = {
 	"Site web" : [
 		"HTML / CSS",
@@ -92,7 +90,9 @@ const forums = {
 // Main function
 $(function () {
 	$("#myFollowedThreads").after("<li><a href=\"#\" id=\"updateReply\">Mettre à jour les réponses</a></li>");
-	$(".nav-tabs--searchField").css("width", "40%");
+	$(".nav-tabs--searchField").css( {"width": "40%"} );
+	$("input[name=submit_comment]").before( '<div id="oc-mod-button"></div>' );
+	$("#oc-mod-button").css( {"float": "left", "width": "60%"} );
 	$("input[name=submit_comment]").css( {"display":"block", "box-shadow": "0 0 20px 0px #808080"} );
 
 	// Mise à jour de la configuration
@@ -192,7 +192,7 @@ function addButton(answerObject) {
 	
 	html += '</a>';
 	
-	$submitFormButtton.before( html );
+	$("#oc-mod-button").append( html );
 }
 
 function performAction(answerObject) {
