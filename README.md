@@ -5,7 +5,7 @@ Moderation userscript for Openclassrooms
     {
         "id": 1,
         "section": [],
-	"exclude": [],
+        "exclude": [],
         "title": "",
         "message": "",
         "hasHeader": true,
