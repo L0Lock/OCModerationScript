@@ -5,6 +5,7 @@ Moderation userscript for Openclassrooms
     {
         "id": 1,
         "section": [],
+	"exclude": [],
         "title": "",
         "message": "",
         "hasHeader": true,
@@ -15,6 +16,8 @@ Section peut contenir :
 - "all" = toutes les sections
 - le nom d'un forum parent
 - un tableau de noms de sections
+
+Exclude peut contenir un tableau de noms de sections.
 
 ## List of forums
 - Site Web
