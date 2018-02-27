@@ -12,12 +12,9 @@ Moderation userscript for Openclassrooms
         "shouldLock": true
     },
 
-Section peut contenir :
+<em>section</em> et <em>exclude</em> seront des tableaux contenant :
 - "all" = toutes les sections
-- le nom d'un forum parent
-- un tableau de noms de sections
-
-Exclude peut contenir un tableau de noms de sections.
+- le nom d'un forum ou de son parent
 
 ## List of forums
 - Site Web
