@@ -35,7 +35,7 @@
 
         {
             "id": 4,
-            "section": ["HTML / CSS", "Javascript", "PHP", "Discussions entreprise", "Communication et marketing", "Entrepreneuriat", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement", "Windows", "Linux & FreeBSD", "Mac OS X", "Graphisme 3D", "Graphisme 2D", "Design Thinking", "Discussions Hardware", "Disscussions Software", "Choix du matériel & configuration", "Problèmes techniques", "Vos réseaux", "Discussions jeux vidéo", "Mapping & modding", "Mathématiques", "Physique", "Chimie", "Biologie et Géologie", "Électronique", "Autres sciences", "Discussions générales", "Let's talk!", "Vos études", "Recrutement pour vos projets", "Présentation de vos projets", "Rédaction de cours", "Fonctionnement du site", "Forum des Premiums Plus", "JSdZ et évènements", "Do It Yourself"],
+            "section": "all",
             "title": "Manque de recherche 🔒",
             "message": "<center><h1>Manque de recherche</h1></center> <p>Bonjour. Vous êtes ici sur un forum d'entraide communautaire et non pas sur un forum de demande de service, le but n'est donc pas de fournir une réponse toute faite ou de directement fournir la solution à quiconque viendrait sans la moindre trace. Afin d'obtenir de l'aide et une solution à votre problème, il est fortement recommandé de présenter clairement l'état actuel du problème en nous fournissant :</p> <ul> <li>Un descriptif clair et précis du problème</li> <li>La tentative actuelle de résolution que vous avez effectué</li> <li>Le résultat attendu et le résultat actuel</li> <li>Toutes pistes de recherches pouvant aider à la résolution</li> </ul> <p>Je ferme ce sujet et je vous invite à en ouvrir un nouveau présentant ces différentes informations.</p>",
             "hasHeader": true,
@@ -71,7 +71,7 @@
 
         {
             "id": 8,
-            "section": ["HTML / CSS", "Javascript", "PHP", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement", "Windows", "Linux & FreeBSD", "Mac OS X", "Graphisme 2D", "Graphisme 3D", "Design Thinking", "Discussion Hardware", "Discussion Software", "Problèmes techniques", "Vos réseaux", "Discussions jeux vidéo", "Mapping & modding", "Mathématiques", "Physique", "Chimie", "Biologie et Géologie", "Électronique", "Autres Sciences", "Vos Études", "Do It Yourself"],
+            "section": "all",
             "title": "Redirection vers recrutement 🔒",
             "message": "<center><h1>Mauvais forum</h1></center><p>Bonjour, ce genre de demandes doivent se faire dans le <a href=\"https://openclassrooms.com/forum/categorie/recrutement-pour-vos-projets\">forum recrutement</a>, et respecter le <a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1\">format obligatoire</a>.</p> <p>Je ferme ce topic et vous invite à en ouvrir un au bon endroit en suivant attentivement les règles pour avoir une réponse optimale.</p>",
             "hasHeader": false,
@@ -80,7 +80,7 @@
         
         {
             "id": 9,
-            "section": ["HTML / CSS", "Javascript", "PHP", "Discussions entreprise", "Communication et marketing", "Entrepreneuriat", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement", "Windows", "Linux & FreeBSD", "Mac OS X", "Graphisme 3D", "Graphisme 2D", "Design Thinking", "Discussions Hardware", "Disscussions Software", "Choix du matériel & configuration", "Problèmes techniques", "Vos réseaux", "Discussions jeux vidéo", "Mapping & modding", "Mathématiques", "Physique", "Chimie", "Biologie et Géologie", "Électronique", "Autres sciences", "Discussions générales", "Let's talk!", "Vos études", "Recrutement pour vos projets", "Présentation de vos projets", "Rédaction de cours", "Fonctionnement du site", "Forum des Premiums Plus", "JSdZ et évènements", "Do It Yourself"],
+            "section": "all",
             "title": "Manque de Politesse",
             "message": "<center><h1>Manque de politesse</h1></center><p>Votre message ne comporte pas ou peu de formules de politesse (« Bonjour », « Merci », « Au revoir », etc.). Les règles du site exigent que chaque nouveau message comporte un minimum de politesse. Après tout, les gens qui répondent le font gratuitement, sur leur temps libre. Ils méritent bien un minimum de considération, n'est-ce pas ?</p> <p>Merci de modifier votre message en conséquence via le bouton \"Modifier\" situé sur son coin supérieur droit, sans quoi le sujet sera fermé.",
             "hasHeader": true,
@@ -89,7 +89,7 @@
         
         {
             "id": 10,
-            "section": ["HTML / CSS", "Javascript", "PHP", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement"],
+            "section": "Programmation",
             "title": "Merci d'utiliser les balises de code",
             "message": "<center><h1>Merci d'utiliser les balises de code</h1></center><p>Les forums d'Openclassrooms disposent d'une fonctionnalité permettant de colorer et mettre en forme les codes source afin de les rendre plus lisibles et faciles à manipuler par les intervenants. Pour celà, il faut utiliser le bouton <img src=\"https://sdz-upload.s3.amazonaws.com/prod/upload/code.gif\" alt=\"Image\" /> . Si vous utilisez l'éditeur de messages en mode Markdown, il faut utiliser les balises <code>&lt;pre class=\"brush: c;\"&gt;Votre code ici&lt;/pre&gt;</code>.</p> <p>Merci de modifier votre message en conséquence via le bouton \"Modifier\" situé sur son coin supérieur droit, sans quoi le sujet sera fermé.",
             "hasHeader": true,
@@ -98,7 +98,7 @@
         
         {
             "id": 11,
-            "section": ["HTML / CSS", "Javascript", "PHP", "Discussions entreprise", "Communication et marketing", "Entrepreneuriat", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement", "Windows", "Linux & FreeBSD", "Mac OS X", "Graphisme 3D", "Graphisme 2D", "Design Thinking", "Discussions Hardware", "Disscussions Software", "Choix du matériel & configuration", "Problèmes techniques", "Vos réseaux", "Discussions jeux vidéo", "Mapping & modding", "Mathématiques", "Physique", "Chimie", "Biologie et Géologie", "Électronique", "Autres sciences", "Discussions générales", "Let's talk!", "Vos études", "Recrutement pour vos projets", "Présentation de vos projets", "Rédaction de cours", "Fonctionnement du site", "Forum des Premiums Plus", "JSdZ et évènements", "Do It Yourself"],
+            "section": "all",
             "title": "Déterrage 🔒",
             "message": "<center><h1>Déterrage</h1></center><p><strong>Citation des <a title=\"Règles générales du forum\" href=\"regles-et-bonnes-pratiques-du-forum-9#message-84002601\">règles générales du forum</a> :</strong></p><blockquote><p>Avant de poster, demandez-vous si ce que vous allez dire apporte quelque chose au sujet. Si votre message n'apporte rien, vous ferez perdre du temps à tout le monde et le sujet pourrait dévier ou devenir difficile à suivre.</p><p>Aussi, vérifiez la date du topic. <strong>Le déterrage de topic nuit au bon fonctionnement du forum et est interdit.</strong> Utilisez les boutons <img src=\"https://i.imgur.com/Zv6bNgw.png\" alt=\"pouce en haut\" width=\"23\" height=\"23\" /> pour dire merci. Si le topic date de plus de deux mois sans réponses, mieux vaut ne pas répondre.</p></blockquote><p>Je ferme ce topic.</p>",
             "hasHeader": true,
@@ -116,7 +116,7 @@
         
         {
             "id": 13,
-            "section": ["HTML / CSS", "Javascript", "PHP", "Langage C", "Langage C++", "Langages.NET", "Langage Java", "Langage Python", "Base de données", "Mobile", "Autres langages (VBA, Ruby,...)", "Discussions développement", "Windows", "Linux & FreeBSD", "Mac OS X", "Graphisme 2D", "Graphisme 3D", "Design Thinking", "Discussion Hardware", "Discussion Software", "Problèmes techniques", "Vos réseaux", "Discussions jeux vidéo", "Mapping & modding", "Mathématiques", "Physique", "Chimie", "Biologie et Géologie", "Électronique", "Autres Sciences", "Vos Études", "Do It Yourself"],
+            "section": "all",
             "title": "Manquement global aux règles 🔒",
             "message": "<p>Votre message enfreint beaucoup de règles basiques du forum à tel point qu'il serait peut judicieux de les énumérer dans ce message. Je vous invite donc à lire de toute urgence les <a href=\"regles-et-bonnes-pratiques-du-forum-9#message-84002601\">règles générales du forum</a> ainsi que <a href=\"../../terms-conditions#code-of-conduct\">la Charte de Bonne Conduite</a> et les éventuelles règles additionnelles de la section du forum dans laquelle vous postez, visibles parmi les sujets épinglés lorsqu'il y en a.</p> <p>Je ferme ce sujet et je vous invite à en ouvrir un nouveau présentant ces différentes informations.</p>",
             "hasHeader": true,
