@@ -145,8 +145,7 @@ function getConfigurationFile(forceCheck) {
 }
 
 /**
- * Récupère la liste des messages de modération pour la
- * section actuelle
+ * Récupère la liste des messages de modération pour la section actuelle ou son parent ou "all"
  * 2018-02-27, Benzouye : Ajout gestion des valeurs de section sans liste "all" et "nom du forum parent"
  *
  * @returns Liste d'objet de réponses
