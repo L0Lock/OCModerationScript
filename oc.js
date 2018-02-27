@@ -155,31 +155,33 @@ function getMessageBySection() {
 	var section = $('span[itemprop="title"]').last().text();
 	var forum = false;
 	var retour = Array();
-
-	for( var cle in forums ) {
-		for( var l = 0 ; l < forums[cle].length ; l++ ) {
-			if( section == forums[cle][l] ) {
-				forum = cle;
-				break;
-			}
-		}
-	}
-
-	for( var i = 0; i < messages.length; i++) {
-		var sections = messages[i].section;
-
-		if ( sections.constructor === Array ) {
-			for( var j=0 ; j < sections.length ; j++ ) {
-				if( sections[j] == section ) {
-					retour.push( messages[i] );
+	
+	if( section != "Forum du staff" ) {
+		for( var cle in forums ) {
+			for( var l = 0 ; l < forums[cle].length ; l++ ) {
+				if( section == forums[cle][l] ) {
+					forum = cle;
 					break;
 				}
 			}
-		} else if ( sections == "all" || sections == forum ) {
-			retour.push( messages[i] );
+		}
+
+		for( var i = 0; i < messages.length; i++) {
+			var sections = messages[i].section;
+
+			if ( sections.constructor === Array ) {
+				for( var j=0 ; j < sections.length ; j++ ) {
+					if( sections[j] == section ) {
+						retour.push( messages[i] );
+						break;
+					}
+				}
+			} else if ( sections == "all" || sections == forum ) {
+				retour.push( messages[i] );
+			}
 		}
 	}
-
+	
 	return retour;
 }
 
