@@ -146,8 +146,9 @@ function getConfigurationFile(forceCheck) {
 }
 
 /**
- * Récupère la liste des messages de modération pour la section actuelle ou son parent ou "all"
- * 2018-02-27, Benzouye : Ajout gestion des valeurs de section sans liste "all" et "nom du forum parent"
+ * Récupère la liste des messages de modération
+ * pour la section courante ou son parent ou "all"
+ * en excluant les sections précisées
  *
  * @returns Liste d'objet de réponses
  */
@@ -159,17 +160,17 @@ function getMessageBySection() {
 	
 	for( var titre in forums ) {
 		if( $.inArray( section, forums[titre] ) > -1 )
-			forum = cle;
+			forum = titre;
 	}
 	
 	for( var i = 0; i < messages.length; i++) {
 		var sections = messages[i].section;
 		var excludes = messages[i].exclude;
 		
-		if( $.inArray( section, excludes ) > -1 )
+		if( $.inArray( section, excludes ) > -1 || $.inArray( forum, excludes ) > -1 )
 			break;
 		
-		if( $.inArray( section, sections ) > - 1 || sections == "all" || sections == forum )
+		if( $.inArray( section, sections ) > - 1 || $.inArray( forum, sections ) > -1 || sections == "all" )
 			retour.push( messages[i] );
 	}
 	
