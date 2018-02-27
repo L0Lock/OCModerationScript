@@ -93,6 +93,7 @@ const forums = {
 $(function () {
 	$("#myFollowedThreads").after("<li><a href=\"#\" id=\"updateReply\">Mettre à jour les réponses</a></li>");
 	$(".nav-tabs--searchField").css("width", "40%");
+	$("input[name=submit_comment]").css( {"display":"block", "box-shadow": "0 0 20px 0px #808080"} );
 
 	// Mise à jour de la configuration
 	getConfigurationFile(false).then(() => {
@@ -155,7 +156,7 @@ function getMessageBySection() {
 	var section = $('span[itemprop="title"]').last().text();
 	var forum = false;
 	var retour = Array();
-	
+
 	if( section != "Forum du staff" ) {
 		for( var cle in forums ) {
 			for( var l = 0 ; l < forums[cle].length ; l++ ) {
@@ -181,18 +182,9 @@ function getMessageBySection() {
 			}
 		}
 	}
-	
+
 	return retour;
 }
-
-/**
- * l0lock le noob du js ajoute un hr
- * pas taper ! pas taper !!
- */
-
-var sheet = document.createElement('style');
-sheet.innerHTML = "input[name=submit_comment] {display: block; box-shadow: 0 0 20px 0px #808080;}";
-document.body.appendChild(sheet);
 
 /**
  * Ajoute un bouton à côté du bouton d'envoi du formulaire
