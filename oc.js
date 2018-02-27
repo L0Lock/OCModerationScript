@@ -11,7 +11,7 @@
 // @require	http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // ==/UserScript==
 
-const answerFileLink = "https://raw.githubusercontent.com/Sakuto/OCModerationScript/master/ocreply.json";
+const answerFileLink = "https://raw.githubusercontent.com/Benzouye/OCModerationScript/master/ocreply.json";
 
 const answerFileIndex = "answers";
 const answerFileLastFetchIndex = "answersLastFetch";
