@@ -1,14 +1,14 @@
 // ==UserScript==
-// @name		OC Moderation +
-// @author	  Sakuto
+// @name	OC Moderation +
+// @author	Sakuto
 // @namespace   http://ramelot-loic.be
 // @description Make the moderation easiest
-// @include	 *openclassrooms.com/*
-// @version	 0.1
-// @grant	   GM_xmlhttpRequest
-// @grant	   GM_getValue
-// @grant	   GM_setValue
-// @require	 http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
+// @include	*openclassrooms.com/*
+// @version	0.2
+// @grant	GM_xmlhttpRequest
+// @grant	GM_getValue
+// @grant	GM_setValue
+// @require	http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 // ==/UserScript==
 
 const answerFileLink = "https://raw.githubusercontent.com/Sakuto/OCModerationScript/master/ocreply.json";
