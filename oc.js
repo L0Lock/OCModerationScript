@@ -11,7 +11,8 @@
 	// @require	http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 	// ==/UserScript==
 
-	const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
+	const answerFileLink = "https://raw.githubusercontent.com/benzouye/OCModerationScript/master/ocreply.json";
+	const loadingGif = "https://raw.githubusercontent.com/benzouye/OCModerationScript/master/loader.gif";
 
 	const answerFileIndex = "answers";
 	const answerFileLastFetchIndex = "answersLastFetch";
@@ -94,7 +95,7 @@
 	}
 	var messages = GM_getValue(answerFileIndex).answers;
 	var messagesSection = getMessageBySection( messages, $('span[itemprop="title"]').last().text() );
-	
+
 	if( messagesSection.length ) {
 		// Eléments et styles
 		$("#myFollowedThreads").after("<li><a href=\"#\" id=\"updateReply\">Mettre à jour les réponses</a></li>");
@@ -112,16 +113,14 @@
 		$("#oc-mod-options").append( '<input name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement<br />' );
 		$("#oc-mod-valid").append( '<a id="oc-mod-validation" class="btn btn-primary">Modérer</a>' );
 		$("#oc-mod-validation").css( {"margin":"10px 0 0 5px","border":"1px solid #380e00","box-shadow":"inset 0 1px 1px 0 #a95f47","background-color":"#691c02","background-image":"linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%)","text-shadow":"0 -1px 0 #1c181b","text-decoration":"none"} );
+        $("#oc-mod-reponses").append('<img id="oc-mod-loading" src="'+loadingGif+'" />');
 
 		// Ajout des messages possibles si config ok
 		getConfigurationFile(false).then(() => {
-			if( messagesSection.length > 0 ) {
-				for(var message of messagesSection ) {
-					var cases = '<input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'<br />';
-					$("#oc-mod-reponses").append( cases );
-				}
-			} else {
-				$("#oc-mod-reponses").append('Aucun message possible pour ce forum ...');
+            $("#oc-mod-loading").hide();
+			for(var message of messagesSection ) {
+				var cases = '<input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'<br />';
+				$("#oc-mod-reponses").append( cases );
 			}
 		});
 	}
@@ -129,27 +128,27 @@
 	// Validation modération
 	$("#oc-mod-validation").click( function(e) {
 		var moderationMessage = '';
-		
+
 		if( $("input[name=hasHeader]").prop('checked') )
 			moderationMessage += GM_getValue(answerFileIndex).configuration.headers;
-		
+
 		if( $("input[name=shouldLock]").prop('checked') )
 			GM_setValue( threadLockingIndex, "https://openclassrooms.com" + $(".closeAction").attr('href') );
-		
+
 		$(".oc-mod-checkboxes").each( function(e) {
 			if( $(this).prop('checked') ) {
 				messageObject = GM_getValue(answerFileIndex).answers.filter( a => a.id == $(this).val() );
 				moderationMessage += messageObject[0].message;
 			}
 		});
-		
+
 		if( moderationMessage.length ) {
-			
+
 			addMessage(moderationMessage);
-			
+
 			if( $("input[name=postMessage]").prop('checked') )
 				$("input[name=submit_comment]").click();
-			
+
 		} else {
 			alert( 'Aucun message à poster !' );
 		}
@@ -167,7 +166,7 @@
 			textareaHolder[0].contentDocument.body.innerHTML = message;
 		else
 			$("#Comment_wysiwyg_message")[0].value = message;
-	}	
+	}
 
 	/**
 	 * Récupère la liste des messages de modération
@@ -179,23 +178,23 @@
 	function getMessageBySection( messages, section ) {
 		var forum = false;
 		var retour = [];
-		
+
 		for( var titre in forums ) {
 			if( $.inArray( section, forums[titre] ) > -1 )
 				forum = titre;
 		}
-		
+
 		for( var i = 0; i < messages.length; i++) {
 			var sections = messages[i].section;
 			var excludes = messages[i].exclude;
-			
+
 			if( $.inArray( section, excludes ) > -1 || $.inArray( forum, excludes ) > -1 || $.inArray( "all", excludes ) > -1 )
 				break;
-			
+
 			if( $.inArray( section, sections ) > - 1 || $.inArray( forum, sections ) > -1 || $.inArray( "all", sections ) > -1 )
 				retour.push( messages[i] );
 		}
-		
+
 		return retour;
 	}
 
