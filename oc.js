@@ -92,8 +92,6 @@
 		promiseRequest("GET", GM_getValue(threadLockingIndex))
 			.then(() => GM_setValue(threadLockingIndex, ''));
 	}
-	var shouldLock = false;
-	var hasHeader = false;
 	var messages = GM_getValue(answerFileIndex).answers;
 	var messagesSection = getMessageBySection( messages, $('span[itemprop="title"]').last().text() );
 	
@@ -111,6 +109,7 @@
 		$("#oc-mod-options-title").css( {"color":"#000","font-weight":"bold","line-height":"1em"} );
 		$("#oc-mod-options").append( '<input name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse<br />' );
 		$("#oc-mod-options").append( '<input name="shouldLock" type="checkbox" value="1" /> Fermer le sujet<br />' );
+		$("#oc-mod-options").append( '<input name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement<br />' );
 		$("#oc-mod-valid").append( '<a id="oc-mod-validation" class="btn btn-primary">Modérer</a>' );
 		$("#oc-mod-validation").css( {"margin":"10px 0 0 5px","border":"1px solid #380e00","box-shadow":"inset 0 1px 1px 0 #a95f47","background-color":"#691c02","background-image":"linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%)","text-shadow":"0 -1px 0 #1c181b","text-decoration":"none"} );
 
@@ -127,23 +126,15 @@
 		});
 	}
 
-	$("input[name=hasHeader]").click( function(e) {
-		hasHeader = $(this).prop('checked') ? true : false;
-	});
-
-	$("input[name=shouldLock]").click( function(e) {
-		shouldLock = $(this).prop('checked') ? true : false;
-	});
-
 	// Validation modération
 	$("#oc-mod-validation").click( function(e) {
 		var moderationMessage = '';
 		
-		if(hasHeader)
+		if( $("input[name=hasHeader]").prop('checked') )
 			moderationMessage += GM_getValue(answerFileIndex).configuration.headers;
 		
-		if(shouldLock)
-			GM_setValue(threadLockingIndex, getCloseLink());
+		if( $("input[name=shouldLock]").prop('checked') )
+			GM_setValue( threadLockingIndex, "https://openclassrooms.com" + $(".closeAction").attr('href') );
 		
 		$(".oc-mod-checkboxes").each( function(e) {
 			if( $(this).prop('checked') ) {
@@ -153,8 +144,12 @@
 		});
 		
 		if( moderationMessage.length ) {
+			
 			addMessage(moderationMessage);
-			$("input[name=submit_comment]").click();
+			
+			if( $("input[name=postMessage]").prop('checked') )
+				$("input[name=submit_comment]").click();
+			
 		} else {
 			alert( 'Aucun message à poster !' );
 		}
@@ -175,16 +170,6 @@
 			$("#Comment_wysiwyg_message")[0].value = '';
 			$("#Comment_wysiwyg_message")[0].value = message;
 		}
-	}
-
-	/**
-	 * Récupère le lien de fermeture du topic
-	 *
-	 * @returns
-	 */
-	function getCloseLink() {
-		var $closeElement = $(".closeAction");
-		return "https://openclassrooms.com" + $closeElement.attr('href');
 	}	
 
 	/**
