@@ -75,7 +75,7 @@
             "section": ["all"],
             "exclude": ["Forum du staff"],
             "title": "Manque de Politesse",
-            "message": "<center><h1>Manque de politesse</h1></center><p>Votre message ne comporte pas ou peu de formules de politesse (« Bonjour », « Merci », « Au revoir », etc.). Les règles du site exigent que chaque nouveau message comporte un minimum de politesse. Après tout, les gens qui répondent le font gratuitement, sur leur temps libre. Ils méritent bien un minimum de considération, n'est-ce pas ?</p> <p>Merci de modifier votre message en conséquence via le bouton \"Modifier\" situé sur son coin supérieur droit, sans quoi le sujet sera fermé."
+            "message": "<center><h1>Manque de politesse</h1></center><p>Votre message ne comporte pas ou peu de formules de politesse (« Bonjour », « Merci », « Au revoir », etc.). Les règles du site exigent que chaque nouveau message comporte un minimum de politesse. Après tout, les gens qui répondent le font gratuitement, sur leur temps libre. Ils méritent bien un minimum de considération, n'est-ce pas ?</p> <p>Merci de modifier votre message en conséquence via le bouton \"Modifier\" situé sur son coin supérieur droit, sans quoi le sujet sera fermé.</p>"
         },
         
         {
@@ -83,7 +83,7 @@
             "section": ["Programmation"],
             "exclude": ["Forum du staff"],
             "title": "Merci d'utiliser les balises de code",
-            "message": "<center><h1>Merci d'utiliser les balises de code</h1></center><p>Les forums d'Openclassrooms disposent d'une fonctionnalité permettant de colorer et mettre en forme les codes source afin de les rendre plus lisibles et faciles à manipuler par les intervenants. Pour celà, il faut utiliser le bouton <img src=\"https://sdz-upload.s3.amazonaws.com/prod/upload/code.gif\" alt=\"Image\" /> . Si vous utilisez l'éditeur de messages en mode Markdown, il faut utiliser les balises <code>&lt;pre class=\"brush: c;\"&gt;Votre code ici&lt;/pre&gt;</code>.</p> <p>Merci de modifier votre message en conséquence via le bouton \"Modifier\" situé sur son coin supérieur droit, sans quoi le sujet sera fermé."
+            "message": "<center><h1>Merci d'utiliser les balises de code</h1></center><p>Les forums d'Openclassrooms disposent d'une fonctionnalité permettant de colorer et mettre en forme les codes source afin de les rendre plus lisibles et faciles à manipuler par les intervenants. Pour celà, il faut utiliser le bouton <img src=\"https://sdz-upload.s3.amazonaws.com/prod/upload/code.gif\" alt=\"Image\" /> . Si vous utilisez l'éditeur de messages en mode Markdown, il faut utiliser les balises <code>&lt;pre class=\"brush: c;\"&gt;Votre code ici&lt;/pre&gt;</code>.</p> <p>Merci de modifier votre message en conséquence via le bouton \"Modifier\" situé sur son coin supérieur droit, sans quoi le sujet sera fermé.</p>"
         },
         
         {
