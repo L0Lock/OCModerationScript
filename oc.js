@@ -96,34 +96,36 @@
 	var hasHeader = false;
 	var messages = GM_getValue(answerFileIndex).answers;
 	var messagesSection = getMessageBySection( messages, $('span[itemprop="title"]').last().text() );
+	
+	if( messagesSection.length ) {
+		// Eléments et styles
+		$("#myFollowedThreads").after("<li><a href=\"#\" id=\"updateReply\">Mettre à jour les réponses</a></li>");
+		$(".nav-tabs--searchField").css( {"width": "40%"} );
+		$("input[name=submit_comment]").before( '<div id="oc-mod-panel"><h2 id="oc-mod-panel-title">Outils de modération</h2><div id="oc-mod-reponses"><h3 id="oc-mod-reponses-title">Messages possibles</h3></div><div id="oc-mod-options"><h3 id="oc-mod-options-title">Options</h3></div><div id="oc-mod-valid"></div></div>' );
+		$("#oc-mod-panel").css( {"float":"left","width":"75%","padding":"10px","border":"1px solid #4f8a03","border-radius":"5px"} );
+		$("#oc-mod-reponses").css( {"float":"left","width":"50%"} );
+		$("#oc-mod-options").css( {"float":"left","width":"50%"} );
+		$("#oc-mod-valid").css( {"float":"left","width":"100%","text-align":"center"} );
+		$("#oc-mod-panel-title").css( {"color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
+		$("#oc-mod-reponses-title").css( {"color":"#000","font-weight":"bold","line-height":"1em"} );
+		$("#oc-mod-options-title").css( {"color":"#000","font-weight":"bold","line-height":"1em"} );
+		$("#oc-mod-options").append( '<input name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse<br />' );
+		$("#oc-mod-options").append( '<input name="shouldLock" type="checkbox" value="1" /> Fermer le sujet<br />' );
+		$("#oc-mod-valid").append( '<a id="oc-mod-validation" class="btn btn-primary">Modérer</a>' );
+		$("#oc-mod-validation").css( {"margin":"10px 0 0 5px","border":"1px solid #380e00","box-shadow":"inset 0 1px 1px 0 #a95f47","background-color":"#691c02","background-image":"linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%)","text-shadow":"0 -1px 0 #1c181b","text-decoration":"none"} );
 
-	// Eléments et styles
-	$("#myFollowedThreads").after("<li><a href=\"#\" id=\"updateReply\">Mettre à jour les réponses</a></li>");
-	$(".nav-tabs--searchField").css( {"width": "40%"} );
-	$("input[name=submit_comment]").before( '<div id="oc-mod-panel"><h2 id="oc-mod-panel-title">Outils de modération</h2><div id="oc-mod-reponses"><h3 id="oc-mod-reponses-title">Messages possibles</h3></div><div id="oc-mod-options"><h3 id="oc-mod-options-title">Options</h3></div><div id="oc-mod-valid"></div></div>' );
-	$("#oc-mod-panel").css( {"float":"left","width":"75%","padding":"10px","border":"1px solid #4f8a03","border-radius":"5px"} );
-	$("#oc-mod-reponses").css( {"float":"left","width":"50%"} );
-	$("#oc-mod-options").css( {"float":"left","width":"50%"} );
-	$("#oc-mod-valid").css( {"float":"left","width":"100%","text-align":"center"} );
-	$("#oc-mod-panel-title").css( {"color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
-	$("#oc-mod-reponses-title").css( {"color":"#000","font-weight":"bold","line-height":"1em"} );
-	$("#oc-mod-options-title").css( {"color":"#000","font-weight":"bold","line-height":"1em"} );
-	$("#oc-mod-options").append( '<input name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse<br />' );
-	$("#oc-mod-options").append( '<input name="shouldLock" type="checkbox" value="1" /> Fermer le sujet<br />' );
-	$("#oc-mod-valid").append( '<a id="oc-mod-validation" class="btn btn-primary">Modérer</a>' );
-	$("#oc-mod-validation").css( {"margin":"10px 0 0 5px","border":"1px solid #380e00","box-shadow":"inset 0 1px 1px 0 #a95f47","background-color":"#691c02","background-image":"linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%)","text-shadow":"0 -1px 0 #1c181b","text-decoration":"none"} );
-
-	// Ajout des messages possibles si config ok
-	getConfigurationFile(false).then(() => {
-		if( messagesSection.length > 0 ) {
-			for(var message of messagesSection ) {
-				var cases = '<input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'<br />';
-				$("#oc-mod-reponses").append( cases );
+		// Ajout des messages possibles si config ok
+		getConfigurationFile(false).then(() => {
+			if( messagesSection.length > 0 ) {
+				for(var message of messagesSection ) {
+					var cases = '<input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'<br />';
+					$("#oc-mod-reponses").append( cases );
+				}
+			} else {
+				$("#oc-mod-reponses").append('Aucun message possible pour ce forum ...');
 			}
-		} else {
-			$("#oc-mod-reponses").append('Aucun message possible pour ce forum ...');
-		}
-	});
+		});
+	}
 
 	$("input[name=hasHeader]").click( function(e) {
 		hasHeader = $(this).prop('checked') ? true : false;
