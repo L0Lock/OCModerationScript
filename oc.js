@@ -17,8 +17,9 @@
 	const answerFileIndex = "answers";
 	const answerFileLastFetchIndex = "answersLastFetch";
 	const threadLockingIndex = "threadtolock";
+	const threadDismissAlerts = "dismissAlerts";
 	const delayBetweenConfigurationFetch = 86400000;
-
+	
 	// Liste des forums hiérarchisée
 	const forums = {
 		"Site web" : [
@@ -87,14 +88,24 @@
 			"Forum du staff"
 		]
 	};
-
-	// Initialisation des variables
-	if(GM_getValue(threadLockingIndex) !== '' && GM_getValue(threadLockingIndex) != undefined) {
-		promiseRequest("GET", GM_getValue(threadLockingIndex))
-			.then(() => GM_setValue(threadLockingIndex, ''));
-	}
 	var messages = GM_getValue(answerFileIndex).answers;
 	var messagesSection = getMessageBySection( messages, $('span[itemprop="title"]').last().text() );
+	
+	// Fermeture du sujet le cas échéant
+	if(GM_getValue(threadLockingIndex) !== '' && GM_getValue(threadLockingIndex) != undefined) {
+		promiseRequest("GET", GM_getValue(threadLockingIndex)).then(() => GM_setValue(threadLockingIndex, ''));
+	}
+	
+	// Retirer les alertes le cas échéant
+	if( GM_getValue(threadDismissAlerts) != undefined ) {
+		if( GM_getValue(threadDismissAlerts).constructor === Array ) {
+			var alertes = GM_getValue(threadDismissAlerts);
+			for( var alerte in alertes ) {
+				promiseRequest("GET", alerte ).then( function(e){console.log('dismiss ok');});
+			}
+		}
+		GM_setValue( threadDismissAlerts, [] );
+	}
 
 	if( messagesSection.length ) {
 		// Eléments et styles
@@ -109,8 +120,9 @@
 		$("#oc-mod-reponses-title").css( {"color":"#000","font-weight":"bold","line-height":"1em"} );
 		$("#oc-mod-options-title").css( {"color":"#000","font-weight":"bold","line-height":"1em"} );
 		$("#oc-mod-options").append( '<input name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse<br />' );
-		$("#oc-mod-options").append( '<input name="shouldLock" type="checkbox" value="1" /> Fermer le sujet<br />' );
+		$("#oc-mod-options").append( '<input name="shouldLock" type="checkbox" value="1" /> Fermer le sujet 🔒<br />' );
 		$("#oc-mod-options").append( '<input name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement<br />' );
+		$("#oc-mod-options").append( '<input name="dismissAlerts" type="checkbox" checked="checked" value="1" /> Retirer les alertes<br />' );
 		$("#oc-mod-valid").append( '<a id="oc-mod-validation" class="btn btn-primary">Modérer</a>' );
 		$("#oc-mod-validation").css( {"margin":"10px 0 0 5px","border":"1px solid #380e00","box-shadow":"inset 0 1px 1px 0 #a95f47","background-color":"#691c02","background-image":"linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%)","text-shadow":"0 -1px 0 #1c181b","text-decoration":"none"} );
         $("#oc-mod-reponses").append('<img id="oc-mod-loading" src="'+loadingGif+'" />');
@@ -132,9 +144,6 @@
 		if( $("input[name=hasHeader]").prop('checked') )
 			moderationMessage += GM_getValue(answerFileIndex).configuration.headers;
 
-		if( $("input[name=shouldLock]").prop('checked') )
-			GM_setValue( threadLockingIndex, "https://openclassrooms.com" + $(".closeAction").attr('href') );
-
 		$(".oc-mod-checkboxes").each( function(e) {
 			if( $(this).prop('checked') ) {
 				messageObject = GM_getValue(answerFileIndex).answers.filter( a => a.id == $(this).val() );
@@ -143,6 +152,23 @@
 		});
 
 		if( moderationMessage.length ) {
+			
+			// Fermeture du sujet
+			if( $("input[name=shouldLock]").prop('checked') )
+				GM_setValue( threadLockingIndex, "https://openclassrooms.com" + $(".closeAction").attr('href') );
+			else
+				GM_setValue( threadLockingIndex, '' );
+			
+			// Retirer les alertes
+			if( $("input[name=dismissAlerts]").prop('checked') ) {
+				var liensAlertes = [];
+				$(".span12>a").each( function(e) {
+					liensAlertes.push( "https://openclassrooms.com" + $(this).attr('href') );
+				});
+				GM_setValue( threadDismissAlerts, liensAlertes );
+			} else {
+				GM_setValue( threadDismissAlerts, [] );
+			}
 
 			addMessage(moderationMessage);
 
