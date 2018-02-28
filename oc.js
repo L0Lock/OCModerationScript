@@ -163,13 +163,10 @@
 	function addMessage(message) {
 		let textareaHolder = $("#Comment_wysiwyg_message_ifr");
 
-		if(textareaHolder.length) {
-			textareaHolder[0].contentDocument.body.innerHTML = '';
+		if(textareaHolder.length)
 			textareaHolder[0].contentDocument.body.innerHTML = message;
-		} else {
-			$("#Comment_wysiwyg_message")[0].value = '';
+		else
 			$("#Comment_wysiwyg_message")[0].value = message;
-		}
 	}	
 
 	/**
