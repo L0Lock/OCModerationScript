@@ -48,7 +48,7 @@
 
         {
             "id": 5,
-            "section": ["Fonctionnement du site"],
+            "section": ["all"],
             "exclude": ["Forum du staff"],
             "title": "Hello @OC",
             "message": "<center><h1>Contacter le support</h1></center> <p>Bonjour. Afin de vous assurer d'avoir une réponse le plus rapidement possible, je vous invite à directement contacter l'équipe du site via l'adresse <a href=\"mailto:hello@openclassrooms.com\">hello@openclassrooms.com</a>. En effet, l'équipe du site ne passant que très rarement sur les forums, il vous sera beaucoup plus simple de les contacter directement. Je ferme donc ce sujet.</p>",
