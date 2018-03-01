@@ -121,7 +121,7 @@
 		$("#oc-mod-options").append( '<input name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse<br />' );
 		$("#oc-mod-options").append( '<input name="shouldLock" type="checkbox" value="1" /> Fermer le sujet 🔒<br />' );
 		$("#oc-mod-options").append( '<input name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement<br />' );
-		$("#oc-mod-options").append( '<input name="dismissAlerts" type="checkbox" checked="checked" value="1" /> Retirer les alertes<br />' );
+		$("#oc-mod-options").append( '<input name="dismissAlerts" type="checkbox" value="1" /> Retirer les alertes<br />' );
 		$("#oc-mod-valid").append( '<a id="oc-mod-validation" class="btn btn-primary">Modérer</a>' );
 		$("#oc-mod-validation").css( {"margin":"10px 0 0 5px","border":"1px solid #380e00","box-shadow":"inset 0 1px 1px 0 #a95f47","background-color":"#691c02","background-image":"linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%)","text-shadow":"0 -1px 0 #1c181b","text-decoration":"none"} );
         $("#oc-mod-reponses").append('<img id="oc-mod-loading" src="'+loadingGif+'" />');
