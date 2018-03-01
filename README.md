@@ -6,10 +6,8 @@ Script de modération pour Openclassrooms
         "id": 1,
         "section": [],
         "exclude": [],
-        "title": "",
-        "message": "",
-        "hasHeader": true,
-        "shouldLock": true
+        "title": "Titre affiché sur le bouton",
+        "message": "<p>Mon message en \"html\"",
     },
 
 <em>section</em> et <em>exclude</em> seront des tableaux contenant :
