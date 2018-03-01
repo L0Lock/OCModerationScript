@@ -1,6 +1,6 @@
 	// ==UserScript==
-	// @name	OC Moderation +
-	// @author	Sakuto
+	// @name	OC Moderation Script
+	// @author	Sakuto, -L0Lock-, benzouye
 	// @namespace   http://ramelot-loic.be
 	// @description Make the moderation easiest
 	// @include	*openclassrooms.com/*
