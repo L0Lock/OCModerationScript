@@ -19,7 +19,7 @@
 	const threadLockingIndex = "threadtolock";
 	const threadDismissAlerts = "dismissAlerts";
 	const delayBetweenConfigurationFetch = 86400000;
-	
+
 	// Liste des forums hiérarchisée
 	const forums = {
 		"Site web" : [
@@ -90,21 +90,20 @@
 	};
 	var messages = GM_getValue(answerFileIndex).answers;
 	var messagesSection = getMessageBySection( messages, $('span[itemprop="title"]').last().text() );
-	
+
 	// Fermeture du sujet le cas échéant
 	if(GM_getValue(threadLockingIndex) !== '' && GM_getValue(threadLockingIndex) != undefined) {
 		promiseRequest("GET", GM_getValue(threadLockingIndex)).then(() => GM_setValue(threadLockingIndex, ''));
 	}
-	
+
 	// Retirer les alertes le cas échéant
 	if( GM_getValue(threadDismissAlerts) != undefined ) {
 		if( GM_getValue(threadDismissAlerts).constructor === Array ) {
 			var alertes = GM_getValue(threadDismissAlerts);
 			for( var alerte in alertes ) {
-				promiseRequest("GET", alerte ).then( function(e){console.log('dismiss ok');});
+				promiseRequest("GET", alerte ).then(() => GM_setValue( threadDismissAlerts, [] ) );
 			}
 		}
-		GM_setValue( threadDismissAlerts, [] );
 	}
 
 	if( messagesSection.length ) {
@@ -152,13 +151,13 @@
 		});
 
 		if( moderationMessage.length ) {
-			
+
 			// Fermeture du sujet
 			if( $("input[name=shouldLock]").prop('checked') )
 				GM_setValue( threadLockingIndex, "https://openclassrooms.com" + $(".closeAction").attr('href') );
 			else
 				GM_setValue( threadLockingIndex, '' );
-			
+
 			// Retirer les alertes
 			if( $("input[name=dismissAlerts]").prop('checked') ) {
 				var liensAlertes = [];
