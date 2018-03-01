@@ -7,7 +7,7 @@ Script de modération pour Openclassrooms
         "section": [],
         "exclude": [],
         "title": "Titre affiché sur le bouton",
-        "message": "<p>Mon message en \"html\"",
+        "message": "<p>Mon message en \"html\"</p>",
     },
 
 <em>section</em> et <em>exclude</em> seront des tableaux contenant :
