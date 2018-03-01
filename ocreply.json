@@ -116,6 +116,14 @@
             "exclude": ["Forum du staff"],
             "title": "Le tuto Blender est dépassé",
             "message": "<p>Bonjour.</p><p>Le cours Blender d'OpenClassrooms étant vastement obsolète et même faux par endroits, je te conseille vivement de t'orienter vers cette suite de tutos qui a l'avantage d'être à jour et d'être faite par un professionnel expérimenté :</p><p><a href=\"https://www.youtube.com/playlist?list=PLuZVx6uIcP-QSUx9zyGto6ZWSABeAH_76\">Formation Blender 2.73</a></p><p>Tu trouveras également d'autres tutos sur d'autres sujets plus poussés sur la même chaîne, et ailleurs. En tout cas, méfie-toi des tutos faits sur des versions antérieures à Blender 2.60.</p>"
+        },
+        
+        {
+            "id": 15,
+            "section": ["all"],
+            "exclude": ["Forum du staff"],
+            "title": "Pas de données personnelles",
+            "message": "<p>Bonjour.</p><p>Il est dangereux de poster des données personnelles à la vue de tout le monde sur Internet, car elles pourraient être utilisées à mauvais esscient et entraîner des nuisances pour son propiétaire et ses proches.</p><p>Pour transmettre des données personnelles, préférez les messages privés.</p>"
         }
     ]
 }
