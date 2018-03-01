@@ -1,7 +1,7 @@
-# OCModerationScript
-Moderation userscript for Openclassrooms
+# OC Moderation Script
+Script de modération pour Openclassrooms
 
-## Add a new quick answer
+## Ajouter une nouvelle réponse rapide :
     {
         "id": 1,
         "section": [],
@@ -14,9 +14,9 @@ Moderation userscript for Openclassrooms
 
 <em>section</em> et <em>exclude</em> seront des tableaux contenant :
 - "all" = toutes les sections
-- le nom d'un forum ou de son parent
+- le nom d'une section de forum ou de son parent
 
-## List of forums
+## Liste des sections :
 - Site Web
 	- HTML / CSS
 	- Javascript
