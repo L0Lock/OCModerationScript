@@ -99,7 +99,7 @@
             "section": ["Graphisme 3D"],
             "exclude": ["Forum du staff"],
             "title": "Manque de recherche FAQ 3D",
-            "message": "<h1>Manque de recherche</h1><p>Il semblerait que votre question soit abordée dans la <a href=\"https://openclassrooms.com/forum/sujet/faq-blender-et-la-3d-en-general\">FAQ de la section Graphisme 3D</a>.</p><p>Vous êtes ici sur un forum d'entraide communautaire et non pas sur un forum de demande de service, le but n'est donc pas de fournir un tutoriel à la demande ou de directement fournir la solution à quiconque viendrait sans la moindre trace. Afin d'obtenir de l'aide et une solution à votre problème, il est fortement recommandé de présenter clairement l'état actuel du problème en nous fournissant : </p> <ul> <li>Un descriptif clair et précis du problème</li> <li>La tentative actuelle de résolution que vous avez effectué</li> <li>Le comportement attendu et le comportement actuel</li> <li>Toutes pistes de recherches pouvant aider à la résolution</li> </ul> <p>Je ferme ce sujet et je vous invite à en ouvrir un nouveau présentant ces différentes informations.</p>"
+            "message": "<center><h1>Manque de recherche</h1></center><p>Il semblerait que votre question soit abordée dans la <a href=\"https://openclassrooms.com/forum/sujet/faq-blender-et-la-3d-en-general\">FAQ de la section Graphisme 3D</a>.</p><p>Vous êtes ici sur un forum d'entraide communautaire et non pas sur un forum de demande de service, le but n'est donc pas de fournir un tutoriel à la demande ou de directement fournir la solution à quiconque viendrait sans la moindre trace. Afin d'obtenir de l'aide et une solution à votre problème, il est fortement recommandé de présenter clairement l'état actuel du problème en nous fournissant : </p> <ul> <li>Un descriptif clair et précis du problème</li> <li>La tentative actuelle de résolution que vous avez effectué</li> <li>Le comportement attendu et le comportement actuel</li> <li>Toutes pistes de recherches pouvant aider à la résolution</li> </ul> <p>Je ferme ce sujet et je vous invite à en ouvrir un nouveau présentant ces différentes informations.</p>"
         },
         
         {
@@ -124,6 +124,14 @@
             "exclude": ["Forum du staff"],
             "title": "Pas de données personnelles",
             "message": "<p>Bonjour.</p><p>Il est dangereux de poster des données personnelles à la vue de tout le monde sur Internet, car elles pourraient être utilisées à mauvais esscient et entraîner des nuisances pour son propiétaire et ses proches.</p><p>Pour transmettre des données personnelles, préférez les messages privés.</p>"
+        },
+        
+        {
+            "id": 16,
+            "section": ["all"],
+            "exclude": ["Forum du staff"],
+            "title": "Mise en page abusive",
+            "message": "<center><h1>Mise en page abusive</h1></center><p>Bonjour.</p><p>Les outils de mise en page servent à rendre votre message plus lisible et compréhensible, pas à faire des décorations expérimentales ou à s'amuser à faire des textes arc-en-ciel.</p><p>Merci de modifier votre message afin de réduire la mise en page au strict nécessaire.</p>"
         }
     ]
 }

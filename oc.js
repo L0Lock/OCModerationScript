@@ -1,8 +1,8 @@
 	// ==UserScript==
 	// @name	OC Moderation Script
-	// @author	Sakuto, -L0Lock-, benzouye
+	// @author	Sakuto, L0Lock, benzouye
 	// @namespace   http://ramelot-loic.be
-	// @description Make the moderation easiest
+	// @description Rendre la modération d'OC plus facile
 	// @include	*openclassrooms.com/*
 	// @version	1.0.4
 	// @grant	GM_xmlhttpRequest
@@ -11,7 +11,7 @@
 	// @require	http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 	// ==/UserScript==
 
-	const gitUser = "benzouye";
+	const gitUser = "L0Lock";
 	const baseUri = "https://openclassrooms.com";
 	const answerFileLink = "https://raw.githubusercontent.com/"+gitUser+"/OCModerationScript/master/ocreply.json";
 	const loadingGif = "https://raw.githubusercontent.com/"+gitUser+"/OCModerationScript/master/loader.gif";
