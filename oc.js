@@ -13,7 +13,8 @@
 
 	const answerFileLink = "https://raw.githubusercontent.com/benzouye/OCModerationScript/master/ocreply.json";
 	const loadingGif = "https://raw.githubusercontent.com/benzouye/OCModerationScript/master/loader.gif";
-
+	
+	const baseUri = "https://openclassrooms.com";
 	const answerFileIndex = "answers";
 	const answerFileLastFetchIndex = "answersLastFetch";
 	const threadLockingIndex = "threadtolock";
@@ -154,7 +155,7 @@
 
 			// Fermeture du sujet
 			if( $("input[name=shouldLock]").prop('checked') )
-				GM_setValue( threadLockingIndex, "https://openclassrooms.com" + $(".closeAction").attr('href') );
+				GM_setValue( threadLockingIndex, baseUri + $(".closeAction").attr('href') );
 			else
 				GM_setValue( threadLockingIndex, '' );
 
@@ -162,7 +163,7 @@
 			if( $("input[name=dismissAlerts]").prop('checked') ) {
 				var liensAlertes = [];
 				$(".span12>a").each( function(e) {
-					liensAlertes.push( "https://openclassrooms.com" + $(this).attr('href') );
+					liensAlertes.push( baseUri + $(this).attr('href') );
 				});
 				GM_setValue( threadDismissAlerts, liensAlertes );
 			} else {
