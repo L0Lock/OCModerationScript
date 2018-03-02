@@ -10,9 +10,10 @@
 	// @grant	GM_setValue
 	// @require	http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 	// ==/UserScript==
-
-	const answerFileLink = "https://raw.githubusercontent.com/benzouye/OCModerationScript/master/ocreply.json";
-	const loadingGif = "https://raw.githubusercontent.com/benzouye/OCModerationScript/master/loader.gif";
+	
+	const gitOwner = "benzouye";
+	const answerFileLink = "https://raw.githubusercontent.com/"+gitOwner+"/OCModerationScript/master/ocreply.json";
+	const loadingGif = "https://raw.githubusercontent.com/"+gitOwner+"/OCModerationScript/master/loader.gif";
 	
 	const baseUri = "https://openclassrooms.com";
 	const answerFileIndex = "answers";
