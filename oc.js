@@ -1,23 +1,23 @@
 	// ==UserScript==
 	// @name	OC Moderation Script
-	// @author	Sakuto, -L0Lock-, benzouye
+	// @author	Sakuto, L0Lock, benzouye
 	// @namespace   http://ramelot-loic.be
-	// @description Make the moderation easiest
+	// @description Rendre la modération d'OC plus facile
 	// @include	*openclassrooms.com/*
-	// @version	1.0.3
+	// @version	1.0.4
 	// @grant	GM_xmlhttpRequest
 	// @grant	GM_getValue
 	// @grant	GM_setValue
 	// @require	http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 	// ==/UserScript==
 
-	const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
-	const loadingGif = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/loader.gif";
+	const gitUser = "L0Lock";
+	const baseUri = "https://openclassrooms.com";
+	const answerFileLink = "https://raw.githubusercontent.com/"+gitUser+"/OCModerationScript/master/ocreply.json";
+	const loadingGif = "https://raw.githubusercontent.com/"+gitUser+"/OCModerationScript/master/loader.gif";
 
 	const answerFileIndex = "answers";
 	const answerFileLastFetchIndex = "answersLastFetch";
-	const threadLockingIndex = "threadtolock";
-	const threadDismissAlerts = "dismissAlerts";
 	const delayBetweenConfigurationFetch = 86400000;
 
 	// Liste des forums hiérarchisée
@@ -91,21 +91,6 @@
 	var messages = GM_getValue(answerFileIndex).answers;
 	var messagesSection = getMessageBySection( messages, $('span[itemprop="title"]').last().text() );
 
-	// Fermeture du sujet le cas échéant
-	if(GM_getValue(threadLockingIndex) !== '' && GM_getValue(threadLockingIndex) != undefined) {
-		promiseRequest("GET", GM_getValue(threadLockingIndex)).then(() => GM_setValue(threadLockingIndex, ''));
-	}
-
-	// Retirer les alertes le cas échéant
-	if( GM_getValue(threadDismissAlerts) != undefined ) {
-		if( GM_getValue(threadDismissAlerts).constructor === Array ) {
-			var alertes = GM_getValue(threadDismissAlerts);
-			for( var alerte in alertes ) {
-				promiseRequest("GET", alerte ).then(() => GM_setValue( threadDismissAlerts, [] ) );
-			}
-		}
-	}
-
 	if( messagesSection.length ) {
 		// Eléments et styles
 		$("#myFollowedThreads").after("<li><a href=\"#\" id=\"updateReply\">Mettre à jour les réponses</a></li>");
@@ -152,25 +137,24 @@
 
 		if( moderationMessage.length ) {
 
-			// Fermeture du sujet
-			if( $("input[name=shouldLock]").prop('checked') )
-				GM_setValue( threadLockingIndex, "https://openclassrooms.com" + $(".closeAction").attr('href') );
-			else
-				GM_setValue( threadLockingIndex, '' );
-
 			// Retirer les alertes
 			if( $("input[name=dismissAlerts]").prop('checked') ) {
-				var liensAlertes = [];
 				$(".span12>a").each( function(e) {
-					liensAlertes.push( "https://openclassrooms.com" + $(this).attr('href') );
-				});
-				GM_setValue( threadDismissAlerts, liensAlertes );
-			} else {
-				GM_setValue( threadDismissAlerts, [] );
+                    var alertLink = baseUri + $(this).attr('href');
+                    promiseRequest("GET", alertLink )
+                        .then(() => console.log("Retrait alerte " + alertLink ) );
+                });
 			}
 
-			addMessage(moderationMessage);
+			// Fermeture du sujet
+			if( $("input[name=shouldLock]").prop('checked') ) {
+                var closeLink = baseUri + $(".closeAction").attr('href');
+                promiseRequest("GET", closeLink )
+                    .then(() => console.log("Fermeture sujet " + closeLink ) );
+            }
 
+			addMessage(moderationMessage);
+			
 			if( $("input[name=postMessage]").prop('checked') )
 				$("input[name=submit_comment]").click();
 
