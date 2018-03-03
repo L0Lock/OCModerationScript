@@ -1,12 +1,12 @@
 	// ==UserScript==
 	// @name	    OC Moderation Script
 	// @author	    Sakuto, -L0Lock-, benzouye
-	// @namespace   http://ramelot-loic.be
-	// @description Make the moderation easiest
-	// @updateURL   https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
-	// @downloadURL https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
-	// @include	    *openclassrooms.com/*
-	// @version	    1.1.2
+	// @namespace   https://github.com/L0Lock/OCModerationScript
+	// @description Facilite la modération sur OpenClassrooms
+    // @updateURL   https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
+    // @downloadURL https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
+	// @include	    *openclassrooms.com/forum/sujet/*
+	// @version	    1.1.3
 	// @grant	    GM_xmlhttpRequest
 	// @grant	    GM_getValue
 	// @grant	    GM_setValue
@@ -99,8 +99,9 @@
 	// Initialisation variables
 	var configuration = [];
 	var messages = [];
+	var panelExpand = false;
 
-	// Récupération des messages possibles
+	// Récupération du fichier JSON des messages
 	getConfigurationFile( false ).then( init() );
 
 	/**
@@ -115,21 +116,22 @@
 
 		// Eléments et styles
 		if( messagesSection.length ) {
-			$("input[name=submit_comment]").before( '<div id="oc-mod-panel"><h2 id="oc-mod-panel-title">Outils de modération</h2><div id="oc-mod-reponses"><h3 id="oc-mod-reponses-title">Messages possibles</h3></div><div id="oc-mod-options"><h3 id="oc-mod-options-title">Options</h3></div><div id="oc-mod-valid"></div></div>' );
-			$("#oc-mod-panel").css( {"float":"left","width":"75%","padding":"10px","border":"1px solid #4f8a03","border-radius":"5px"} );
+			$("#mainContentWithHeader").append( '<div id="oc-mod-panel"><h2 id="oc-mod-expand" class="oc-mod-title">Outils de modération &#x25bc;</h2><div id="oc-mod-content"><div id="oc-mod-reponses"><h3 class="oc-mod-subtitle">Messages possibles</h3></div><div id="oc-mod-options"><h3 class="oc-mod-subtitle">Options</h3></div><div id="oc-mod-valid"></div></div></div>' );
+            $("#oc-mod-content").hide();
+            $("#oc-mod-panel").css( {"position":"fixed","top":"10px","left":"10px","float":"left","background":"#EEE","padding":"10px","border":"1px solid #4f8a03","border-radius":"5px"} );
+            $("#oc-mod-expand").css( {"cursor":"pointer","color":"#4f8a03"} );
 			$("#oc-mod-reponses").css( {"float":"left","width":"50%"} );
 			$("#oc-mod-options").css( {"float":"left","width":"50%"} );
-			$("#oc-mod-valid").css( {"float":"left","width":"100%","text-align":"center"} );
-			$("#oc-mod-panel-title").css( {"color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
-			$("#oc-mod-reponses-title").css( {"color":"#000","font-weight":"bold","line-height":"1em"} );
-			$("#oc-mod-options-title").css( {"color":"#000","font-weight":"bold","line-height":"1em"} );
+			$("#oc-mod-valid").css( {"float":"right"} );
+			$(".oc-mod-title").css( {"font-size":"1.2em","color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
+			$(".oc-mod-subtitle").css( {"font-size":"1.1em","color":"#000","font-weight":"bold","line-height":"1em"} );
 			$("#oc-mod-options").append( '<input name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse<br />' );
 			$("#oc-mod-options").append( '<input name="shouldLock" type="checkbox" value="1" /> Fermer le sujet 🔒<br />' );
 			$("#oc-mod-options").append( '<input name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement<br />' );
 			$("#oc-mod-options").append( '<input name="dismissAlerts" type="checkbox" value="1" /> Retirer les alertes<br />' );
-			$("#oc-mod-options").append( '<input name="resolveTopic" type="checkbox" value="1" /> Mettre "Résolu"<br />' );
+			$("#oc-mod-options").append( '<input name="resolveTopic" type="checkbox" value="1" /> Passer à résolu<br />' );
 			$("#oc-mod-valid").append( '<a id="oc-mod-validation" class="btn btn-primary">Modérer</a>' );
-			$("#oc-mod-validation").css( {"margin":"10px 0 0 5px","border":"1px solid #380e00","box-shadow":"inset 0 1px 1px 0 #a95f47","background-color":"#691c02","background-image":"linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%)","text-shadow":"0 -1px 0 #1c181b","text-decoration":"none"} );
+			$("#oc-mod-validation").css( {"margin":"30px 0 0 5px","border":"1px solid #380e00","box-shadow":"inset 0 1px 1px 0 #a95f47","background-color":"#691c02","background-image":"linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%)","text-shadow":"0 -1px 0 #1c181b","text-decoration":"none"} );
 
 			// Ajout des messages possibles
 			for( let message of messagesSection ) {
@@ -141,6 +143,19 @@
 	// Gestion de la mise à jour manuelle
 	$("#oc-mod-update").click( () => {
 		getConfigurationFile( true ).then( () => alert('Mise à jour des réponses effectuée !') );
+	});
+
+	// Ouverture / Fermeture du panneau
+	$("#oc-mod-expand").click( () => {
+		if( panelExpand ) {
+            $("#oc-mod-content").hide();
+            $("#oc-mod-expand").html("Outils de modération &#x25bc;");
+            panelExpand = false;
+        } else {
+            $("#oc-mod-content").show();
+            $("#oc-mod-expand").html("Outils de modération &#x25b2;");
+            panelExpand = true;
+        }
 	});
 
 	// Validation modération
@@ -168,7 +183,7 @@
 				});
 			}
 
-			// Retirer les alertes
+			// Résoudre le sujet
 			if( $("input[name=resolveTopic]").prop('checked') ) {
 				var resolveLink = baseUri + $(".removeResolveAction").attr('href');
 				promiseRequest("GET", alertLink )
