@@ -5,7 +5,7 @@
 	// @updateURL   https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 	// @description Make the moderation easiest
 	// @include	*openclassrooms.com/*
-	// @version	1.1
+	// @version	1.1.1
 	// @grant	GM_xmlhttpRequest
 	// @grant	GM_getValue
 	// @grant	GM_setValue
