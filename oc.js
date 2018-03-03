@@ -3,8 +3,8 @@
 	// @author	    Sakuto, -L0Lock-, benzouye
 	// @namespace   http://ramelot-loic.be
 	// @description Make the moderation easiest
-    // @updateURL   https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
-    // @downloadURL https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
+	// @updateURL   https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
+	// @downloadURL https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 	// @include	    *openclassrooms.com/*
 	// @version	    1.1
 	// @grant	    GM_xmlhttpRequest
