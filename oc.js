@@ -6,7 +6,7 @@
 // @updateURL   https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include		*openclassrooms.com/forum/*
-// @version		1.1.4
+// @version		1.1.5
 // @grant		GM_xmlhttpRequest
 // @grant		GM_getValue
 // @grant		GM_setValue
@@ -131,6 +131,7 @@ function init() {
 		$("#oc-mod-options").append( '<input name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement<br />' );
 		$("#oc-mod-options").append( '<input name="dismissAlerts" type="checkbox" value="1" /> Retirer les alertes<br />' );
 		$("#oc-mod-options").append( '<input name="resolveTopic" type="checkbox" value="1" /> Passer à résolu<br />' );
+		$("#oc-mod-options").append( '<input name="followTopic" type="checkbox" value="1" /> Suivre le sujet<br />' );
 		$("#oc-mod-valid").append( '<a id="oc-mod-validation" class="btn btn-primary">Modérer</a>' );
 		$("#oc-mod-validation").css( {"margin":"30px 0 0 5px","border":"1px solid #380e00","box-shadow":"inset 0 1px 1px 0 #a95f47","background-color":"#691c02","background-image":"linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%)","text-shadow":"0 -1px 0 #1c181b","text-decoration":"none"} );
 
@@ -178,7 +179,7 @@ $("#oc-mod-validation").click( () => {
 		// Retirer les alertes
 		if( $("input[name=dismissAlerts]").prop('checked') ) {
 			$(".span12>a").each( function(e) {
-				var alertLink = baseUri + $(this).attr('href');
+				let alertLink = baseUri + $(this).attr('href');
 				promiseRequest("GET", alertLink )
 					.then(() => console.log("Retrait alerte " + alertLink ) );
 			});
@@ -186,9 +187,20 @@ $("#oc-mod-validation").click( () => {
 
 		// Résoudre le sujet
 		if( $("input[name=resolveTopic]").prop('checked') ) {
-			var resolveLink = baseUri + $(".removeResolveAction").attr('href');
-			promiseRequest("GET", alertLink )
-				.then(() => console.log("Résolution " + alertLink ) );
+			let resolveLink = baseUri + $(".removeResolveAction").attr('href');
+			promiseRequest("GET", resolveLink )
+				.then(() => console.log("Résolution " + resolveLink ) );
+		}
+
+		// Suivre le sujet
+		if( $("input[name=followTopic]").prop('checked') ) {
+			let followLink = baseUri + $("#notFollow>a").attr('href');
+			promiseRequest("GET", followLink )
+				.then(() => console.log("Suivi " + followLink ) );
+		} else {
+			let followLink = baseUri + $("#follow>a").attr('href');
+			promiseRequest("GET", followLink )
+				.then(() => console.log("Stop suivi " + followLink ) );
 		}
 
 		// Gestion fermeture du sujet
