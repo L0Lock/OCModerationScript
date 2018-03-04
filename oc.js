@@ -2,14 +2,19 @@
 	// @name	OC Moderation Script
 	// @author	Sakuto, -L0Lock-, benzouye
 	// @namespace   http://ramelot-loic.be
+	// @updateURL   https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 	// @description Make the moderation easiest
 	// @include	*openclassrooms.com/*
-	// @version	1.1
+	// @version	1.1.1
 	// @grant	GM_xmlhttpRequest
 	// @grant	GM_getValue
 	// @grant	GM_setValue
 	// @require	http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
 	// ==/UserScript==
+	
+	// URL et chemins
+	const baseUri = "https://openclassrooms.com";
+	const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
 	
 	// Liste des forums hiérarchisée
 	const forums = {
@@ -79,10 +84,6 @@
 			"Forum du staff"
 		]
 	};
-	
-	// URL et chemins
-	const baseUri = "https://openclassrooms.com";
-	const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
 	
 	// Fermeture du sujet si demandée
 	if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== undefined ) {
