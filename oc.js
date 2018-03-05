@@ -1,16 +1,17 @@
 // ==UserScript==
 // @name		OC Moderation Script
 // @author		Sakuto, -L0Lock-, benzouye
-// @namespace   https://github.com/L0Lock/OCModerationScript
-// @description Facilite la modération sur OpenClassrooms
-// @updateURL   https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
-// @downloadURL https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
+// @namespace	https://github.com/L0Lock/OCModerationScript
+// @description	Facilite la modération sur OpenClassrooms
+// @updateURL	https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
+// @downloadURL	https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include		*openclassrooms.com/forum/*
-// @version		1.1.5
+// @version		1.1.6
 // @grant		GM_xmlhttpRequest
 // @grant		GM_getValue
 // @grant		GM_setValue
-// @require		http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js
+// @require		https://code.jquery.com/jquery-3.3.1.min.js
+// @require		https://code.jquery.com/ui/1.12.1/jquery-ui.min.js
 // ==/UserScript==
 
 // URL et chemins
@@ -121,6 +122,7 @@ function init() {
 		$("#oc-mod-content").hide();
 		$("#oc-mod-panel").css( {"position":"fixed","top":"10px","left":"10px","float":"left","background":"#EEE","padding":"10px","border":"1px solid #4f8a03","border-radius":"5px"} );
 		$("#oc-mod-expand").css( {"cursor":"pointer","color":"#4f8a03"} );
+        $("#oc-mod-panel").draggable();
 		$("#oc-mod-reponses").css( {"float":"left","width":"50%","margin-bottom":"10px"} );
 		$("#oc-mod-options").css( {"float":"left","width":"50%"} );
 		$("#oc-mod-valid").css( {"float":"right"} );
