@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name		OC Moderation Script
 // @author		Sakuto, -L0Lock-, benzouye
-// @namespace		https://github.com/L0Lock/OCModerationScript
-// @description		Facilite la modération sur OpenClassrooms
-// @updateURL		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
-// @downloadURL		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
+// @namespace   https://github.com/L0Lock/OCModerationScript
+// @description Facilite la modération sur OpenClassrooms
+// @updateURL   https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
+// @downloadURL https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include		*openclassrooms.com/forum/*
-// @version		1.1.6
+// @version		1.1.7
 // @grant		GM_xmlhttpRequest
 // @grant		GM_getValue
 // @grant		GM_setValue
@@ -101,6 +101,8 @@ $("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour
 var configuration = [];
 var messages = [];
 var panelExpand = false;
+var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
+var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "10px";
 
 // Récupération du fichier JSON des messages si dans post
 if ( $("input[name=submit_comment]").length )
@@ -120,9 +122,14 @@ function init() {
 	if( messagesSection.length ) {
 		$("#mainContentWithHeader").append( '<div id="oc-mod-panel"><h2 id="oc-mod-expand" class="oc-mod-title">Outils de modération &#x25bc;</h2><div id="oc-mod-content"><div id="oc-mod-reponses"><h3 class="oc-mod-subtitle">Messages possibles</h3></div><div id="oc-mod-options"><h3 class="oc-mod-subtitle">Options</h3></div><div id="oc-mod-valid"></div></div></div>' );
 		$("#oc-mod-content").hide();
-		$("#oc-mod-panel").css( {"position":"fixed","top":"10px","left":"10px","float":"left","background":"#EEE","padding":"10px","border":"1px solid #4f8a03","border-radius":"5px"} );
+		$("#oc-mod-panel").css( {"position":"fixed","top": posY,"left": posX,"background":"#EEE","padding":"10px","border":"1px solid #4f8a03","border-radius":"5px"} );
 		$("#oc-mod-expand").css( {"cursor":"pointer","color":"#4f8a03"} );
-        $("#oc-mod-panel").draggable();
+		$("#oc-mod-panel").draggable({
+			stop: function() {
+				GM_setValue("modPosX", $(this).position().left );
+				GM_setValue("modPosY", $(this).position().top );
+			}
+		});
 		$("#oc-mod-reponses").css( {"float":"left","width":"50%","margin-bottom":"10px"} );
 		$("#oc-mod-options").css( {"float":"left","width":"50%"} );
 		$("#oc-mod-valid").css( {"float":"right"} );
