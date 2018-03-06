@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.1.10
+// @version			1.1.11
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -137,10 +137,10 @@ function init() {
 		$(".oc-mod-subtitle").css( {"font-size":"1.1em","color":"#000","font-weight":"bold","line-height":"1em"} );
 		$("#oc-mod-options").append( '<input name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse<br />' );
 		$("#oc-mod-options").append( '<input name="shouldLock" type="checkbox" value="1" /> Fermer le sujet 🔒<br />' );
-		$("#oc-mod-options").append( '<input name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement<br />' );
-		$("#oc-mod-options").append( '<input name="dismissAlerts" type="checkbox" value="1" /> Retirer les alertes<br />' );
-		$("#oc-mod-options").append( '<input name="resolveTopic" type="checkbox" value="1" /> Passer à résolu<br />' );
-		$("#oc-mod-options").append( '<input name="followTopic" type="checkbox" value="1" /> Suivre le sujet<br />' );
+		$("#oc-mod-options").append( '<input name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement <br />' );
+		$("#oc-mod-options").append( '<input name="dismissAlerts" type="checkbox" value="1" /> Retirer les alertes 🔔<br />' );
+		$("#oc-mod-options").append( '<input name="resolveTopic" type="checkbox" value="1" /> Passer à résolu ✔<br />' );
+		$("#oc-mod-options").append( '<input name="followTopic" type="checkbox" value="1" /> Suivre le sujet ⚑<br />' );
 		$("#oc-mod-valid").append( '<button id="oc-mod-validation" class="btn btn-danger">Modérer</button>' );
 		$("#oc-mod-validation").css( {"position":"absolute","bottom":"20px","right":"20px"} );
 
