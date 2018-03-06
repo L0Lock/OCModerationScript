@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.1.12
+// @version			1.1.13
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -87,6 +87,14 @@ const forums = {
 	]
 };
 
+// Format d'affichage
+const formats = {
+	"vertical": [ 265, 500 ],
+	"horizontal":[ 530, 300 ]
+};
+if( GM_getValue( "modFormat" ) === undefined )
+	GM_setValue( "modFormat", "horizontal" );
+
 // Fermeture du sujet si demandée
 if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== undefined ) {
 	promiseRequest("GET", GM_getValue( "threadToLock" ) )
@@ -120,14 +128,23 @@ function init() {
 
 	// Eléments et styles
 	if( messagesSection.length ) {
-		$("#mainContentWithHeader").append( '<div id="oc-mod-panel"><h2 id="oc-mod-expand" class="oc-mod-title">Outils de modération<span id="oc-mod-drag" class="oc-mod-icon">&#x2756;</span><span id="oc-mod-caret" class="oc-mod-icon">&#x25bc;</span></h2><div id="oc-mod-content"><div id="oc-mod-reponses" class="oc-mod-column"><h3 class="oc-mod-subtitle">Messages possibles</h3></div><div id="oc-mod-options" class="oc-mod-column"><h3 class="oc-mod-subtitle">Options</h3></div><div id="oc-mod-valid"></div></div></div>' );
+		$("#mainContentWithHeader").append( '<div id="oc-mod-panel"><h2 id="oc-mod-expand" class="oc-mod-title">Outils de modération<span id="oc-mod-drag" class="oc-mod-icon">&#x2756;</span><span id="oc-mod-caret" class="oc-mod-icon">&#x25bc;</span></h2><div id="oc-mod-content"><div id="oc-mod-reponses" class="oc-mod-column"><h3 class="oc-mod-subtitle">Messages possibles</h3></div><div id="oc-mod-options" class="oc-mod-column"><h3 class="oc-mod-subtitle">Options</h3></div><div id="oc-mod-formats" class="oc-mod-column"><h3 class="oc-mod-subtitle">Affichage</h3></div><div id="oc-mod-valid"></div></div></div>' );
 		$("#oc-mod-content").hide();
-		$("#oc-mod-panel").css( {"z-index":"1000","position":"fixed","top": posY,"left": posX,"background":"#ececec","padding":"10px","border":"1px solid #4f8a03","border-radius":"5px"} );
+		$("#oc-mod-panel").css({
+			"z-index": "1000",
+			"position": "fixed",
+			"top": posY,
+			"left": posX,
+			"background": "#ececec",
+			"padding": "10px",
+			"border": "1px solid #4f8a03",
+			"border-radius": "5px"
+		});
 		$("#oc-mod-caret").css( {"cursor":"pointer"} );
-        $("#oc-mod-drag").css( {"cursor":"move"} );
-        $(".oc-mod-icon").css( {"margin-left":"5px","float":"right","color":"#4f8a03"} );
+		$("#oc-mod-drag").css( {"cursor":"move"} );
+		$(".oc-mod-icon").css( {"margin-left":"5px","float":"right","color":"#4f8a03"} );
 		$("#oc-mod-panel").draggable({
-            handle: "#oc-mod-drag",
+			handle: "#oc-mod-drag",
 			stop: function() {
 				GM_setValue("modPosX", $(this).position().left );
 				GM_setValue("modPosY", $(this).position().top );
@@ -143,6 +160,7 @@ function init() {
 		$("#oc-mod-options").append( '<input name="dismissAlerts" type="checkbox" value="1" /> 🔔 Retirer les alertes<br />' );
 		$("#oc-mod-options").append( '<input name="resolveTopic" type="checkbox" value="1" /> ✔ Passer à résolu<br />' );
 		$("#oc-mod-options").append( '<input name="followTopic" type="checkbox" value="1" /> ⚑ Suivre le sujet<br />' );
+		$("#oc-mod-formats").append( '<input name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "vertical" ? 'checked="checked"' : "")+' value="vertical" /> Vertical <input name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "horizontal" ? 'checked="checked"' : "")+' value="horizontal" /> Horizontal<br />' );
 		$("#oc-mod-valid").append( '<button id="oc-mod-validation" class="btn btn-danger">Modérer</button>' );
 		$("#oc-mod-validation").css( {"position":"absolute","bottom":"20px","right":"20px"} );
 
@@ -158,14 +176,25 @@ $("#oc-mod-update").click( () => {
 	getConfigurationFile( true ).then( () => alert('Mise à jour des réponses effectuée !') );
 });
 
+// Changement de format
+$("input[name=modFormat]").click( () => {
+	GM_setValue("modFormat", $("input[name=modFormat]:checked").val() );
+	$("#oc-mod-panel").width(formats[GM_getValue("modFormat")][0]);
+	$("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1]);
+});
+
 // Ouverture / Fermeture du panneau
 $("#oc-mod-caret").click( () => {
 	if( modExpand ) {
 		modExpand = false;
+		$("#oc-mod-panel").width("");
+		$("#oc-mod-panel").height("");
 		$("#oc-mod-content").hide();
 		$("#oc-mod-caret").html("&#x25bc;");
 	} else {
 		modExpand = true;
+		$("#oc-mod-panel").width(formats[GM_getValue("modFormat")][0]);
+		$("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1]);
 		$("#oc-mod-content").show();
 		$("#oc-mod-caret").html("&#x25b2;");
 	}
