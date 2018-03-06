@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.1.11
+// @version			1.1.12
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -120,27 +120,29 @@ function init() {
 
 	// Eléments et styles
 	if( messagesSection.length ) {
-		$("#mainContentWithHeader").append( '<div id="oc-mod-panel"><h2 id="oc-mod-expand" class="oc-mod-title">Outils de modération <span id="oc-mod-caret">&#x25bc;</span></h2><div id="oc-mod-content"><div id="oc-mod-reponses"><h3 class="oc-mod-subtitle">Messages possibles</h3></div><div id="oc-mod-options"><h3 class="oc-mod-subtitle">Options</h3></div><div id="oc-mod-valid"></div></div></div>' );
+		$("#mainContentWithHeader").append( '<div id="oc-mod-panel"><h2 id="oc-mod-expand" class="oc-mod-title">Outils de modération<span id="oc-mod-drag" class="oc-mod-icon">&#x2756;</span><span id="oc-mod-caret" class="oc-mod-icon">&#x25bc;</span></h2><div id="oc-mod-content"><div id="oc-mod-reponses" class="oc-mod-column"><h3 class="oc-mod-subtitle">Messages possibles</h3></div><div id="oc-mod-options" class="oc-mod-column"><h3 class="oc-mod-subtitle">Options</h3></div><div id="oc-mod-valid"></div></div></div>' );
 		$("#oc-mod-content").hide();
 		$("#oc-mod-panel").css( {"z-index":"1000","position":"fixed","top": posY,"left": posX,"background":"#ececec","padding":"10px","border":"1px solid #4f8a03","border-radius":"5px"} );
-		$("#oc-mod-caret").css( {"float":"right","cursor":"pointer","color":"#4f8a03"} );
+		$("#oc-mod-caret").css( {"cursor":"pointer"} );
+        $("#oc-mod-drag").css( {"cursor":"move"} );
+        $(".oc-mod-icon").css( {"margin-left":"5px","float":"right","color":"#4f8a03"} );
 		$("#oc-mod-panel").draggable({
+            handle: "#oc-mod-drag",
 			stop: function() {
 				GM_setValue("modPosX", $(this).position().left );
 				GM_setValue("modPosY", $(this).position().top );
 			}
 		});
-		$("#oc-mod-reponses").css( {"float":"left","width":"50%","margin-bottom":"10px"} );
-		$("#oc-mod-options").css( {"float":"left","width":"50%"} );
+		$(".oc-mod-column").css( {"float":"left","min-width":"250px","margin-bottom":"10px"} );
 		$("#oc-mod-valid").css( {"float":"right"} );
 		$(".oc-mod-title").css( {"font-size":"1.2em","color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
 		$(".oc-mod-subtitle").css( {"font-size":"1.1em","color":"#000","font-weight":"bold","line-height":"1em"} );
 		$("#oc-mod-options").append( '<input name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse<br />' );
-		$("#oc-mod-options").append( '<input name="shouldLock" type="checkbox" value="1" /> Fermer le sujet 🔒<br />' );
 		$("#oc-mod-options").append( '<input name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement <br />' );
-		$("#oc-mod-options").append( '<input name="dismissAlerts" type="checkbox" value="1" /> Retirer les alertes 🔔<br />' );
-		$("#oc-mod-options").append( '<input name="resolveTopic" type="checkbox" value="1" /> Passer à résolu ✔<br />' );
-		$("#oc-mod-options").append( '<input name="followTopic" type="checkbox" value="1" /> Suivre le sujet ⚑<br />' );
+		$("#oc-mod-options").append( '<input name="shouldLock" type="checkbox" value="1" /> 🔒 Fermer le sujet<br />' );
+		$("#oc-mod-options").append( '<input name="dismissAlerts" type="checkbox" value="1" /> 🔔 Retirer les alertes<br />' );
+		$("#oc-mod-options").append( '<input name="resolveTopic" type="checkbox" value="1" /> ✔ Passer à résolu<br />' );
+		$("#oc-mod-options").append( '<input name="followTopic" type="checkbox" value="1" /> ⚑ Suivre le sujet<br />' );
 		$("#oc-mod-valid").append( '<button id="oc-mod-validation" class="btn btn-danger">Modérer</button>' );
 		$("#oc-mod-validation").css( {"position":"absolute","bottom":"20px","right":"20px"} );
 
