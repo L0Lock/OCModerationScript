@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name			OC Moderation Script
 // @author			Sakuto, -L0Lock-, benzouye
-// @namespace   	https://github.com/L0Lock/OCModerationScript
-// @description 	Facilite la modération sur OpenClassrooms
-// @updateURL   	https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
-// @downloadURL 	https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
+// @namespace   		https://github.com/L0Lock/OCModerationScript
+// @description 		Facilite la modération sur OpenClassrooms
+// @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
+// @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.1.8
+// @version			1.1.9
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -100,7 +100,6 @@ $("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour
 // Initialisation variables
 var configuration = [];
 var messages = [];
-var panelExpand = GM_getValue( "modPanelExpand" ) !== undefined ? GM_getValue( "modPanelExpand" ) : false;
 var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
 var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
 
@@ -121,8 +120,7 @@ function init() {
 	// Eléments et styles
 	if( messagesSection.length ) {
 		$("#mainContentWithHeader").append( '<div id="oc-mod-panel"><h2 id="oc-mod-expand" class="oc-mod-title">Outils de modération <span id="oc-mod-caret">&#x25bc;</span></h2><div id="oc-mod-content"><div id="oc-mod-reponses"><h3 class="oc-mod-subtitle">Messages possibles</h3></div><div id="oc-mod-options"><h3 class="oc-mod-subtitle">Options</h3></div><div id="oc-mod-valid"></div></div></div>' );
-		if( !GM_getValue( "modPanelExpand" ) )
-			$("#oc-mod-content").hide();
+		$("#oc-mod-content").hide();
 		$("#oc-mod-panel").css( {"z-index":"1000","position":"fixed","top": posY,"left": posX,"background":"#ececec","padding":"10px","border":"1px solid #4f8a03","border-radius":"5px"} );
 		$("#oc-mod-caret").css( {"float":"right","cursor":"pointer","color":"#4f8a03"} );
 		$("#oc-mod-panel").draggable({
@@ -162,11 +160,9 @@ $("#oc-mod-caret").click( () => {
 	if( GM_getValue("modPanelExpand") ) {
 		$("#oc-mod-content").hide();
 		$("#oc-mod-caret").html("&#x25bc;");
-		GM_setValue( "modPanelExpand", false );
 	} else {
 		$("#oc-mod-content").show();
 		$("#oc-mod-caret").html("&#x25b2;");
-		GM_setValue( "modPanelExpand", true );
 	}
 });
 
