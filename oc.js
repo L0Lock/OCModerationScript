@@ -1,17 +1,17 @@
 // ==UserScript==
-// @name		OC Moderation Script
-// @author		Sakuto, -L0Lock-, benzouye
-// @namespace   https://github.com/L0Lock/OCModerationScript
-// @description Facilite la modération sur OpenClassrooms
-// @updateURL   https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
-// @downloadURL https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
-// @include		*openclassrooms.com/forum/*
-// @version		1.1.7
-// @grant		GM_xmlhttpRequest
-// @grant		GM_getValue
-// @grant		GM_setValue
-// @require		https://code.jquery.com/jquery-3.3.1.min.js
-// @require		https://code.jquery.com/ui/1.12.1/jquery-ui.min.js
+// @name			OC Moderation Script
+// @author			Sakuto, -L0Lock-, benzouye
+// @namespace   	https://github.com/L0Lock/OCModerationScript
+// @description 	Facilite la modération sur OpenClassrooms
+// @updateURL   	https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
+// @downloadURL 	https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
+// @include			*openclassrooms.com/forum/*
+// @version			1.1.8
+// @grant			GM_xmlhttpRequest
+// @grant			GM_getValue
+// @grant			GM_setValue
+// @require			https://code.jquery.com/jquery-3.3.1.min.js
+// @require			https://code.jquery.com/ui/1.12.1/jquery-ui.min.js
 // ==/UserScript==
 
 // URL et chemins
@@ -90,7 +90,7 @@ const forums = {
 // Fermeture du sujet si demandée
 if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== undefined ) {
 	promiseRequest("GET", GM_getValue( "threadToLock" ) )
-		.then(() => GM_setValue( "threadToLock", '' ) );
+		.then( () => GM_setValue( "threadToLock", '' ) );
 }
 
 // Lien MAJ réponses avec gif loading
@@ -100,9 +100,9 @@ $("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour
 // Initialisation variables
 var configuration = [];
 var messages = [];
-var panelExpand = false;
+var panelExpand = GM_getValue( "modPanelExpand" ) !== undefined ? GM_getValue( "modPanelExpand" ) : false;
 var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
-var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "10px";
+var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
 
 // Récupération du fichier JSON des messages si dans post
 if ( $("input[name=submit_comment]").length )
@@ -120,10 +120,11 @@ function init() {
 
 	// Eléments et styles
 	if( messagesSection.length ) {
-		$("#mainContentWithHeader").append( '<div id="oc-mod-panel"><h2 id="oc-mod-expand" class="oc-mod-title">Outils de modération &#x25bc;</h2><div id="oc-mod-content"><div id="oc-mod-reponses"><h3 class="oc-mod-subtitle">Messages possibles</h3></div><div id="oc-mod-options"><h3 class="oc-mod-subtitle">Options</h3></div><div id="oc-mod-valid"></div></div></div>' );
-		$("#oc-mod-content").hide();
-		$("#oc-mod-panel").css( {"position":"fixed","top": posY,"left": posX,"background":"#EEE","padding":"10px","border":"1px solid #4f8a03","border-radius":"5px"} );
-		$("#oc-mod-expand").css( {"cursor":"pointer","color":"#4f8a03"} );
+		$("#mainContentWithHeader").append( '<div id="oc-mod-panel"><h2 id="oc-mod-expand" class="oc-mod-title">Outils de modération <span id="oc-mod-caret">&#x25bc;</span></h2><div id="oc-mod-content"><div id="oc-mod-reponses"><h3 class="oc-mod-subtitle">Messages possibles</h3></div><div id="oc-mod-options"><h3 class="oc-mod-subtitle">Options</h3></div><div id="oc-mod-valid"></div></div></div>' );
+		if( !GM_getValue( "modPanelExpand" ) )
+			$("#oc-mod-content").hide();
+		$("#oc-mod-panel").css( {"z-index":"1000","position":"fixed","top": posY,"left": posX,"background":"#ececec","padding":"10px","border":"1px solid #4f8a03","border-radius":"5px"} );
+		$("#oc-mod-caret").css( {"float":"right","cursor":"pointer","color":"#4f8a03"} );
 		$("#oc-mod-panel").draggable({
 			stop: function() {
 				GM_setValue("modPosX", $(this).position().left );
@@ -141,8 +142,8 @@ function init() {
 		$("#oc-mod-options").append( '<input name="dismissAlerts" type="checkbox" value="1" /> Retirer les alertes<br />' );
 		$("#oc-mod-options").append( '<input name="resolveTopic" type="checkbox" value="1" /> Passer à résolu<br />' );
 		$("#oc-mod-options").append( '<input name="followTopic" type="checkbox" value="1" /> Suivre le sujet<br />' );
-		$("#oc-mod-valid").append( '<a id="oc-mod-validation" class="btn btn-primary">Modérer</a>' );
-		$("#oc-mod-validation").css( {"margin":"30px 0 0 5px","border":"1px solid #380e00","box-shadow":"inset 0 1px 1px 0 #a95f47","background-color":"#691c02","background-image":"linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%)","text-shadow":"0 -1px 0 #1c181b","text-decoration":"none"} );
+		$("#oc-mod-valid").append( '<button id="oc-mod-validation" class="btn btn-danger">Modérer</button>' );
+		$("#oc-mod-validation").css( {"position":"absolute","bottom":"20px","right":"20px"} );
 
 		// Ajout des messages possibles
 		for( let message of messagesSection ) {
@@ -157,15 +158,15 @@ $("#oc-mod-update").click( () => {
 });
 
 // Ouverture / Fermeture du panneau
-$("#oc-mod-expand").click( () => {
-	if( panelExpand ) {
+$("#oc-mod-caret").click( () => {
+	if( GM_getValue("modPanelExpand") ) {
 		$("#oc-mod-content").hide();
-		$("#oc-mod-expand").html("Outils de modération &#x25bc;");
-		panelExpand = false;
+		$("#oc-mod-caret").html("&#x25bc;");
+		GM_setValue( "modPanelExpand", false );
 	} else {
 		$("#oc-mod-content").show();
-		$("#oc-mod-expand").html("Outils de modération &#x25b2;");
-		panelExpand = true;
+		$("#oc-mod-caret").html("&#x25b2;");
+		GM_setValue( "modPanelExpand", true );
 	}
 });
 
