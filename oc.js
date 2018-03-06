@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.1.9
+// @version			1.1.10
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -100,6 +100,7 @@ $("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour
 // Initialisation variables
 var configuration = [];
 var messages = [];
+var modExpand = false;
 var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
 var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
 
@@ -157,10 +158,12 @@ $("#oc-mod-update").click( () => {
 
 // Ouverture / Fermeture du panneau
 $("#oc-mod-caret").click( () => {
-	if( GM_getValue("modPanelExpand") ) {
+	if( modExpand ) {
+		modExpand = false;
 		$("#oc-mod-content").hide();
 		$("#oc-mod-caret").html("&#x25bc;");
 	} else {
+		modExpand = true;
 		$("#oc-mod-content").show();
 		$("#oc-mod-caret").html("&#x25b2;");
 	}
