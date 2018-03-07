@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.1.14
+// @version			1.1.15
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -89,7 +89,7 @@ const forums = {
 
 // Format d'affichage
 const formats = {
-	"vertical": [ 265, 500 ],
+	"vertical": [ 265, 520 ],
 	"horizontal":[ 530, 300 ]
 };
 if( GM_getValue( "modFormat" ) === undefined )
@@ -180,8 +180,23 @@ function init() {
 		for( let message of messagesSection ) {
 			$("#oc-mod-reponses").append( '<input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'<br />' );
 		}
+		$("#oc-mod-reponses").append( '<input id="oc-mod-move" type="checkbox" value="1" /> Déplacer<br /><span id="oc-mod-select-span"></span>' );
 	}
 }
+
+// Gestion déplacement sujet
+$("#oc-mod-move").click( function(e) {
+	if( $(this).prop("checked") ) {
+		$("#oc-mod-select-span").append( '<select id="oc-mod-forum-select"></select>' );
+		$("#CategoriesList_category>option").each( function(e) {
+			if( $(this).val() != "" )
+				$("#oc-mod-forum-select").append('<option value="'+$(this).val()+'">'+$(this).html()+'</option>');
+		});
+	} else {
+		$("#oc-mod-select-span").html("");
+	}
+
+});
 
 // Gestion de la mise à jour manuelle
 $("#oc-mod-update").click( () => {
@@ -219,10 +234,17 @@ $("#oc-mod-validation").click( () => {
 	if( $("input[name=hasHeader]").prop('checked') )
 		moderationMessage += configuration.headers;
 
+	if( $("#oc-mod-move").prop("checked") ) {
+		let moveLink = baseUri + $("#deplacerActionModal>form").attr('action');
+		let postData = 'CategoriesList[category]='+$("#oc-mod-forum-select").val();
+		moderationMessage += configuration.deplacer.replace('$$', $( "#oc-mod-forum-select option:selected" ).text() );
+		promiseRequest("POST", moveLink, postData )
+			.then(() => console.log("Déplacement " + moveLink + " --- " + postData ) );
+	}
+
 	$(".oc-mod-checkboxes").each( function(e) {
 		if( $(this).prop('checked') ) {
-			let message = messages.filter( a => a.id == $(this).val() )[0].message;
-			moderationMessage += message;
+			moderationMessage += messages.filter( a => a.id == $(this).val() )[0].message;
 		}
 	});
 
@@ -300,13 +322,17 @@ function getConfigurationFile(forceCheck) {
  * @param {any} url URL à exploiter
  * @returns Promise contenant la requête
  */
-function promiseRequest(method, url) {
+function promiseRequest(method, url, data = "" ) {
 	return new Promise((resolve, reject) => {
 		let xhr = GM_xmlhttpRequest({
 			method: method,
 			url: url,
 			onload: resolve,
-			onerror: reject
+			onerror: reject,
+			data: data,
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded"
+			}
 		});
 	});
 }
