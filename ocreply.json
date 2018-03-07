@@ -132,14 +132,6 @@
             "exclude": ["Forum du staff"],
             "title": "Mise en page abusive",
             "message": "<center><h1>Mise en page abusive</h1></center><p>Bonjour.</p><p>Les outils de mise en page servent à rendre votre message plus lisible et compréhensible, pas à faire des décorations expérimentales ou à s'amuser à faire des textes arc-en-ciel.</p><p>Merci de modifier votre message afin de réduire la mise en page au strict nécessaire.</p>"
-        },
-        
-        {
-            "id": 17,
-            "section": ["all"],
-            "exclude": ["Forum du staff"],
-            "title": "Déplacement",
-            "message": "<center><h1>Mauvais forum</h1></center><p>Bonjour.</p><p>Je déplace le sujet dans le forum approprié.</p>"
         }
     ]
 }
