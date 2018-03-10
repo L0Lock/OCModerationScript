@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.2
+// @version			1.2.1
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -197,8 +197,10 @@ $("#oc-mod-move").click( function(e) {
 			if( $(this).val() != "" )
 				$("#oc-mod-forum-select").append('<option value="'+$(this).val()+'">'+$(this).html()+'</option>');
 		});
+        $("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1]+(nbMessages*17)+30);
 	} else {
 		$("#oc-mod-select-span").html("");
+        $("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1]+(nbMessages*17));
 	}
 
 });
