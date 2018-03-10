@@ -141,6 +141,14 @@
             "exclude": ["Forum du staff"],
             "title": "Manque de recherche",
             "message": "<center><h1>Manque de recherche</h1></center> <p>Bonjour. La question que vous posez est très fréquente, cela démontre un manque de recherche évident. Internet et ce forum fourmillent de sujets similaires.</p><p>Je ferme ce sujet et je vous invite effectuer de vraies recherches qui sont à la base d'un bon apprentissage ...</p>"
+        },
+
+        {
+            "id": 17,
+            "section": ["all"],
+            "exclude": ["Forum du staff"],
+            "title": "Doublon",
+            "message": "<center><h1>Doublon</h1></center><p>Bonjour. Ce sujet est un doublon ...</p><p>Je ferme et je vous invite à continuer la discussion sur l'autre sujet : ......</p>"
         }
     ]
 }
