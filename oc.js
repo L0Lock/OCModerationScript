@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.1.16
+// @version			1.1.17
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -20,7 +20,7 @@ const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScr
 
 // Liste des forums hiérarchisée
 const forums = {
-	"Site web" : [
+	"Site Web" : [
 		"HTML / CSS",
 		"Javascript",
 		"PHP"
