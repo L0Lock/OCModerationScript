@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.1.17
+// @version			1.2
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -89,8 +89,8 @@ const forums = {
 
 // Format d'affichage
 const formats = {
-	"vertical": [ 265, 520 ],
-	"horizontal":[ 530, 300 ]
+	"vertical": [ 265, 339.6 ],
+	"horizontal":[ 530, 117.2 ]
 };
 if( GM_getValue( "modFormat" ) === undefined )
 	GM_setValue( "modFormat", "horizontal" );
@@ -101,11 +101,12 @@ if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== und
 		.then( () => GM_setValue( "threadToLock", '' ) );
 }
 
-// Lien MAJ réponses avec gif loading
+// Lien MAJ réponses
 $(".nav-tabs--searchField").css( {"width": "40%"} );
 $("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour les réponses</a></li>');
 
 // Initialisation variables
+var nbMessages = 0;
 var configuration = [];
 var messages = [];
 var modExpand = false;
@@ -125,7 +126,8 @@ function init() {
 	configuration = GM_getValue("answers").configuration;
 	messages = GM_getValue("answers").answers;
 	let messagesSection = getMessageBySection( messages, $('span[itemprop="title"]').last().text() );
-	
+	nbMessages = messagesSection.length;
+
 	// Copie du fil d'ariane en bas du sujet
 	$(".breadcrumb").clone().insertAfter($("section.comments"));
 
@@ -210,7 +212,7 @@ $("#oc-mod-update").click( () => {
 $("input[name=modFormat]").click( () => {
 	GM_setValue("modFormat", $("input[name=modFormat]:checked").val() );
 	$("#oc-mod-panel").width(formats[GM_getValue("modFormat")][0]);
-	$("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1]);
+	$("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1]+(nbMessages*17));
 });
 
 // Ouverture / Fermeture du panneau
@@ -224,7 +226,7 @@ $("#oc-mod-caret").click( () => {
 	} else {
 		modExpand = true;
 		$("#oc-mod-panel").width(formats[GM_getValue("modFormat")][0]);
-		$("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1]);
+		$("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1]+(nbMessages*17));
 		$("#oc-mod-content").show();
 		$("#oc-mod-caret").html("&#x25b2;");
 	}
