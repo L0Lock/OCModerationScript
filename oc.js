@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.3
+// @version			1.3.1
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -251,7 +251,7 @@ $("#oc-mod-validation").click( () => {
 
 	$(".oc-mod-checkboxes").each( function(e) {
 		if( $(this).prop('checked') ) {
-			moderationMessage += messages.filter( a => a.id == $(this).val() )[0].title;
+			moderationMessage += '<h1>'+messages.filter( a => a.id == $(this).val() )[0].title+'</h1>';
 			moderationMessage += messages.filter( a => a.id == $(this).val() )[0].message;
 		}
 	});
