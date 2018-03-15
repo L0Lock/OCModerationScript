@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.2.1
+// @version			1.3
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -251,6 +251,7 @@ $("#oc-mod-validation").click( () => {
 
 	$(".oc-mod-checkboxes").each( function(e) {
 		if( $(this).prop('checked') ) {
+			moderationMessage += messages.filter( a => a.id == $(this).val() )[0].title;
 			moderationMessage += messages.filter( a => a.id == $(this).val() )[0].message;
 		}
 	});
@@ -285,10 +286,12 @@ $("#oc-mod-validation").click( () => {
 		}
 
 		// Gestion fermeture du sujet
-		if( $("input[name=shouldLock]").prop('checked') )
+		if( $("input[name=shouldLock]").prop('checked') ) {
 			GM_setValue( "threadToLock", baseUri + $(".closeAction").attr('href') );
-		else
+			moderationMessage += configuration.fermer;
+		} else {
 			GM_setValue( "threadToLock", '' );
+		}
 
 		// Ajout du message dans l'éditeur
 		var textareaHolder = $("#Comment_wysiwyg_message_ifr");
