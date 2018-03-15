@@ -13,8 +13,7 @@
             "section": ["Recrutements pour vos projets"],
             "exclude": ["Forum du staff"],
             "title": "Mauvais format",
-            "message": "<p>Bonjour,</p><p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de message, donc certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1\">post-it de ce forum</a> et doivent impérativement être respectées. Tout sujet ne les respectant pas sera irrémédiablement fermé.</p>
-			<p>Vous êtes autorisé à créer à nouveau un sujet à condition que celui-ci respecte les règles et suive le format demandé.</p><p>Merci de votre compréhension.</p>"
+            "message": "<p>Bonjour,</p><p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de message, donc certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1\">post-it de ce forum</a> et doivent impérativement être respectées. Tout sujet ne les respectant pas sera irrémédiablement fermé.</p>"
         },
 
         {
