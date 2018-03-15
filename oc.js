@@ -251,7 +251,7 @@ $("#oc-mod-validation").click( () => {
 
 	$(".oc-mod-checkboxes").each( function(e) {
 		if( $(this).prop('checked') ) {
-			moderationMessage += '<h1>'+messages.filter( a => a.id == $(this).val() )[0].title+'</h1>';
+			moderationMessage += '<h1 style="text-align: center;">'+messages.filter( a => a.id == $(this).val() )[0].title+'</h1>';
 			moderationMessage += messages.filter( a => a.id == $(this).val() )[0].message;
 		}
 	});
