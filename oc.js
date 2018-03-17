@@ -128,6 +128,9 @@ function init() {
 	let messagesSection = getMessageBySection( messages, $('span[itemprop="title"]').last().text() );
 	nbMessages = messagesSection.length;
 
+	// Suppression des pubs
+	$(".adviceBanner").remove();
+
 	// Copie du fil d'ariane en bas du sujet
 	$(".breadcrumb").clone().insertAfter($("section.comments"));
 
