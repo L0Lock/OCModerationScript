@@ -6,13 +6,16 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.3.3
+// @version			1.3.4
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
 // @require			https://code.jquery.com/jquery-3.3.1.min.js
 // @require			https://code.jquery.com/ui/1.12.1/jquery-ui.min.js
 // ==/UserScript==
+
+console.log( "Script de modération pour les forums de OpenClassrooms" );
+console.log( "Version "+GM_info.script.version );
 
 // URL et chemins
 const baseUri = "https://openclassrooms.com";
@@ -105,6 +108,9 @@ if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== und
 $(".nav-tabs--searchField").css( {"width": "40%"} );
 $("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour les réponses</a></li>');
 
+// Suppression des pubs
+$(".adviceBanner").remove();
+
 // Initialisation variables
 var nbMessages = 0;
 var configuration = [];
@@ -116,6 +122,8 @@ var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px
 // Récupération du fichier JSON des messages si dans post
 if ( $("input[name=submit_comment]").length )
 	getConfigurationFile( false ).then( init() );
+else
+	console.log( "Aucune action de modération possible ici" );
 
 /**
  * Traite les messages possibles
@@ -128,14 +136,12 @@ function init() {
 	let messagesSection = getMessageBySection( messages, $('span[itemprop="title"]').last().text() );
 	nbMessages = messagesSection.length;
 
-	// Suppression des pubs
-	$(".adviceBanner").remove();
-
 	// Copie du fil d'ariane en bas du sujet
 	$(".breadcrumb").clone().insertAfter($("section.comments"));
 
 	// Eléments et styles
 	if( messagesSection.length ) {
+		console.log( nbMessages + "messages de modération disponibles pour cette section" );
 		$("#mainContentWithHeader").append( '<div id="oc-mod-panel"><h2 class="oc-mod-title">Outils de modération <span id="oc-mod-version">'+GM_info.script.version+'</span><span id="oc-mod-drag" class="oc-mod-icon">&#x2756;</span><span id="oc-mod-caret" class="oc-mod-icon">&#x25bc;</span></h2><div id="oc-mod-content"><div id="oc-mod-reponses" class="oc-mod-column"><h3 class="oc-mod-subtitle">Messages possibles</h3></div><div id="oc-mod-options" class="oc-mod-column"><h3 class="oc-mod-subtitle">Options</h3></div><div id="oc-mod-formats" class="oc-mod-column"><h3 class="oc-mod-subtitle">Affichage</h3></div><div id="oc-mod-valid"></div></div></div>' );
 		$("#oc-mod-content").hide();
 		$("#oc-mod-panel").css({
@@ -189,6 +195,8 @@ function init() {
 			$("#oc-mod-reponses").append( '<input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'<br />' );
 		}
 		$("#oc-mod-reponses").append( '<input id="oc-mod-move" type="checkbox" value="1" /> Déplacer<br /><span id="oc-mod-select-span"></span>' );
+	} else {
+		console.log( "Aucun message de modération disponible ici" );
 	}
 }
 
@@ -200,10 +208,10 @@ $("#oc-mod-move").click( function(e) {
 			if( $(this).val() != "" )
 				$("#oc-mod-forum-select").append('<option value="'+$(this).val()+'">'+$(this).html()+'</option>');
 		});
-        $("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1]+(nbMessages*17)+30);
+		$("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1]+(nbMessages*17)+30);
 	} else {
 		$("#oc-mod-select-span").html("");
-        $("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1]+(nbMessages*17));
+		$("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1]+(nbMessages*17));
 	}
 
 });
