@@ -157,7 +157,7 @@
             "section": ["all"],
             "exclude": ["Forum du staff"],
             "title": "Pas d'urgence",
-            "message": "<center><h1>Aucune urgence</h1></center><p>Vous êtes sur un forum d'entraide, pas sur un site de service. Ici les intervenants vous répondent quand ils le veulent, s'ils le veulent, sans aucune obligation. Aussi, ce genre d'indications rendent le forum moins agréable à utiliser et moins équitable. De ce fait, les mentions \"urgent\" ne sont pas admissibles sur ce forum. La meilleure façon d'avoir de l'aide rapidement ici est de fournir toutes les informations nécessaires et de les présenter correctement. N'hésitez pas à lire les règles épinglés en haut des serctions du forum, elles indiquent généralement ce qui est nécessaire.</p>"
+            "message": "<center><h1>Aucune urgence</h1></center><p>Vous êtes sur un forum d'entraide, pas sur un site de service. Ici les intervenants vous répondent quand ils le veulent, s'ils le veulent, sans aucune obligation. Aussi, ce genre d'indications rendent le forum moins agréable à utiliser et moins équitable. De ce fait, les mentions de quelconque \"urgence\" ne sont pas admises sur ce forum. La meilleure façon d'avoir de l'aide rapidement ici est de fournir toutes les informations nécessaires et de les présenter correctement. N'hésitez pas à lire les règles épinglés en haut des serctions du forum, elles indiquent généralement ce qui est nécessaire.</p>"
         }
     ]
 }
