@@ -12,7 +12,7 @@
             "id": 1,
             "section": ["Recrutements pour vos projets"],
             "exclude": ["Forum du staff"],
-            "title": "Mauvais format (recrut' pour vos projets)",
+            "title": "Mauvais format de Recrutement",
             "message": "<p>Bonjour,</p><p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de message, donc certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1\">post-it de ce forum</a> et doivent impérativement être respectées. Tout sujet ne les respectant pas sera irrémédiablement fermé.</p>"
         },
 
@@ -20,7 +20,7 @@
             "id": 2,
             "section": ["Recrutements pour vos projets"],
             "exclude": ["Forum du staff"],
-            "title": "Mauvais titre (recrut' pour vos projets)",
+            "title": "Mauvais titre de Recrutement",
             "message": "<p>Bonjour,</p><p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Recrutement\" n'est pas un type correct, nous nous doutons que vous recrutez pour votre projet si vous postez un message ici.</p><p>Quelques exemples de titres corrects :</p><ul><li>[Application] Tinder</li> <li>[MOBA] Heroes Of The Storm</li> <li>[Site Web]OpenClassRooms</li></ul><p>Merci de votre compréhension.</p>"
         },
 
@@ -28,7 +28,7 @@
             "id": 3,
             "section": ["Recrutements pour vos projets"],
             "exclude": ["Forum du staff"],
-            "title": "Aucune avancée (recrut' pour vos projets)",
+            "title": "Aucune avancée",
             "message": "<p>Bonjour,</p><p>Afin de préserver le forum dans un état correct et de ne garder que des projets intéressants, nous demandons à quiconque créant un sujet dans cette section de respecter quelques règles. Il est, entre autre, demandé de présenter une avancé concrète ou un véritable travail de recherche sur votre projet.</p>"
         },
 
@@ -52,7 +52,7 @@
             "id": 6,
             "section": ["Présentation de vos projets"],
             "exclude": ["Forum du staff"],
-            "title": "Mauvais format (préz de projets)",
+            "title": "Mauvais format de présentation de projet",
             "message": "<p>Bonjour,</p><p>Afin de maintenir le forum <em>Présentation</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de message, donc certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-2\">post-it de ce forum</a>et doivent impérativement être respectées.</p>"
         },
 
@@ -60,7 +60,7 @@
             "id": 7,
             "section": ["Présentation de vos projets"],
             "exclude": ["Forum du staff"],
-            "title": "Mauvais titre (préz de projets)",
+            "title": "Mauvais titre de présentation de projet",
             "message": "<p>Bonjour,</p><p>Afin de maintenir le forum <em>Présentation</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Présentation\" n'est pas un type correct, nous nous doutons que vous présentez votre projet si vous postez un message ici.</p> <p>Quelques exemples de titres correct :</p> <ul> <li>[Application] Tinder</li> <li>[MOBA] Heroes Of The Storm</li> <li>[Site Web] OpenClassrooms</li> </ul><p>Merci de modifier votre message en conséquence via le bouton \"Modifier\" situé sur son coin supérieur droit, sans quoi le sujet sera fermé."
         },
         
@@ -149,15 +149,15 @@
             "section": ["all"],
             "exclude": ["Forum du staff"],
             "title": "Mauvais titre",
-            "message": "<center><h1>Mauvais titre</h1></center><p>Le titre est un élément important qui ne doit pas être négligé. N'oubliez pas cette règle simple : <strong>le titre idéal résume la question que vous allez poser en une petite phrase. Il doit permettre aux visiteurs de se repérer facilement dans le forum visité et d'identifier le sujet à sa seule lecture.</strong></p><p>Vous pouvez utiliser divers préfixes comme [Erreur], [MySQL], [Compatibilité], etc... Aussi, pensez à consulter les règles propres à chaque forum (visibles dans les topics épinglés en haut des sections).</p><p>De plus, choisir un bon titre permet de rendre plus faciles les recherches des autres membres.</p><p>Les titres de type \"besoin d'aide\" ou \"problème\" ne sont pas tolérés.</p>"
+            "message": "<p>Le titre est un élément important qui ne doit pas être négligé. N'oubliez pas cette règle simple : <strong>le titre idéal résume la question que vous allez poser en une petite phrase. Il doit permettre aux visiteurs de se repérer facilement dans le forum visité et d'identifier le sujet à sa seule lecture.</strong></p><p>Vous pouvez utiliser divers préfixes comme [Erreur], [MySQL], [Compatibilité], etc... Aussi, pensez à consulter les règles propres à chaque forum (visibles dans les topics épinglés en haut des sections).</p><p>De plus, choisir un bon titre permet de rendre plus faciles les recherches des autres membres.</p><p>Les titres de type \"besoin d'aide\" ou \"problème\" ne sont pas tolérés.</p>"
         },
         
         {
             "id": 20,
             "section": ["all"],
             "exclude": ["Forum du staff"],
-            "title": "Pas d'urgence",
-            "message": "<center><h1>Aucune urgence</h1></center><p>Vous êtes sur un forum d'entraide, pas sur un site de service. Ici les intervenants vous répondent quand ils le veulent, s'ils le veulent, sans aucune obligation. Aussi, ce genre d'indications rendent le forum moins agréable à utiliser et moins équitable. De ce fait, les mentions de quelconque \"urgence\" ne sont pas admises sur ce forum. La meilleure façon d'avoir de l'aide rapidement ici est de fournir toutes les informations nécessaires et de les présenter correctement. N'hésitez pas à lire les règles épinglés en haut des serctions du forum, elles indiquent généralement ce qui est nécessaire.</p>"
+            "title": "Pas d'urgence dans le forum d'OC",
+            "message": "<p>Vous êtes sur un forum d'entraide, pas sur un site de service. Ici les intervenants vous répondent quand ils le veulent, s'ils le veulent, sans aucune obligation. Aussi, ce genre d'indications rendent le forum moins agréable à utiliser et moins équitable. De ce fait, les mentions de quelconque \"urgence\" ne sont pas admises sur ce forum. La meilleure façon d'avoir de l'aide rapidement ici est de fournir toutes les informations nécessaires et de les présenter correctement. N'hésitez pas à lire les règles épinglés en haut des serctions du forum, elles indiquent généralement ce qui est nécessaire.</p>"
         }
     ]
 }
