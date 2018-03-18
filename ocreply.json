@@ -142,6 +142,22 @@
             "exclude": ["Forum du staff"],
             "title": "Doublon",
             "message": "<p>Bonjour</p><p>Ce sujet est un doublon ...</p><p>Je vous invite à continuer la discussion sur l'autre sujet : ......</p>"
+        },
+        
+        {
+            "id": 19,
+            "section": ["all"],
+            "exclude": ["Forum du staff"],
+            "title": "Mauvais titre",
+            "message": "<center><h1>Mauvais titre</h1></center><p>Le titre est un élément important qui ne doit pas être négligé. N'oubliez pas cette règle simple : <strong>le titre idéal résume la question que vous allez poser en une petite phrase. Il doit permettre aux visiteurs de se repérer facilement dans le forum visité et d'identifier le sujet à sa seule lecture.</strong></p><p>Vous pouvez utiliser divers préfixes comme [Erreur], [MySQL], [Compatibilité], etc... Aussi, pensez à consulter les règles propres à chaque forum (visibles dans les topics épinglés en haut des sections).</p><p>De plus, choisir un bon titre permet de rendre plus faciles les recherches des autres membres.</p><p>Les titres de type \"besoin d'aide\" ou \"problème\" ne sont pas tolérés.</p>"
+        },
+        
+        {
+            "id": 20,
+            "section": ["all"],
+            "exclude": ["Forum du staff"],
+            "title": "Pas d'urgence",
+            "message": "<center><h1>Aucune urgence</h1></center><p>Vous êtes sur un forum d'entraide, pas sur un site de service. Ici les intervenants vous répondent quand ils le veulent, s'ils le veulent, sans aucune obligation. Aussi, ce genre d'indications rendent le forum moins agréable à utiliser et moins équitable. De ce fait, les mentions \"urgent\" ne sont pas admissibles sur ce forum. La meilleure façon d'avoir de l'aide rapidement ici est de fournir toutes les informations nécessaires et de les présenter correctement. N'hésitez pas à lire les règles épinglés en haut des serctions du forum, elles indiquent généralement ce qui est nécessaire.</p>"
         }
     ]
 }
