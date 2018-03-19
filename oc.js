@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.4.1
+// @version			1.4.2
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -258,7 +258,7 @@ $("#oc-mod-validation").click( () => {
 	if( $("#oc-mod-move").prop("checked") ) {
 		let moveLink = baseUri + $("#deplacerActionModal>form").attr('action');
 		let postData = 'CategoriesList[category]='+$("#oc-mod-forum-select").val();
-		moderationMessage += configuration.deplacer.replace('$$', $( "#oc-mod-forum-select option:selected" ).text() );
+		moderationMessage += '<h1 style="text-align: center;">'+configuration.deplacer.replace('$$', $( "#oc-mod-forum-select option:selected" ).text() )+'</h1>';
 		promiseRequest("POST", moveLink, postData )
 			.then(() => console.log("Déplacement " + moveLink + " --- " + postData ) );
 	}
