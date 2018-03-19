@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.3.5
+// @version			1.4
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -14,12 +14,15 @@
 // @require			https://code.jquery.com/ui/1.12.1/jquery-ui.min.js
 // ==/UserScript==
 
-console.log( "Script de modération pour les forums de OpenClassrooms" );
-console.log( "Version "+GM_info.script.version );
-
 // URL et chemins
 const baseUri = "https://openclassrooms.com";
+const mpUrl = baseUri+"/mp/nouveau/";
+const profilUrl = baseUri+"/membres/";
 const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
+
+console.log( "Script de modération pour les forums de OpenClassrooms" );
+console.log( "Version "+GM_info.script.version );
+console.log( "Modérateur : " + $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( profilUrl, "" ) );
 
 // Liste des forums hiérarchisée
 const forums = {
@@ -299,7 +302,7 @@ $("#oc-mod-validation").click( () => {
 		// Gestion fermeture du sujet
 		if( $("input[name=shouldLock]").prop('checked') ) {
 			GM_setValue( "threadToLock", baseUri + $(".closeAction").attr('href') );
-			moderationMessage += configuration.fermer;
+			moderationMessage += configuration.fermer.replace( '$$', $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( profilUrl, mpUrl ) );
 		} else {
 			GM_setValue( "threadToLock", '' );
 		}
