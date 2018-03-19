@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.4.0
+// @version			1.4.1
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -250,7 +250,7 @@ $("#oc-mod-caret").click( () => {
 
 // Validation modération
 $("#oc-mod-validation").click( () => {
-	let moderationMessage = '';
+	let moderationMessage = configuration.intro;
 
 	if( $("input[name=hasHeader]").prop('checked') )
 		moderationMessage += configuration.headers;
