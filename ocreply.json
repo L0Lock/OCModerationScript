@@ -159,6 +159,22 @@
             "exclude": ["Forum du staff"],
             "title": "Pas d'urgence dans le forum d'OC",
             "message": "<p>Vous êtes sur un forum d'entraide, pas sur un site de service. Ici les intervenants vous répondent quand ils le veulent, s'ils le veulent, sans aucune obligation. Aussi, ce genre d'indications rendent le forum moins agréable à utiliser et moins équitable. De ce fait, les mentions de quelconque \"urgence\" ne sont pas admises sur ce forum. La meilleure façon d'avoir de l'aide rapidement ici est de fournir toutes les informations nécessaires et de les présenter correctement. N'hésitez pas à lire les règles épinglés en haut des serctions du forum, elles indiquent généralement ce qui est nécessaire.</p>"
+        },
+        
+        {
+            "id": 21,
+            "section": ["all"],
+            "exclude": ["Forum du staff", "Recrutements pour vos projets"],
+            "title": "Redirection Forum Rectrutement",
+            "message": "<p>Ce forum dispose d'une <a href=\"https://openclassrooms.com/forum/categorie/recrutement-pour-vos-projets\">section dédiée aux recrutements pour projets amateurs</a>. Je vous invite à vous y rendre et à y poster votre topic en respectant <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">les règles particulières à cette section.</a></p>"
+        },
+        
+        {
+            "id": 21,
+            "section": ["Recrutements pour vos projets"],
+            "exclude": ["Forum du staff"],
+            "title": "Recrutement professionnel",
+            "message": "<p>Les recrutements pour des entreprises ou des projets professionnels (avec un contrat à la clef) n’ont pas leur place sur ce forum, celui-ci est exclusivement réservé aux projets amateurs.</p>"
         }
     ]
 }
