@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.4
+// @version			1.4.0
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
