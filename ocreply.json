@@ -181,6 +181,6 @@
 	"mp": 
 	{
 		"title": "Modération",
-		"message": "<p>Bonjour,</p><p>Je viens de supprimer ton dernier message : $$</p><p>Car ...</p><p>Merci de créer ton propre sujet à l'aide du bouton bleu \"Créer un sujet\" en haut à droite du forum adéquat ;)</p><p>=====================</p>"
+		"message": "<p>Bonjour,</p><p>Je viens de supprimer ton dernier message sur ce sujet : $$</p><p>Car ...</p><p>Merci de créer ton propre sujet à l'aide du bouton bleu \"Créer un sujet\" en haut à droite du forum adéquat ;)</p><p>=====================</p>"
 	}
 }
