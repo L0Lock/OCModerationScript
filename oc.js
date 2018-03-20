@@ -7,7 +7,7 @@
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
 // @include			*openclassrooms.com/mp/*
-// @version			1.6.2
+// @version			1.6.3
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -19,17 +19,19 @@
 const baseUri = "https://openclassrooms.com";
 const mpUrl = "/mp/nouveau/";
 const profilUrl = "/membres/";
+const messageUrl = "/forum/sujet/";
 const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
 
 // Affichage Console
 console.log( "Script de modération pour les forums de OpenClassrooms" );
 console.log( "Version "+GM_info.script.version );
+console.log( window.location );
 
 // Mémorisation pages visitées
 GM_setValue( "lastPage", GM_getValue("currentPage") );
-GM_setValue( "currentPage", window.location.href );
-if( GM_getValue( "mpContent" ) === undefined )
-	GM_setValue( "mpContent", "" );
+GM_setValue( "currentPage", window.location.pathname );
+if( GM_getValue( "mpClick" ) === undefined )
+	GM_setValue( "mpClick" , false );
 
 // Liste des forums hiérarchisée
 const forums = {
@@ -131,18 +133,20 @@ var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px
 
 // Ajout lien MP
 $(".author>a").each( function(e) {
-	$(this).parent().parent().append('<a tager="_blank" style="margin: 5px;" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-mp btn btn-default"><i class="icon-letter"></i></a>');
+	$(this).parent().parent().append('<a target="_blank" style="margin: 5px;" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-mp btn btn-default"><i class="icon-letter"></i></a>');
 });
 
 // Récupération du fichier JSON des messages si dans post
 if( $("input[name=submit_comment]").length )
-	getConfigurationFile( false ).then( initForum() );
+	getConfigurationFile( false ).then( initPost() );
 
 // Traitement MP
-if( $("input#ThreadMessage_title").length )
+if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
+	GM_setValue( "mpClick" , false );
 	getConfigurationFile( false ).then( initMp() );
+}
 
-function initForum() {
+function initPost() {
 	configuration = GM_getValue("answers").configuration;
 	messages = GM_getValue("answers").answers;
 	let messagesSection = getMessageBySection( messages, $('span[itemprop="title"]').last().text() );
@@ -215,12 +219,15 @@ function initMp() {
 	let mp = GM_getValue("answers").mp;
 	let messageMp = mp.message.replace( '$ce sujet$', '<a href="'+GM_getValue("lastPage")+'">ce sujet</a>' ) + GM_getValue( "mpContent" );
 	$("input#ThreadMessage_title").val( mp.title );
-	$("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( baseUri, "" ) );
+	$("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
 	let mpHolder = $("#ThreadMessage_comments_0_wysiwyg_message_ifr");
-	if(mpHolder.length)
+	if(mpHolder.length) {
+		console.log( 'iframe' );
 		mpHolder[0].contentDocument.body.innerHTML = messageMp;
-	else
+	} else {
+		console.log( 'textarea' );
 		$("#ThreadMessage_comments_0_wysiwyg_message")[0].value = messageMp;
+	}
 	GM_setValue( "mpContent", "" );
 	GM_setValue( "lastPage", "" );
 }
@@ -249,6 +256,7 @@ $("#oc-mod-update").click( () => {
 // Gestion des MP
 $(".oc-mod-mp").click( function(e) {
 	GM_setValue( "mpContent", $(this).parent().parent().parent().find(".message.markdown-body").html() );
+	GM_setValue( "mpClick" , true );
 });
 
 // Changement de format
