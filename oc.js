@@ -7,7 +7,7 @@
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
 // @include			*openclassrooms.com/mp/*
-// @version			1.6.0
+// @version			1.6.1
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -129,6 +129,11 @@ var modExpand = false;
 var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
 var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
 
+// Ajout lien MP
+$(".author>a").each( function(e) {
+	$(this).parent().parent().append('<a tager="_blank" style="margin: 5px;" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-mp btn btn-default"><i class="icon-letter"></i></a>');
+});
+
 // Récupération du fichier JSON des messages si dans post
 if( $("input[name=submit_comment]").length )
 	getConfigurationFile( false ).then( initForum() );
@@ -138,10 +143,6 @@ if( $("input#ThreadMessage_title").length )
 	getConfigurationFile( false ).then( initMp() );
 
 function initForum() {
-	// Ajout lien MP
-	$(".author>a").each( function(e) {
-		$(this).parent().parent().append('<a tager="_blank" style="margin: 5px;" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-mp btn btn-default"><i class="icon-letter"></i></a>');
-	});
 	configuration = GM_getValue("answers").configuration;
 	messages = GM_getValue("answers").answers;
 	let messagesSection = getMessageBySection( messages, $('span[itemprop="title"]').last().text() );
