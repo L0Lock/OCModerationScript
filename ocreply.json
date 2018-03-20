@@ -35,7 +35,7 @@
 			"id": 3,
 			"section": ["Recrutements pour vos projets"],
 			"exclude": ["Forum du staff"],
-			"title": "Aucune avancée",
+			"title": "Aucun projet / Aucune avancée",
 			"message": "<p>Afin de préserver le forum dans un état correct et de ne garder que des projets intéressants, nous demandons à quiconque créant un sujet dans cette section de respecter quelques règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">post-it de ce forum</a>. Il y est, entre autre, demandé de présenter une avancée concrète ou un véritable travail de recherche sur votre projet.</p>"
 		},
 
