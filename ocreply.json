@@ -20,7 +20,7 @@
 			"section": ["Recrutements pour vos projets"],
 			"exclude": ["Forum du staff"],
 			"title": "Mauvais format de Recrutement",
-			"message": "<p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">post-it de ce forum</a>. Un format type vous est proposé pour vous aider à rédiger votre message.Bien qu'il ne soit pas impératif de l'utiliser, il permet de balayer tous les éléments nécessaires à la bonne compréhension de votre demande.</p>"
+			"message": "<p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">post-it de ce forum</a>. Un format type vous est proposé pour vous aider à rédiger votre message. Bien qu'il ne soit pas impératif de l'utiliser, il est tout de même nécessaire de présenter toutes les informations demandées, de façon claire et lisible.</p>"
 		},
 
 		{
@@ -36,7 +36,7 @@
 			"section": ["Recrutements pour vos projets"],
 			"exclude": ["Forum du staff"],
 			"title": "Aucune avancée",
-			"message": "<p>Afin de préserver le forum dans un état correct et de ne garder que des projets intéressants, nous demandons à quiconque créant un sujet dans cette section de respecter quelques règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">post-it de ce forum</a>. Il est, entre autre, demandé de présenter une avancé concrète ou un véritable travail de recherche sur votre projet.</p>"
+			"message": "<p>Afin de préserver le forum dans un état correct et de ne garder que des projets intéressants, nous demandons à quiconque créant un sujet dans cette section de respecter quelques règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">post-it de ce forum</a>. Il y est, entre autre, demandé de présenter une avancée concrète ou un véritable travail de recherche sur votre projet.</p>"
 		},
 
 		{
@@ -173,6 +173,14 @@
 			"exclude": ["Forum du staff", "Recrutements pour vos projets"],
 			"title": "Redirection Forum Rectrutement",
 			"message": "<p>Ce forum dispose d'une <a href=\"https://openclassrooms.com/forum/categorie/recrutement-pour-vos-projets\">section dédiée aux recrutements pour projets amateurs</a>. Je vous invite à vous y rendre et à y poster votre topic en respectant <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">les règles particulières à cette section.</a></p>"
+		},
+		
+		{
+			"id": 22,
+			"section": ["Recrutements pour vos projets"],
+			"exclude": ["Forum du staff"],
+			"title": "Recrutement professionnel",
+			"message": "<p>Les recrutements pour des entreprises ou des projets professionnels (avec un contrat à la clef) n’ont pas leur place sur ce forum, celui-ci est exclusivement réservé aux projets amateurs.</p>"
 		},
 		
 		{
