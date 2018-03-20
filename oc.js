@@ -7,7 +7,7 @@
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
 // @include			*openclassrooms.com/mp/*
-// @version			1.6.5
+// @version			1.6.6
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -20,6 +20,7 @@ const baseUri = "https://openclassrooms.com";
 const mpUrl = "/mp/nouveau/";
 const profilUrl = "/membres/";
 const messageUrl = "/forum/sujet/";
+const deleteUrl = "/message/supprimer/";
 const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
 
 // Mémorisation pages visitées
@@ -111,6 +112,14 @@ if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== und
 		.then( () => GM_setValue( "threadToLock", '' ) );
 }
 
+// Suppression message si demandée
+if( GM_getValue( "postToDelete" ) != '' && GM_getValue( "postToDelete" ) !== undefined ) {
+	let deleteLink = baseUri + deleteUrl + GM_getValue( "postToDelete" );
+	let postData = '';
+	promiseRequest("POST", deleteLink, postData )
+		.then(() => GM_setValue( "postToDelete", '' ) );
+}
+
 // Lien MAJ réponses
 $(".nav-tabs--searchField").css( {"width": "40%"} );
 $("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour les réponses</a></li>');
@@ -119,6 +128,7 @@ $("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour
 $(".adviceBanner").remove();
 
 // Initialisation variables
+var section = $('span[itemprop="title"]').last().text();
 var nbMessages = 0;
 var configuration = [];
 var messages = [];
@@ -126,9 +136,10 @@ var modExpand = false;
 var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
 var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
 
-// Ajout lien MP
+// Ajout lien MP + suppression
 $(".author>a").each( function(e) {
-	$(this).parent().parent().append('<a target="_blank" style="margin: 5px;" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-mp btn btn-default"><i class="icon-letter"></i></a>');
+	$(this).parent().parent().append('<a title="Ecrire un MP" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-mp btn btn-default" target="_blank" style="margin-top: 5px;"><i class="icon-letter"></i></a>');
+	$(this).parent().parent().append('<a title="Supprimer et MP" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-delete oc-mod-mp btn btn-warning" style="margin-top: 5px;"><i class="icon-cross"></i></a>');
 });
 
 // Récupération du fichier JSON des messages si dans post
@@ -144,7 +155,7 @@ if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
 function initPost() {
 	configuration = GM_getValue("answers").configuration;
 	messages = GM_getValue("answers").answers;
-	let messagesSection = getMessageBySection( messages, $('span[itemprop="title"]').last().text() );
+	let messagesSection = getMessageBySection( messages, section );
 	nbMessages = messagesSection.length;
 
 	// Copie du fil d'ariane en bas du sujet
@@ -240,7 +251,6 @@ $("#oc-mod-move").click( function(e) {
 		$("#oc-mod-select-span").html("");
 		$("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1]+(nbMessages*17));
 	}
-
 });
 
 // Gestion de la mise à jour manuelle
@@ -252,6 +262,11 @@ $("#oc-mod-update").click( () => {
 $(".oc-mod-mp").click( function(e) {
 	GM_setValue( "mpContent", $(this).parent().parent().parent().find(".message.markdown-body").html() );
 	GM_setValue( "mpClick" , true );
+});
+
+// Gestion suppression
+$(".oc-mod-delete").click( function(e) {
+	GM_setValue( "postToDelete", $(this).parent().parent().parent().find(".span10.comment").attr("id").replace( 'message-', '' ) );
 });
 
 // Changement de format
