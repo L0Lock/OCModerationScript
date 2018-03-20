@@ -258,7 +258,8 @@ $("#oc-mod-validation").click( () => {
 	if( $("#oc-mod-move").prop("checked") ) {
 		let moveLink = baseUri + $("#deplacerActionModal>form").attr('action');
 		let postData = 'CategoriesList[category]='+$("#oc-mod-forum-select").val();
-		moderationMessage += '<h1 style="text-align: center;">'+configuration.deplacer.replace('$$', $( "#oc-mod-forum-select option:selected" ).text() )+'</h1>';
+		moderationMessage += '<h1 style="text-align: center;">Mauvais forum</h1>';
+		moderationMessage += configuration.deplacer.replace('$$', $( "#oc-mod-forum-select option:selected" ).text() );
 		promiseRequest("POST", moveLink, postData )
 			.then(() => console.log("Déplacement " + moveLink + " --- " + postData ) );
 	}
