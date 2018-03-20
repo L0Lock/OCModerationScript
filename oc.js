@@ -7,7 +7,7 @@
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
 // @include			*openclassrooms.com/mp/*
-// @version			1.6.3
+// @version			1.6.4
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -21,11 +21,6 @@ const mpUrl = "/mp/nouveau/";
 const profilUrl = "/membres/";
 const messageUrl = "/forum/sujet/";
 const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
-
-// Affichage Console
-console.log( "Script de modération pour les forums de OpenClassrooms" );
-console.log( "Version "+GM_info.script.version );
-console.log( window.location );
 
 // Mémorisation pages visitées
 GM_setValue( "lastPage", GM_getValue("currentPage") );
