@@ -7,7 +7,7 @@
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
 // @include			*openclassrooms.com/mp/*
-// @version			1.5.0
+// @version			1.4.3
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -24,11 +24,12 @@ const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScr
 // Affichage Console
 console.log( "Script de modération pour les forums de OpenClassrooms" );
 console.log( "Version "+GM_info.script.version );
-console.log( "Modérateur : " + $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri+profilUrl, "" ) );
 
 // Mémorisation pages visitées
 GM_setValue( "lastPage", GM_getValue("currentPage") );
 GM_setValue( "currentPage", window.location.href );
+if( GM_getValue( "mpContent" ) === undefined )
+	GM_setValue( "mpContent", "" );
 
 // Liste des forums hiérarchisée
 const forums = {
@@ -129,20 +130,17 @@ var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px
 var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
 
 // Récupération du fichier JSON des messages si dans post
-if ( $("input[name=submit_comment]").length )
-	getConfigurationFile( false ).then( init() );
-else
-	console.log( "Aucune action de modération possible ici" );
+if( $("input[name=submit_comment]").length )
+	getConfigurationFile( false ).then( initForum() );
 
-/**
- * Traite les messages possibles
- * Affiche les éléments graphique de modération
- *
- */
-function init() {
+// Traitement MP
+if( $("input#ThreadMessage_title").length )
+	getConfigurationFile( false ).then( initMp() );
+
+function initForum() {
 	// Ajout lien MP
 	$(".author>a").each( function(e) {
-		$(this).parent().parent().append('<a style="margin-top: 5px;" class="btn btn-default" href='+$(this).attr("href").replace( profilUrl, mpUrl )+'><i class="icon-letter"></i></a>');
+		$(this).parent().parent().append('<a tager="_blank" style="margin: 5px;" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-mp btn btn-default"><i class="icon-letter"></i></a>');
 	});
 	configuration = GM_getValue("answers").configuration;
 	messages = GM_getValue("answers").answers;
@@ -154,7 +152,6 @@ function init() {
 
 	// Eléments et styles
 	if( messagesSection.length ) {
-		console.log( nbMessages + " messages de modération disponibles pour cette section" );
 		$("#mainContentWithHeader").append( '<div id="oc-mod-panel"><h2 class="oc-mod-title">Outils de modération <span id="oc-mod-version">'+GM_info.script.version+'</span><span id="oc-mod-drag" class="oc-mod-icon">&#x2756;</span><span id="oc-mod-caret" class="oc-mod-icon">&#x25bc;</span></h2><div id="oc-mod-content"><div id="oc-mod-reponses" class="oc-mod-column"><h3 class="oc-mod-subtitle">Messages possibles</h3></div><div id="oc-mod-options" class="oc-mod-column"><h3 class="oc-mod-subtitle">Options</h3></div><div id="oc-mod-formats" class="oc-mod-column"><h3 class="oc-mod-subtitle">Affichage</h3></div><div id="oc-mod-valid"></div></div></div>' );
 		$("#oc-mod-content").hide();
 		$("#oc-mod-panel").css({
@@ -209,8 +206,20 @@ function init() {
 		}
 		$("#oc-mod-reponses").append( '<input id="oc-mod-move" type="checkbox" value="1" /> Déplacer<br /><span id="oc-mod-select-span"></span>' );
 	} else {
-		console.log( "Aucun message de modération disponible ici" );
+		
 	}
+}
+
+function initMp() {
+	let mp = GM_getValue("answers").mp;
+	let messageMp = mp.message.replace( '$ce sujet$', '<a href="'+GM_getValue("lastPage")+'">ce sujet</a>' ) + GM_getValue( "mpContent" );
+	$("input#ThreadMessage_title").val( mp.title );
+	$("input#ThreadMessage_subtitle").val( GM_getValue("lastPage") );
+	let mpHolder = $("#ThreadMessage_comments_0_wysiwyg_message_ifr");
+	if(mpHolder.length)
+		mpHolder[0].contentDocument.body.innerHTML = messageMp;
+	else
+		$("#ThreadMessage_comments_0_wysiwyg_message")[0].value = messageMp;
 }
 
 // Gestion déplacement sujet
@@ -232,6 +241,11 @@ $("#oc-mod-move").click( function(e) {
 // Gestion de la mise à jour manuelle
 $("#oc-mod-update").click( () => {
 	getConfigurationFile( true ).then( () => alert('Mise à jour des réponses effectuée !') );
+});
+
+// Gestion des MP
+$(".oc-mod-mp").click( function(e) {
+	GM_setValue( "mpContent", $(this).parent().parent().parent().find(".message.markdown-body").html() );
 });
 
 // Changement de format
