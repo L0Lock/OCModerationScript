@@ -6,7 +6,8 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @version			1.4.3
+// @include			*openclassrooms.com/mp/*
+// @version			1.5.0
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -16,13 +17,18 @@
 
 // URL et chemins
 const baseUri = "https://openclassrooms.com";
-const mpUrl = baseUri+"/mp/nouveau/";
-const profilUrl = baseUri+"/membres/";
+const mpUrl = "/mp/nouveau/";
+const profilUrl = "/membres/";
 const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
 
+// Affichage Console
 console.log( "Script de modération pour les forums de OpenClassrooms" );
 console.log( "Version "+GM_info.script.version );
-console.log( "Modérateur : " + $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( profilUrl, "" ) );
+console.log( "Modérateur : " + $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri+profilUrl, "" ) );
+
+// Mémorisation pages visitées
+GM_setValue( "lastPage", GM_getValue("currentPage") );
+GM_setValue( "currentPage", window.location.href );
 
 // Liste des forums hiérarchisée
 const forums = {
@@ -134,6 +140,10 @@ else
  *
  */
 function init() {
+	// Ajout lien MP
+	$(".author>a").each( function(e) {
+		$(this).parent().parent().append('<a style="margin-top: 5px;" class="btn btn-default" href='+$(this).attr("href").replace( profilUrl, mpUrl )+'><i class="icon-letter"></i></a>');
+	});
 	configuration = GM_getValue("answers").configuration;
 	messages = GM_getValue("answers").answers;
 	let messagesSection = getMessageBySection( messages, $('span[itemprop="title"]').last().text() );
@@ -303,7 +313,7 @@ $("#oc-mod-validation").click( () => {
 		// Gestion fermeture du sujet
 		if( $("input[name=shouldLock]").prop('checked') ) {
 			GM_setValue( "threadToLock", baseUri + $(".closeAction").attr('href') );
-			moderationMessage += configuration.fermer.replace( '$$', $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( profilUrl, mpUrl ) );
+			moderationMessage += configuration.fermer.replace( '$$', $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri+profilUrl, baseUri+mpUrl ) );
 		} else {
 			GM_setValue( "threadToLock", '' );
 		}
@@ -363,9 +373,7 @@ function promiseRequest(method, url, data = "" ) {
 }
 
 /**
- * Récupère la liste des messages de modération
- * pour la section courante ou son parent ou "all"
- * en excluant les sections précisées
+ * Récupère la liste filtrée des messages de modération
  *
  * @returns Liste d'objet de réponses
  */
