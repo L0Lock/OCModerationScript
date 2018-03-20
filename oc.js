@@ -7,7 +7,7 @@
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
 // @include			*openclassrooms.com/mp/*
-// @version			1.4.3
+// @version			1.6.0
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -220,6 +220,8 @@ function initMp() {
 		mpHolder[0].contentDocument.body.innerHTML = messageMp;
 	else
 		$("#ThreadMessage_comments_0_wysiwyg_message")[0].value = messageMp;
+	GM_setValue( "mpContent", "" );
+	GM_setValue( "lastPage", "" );
 }
 
 // Gestion déplacement sujet
