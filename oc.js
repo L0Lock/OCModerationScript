@@ -7,7 +7,7 @@
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
 // @include			*openclassrooms.com/mp/*
-// @version			1.6.4
+// @version			1.6.5
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -212,7 +212,7 @@ function initPost() {
 
 function initMp() {
 	let mp = GM_getValue("answers").mp;
-	let messageMp = mp.message.replace( '$ce sujet$', '<a href="'+GM_getValue("lastPage")+'">ce sujet</a>' ) + GM_getValue( "mpContent" );
+	let messageMp = mp.message.replace( '$$', GM_getValue("lastPage") ) + GM_getValue( "mpContent" );
 	$("input#ThreadMessage_title").val( mp.title );
 	$("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
 	let mpHolder = $("#ThreadMessage_comments_0_wysiwyg_message_ifr");
