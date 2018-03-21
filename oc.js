@@ -7,7 +7,7 @@
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
 // @include			*openclassrooms.com/mp/*
-// @version			1.6.6
+// @version			1.6.7
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -138,8 +138,10 @@ var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px
 
 // Ajout lien MP + suppression
 $(".author>a").each( function(e) {
-	$(this).parent().parent().append('<a title="Ecrire un MP" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-mp btn btn-default" target="_blank" style="margin-top: 5px;"><i class="icon-letter"></i></a>');
-	$(this).parent().parent().append('<a title="Supprimer et MP" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-delete oc-mod-mp btn btn-warning" style="margin-top: 5px;"><i class="icon-cross"></i></a>');
+	if( $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri, '') != $(this).attr("href") ) {
+		$(this).parent().parent().append('<a title="Ecrire un MP" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-mp btn btn-default" target="_blank" style="margin-top: 5px;"><i class="icon-letter"></i></a>');
+		$(this).parent().parent().append('<a title="Supprimer et MP" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-delete oc-mod-mp btn btn-warning" style="margin-top: 5px;"><i class="icon-cross"></i></a>');
+	}
 });
 
 // Récupération du fichier JSON des messages si dans post
