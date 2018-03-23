@@ -7,6 +7,8 @@
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
 // @include			*openclassrooms.com/mp/*
+// @include			*openclassrooms.com/interventions/*
+// @include			*openclassrooms.com/sujets/*
 // @version			1.6.7
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
