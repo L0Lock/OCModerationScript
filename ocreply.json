@@ -1,7 +1,7 @@
 {
 	"configuration": 
 	{
-		"headers": "<p><em>Le message qui suit est une réponse automatique activée par un membre de l'équipe. Les réponses automatiques leur permettent d'éviter d'avoir à répéter de nombreuses fois la même chose ce qui leur fait gagner du temps et leur permet de s'occuper des sujets qui méritent plus d'attention plus facilement.<br />Nous sommes néanmoins ouverts et si vous avez une question ou une remarque, n'hésitez pas à contacter la personne en question par Message Privé.</em><br />Pour plus d'informations, nous vous invitons à lire les <a href=\"https://openclassrooms.com/forum/sujet/regles-et-bonnes-pratiques-du-forum-9#message-84002601\">règles générales du forum</a></p>",
+		"headers": "<p><em>Le message qui suit est une réponse automatique activée par un membre de l'équipe. Les réponses automatiques leur permettent d'éviter d'avoir à répéter de nombreuses fois la même chose, ce qui leur fait gagner du temps et leur permet de s'occuper des sujets qui méritent plus d'attention.<br />Nous sommes néanmoins ouverts et si vous avez une question ou une remarque, n'hésitez pas à contacter la personne en question par Message Privé.</em><br />Pour plus d'informations, nous vous invitons à lire les <a href=\"https://openclassrooms.com/forum/sujet/regles-et-bonnes-pratiques-du-forum-9#message-84002601\">règles générales du forum</a></p>",
 		"deplacer": "<p>Le sujet est déplacé dans le forum approprié : $$</p>",
 		"fermer": "<p>Je ferme ce sujet. <a href='$$'>Me contacter par MP si besoin</a>.</p>",
 		"intro": "<p>Bonjour,</p>"
@@ -108,7 +108,7 @@
 			"section": ["all"],
 			"exclude": ["Forum du staff"],
 			"title": "Manquement global aux règles",
-			"message": "<p>Votre message enfreint beaucoup de règles basiques du forum à tel point qu'il serait peut judicieux de les énumérer dans ce message. Je vous invite donc à lire de toute urgence les <a href=\"regles-et-bonnes-pratiques-du-forum-9#message-84002601\">règles générales du forum</a> ainsi que <a href=\"../../terms-conditions#code-of-conduct\">la Charte de Bonne Conduite</a> et les éventuelles règles additionnelles de la section du forum dans laquelle vous postez, visibles parmi les sujets épinglés lorsqu'il y en a.</p>"
+			"message": "<p>Votre message enfreint beaucoup de règles basiques du forum à tel point qu'il serait fastidieux de les énumérer dans ce message. Je vous invite donc à lire de toute urgence les <a href=\"regles-et-bonnes-pratiques-du-forum-9#message-84002601\">règles générales du forum</a> ainsi que <a href=\"../../terms-conditions#code-of-conduct\">la Charte de Bonne Conduite</a> et les éventuelles règles additionnelles de la section du forum dans laquelle vous postez, visibles parmi les sujets épinglés lorsqu'il y en a.</p>"
 		},
 		
 		{
