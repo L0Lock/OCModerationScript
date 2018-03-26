@@ -28,7 +28,7 @@
 			"section": ["Recrutements pour vos projets"],
 			"exclude": ["Forum du staff"],
 			"title": "Mauvais titre de Recrutement",
-			"message": "<p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Recrutement\" n'est pas un type correct, nous nous doutons que vous recrutez pour votre projet si vous postez un message ici.</p><p>Quelques exemples de titres corrects :</p><ul><li>[Application] Tinder</li> <li>[MOBA] Heroes Of The Storm</li> <li>[Site Web]OpenClassRooms</li></ul><p>Merci de votre compréhension.</p>"
+			"message": "<p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Recrutement\" n'est pas un type correct, nous nous doutons que vous recrutez pour votre projet si vous postez un message ici.</p><p>Quelques exemples de titres corrects :</p><ul><li>[Application] Tinder</li> <li>[MOBA] Heroes Of The Storm</li> <li>[Site Web] OpenClassRooms</li></ul><p>Merci de votre compréhension.</p>"
 		},
 
 		{
@@ -36,7 +36,7 @@
 			"section": ["Recrutements pour vos projets"],
 			"exclude": ["Forum du staff"],
 			"title": "Aucun projet / Aucune avancée",
-			"message": "<p>Afin de préserver le forum dans un état correct et de ne garder que des projets intéressants, nous demandons à quiconque créant un sujet dans cette section de respecter quelques règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">post-it de ce forum</a>. Il y est, entre autre, demandé de présenter une avancée concrète ou un véritable travail de recherche sur votre projet.</p>"
+			"message": "<p>Afin de préserver le forum dans un état correct et de ne garder que des projets intéressants, nous demandons à quiconque créant un sujet dans cette section de respecter quelques règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">post-it de ce forum</a>. Il y est, entre autres, demandé de présenter une avancée concrète ou un véritable travail de recherche sur votre projet.</p>"
 		},
 
 		{
@@ -84,7 +84,7 @@
 			"section": ["Programmation", "Site Web"],
 			"exclude": ["Forum du staff"],
 			"title": "Merci d'utiliser les balises de code",
-			"message": "<p>Les forums d'Openclassrooms disposent d'une fonctionnalité permettant de colorer et mettre en forme les codes source afin de les rendre plus lisibles et faciles à manipuler par les intervenants. Pour celà, il faut utiliser le bouton <img src=\"https://sdz-upload.s3.amazonaws.com/prod/upload/code.gif\" alt=\"Image\" /> . Si vous utilisez l'éditeur de messages en mode Markdown, il faut utiliser les balises <code>&lt;pre class=\"brush: c;\"&gt;Votre code ici&lt;/pre&gt;</code>.</p> <p>Merci de modifier votre message en conséquence via le bouton \"Modifier\" situé sur son coin supérieur droit, sans quoi le sujet sera fermé.</p>"
+			"message": "<p>Les forums d'Openclassrooms disposent d'une fonctionnalité permettant de colorer et mettre en forme les codes source afin de les rendre plus lisibles et faciles à manipuler par les intervenants. Pour cela, il faut utiliser le bouton <img src=\"https://sdz-upload.s3.amazonaws.com/prod/upload/code.gif\" alt=\"Image\" /> . Si vous utilisez l'éditeur de messages en mode Markdown, il faut utiliser les balises <code>&lt;pre class=\"brush: c;\"&gt;Votre code ici&lt;/pre&gt;</code>.</p> <p>Merci de modifier votre message en conséquence via le bouton \"Modifier\" situé sur son coin supérieur droit, sans quoi le sujet sera fermé.</p>"
 		},
 		
 		{
@@ -124,7 +124,7 @@
 			"section": ["all"],
 			"exclude": ["Forum du staff"],
 			"title": "Pas de données personnelles",
-			"message": "<p>Il est dangereux de poster des données personnelles à la vue de tout le monde sur Internet, car elles pourraient être utilisées à mauvais esscient et entraîner des nuisances pour son propiétaire et ses proches.</p><p>Pour transmettre des données personnelles, préférez les messages privés.</p>"
+			"message": "<p>Il est dangereux de poster des données personnelles à la vue de tout le monde sur Internet, car elles pourraient être utilisées à mauvais escient et entraîner des nuisances pour son propriétaire et ses proches.</p><p>Pour transmettre des données personnelles, préférez les messages privés.</p>"
 		},
 		
 		{
@@ -140,7 +140,7 @@
 			"section": ["all"],
 			"exclude": ["Forum du staff"],
 			"title": "Manque de recherche",
-			"message": "<p>La question que vous posez est très fréquente, cela démontre un manque de recherche évident. Internet et ce forum fourmillent de sujets similaires.</p><p>Je vous invite effectuer de vraies recherches qui sont à la base d'un bon apprentissage ...</p>"
+			"message": "<p>La question que vous posez est très fréquente, cela démontre un manque de recherche évident. Internet et ce forum fourmillent de sujets similaires.</p><p>Je vous invite effectuer de vraies recherches qui sont à la base d'un bon apprentissage…</p>"
 		},
 
 		{
@@ -164,7 +164,7 @@
 			"section": ["all"],
 			"exclude": ["Forum du staff"],
 			"title": "Pas d'urgence dans le forum d'OC",
-			"message": "<p>Vous êtes sur un forum d'entraide, pas sur un site de service. Ici les intervenants vous répondent quand ils le veulent, s'ils le veulent, sans aucune obligation. Aussi, ce genre d'indications rendent le forum moins agréable à utiliser et moins équitable. De ce fait, les mentions de quelconque \"urgence\" ne sont pas admises sur ce forum. La meilleure façon d'avoir de l'aide rapidement ici est de fournir toutes les informations nécessaires et de les présenter correctement. N'hésitez pas à lire les règles épinglés en haut des serctions du forum, elles indiquent généralement ce qui est nécessaire.</p>"
+			"message": "<p>Vous êtes sur un forum d'entraide, pas sur un site de service. Ici les intervenants vous répondent quand ils le veulent, s'ils le veulent, sans aucune obligation. Aussi, ce genre d'indications rendent le forum moins agréable à utiliser et moins équitable. De ce fait, les mentions de quelconque \"urgence\" ne sont pas admises sur ce forum. La meilleure façon d'avoir de l'aide rapidement ici est de fournir toutes les informations nécessaires et de les présenter correctement. N'hésitez pas à lire les règles épinglés en haut des sections du forum, elles indiquent généralement ce qui est nécessaire.</p>"
 		},
 		
 		{
@@ -182,13 +182,5 @@
 			"title": "Recrutement professionnel",
 			"message": "<p>Les recrutements pour des entreprises ou des projets professionnels (avec un contrat à la clef) n’ont pas leur place sur ce forum, celui-ci est exclusivement réservé aux projets amateurs.</p>"
 		},
-		
-		{
-			"id": 22,
-			"section": ["Recrutements pour vos projets"],
-			"exclude": ["Forum du staff"],
-			"title": "Recrutement professionnel",
-			"message": "<p>Les recrutements pour des entreprises ou des projets professionnels (avec un contrat à la clef) n’ont pas leur place sur ce forum, celui-ci est exclusivement réservé aux projets amateurs.</p>"
-		}
 	]
 }
