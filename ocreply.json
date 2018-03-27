@@ -20,7 +20,7 @@
 			"section": ["Recrutements pour vos projets"],
 			"exclude": ["Forum du staff"],
 			"title": "Mauvais format de Recrutement",
-			"message": "<p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">post-it de ce forum</a>. Un format type vous est proposé pour vous aider à rédiger votre message. Bien qu'il ne soit pas impératif de l'utiliser, il est tout de même nécessaire de présenter toutes les informations demandées, de façon claire et lisible.</p>"
+			"message": "<p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">post-it de ce forum</a>. Un format type vous est proposé pour vous aider à rédiger votre message. Bien qu'il ne soit pas impératif de l'utiliser, il est tout de même nécessaire de présenter <strong>toutes</strong> les informations demandées, de façon <strong>claire</strong> et <strong>lisible</strong>.</p>"
 		},
 
 		{
