@@ -147,7 +147,6 @@ $(".oc-mod-nav").css({
 	"pointer":"cursor",
 	"position":"fixed",
 	"right":"50px",
-	"display":"block",
 	"background":"#4f8a03",
 	"border-radius":"5px",
 	"color":"#fff"
