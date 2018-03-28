@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.7.2
+// @version			1.7.3
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -126,19 +126,23 @@ if( GM_getValue( "postToDelete" ) != '' && GM_getValue( "postToDelete" ) !== und
 $(".nav-tabs--searchField").css( {"width": "40%"} );
 $("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour les réponses</a></li>');
 
-// Boutons top et bottom
+// Bouton top
 $("#mainContentWithHeader").append('<span title="Haut de la page" class="oc-mod-nav" id="oc-mod-top"><i class="icon-next"></i></span>');
-if( $(window).scroll() < 100 )
+if( $(window).scrollTop() < 100 )
 	$("#oc-mod-top").hide();
 $("#oc-mod-top").click( () => {
 	$(window).scrollTop( 0 );
 });
+
+// Bouton bottom
 $("#mainContentWithHeader").append('<span title="Bas de la page" class="oc-mod-nav" id="oc-mod-bottom"><i class="icon-next"></i></span>');
 if( $(window).height()+$(window).scrollTop() > $(document).height()-$("footer.footer").height()-100 )
 	$("#oc-mod-bottom").hide();
 $("#oc-mod-bottom").click( () => {
 	$(window).scrollTop( $(document).height()-$("footer.footer").height() );
 });
+
+// Style bouton top/bottom
 $(".oc-mod-nav").css({
 	"pointer":"cursor",
 	"position":"fixed",
