@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.7.3
+// @version			1.7.4
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -144,7 +144,7 @@ $("#oc-mod-bottom").click( () => {
 
 // Style bouton top/bottom
 $(".oc-mod-nav").css({
-	"pointer":"cursor",
+	"cursor":"pointer",
 	"position":"fixed",
 	"right":"50px",
 	"background":"#4f8a03",
