@@ -181,6 +181,6 @@
 			"exclude": ["Forum du staff"],
 			"title": "Recrutement professionnel",
 			"message": "<p>Les recrutements pour des entreprises ou des projets professionnels (avec un contrat à la clef) n’ont pas leur place sur ce forum, celui-ci est exclusivement réservé aux projets amateurs.</p>"
-		},
+		}
 	]
 }
