@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.6.8
+// @version			1.7
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -125,6 +125,40 @@ if( GM_getValue( "postToDelete" ) != '' && GM_getValue( "postToDelete" ) !== und
 // Lien MAJ réponses
 $(".nav-tabs--searchField").css( {"width": "40%"} );
 $("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour les réponses</a></li>');
+
+// Boutons top et bottom
+$("#mainContentWithHeader").append('<span title="Haut de la page" class="oc-mod-nav" id="oc-mod-top"><i class="icon-next"></i></span>');
+$("#oc-mod-top").click( () => {
+	$(window).scrollTop( 0 );
+});
+$("#mainContentWithHeader").append('<span title="Bas de la page" class="oc-mod-nav" id="oc-mod-bottom"><i class="icon-next"></i></span>');
+$("#oc-mod-bottom").click( () => {
+	$(window).scrollTop( $(document).height()-$("footer.footer").height() );
+});
+$(".oc-mod-nav").css({
+	"pointer":"cursor",
+	"position":"fixed",
+	"right":"50px",
+	"display":"block",
+	"background":"#4f8a03",
+	"border-radius":"5px",
+	"color":"#fff"
+});
+$("#oc-mod-top").css({"padding":"11px 15px 15px 15px","top":"38%"});
+$("#oc-mod-top>i").css({"transform":"rotate(-90deg)"});
+$("#oc-mod-bottom").css({"padding":"17px 15px 9px 15px","bottom":"38%"});
+$("#oc-mod-bottom>i").css({"transform":"rotate(90deg)"});
+
+$(window).scroll( () => {
+	if( $(window).scrollTop() > 100 )
+		$("#oc-mod-top").show();
+	else
+		$("#oc-mod-top").hide();
+	if( $(window).height()+$(window).scrollTop() < $(document).height()-$("footer.footer").height()-100 )
+		$("#oc-mod-bottom").show();
+	else
+		$("#oc-mod-bottom").hide();
+});
 
 // Suppression des pubs
 $(".adviceBanner").remove();
