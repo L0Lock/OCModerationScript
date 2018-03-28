@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.7.5
+// @version			1.7.6
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -143,6 +143,7 @@ $("#oc-mod-bottom").click( () => {
 });
 
 // Style bouton top/bottom
+$(".icon-next").css({"display":"inline-block"});
 $(".oc-mod-nav").css({
 	"cursor":"pointer",
 	"position":"fixed",
@@ -165,11 +166,11 @@ $("#oc-mod-bottom>i").css({"transform":"rotate(90deg)"});
 // Gestion du scroll
 $(window).scroll( () => {
 	if( $(window).scrollTop() > 100 )
-		$("#oc-mod-top").css({"display":"inline-block"});
+		$("#oc-mod-top").show();
 	else
 		$("#oc-mod-top").hide();
 	if( $(window).height()+$(window).scrollTop() < $(document).height()-$("footer.footer").height()-100 )
-		$("#oc-mod-bottom").css({"display":"inline-block"});
+		$("#oc-mod-bottom").show();
 	else
 		$("#oc-mod-bottom").hide();
 });
