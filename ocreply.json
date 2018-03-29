@@ -28,7 +28,7 @@
 			"section": ["Recrutements pour vos projets"],
 			"exclude": ["Forum du staff"],
 			"title": "Mauvais titre de Recrutement",
-			"message": "<p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Recrutement\" n'est pas un type correct, nous nous doutons que vous recrutez pour votre projet si vous postez un message ici.</p><p>Quelques exemples de titres corrects :</p><ul><li>[Application] Tinder</li> <li>[MOBA] Heroes Of The Storm</li> <li>[Site Web] OpenClassRooms</li></ul><p>Merci de votre compréhension.</p>"
+			"message": "<p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Recrutement\" n'est pas un type correct, nous nous doutons que vous recrutez pour votre projet si vous postez un message ici.</p><p>Quelques exemples de titres corrects :</p><ul><li>[Application] Tinder</li> <li>[MOBA] Heroes Of The Storm</li> <li>[Site Web] OpenClassRooms</li></ul>"
 		},
 
 		{
@@ -132,7 +132,7 @@
 			"section": ["all"],
 			"exclude": ["Forum du staff"],
 			"title": "Mise en page abusive",
-			"message": "<p>Les outils de mise en page servent à rendre votre message plus lisible et compréhensible, pas à faire des décorations expérimentales ou à s'amuser à faire des textes arc-en-ciel.</p><p>Merci de modifier votre message afin de réduire la mise en page au strict nécessaire.</p>"
+			"message": "<p>Les outils de mise en page servent à rendre votre message plus lisible et compréhensible, pas à faire des décorations expérimentales ou à s'amuser à faire des textes arc-en-ciel.</p><p>Merci de toujours réduire la mise en page au strict nécessaire.</p>"
 		},
 
 		{
