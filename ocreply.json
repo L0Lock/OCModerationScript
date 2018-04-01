@@ -196,7 +196,7 @@
 			"section": ["Recrutements pour vos projets", "Présentation de vos projets"],
 			"exclude": ["Forum du staff"],
 			"title": "Accepter la critique",
-			"message": "<p>Lorsque vous postez votre sujet de recrutement ou de présentation pour votre projet, vous acceptez de recevoir des critiques/commentaires sur celui-ci, qu’elles soient positives ou négatives. Si l’un commentaire vous semble déplacé, merci de le signaler via la fonction prévue à cet effet.</p>"
+			"message": "<p>Lorsque vous postez votre sujet de recrutement ou de présentation pour votre projet, vous acceptez de recevoir des critiques/commentaires sur celui-ci, qu’elles soient positives ou négatives. Si un commentaire vous semble déplacé, merci de le signaler via la fonction prévue à cet effet.</p>"
 		}
 	]
 }
