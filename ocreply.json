@@ -189,6 +189,14 @@
 			"exclude": ["Forum du staff"],
 			"title": "Sujet résolu",
 			"message": "Tu peux passer le sujet à \"résolu\" (bouton en haut à droite du sujet) et cliquer sur les pouces levés des messages qui t'ont aidés ;)"
+		},
+		
+		{
+			"id": 24,
+			"section": ["Recrutements pour vos projets", "Présentation de vos projets"],
+			"exclude": ["Forum du staff"],
+			"title": "Accepter la critique",
+			"message": "<p>Lorsque vous postez votre sujet de recrutement ou de présentation pour votre projet, vous acceptez de recevoir des critiques/commentaires sur celui-ci, qu’elles soient positives ou négatives. Si l’un commentaire vous semble déplacé, merci de le signaler via la fonction prévue à cet effet.</p>"
 		}
 	]
 }
