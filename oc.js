@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.7.6
+// @version			1.8.0
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -206,6 +206,12 @@ if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
 }
 
 function initPost() {
+	$(document).tooltip( {
+		open: function( event, ui ) {
+			$(".ui-widget-shadow").css({"background":"#fff"});
+            $(".ui-widget-shadow").fadeTo(0,1);
+		}
+	});
 	configuration = GM_getValue("answers").configuration;
 	messages = GM_getValue("answers").answers;
 	let messagesSection = getMessageBySection( messages, section );
@@ -243,13 +249,13 @@ function initPost() {
 		$(".oc-mod-title").css( {"font-size":"1.2em","color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
 		$("#oc-mod-version").css( {"font-size":"0.5em"} );
 		$(".oc-mod-subtitle").css( {"font-size":"1.1em","color":"#000","font-weight":"bold","line-height":"1em"} );
-		$("#oc-mod-options").append( '<input name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse<br />' );
-		$("#oc-mod-options").append( '<input name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement <br />' );
-		$("#oc-mod-options").append( '<input name="shouldLock" type="checkbox" value="1" /> 🔒 Fermer le sujet<br />' );
-		$("#oc-mod-options").append( '<input name="dismissAlerts" type="checkbox" value="1" /> 🔔 Retirer les alertes<br />' );
-		$("#oc-mod-options").append( '<input name="resolveTopic" type="checkbox" value="1" /> ✔ Passer à résolu<br />' );
-		$("#oc-mod-options").append( '<input name="followTopic" type="checkbox" value="1" /> ⚑ Suivre le sujet<br />' );
-		$("#oc-mod-formats").append( '<input name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "vertical" ? 'checked="checked"' : "")+' value="vertical" /> Vertical <input name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "horizontal" ? 'checked="checked"' : "")+' value="horizontal" /> Horizontal<br />' );
+		$("#oc-mod-options").append( '<input title="'+configuration.headers.replace(/(<([^>]+)>)/ig,"").replace('"',"")+'" name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse<br />' );
+		$("#oc-mod-options").append( '<input title="Si décochée, vous permet de modifier le contenu du message avant de le publier" name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement <br />' );
+		$("#oc-mod-options").append( '<input title="Si cochée, le sujet sera fermé et une phrase le précisera dans le message" name="shouldLock" type="checkbox" value="1" /> 🔒 Fermer le sujet<br />' );
+		$("#oc-mod-options").append( '<input title="Si cochée, toutes les alertes du sujet seront retirées" name="dismissAlerts" type="checkbox" value="1" /> 🔔 Retirer les alertes<br />' );
+		$("#oc-mod-options").append( '<input title="Si cochée, le sujet sera passé à \'Résolu\'" name="resolveTopic" type="checkbox" value="1" /> ✔ Passer à résolu<br />' );
+		$("#oc-mod-options").append( '<input title="Si cochée, le sujet sera ajouté à votre liste de sujets suivis" name="followTopic" type="checkbox" value="1" /> ⚑ Suivre le sujet<br />' );
+		$("#oc-mod-formats").append( '<input title="Permet de définir un affichage vertical de la boîte à outils" name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "vertical" ? 'checked="checked"' : "")+' value="vertical" /> Vertical <input title="Permet de définir un affichage horizontal de la boîte à outils" name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "horizontal" ? 'checked="checked"' : "")+' value="horizontal" /> Horizontal<br />' );
 		$("#oc-mod-valid").append( '<button id="oc-mod-validation" class="btn btn-danger">Modérer</button>' );
 		$("#oc-mod-validation").css({
 			"position":"absolute",
@@ -266,11 +272,11 @@ function initPost() {
 
 		// Ajout des messages possibles
 		for( let message of messagesSection ) {
-			$("#oc-mod-reponses").append( '<input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'<br />' );
+			$("#oc-mod-reponses").append( '<input title="'+message.message.replace(/(<([^>]+)>)/ig,"").replace('"',"")+'" class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'<br />' );
 		}
-		$("#oc-mod-reponses").append( '<input id="oc-mod-move" type="checkbox" value="1" /> Déplacer<br /><span id="oc-mod-select-span"></span>' );
+		$("#oc-mod-reponses").append( '<input title="Si cochée, laisse apparaître la liste des forums possibles pour déplacer le sujet" id="oc-mod-move" type="checkbox" value="1" /> Déplacer<br /><span id="oc-mod-select-span"></span>' );
 	} else {
-		
+
 	}
 }
 
@@ -416,6 +422,8 @@ $("#oc-mod-validation").click( () => {
 		// Validation du formulaire si demandée
 		if( $("input[name=postMessage]").prop('checked') )
 			$("input[name=submit_comment]").click();
+		else
+			$(window).scrollTop( $(document).height() );
 	} else {
 		alert( 'Aucun message à poster !' );
 	}
