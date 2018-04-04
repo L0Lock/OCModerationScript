@@ -155,7 +155,7 @@
 			"section": ["all"],
 			"exclude": ["Forum du staff"],
 			"title": "Manque de recherche",
-			"message": "<p>La question que vous posez est très fréquente, cela démontre un manque de recherche évident. Internet et ce forum fourmillent de sujets similaires.</p><p>Je vous invite effectuer de vraies recherches qui sont à la base d'un bon apprentissage…</p>",
+			"message": "<p>La question que vous posez est très fréquente, cela démontre un manque de recherche évident. Internet et ce forum fourmillent de ressources répondant à votre besoin.</p><p>Je vous invite à effectuer de vraies recherches qui sont à la base d'un bon apprentissage…</p>",
 			"infobulle": "Averti sur le manque apparent de recherche avant de poster"
 		},
 
