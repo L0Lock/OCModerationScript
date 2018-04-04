@@ -12,6 +12,25 @@
 		"title": "Modération",
 		"message": "<p>Bonjour,</p><p>Je viens de supprimer ton dernier message sur <a href='$$'>ce sujet</a> car ...</p><p>Merci de créer ton propre sujet à l'aide du bouton bleu \"Créer un sujet\" en haut à droite du forum adéquat ;)</p><p>=====================</p>"
 	},
+	
+	"links" : 
+	[
+		{
+			"id": 1,
+			"section": ["all"],
+			"exclude": ["Forum du staff"],
+			"title": "Règles générales du forum",
+			"url": "https://openclassrooms.com/forum/sujet/regles-et-bonnes-pratiques-du-forum-9"
+		},
+
+		{
+			"id": 2,
+			"section": ["all"],
+			"exclude": ["Forum du staff"],
+			"title": "Charte de bonne conduite",
+			"message": "https://openclassrooms.com/terms-conditions#oc_13"
+		}
+	],
 
 	"answers" : 
 	[
