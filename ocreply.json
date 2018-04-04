@@ -165,7 +165,7 @@
 			"section": ["all"],
 			"exclude": ["Forum du staff"],
 			"title": "Mise en page abusive",
-			"message": "<p>Les outils de mise en page servent à rendre votre message plus lisible et compréhensible, pas à faire des décorations expérimentales ou à s'amuser à faire des textes arc-en-ciel.</p><p>Merci de toujours réduire la mise en page au strict nécessaire.</p>",
+			"message": "<p>Les outils de mise en page on pour seul but de rendre votre message plus lisible et compréhensible. Pas à faire des décorations expérimentales ou à s'amuser à faire des textes arc-en-ciel.</p><p>Merci de toujours réduire la mise en page au strict nécessaire, aérer votre texte, éviter les pavés de texte indigeste, ...</p>",
 			"infobulle": "Averti sur les abus dans la mise en page d'un message"
 		},
 
