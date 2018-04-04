@@ -34,7 +34,8 @@ Pour ajouter un message, il faut simplement ajouter un élément de ce format da
 		"section": [],
 		"exclude": [],
 		"title": "Titre affiché sur le bouton",
-		"message": "<p>Mon message en \"html\"</p>"
+		"message": "<p>Mon message en \"html\"</p>",
+		"infobulle": "Aide à propose du message"
 	},
 
 <em>section</em> et <em>exclude</em> seront des tableaux contenant :
