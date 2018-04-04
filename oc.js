@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.8.4
+// @version			1.8.5
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -87,7 +87,7 @@ const forums = {
 		"Discussions générales",
 		"Let's talk!",
 		"Vos études",
-		"Recrutement pour vos projets",
+		"Recrutements pour vos projets",
 		"Présentation de vos projets",
 		"Rédaction de cours",
 		"Fonctionnement du site",
@@ -489,7 +489,7 @@ function getMessageBySection( messages, section ) {
 		var excludes = messages[i].exclude;
 
 		if( $.inArray( section, excludes ) > -1 || $.inArray( forum, excludes ) > -1 || $.inArray( "all", excludes ) > -1 )
-			break;
+			continue;
 
 		if( $.inArray( section, sections ) > - 1 || $.inArray( forum, sections ) > -1 || $.inArray( "all", sections ) > -1 )
 			retour.push( messages[i] );
