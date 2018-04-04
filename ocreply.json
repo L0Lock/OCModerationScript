@@ -21,7 +21,7 @@
 			"exclude": ["Forum du staff"],
 			"title": "Mauvais format de Recrutement",
 			"message": "<p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">post-it de ce forum</a>. Un <a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1\">format type</a> vous est proposé pour vous aider à rédiger votre message. Bien qu'il ne soit pas impératif de l'utiliser, il est tout de même nécessaire de présenter <strong>toutes</strong> les informations demandées, de façon <strong>claire</strong> et <strong>lisible</strong>.</p>",
-			"infobulle": "Renvoie vers les règles du forum de recrutement et le format conseillé."
+			"infobulle": "Il manque des infos (listées dans le format obligatoire), ou la présentation est insuffisante."
 		},
 
 		{
@@ -39,7 +39,7 @@
 			"exclude": ["Forum du staff"],
 			"title": "Aucun projet / Aucune avancée",
 			"message": "<p>Afin de préserver le forum dans un état correct et de ne garder que des projets intéressants, nous demandons à quiconque créant un sujet dans cette section de respecter quelques règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">post-it de ce forum</a>. Il y est, entre autres, demandé de présenter une avancée concrète ou un véritable travail de recherche sur votre projet.</p>",
-			"infobulle": "A utiliser si le sujet ne présente pas d'avancée significative"
+			"infobulle": "A utiliser si le sujet ne présente pas d'avancée significative ou n'a pas de projet."
 		},
 
 		{
@@ -48,7 +48,7 @@
 			"exclude": ["Forum du staff"],
 			"title": "Manque de précisions",
 			"message": "<p>Vous êtes ici sur un forum d'entraide communautaire et non pas sur un forum de demande de service, le but n'est donc pas de fournir une réponse toute faite ou de directement fournir la solution à quiconque viendrait sans la moindre trace. Afin d'obtenir de l'aide et une solution à votre problème, il est fortement recommandé de présenter clairement l'état actuel du problème en nous fournissant :</p> <ul> <li>Un descriptif clair et précis du problème</li> <li>La tentative actuelle de résolution que vous avez effectué</li> <li>Le résultat attendu et le résultat actuel</li> <li>Toutes pistes de recherches pouvant aider à la résolution</li> </ul>",
-			"infobulle": "Demande de précisions"
+			"infobulle": "Manque de précision (descriptif clair du pb, tentative de résolution, résultat attendu & obtenu ou pistes de recherches)."
 		},
 
 		{
@@ -66,7 +66,7 @@
 			"exclude": ["Forum du staff"],
 			"title": "Mauvais format de présentation de projet",
 			"message": "<p>Afin de maintenir le forum <em>Présentation</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de message, donc certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-2\">post-it de ce forum</a>et doivent impérativement être respectées.</p>",
-			"infobulle": "Renvoie vers les règles du forum de présentation de projets."
+			"infobulle": "Il manque des infos (listées dans le format obligatoire), ou la présentation est insuffisante."
 		},
 
 		{
