@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.8.2
+// @version			1.8.3
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -274,7 +274,7 @@ function initPost() {
 
 		// Ajout des messages possibles
 		for( let message of messagesSection ) {
-			$("#oc-mod-reponses").append( '<input class="oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'" class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'<br />' );
+			$("#oc-mod-reponses").append( '<input class="oc-mod-checkboxes oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'" type="checkbox" value="'+message.id+'" /> '+message.title+'<br />' );
 		}
 		$("#oc-mod-reponses").append( '<input class="oc-mod-tooltip" title="Si cochée, laisse apparaître la liste des forums possibles pour déplacer le sujet" id="oc-mod-move" type="checkbox" value="1" /> Déplacer<br /><span id="oc-mod-select-span"></span>' );
 	} else {
