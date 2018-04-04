@@ -251,13 +251,13 @@ function initPost() {
 		$(".oc-mod-title").css( {"font-size":"1.2em","color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
 		$("#oc-mod-version").css( {"font-size":"0.5em"} );
 		$(".oc-mod-subtitle").css( {"font-size":"1.1em","color":"#000","font-weight":"bold","line-height":"1em"} );
-		$("#oc-mod-options").append( '<input class="oc-mod-tooltip" title="Ajoute un entête de message pour préciser le caractère automatique de la modération" name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse<br />' );
-		$("#oc-mod-options").append( '<input class="oc-mod-tooltip" title="Si décochée, vous permet de modifier le contenu du message avant de le publier" name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement <br />' );
-		$("#oc-mod-options").append( '<input class="oc-mod-tooltip" title="Si cochée, le sujet sera fermé et une phrase le précisera dans le message" name="shouldLock" type="checkbox" value="1" /> 🔒 Fermer le sujet<br />' );
-		$("#oc-mod-options").append( '<input class="oc-mod-tooltip" title="Si cochée, toutes les alertes du sujet seront retirées" name="dismissAlerts" type="checkbox" value="1" /> 🔔 Retirer les alertes<br />' );
-		$("#oc-mod-options").append( '<input class="oc-mod-tooltip" title="Si cochée, le sujet sera passé à \'Résolu\'" name="resolveTopic" type="checkbox" value="1" /> ✔ Passer à résolu<br />' );
-		$("#oc-mod-options").append( '<input class="oc-mod-tooltip" title="Si cochée, le sujet sera ajouté à votre liste de sujets suivis" name="followTopic" type="checkbox" value="1" /> ⚑ Suivre le sujet<br />' );
-		$("#oc-mod-formats").append( '<input class="oc-mod-tooltip" title="Permet de définir un affichage vertical de la boîte à outils" name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "vertical" ? 'checked="checked"' : "")+' value="vertical" /> Vertical <input class="oc-mod-tooltip" title="Permet de définir un affichage horizontal de la boîte à outils" name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "horizontal" ? 'checked="checked"' : "")+' value="horizontal" /> Horizontal<br />' );
+		$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Ajoute un entête de message pour préciser le caractère automatique de la modération"><input name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse</div>' );
+		$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si décochée, vous permet de modifier le contenu du message avant de le publier"><input name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement</div>' );
+		$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera fermé et une phrase le précisera dans le message"><input name="shouldLock" type="checkbox" value="1" /> 🔒 Fermer le sujet</div>' );
+		$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, toutes les alertes du sujet seront retirées"><input name="dismissAlerts" type="checkbox" value="1" /> 🔔 Retirer les alertes</div>' );
+		$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera passé à \'Résolu\'"><input name="resolveTopic" type="checkbox" value="1" /> ✔ Passer à résolu</div>' );
+		$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera ajouté à votre liste de sujets suivis"><input name="followTopic" type="checkbox" value="1" /> ⚑ Suivre le sujet</div>' );
+		$("#oc-mod-formats").append( '<div class="oc-mod-tooltip" title="Permet de définir un affichage vertical de la boîte à outils"><input name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "vertical" ? 'checked="checked"' : "")+' value="vertical" /> Vertical <input class="oc-mod-tooltip" title="Permet de définir un affichage horizontal de la boîte à outils" name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "horizontal" ? 'checked="checked"' : "")+' value="horizontal" /> Horizontal<br />' );
 		$("#oc-mod-valid").append( '<button id="oc-mod-validation" title="Valider les actions de modération" class="oc-mod-tooltip btn btn-danger">Modérer</button>' );
 		$("#oc-mod-validation").css({
 			"position":"absolute",
@@ -274,9 +274,9 @@ function initPost() {
 
 		// Ajout des messages possibles
 		for( let message of messagesSection ) {
-			$("#oc-mod-reponses").append( '<input class="oc-mod-checkboxes oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'" type="checkbox" value="'+message.id+'" /> '+message.title+'<br />' );
+			$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'"><input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'</div>' );
 		}
-		$("#oc-mod-reponses").append( '<input class="oc-mod-tooltip" title="Si cochée, laisse apparaître la liste des forums possibles pour déplacer le sujet" id="oc-mod-move" type="checkbox" value="1" /> Déplacer<br /><span id="oc-mod-select-span"></span>' );
+		$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="Si cochée, laisse apparaître la liste des forums possibles pour déplacer le sujet"><input id="oc-mod-move" type="checkbox" value="1" /> Déplacer<br /><span id="oc-mod-select-span"></span>' );
 	} else {
 
 	}
