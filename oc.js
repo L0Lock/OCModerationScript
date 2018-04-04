@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.8.0
+// @version			1.8.1
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -249,7 +249,7 @@ function initPost() {
 		$(".oc-mod-title").css( {"font-size":"1.2em","color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
 		$("#oc-mod-version").css( {"font-size":"0.5em"} );
 		$(".oc-mod-subtitle").css( {"font-size":"1.1em","color":"#000","font-weight":"bold","line-height":"1em"} );
-		$("#oc-mod-options").append( '<input title="'+configuration.headers.replace(/(<([^>]+)>)/ig,"").replace('"',"")+'" name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse<br />' );
+		$("#oc-mod-options").append( '<input title="Ajoute un entête de message pour préciser le caractère automatique de la modération" name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse<br />' );
 		$("#oc-mod-options").append( '<input title="Si décochée, vous permet de modifier le contenu du message avant de le publier" name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement <br />' );
 		$("#oc-mod-options").append( '<input title="Si cochée, le sujet sera fermé et une phrase le précisera dans le message" name="shouldLock" type="checkbox" value="1" /> 🔒 Fermer le sujet<br />' );
 		$("#oc-mod-options").append( '<input title="Si cochée, toutes les alertes du sujet seront retirées" name="dismissAlerts" type="checkbox" value="1" /> 🔔 Retirer les alertes<br />' );
@@ -272,7 +272,7 @@ function initPost() {
 
 		// Ajout des messages possibles
 		for( let message of messagesSection ) {
-			$("#oc-mod-reponses").append( '<input title="'+message.message.replace(/(<([^>]+)>)/ig,"").replace('"',"")+'" class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'<br />' );
+			$("#oc-mod-reponses").append( '<input title="'+message.infobulle.replace('"',"")+'" class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'<br />' );
 		}
 		$("#oc-mod-reponses").append( '<input title="Si cochée, laisse apparaître la liste des forums possibles pour déplacer le sujet" id="oc-mod-move" type="checkbox" value="1" /> Déplacer<br /><span id="oc-mod-select-span"></span>' );
 	} else {
