@@ -239,6 +239,15 @@
 			"title": "Accepter la critique",
 			"message": "<p>Lorsque vous postez votre sujet de recrutement ou de présentation pour votre projet, vous acceptez de recevoir des critiques/commentaires sur celui-ci, qu’elles soient positives ou négatives. Si un commentaire vous semble déplacé, merci de le signaler via la fonction prévue à cet effet.</p>",
 			"infobulle": "Informe sur l'importance d'accepter les critiques"
+		},
+		
+		{
+			"id": 25,
+			"section": ["all"],
+			"exclude": ["Forum du staff"],
+			"title": "Abus de citation",
+			"message": "<p>Il est inutile de citer un message se trouvant juste au dessus. Aussi, citer plus de quelques lignes n'a pour seuls effets que de rendre le message difficile à suivre et remplir la page inutilement.</p><p>Il est donc recommandé de n'utiliser les citations uniquement pour réagir sur un extrait de message.</p>",
+			"infobulle": "Avertit sur l'abus des citations"
 		}
 	]
 }
