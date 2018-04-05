@@ -29,6 +29,22 @@
 			"exclude": ["Forum du staff"],
 			"title": "Charte de bonne conduite",
 			"message": "https://openclassrooms.com/terms-conditions#oc_13"
+		},
+
+		{
+			"id": 3,
+			"section": ["Recrutements pour vos projets"],
+			"exclude": ["Forum du staff"],
+			"title": "Réglement Recrutement",
+			"message": "https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement"
+		},
+
+		{
+			"id": 4,
+			"section": ["Recrutements pour vos projets"],
+			"exclude": ["Forum du staff"],
+			"title": "Format Recrutement",
+			"message": "https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1"
 		}
 	],
 
