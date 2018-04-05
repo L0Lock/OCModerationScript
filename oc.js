@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.8.7
+// @version			1.9.0
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -103,7 +103,7 @@ const forums = {
 // Format d'affichage
 const formats = {
 	"vertical": [ 265, 349.6 ],
-	"horizontal":[ 530, 57.2 ]
+	"horizontal":[ 500, 5 ]
 };
 if( GM_getValue( "modFormat" ) === undefined )
 	GM_setValue( "modFormat", "horizontal" );
@@ -218,12 +218,26 @@ $(".oc-mod-tooltip").tooltip( {
 function initPost() {
 	configuration = GM_getValue("answers").configuration;
 	messages = GM_getValue("answers").answers;
+	messages = messages.sort( comparaison );
 	liens = GM_getValue("answers").links;
 	let messagesSection = getMessageBySection( messages, section );
 	let liensSection = getMessageBySection( liens, section );
 	nbMessages = messagesSection.length;
 	nbLiens = liensSection.length;
-	hauteurBox = ( ( nbMessages + nbLiens ) * 17 ) + ( nbLiens ? 50 : 0 );
+
+	// Organisation des messages
+	let orgaMessages = {
+		"all": [],
+		"specific": []
+	};
+	for( let message of messagesSection ) {
+		if( $.inArray( "all", message.section ) > -1 )
+			orgaMessages.all.push( message );
+		else
+			orgaMessages.specific.push( message );
+	}
+
+	hauteurBox = ( ( nbMessages + nbLiens ) * 17 ) + ( nbLiens ? 50 : 0 ) + ( orgaMessages.all.length ? 34 : 0 ) + ( orgaMessages.specific.length ? 34 : 0 );
 
 
 	// Copie du fil d'ariane en bas du sujet
@@ -267,9 +281,20 @@ function initPost() {
 		}
 
 		// Ajout des messages possibles
-		for( let message of messagesSection ) {
-			$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'"><input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'</div>' );
+		if( orgaMessages.specific.length ) {
+			$("#oc-mod-reponses").append( '<h4 class="oc-mod-subsubtitle">Spécifiques</h4>' );
+			for( let message of orgaMessages.specific ) {
+				$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'"><input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'</div>' );
+			}
 		}
+		if( orgaMessages.all.length ) {
+			$("#oc-mod-reponses").append( '<h4 class="oc-mod-subsubtitle">Général</h4>' );
+			for( let message of orgaMessages.all ) {
+				$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'"><input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'</div>' );
+			}
+		}
+
+		// Déplacement
 		$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="Si cochée, laisse apparaître la liste des forums possibles pour déplacer le sujet"><input id="oc-mod-move" type="checkbox" value="1" /> Déplacer<br /><span id="oc-mod-select-span"></span>' );
 
 		// Style
@@ -291,6 +316,7 @@ function initPost() {
 		$(".oc-mod-title").css( {"font-size":"1.2em","color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
 		$("#oc-mod-version").css( {"font-size":"0.5em"} );
 		$(".oc-mod-subtitle").css( {"font-size":"1.1em","color":"#000","font-weight":"bold","line-height":"1em"} );
+		$(".oc-mod-subsubtitle").css( {"font-size":"1em","color":"#4f8a03","font-weight":"bold","line-height":"1em"} );
 		$("#oc-mod-validation").css({
 			"position":"absolute",
 			"bottom":"20px",
@@ -528,4 +554,13 @@ function getMessageBySection( messages, section ) {
 	}
 
 	return retour;
+}
+
+/**
+ * Tri personnalisé selon colonne title
+*/
+function comparaison( a, b ) {
+	if ( a.title < b.title ) return -1;
+	if ( a.title > b.title ) return 1;
+	return 0;
 }
