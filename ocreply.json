@@ -36,7 +36,7 @@
 			"section": ["Recrutements pour vos projets"],
 			"exclude": ["Forum du staff"],
 			"title": "Réglement Recrutement",
-			"message": "https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement"
+			"url": "https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement"
 		},
 
 		{
@@ -44,7 +44,7 @@
 			"section": ["Recrutements pour vos projets"],
 			"exclude": ["Forum du staff"],
 			"title": "Format Recrutement",
-			"message": "https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1"
+			"url": "https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1"
 		}
 	],
 
