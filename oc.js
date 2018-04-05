@@ -254,8 +254,16 @@ function initPost() {
 		if( nbLiens ) {
 			$("#oc-mod-options").before( '<div id="oc-mod-links" class="oc-mod-column"><h3 class="oc-mod-subtitle">Liens utiles</h3></div>' );
 			for( let lien of liensSection ) {
-				$("#oc-mod-links").append( '<div><a target="_blank" class="oc-mod-link oc-mod-tooltip" title="Ouvrir ce lien dans un nouvel onglet" type="checkbox" href="'+lien.url+'">'+lien.title+'</a></div>' );
+				$("#oc-mod-links").append( '<div><a target="_blank" class="oc-mod-link oc-mod-tooltip" title="Ouvrir ce lien dans un nouvel onglet" type="checkbox" href="'+lien.url+'">'+lien.title+'</a>&nbsp;<i title="Ajouter ce lien dans le message" class="oc-mod-addlink icon-test oc-mod-tooltip"></i></div>' );
 			}
+			$(".oc-mod-addlink").click( function(e) {
+				var textareaHolder = $("#Comment_wysiwyg_message_ifr");
+				var newlink = '<p><a href="'+$(this).parent().find(".oc-mod-link").attr("href")+'">'+$(this).parent().find(".oc-mod-link").text()+'</a></p>';
+				if(textareaHolder.length)
+					textareaHolder[0].contentDocument.body.innerHTML += newlink;
+				else
+					$("#Comment_wysiwyg_message")[0].value += newlink;
+			});
 		}
 
 		// Ajout des messages possibles
@@ -335,6 +343,12 @@ $("#oc-mod-move").click( function(e) {
 // Gestion de la mise à jour manuelle
 $("#oc-mod-update").click( () => {
 	getConfigurationFile( true ).then( () => alert('Mise à jour des réponses effectuée !') );
+});
+
+// Gestion des MP
+$(".oc-mod-mp").click( function(e) {
+	GM_setValue( "mpContent", $(this).parent().parent().parent().find(".message.markdown-body").html() );
+	GM_setValue( "mpClick" , true );
 });
 
 // Gestion des MP
