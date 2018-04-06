@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.9.2
+// @version			1.9.3
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -288,11 +288,15 @@ function initPost() {
 			}
 			$(".oc-mod-addlink").click( function(e) {
 				var textareaHolder = $("#Comment_wysiwyg_message_ifr");
-				var newlink = '<p><a href="'+$(this).parent().find(".oc-mod-link").attr("href")+'">'+$(this).parent().find(".oc-mod-link").text()+'</a></p>';
-				if(textareaHolder.length)
-					textareaHolder[0].contentDocument.body.innerHTML += newlink;
-				else
+				var newlink = ' <a href="'+$(this).parent().find(".oc-mod-link").attr("href")+'">'+$(this).parent().find(".oc-mod-link").text()+'</a> ';
+				if(textareaHolder.length) {
+                    var startPos = textareaHolder[0].selectionStart;
+                    var endPos = textareaHolder[0].selectionEnd;
+                    var contenu = textareaHolder[0].contentDocument.body.innerHTML;
+					textareaHolder[0].contentDocument.body.innerHTML = contenu.substring(0, startPos) + newlink + contenu.substring(endPos, contenu.length);
+                } else {
 					$("#Comment_wysiwyg_message")[0].value += newlink;
+				}
 			});
 		}
 
