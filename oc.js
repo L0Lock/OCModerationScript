@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.9.3
+// @version			1.9.4
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -218,28 +218,18 @@ $(".oc-mod-tooltip").tooltip( {
 
 function initPost() {
 	configuration = GM_getValue("answers").configuration;
+
 	messages = GM_getValue("answers").answers;
 	messages = messages.sort( comparaison );
+	let messagesSection = getElementsBySection( messages, section );
+	nbMessages = messagesSection.all.length + messagesSection.specific.length;
+
 	liens = GM_getValue("answers").links;
-	let messagesSection = getMessageBySection( messages, section );
-	let liensSection = getMessageBySection( liens, section );
-	nbMessages = messagesSection.length;
-	nbLiens = liensSection.length;
+	liens = liens.sort( comparaison );
+	let liensSection = getElementsBySection( liens, section );
+	nbLiens = liensSection.all.length + liensSection.specific.length;
 
-	// Organisation des messages
-	let orgaMessages = {
-		"all": [],
-		"specific": []
-	};
-	for( let message of messagesSection ) {
-		if( $.inArray( "all", message.section ) > -1 )
-			orgaMessages.all.push( message );
-		else
-			orgaMessages.specific.push( message );
-	}
-
-	hauteurBox = ( ( nbMessages + nbLiens ) * 17 ) + ( nbLiens ? 50 : 0 ) + ( orgaMessages.all.length ? 34 : 0 ) + ( orgaMessages.specific.length ? 34 : 0 );
-
+	hauteurBox = ( ( nbMessages + nbLiens ) * 17 ) + ( nbLiens ? 50 : 0 ) + ( messagesSection.all.length ? 34 : 0 ) + ( messagesSection.specific.length ? 34 : 0 );
 
 	// Copie du fil d'ariane en bas du sujet
 	$(".breadcrumb").clone().insertAfter($("section.comments"));
@@ -269,30 +259,27 @@ function initPost() {
 		if( nbLiens ) {
 			$("#oc-mod-options").before( '<div id="oc-mod-links" class="oc-mod-column"><h3 class="oc-mod-subtitle">Liens utiles</h3></div>' );
 			let compteur = 0;
-			for( let lien of liensSection ) {
+			for( let lien of liensSection.specific ) {
 				let idLink = 'oc-mod-link-'+compteur;
 				$("#oc-mod-links").append( '<div><a target="_blank" class="oc-mod-link oc-mod-tooltip" title="Ouvrir ce lien dans un nouvel onglet" href="'+lien.url+'">'+lien.title+'</a>&nbsp;<i id="'+idLink+'" data-clipboard-text="'+lien.url+'" title="Copier le lien dans le presse papier" class="icon-validated_doc oc-mod-tooltip"></i>&nbsp;<i title="Ajouter ce lien dans le message" class="oc-mod-addlink icon-test oc-mod-tooltip"></i></div>' );
-				
-				// Gestion presse papier
-				var clip = new ClipboardJS( $("#"+idLink)[0] );
-				
-                clip.on('success', function(e) {
-                    console.log('Lien copié dans le presse papier');
-                });
-				
-                clip.on('error', function(e) {
-                    console.log('Erreur de copie dans le presse papier');
-                });
-				
+				let clipboard = new ClipboardJS( $("#"+idLink)[0] );
+				compteur++;
+			}
+			if( liensSection.specific.length )
+				$("#oc-mod-links").append( '<hr style="margin: 5px 15px; width: 200px;" />' );
+			for( let lien of liensSection.all ) {
+				let idLink = 'oc-mod-link-'+compteur;
+				$("#oc-mod-links").append( '<div><a target="_blank" class="oc-mod-link oc-mod-tooltip" title="Ouvrir ce lien dans un nouvel onglet" href="'+lien.url+'">'+lien.title+'</a>&nbsp;<i id="'+idLink+'" data-clipboard-text="'+lien.url+'" title="Copier le lien dans le presse papier" class="icon-validated_doc oc-mod-tooltip"></i>&nbsp;<i title="Ajouter ce lien dans le message" class="oc-mod-addlink icon-test oc-mod-tooltip"></i></div>' );
+				let clipboard = new ClipboardJS( $("#"+idLink)[0] );
 				compteur++;
 			}
 			$(".oc-mod-addlink").click( function(e) {
-				var textareaHolder = $("#Comment_wysiwyg_message_ifr");
-				var newlink = ' <a href="'+$(this).parent().find(".oc-mod-link").attr("href")+'">'+$(this).parent().find(".oc-mod-link").text()+'</a> ';
+				let textareaHolder = $("#Comment_wysiwyg_message_ifr");
+				let newlink = ' <a href="'+$(this).parent().find(".oc-mod-link").attr("href")+'">'+$(this).parent().find(".oc-mod-link").text()+'</a> ';
 				if(textareaHolder.length) {
-                    var startPos = textareaHolder[0].selectionStart;
-                    var endPos = textareaHolder[0].selectionEnd;
-                    var contenu = textareaHolder[0].contentDocument.body.innerHTML;
+                    let startPos = textareaHolder[0].selectionStart;
+                    let endPos = textareaHolder[0].selectionEnd;
+                    let contenu = textareaHolder[0].contentDocument.body.innerHTML;
 					textareaHolder[0].contentDocument.body.innerHTML = contenu.substring(0, startPos) + newlink + contenu.substring(endPos, contenu.length);
                 } else {
 					$("#Comment_wysiwyg_message")[0].value += newlink;
@@ -301,14 +288,14 @@ function initPost() {
 		}
 
 		// Ajout des messages possibles
-		if( orgaMessages.specific.length ) {
-			for( let message of orgaMessages.specific ) {
+		if( messagesSection.specific.length ) {
+			for( let message of messagesSection.specific ) {
 				$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'"><input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'</div>' );
 			}
 		}
-		if( orgaMessages.all.length ) {
+		if( messagesSection.all.length ) {
 			$("#oc-mod-reponses").append( '<hr style="margin: 5px 15px; width: 200px;" />' );
-			for( let message of orgaMessages.all ) {
+			for( let message of messagesSection.all ) {
 				$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'"><input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'</div>' );
 			}
 		}
@@ -552,27 +539,34 @@ function promiseRequest(method, url, data = "" ) {
  *
  * @returns Liste d'objet de réponses
  */
-function getMessageBySection( messages, section ) {
+function getElementsBySection( messages, section ) {
 	var forum = false;
-	var retour = [];
+	var orgaMessages = {
+		"all": [],
+		"specific": []
+	};
 
 	for( var titre in forums ) {
 		if( $.inArray( section, forums[titre] ) > -1 )
 			forum = titre;
 	}
 
-	for( var i = 0; i < messages.length; i++) {
-		var sections = messages[i].section;
-		var excludes = messages[i].exclude;
+	for( var message in messages ) {
+		var sections = messages[message].section;
+		var excludes = messages[message].exclude;
 
 		if( $.inArray( section, excludes ) > -1 || $.inArray( forum, excludes ) > -1 || $.inArray( "all", excludes ) > -1 )
 			continue;
 
-		if( $.inArray( section, sections ) > - 1 || $.inArray( forum, sections ) > -1 || $.inArray( "all", sections ) > -1 )
-			retour.push( messages[i] );
+		if( $.inArray( section, sections ) > - 1 || $.inArray( forum, sections ) > -1 || $.inArray( "all", sections ) > -1 ) {
+			if( $.inArray( "all", sections ) > -1 )
+				orgaMessages.all.push( messages[message] );
+			else
+				orgaMessages.specific.push( messages[message] );
+		}
 	}
 
-	return retour;
+	return orgaMessages;
 }
 
 /**
