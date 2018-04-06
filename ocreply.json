@@ -280,6 +280,15 @@
 			"title": "Abus de citation",
 			"message": "<p>Il est inutile de citer un message se trouvant juste au dessus. Aussi, citer plus de quelques lignes n'a pour seuls effets que de rendre le message difficile à suivre et remplir la page inutilement.</p><p>Il est donc recommandé de n'utiliser les citations uniquement pour réagir sur un extrait de message.</p>",
 			"infobulle": "Avertit sur l'abus des citations"
+		},
+		
+		{
+			"id": 26,
+			"section": ["all"],
+			"exclude": ["Forum du staff"],
+			"title": "Pas de publicité",
+			"message": "<p>Il est formellement interdit d'ouvrir un message dans le but d'assurer une promotion, une publicité. Par publicité, nous entendons tout élément externe au site qui n'a pas besoin de l'avis des zéros.</p>",
+			"infobulle": "Avertit sur l'interdiction des publicités"
 		}
 	]
 }
