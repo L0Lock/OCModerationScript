@@ -9,12 +9,13 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.9.0
+// @version			1.9.1
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
 // @require			https://code.jquery.com/jquery-3.3.1.min.js
 // @require			https://code.jquery.com/ui/1.12.1/jquery-ui.min.js
+// @require			https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js
 // ==/UserScript==
 
 // URL et chemins
@@ -102,7 +103,7 @@ const forums = {
 
 // Format d'affichage
 const formats = {
-	"vertical": [ 265, 349.6 ],
+	"vertical": [ 265, 309.6 ],
 	"horizontal":[ 500, 5 ]
 };
 if( GM_getValue( "modFormat" ) === undefined )
@@ -268,7 +269,7 @@ function initPost() {
 		if( nbLiens ) {
 			$("#oc-mod-options").before( '<div id="oc-mod-links" class="oc-mod-column"><h3 class="oc-mod-subtitle">Liens utiles</h3></div>' );
 			for( let lien of liensSection ) {
-				$("#oc-mod-links").append( '<div><a target="_blank" class="oc-mod-link oc-mod-tooltip" title="Ouvrir ce lien dans un nouvel onglet" type="checkbox" href="'+lien.url+'">'+lien.title+'</a>&nbsp;<i title="Ajouter ce lien dans le message" class="oc-mod-addlink icon-test oc-mod-tooltip"></i></div>' );
+				$("#oc-mod-links").append( '<div><a target="_blank" class="oc-mod-link oc-mod-tooltip" title="Ouvrir ce lien dans un nouvel onglet" type="checkbox" href="'+lien.url+'">'+lien.title+'</a>&nbsp;<i data-clipboard-text="'+lien.url+'" title="Copier le lien dans le presse papier" class="oc-mod-copylink icon-validated_doc oc-mod-tooltip"></i>&nbsp;<i title="Ajouter ce lien dans le message" class="oc-mod-addlink icon-test oc-mod-tooltip"></i></div>' );
 			}
 			$(".oc-mod-addlink").click( function(e) {
 				var textareaHolder = $("#Comment_wysiwyg_message_ifr");
@@ -278,17 +279,27 @@ function initPost() {
 				else
 					$("#Comment_wysiwyg_message")[0].value += newlink;
 			});
+			$(".oc-mod-copylink").click( function(e) {
+				console.log( 'clic av' );
+				var clip = new ClipboardJS( $(this)[0] );
+				console.log( 'clic ap' );
+                clip.on('success', function(e) {
+                    console.log(e);
+                });
+                clip.on('error', function(e) {
+                    console.log(e);
+                });
+			});
 		}
 
 		// Ajout des messages possibles
 		if( orgaMessages.specific.length ) {
-			$("#oc-mod-reponses").append( '<h4 class="oc-mod-subsubtitle">Spécifiques</h4>' );
 			for( let message of orgaMessages.specific ) {
 				$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'"><input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'</div>' );
 			}
 		}
 		if( orgaMessages.all.length ) {
-			$("#oc-mod-reponses").append( '<h4 class="oc-mod-subsubtitle">Général</h4>' );
+			$("#oc-mod-reponses").append( '<hr style="margin: 5px 15px; width: 200px;" />' );
 			for( let message of orgaMessages.all ) {
 				$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'"><input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'</div>' );
 			}
