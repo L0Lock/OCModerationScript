@@ -45,6 +45,22 @@
 			"exclude": ["Forum du staff"],
 			"title": "Format Recrutement",
 			"url": "https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1"
+		},
+
+		{
+			"id": 5,
+			"section": ["Graphisme 3D"],
+			"exclude": ["Forum du staff"],
+			"title": "FAQ 3D",
+			"url": "https://openclassrooms.com/forum/sujet/faq-blender-et-la-3d-en-general"
+		},
+
+		{
+			"id": 6,
+			"section": ["Graphisme 3D"],
+			"exclude": ["Forum du staff"],
+			"title": "Galerie 3D",
+			"url": "https://openclassrooms.com/forum/sujet/galerie-3d-vos-realisations?page=10#message-91368752"
 		}
 	],
 
