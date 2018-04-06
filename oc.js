@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.9.1
+// @version			1.9.2
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -268,8 +268,23 @@ function initPost() {
 		// Ajout menu liens
 		if( nbLiens ) {
 			$("#oc-mod-options").before( '<div id="oc-mod-links" class="oc-mod-column"><h3 class="oc-mod-subtitle">Liens utiles</h3></div>' );
+			let compteur = 0;
 			for( let lien of liensSection ) {
-				$("#oc-mod-links").append( '<div><a target="_blank" class="oc-mod-link oc-mod-tooltip" title="Ouvrir ce lien dans un nouvel onglet" type="checkbox" href="'+lien.url+'">'+lien.title+'</a>&nbsp;<i data-clipboard-text="'+lien.url+'" title="Copier le lien dans le presse papier" class="oc-mod-copylink icon-validated_doc oc-mod-tooltip"></i>&nbsp;<i title="Ajouter ce lien dans le message" class="oc-mod-addlink icon-test oc-mod-tooltip"></i></div>' );
+				let idLink = 'oc-mod-link-'+compteur;
+				$("#oc-mod-links").append( '<div><a target="_blank" class="oc-mod-link oc-mod-tooltip" title="Ouvrir ce lien dans un nouvel onglet" href="'+lien.url+'">'+lien.title+'</a>&nbsp;<i id="'+idLink+'" data-clipboard-text="'+lien.url+'" title="Copier le lien dans le presse papier" class="icon-validated_doc oc-mod-tooltip"></i>&nbsp;<i title="Ajouter ce lien dans le message" class="oc-mod-addlink icon-test oc-mod-tooltip"></i></div>' );
+				
+				// Gestion presse papier
+				var clip = new ClipboardJS( $("#"+idLink)[0] );
+				
+                clip.on('success', function(e) {
+                    console.log('Lien copié dans le presse papier');
+                });
+				
+                clip.on('error', function(e) {
+                    console.log('Erreur de copie dans le presse papier');
+                });
+				
+				compteur++;
 			}
 			$(".oc-mod-addlink").click( function(e) {
 				var textareaHolder = $("#Comment_wysiwyg_message_ifr");
@@ -278,17 +293,6 @@ function initPost() {
 					textareaHolder[0].contentDocument.body.innerHTML += newlink;
 				else
 					$("#Comment_wysiwyg_message")[0].value += newlink;
-			});
-			$(".oc-mod-copylink").click( function(e) {
-				console.log( 'clic av' );
-				var clip = new ClipboardJS( $(this)[0] );
-				console.log( 'clic ap' );
-                clip.on('success', function(e) {
-                    console.log(e);
-                });
-                clip.on('error', function(e) {
-                    console.log(e);
-                });
 			});
 		}
 
