@@ -16,8 +16,6 @@ Dans n'importe quel sujet, une boîte à outils s'affiche par défaut en haut à
 - Suivre le sujet (case à cocher) pour recevoir les notifications des prochains messages sur le sujet
 - Déplacer le sujet (case à cocher). Si cochée, alors une liste déroulante des forums apparaît, choisissez le forum de destination
 - Poster le message directement (case à cocher). Si non cochée, vous pouvez modifier le message avant de le publier, toutes les options cochées seront quand même prise en compte
-- Contacter un membre par MP avec rappel du sujet
-- Supprimer un message et envoyer un MP à l'auteur avec rappel du sujet
 - Consulter un lien utile dans un nouvel onglet
 - Copier un lien utile dans le presse papier
 - Insérer un lien utile dans une réponse
