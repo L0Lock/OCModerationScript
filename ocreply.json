@@ -115,7 +115,7 @@
 			"id": 6,
 			"section": ["Présentation de vos projets"],
 			"exclude": ["Forum du staff"],
-			"title": "Mauvais format de présentation de projet",
+			"title": "Mauvais format de présentation",
 			"message": "<p>Afin de maintenir le forum <em>Présentation</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de message, donc certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-2\">post-it de ce forum</a>et doivent impérativement être respectées.</p>",
 			"infobulle": "Il manque des infos (listées dans le format obligatoire), ou la présentation est insuffisante."
 		},
@@ -124,7 +124,7 @@
 			"id": 7,
 			"section": ["Présentation de vos projets"],
 			"exclude": ["Forum du staff"],
-			"title": "Mauvais titre de présentation de projet",
+			"title": "Mauvais titre de présentation",
 			"message": "<p>Afin de maintenir le forum <em>Présentation</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Présentation\" n'est pas un type correct, nous nous doutons que vous présentez votre projet si vous postez un message ici.</p> <p>Quelques exemples de titres correct :</p> <ul> <li>[Application] Tinder</li> <li>[MOBA] Heroes Of The Storm</li> <li>[Site Web] OpenClassrooms</li> </ul>",
 			"infobulle": "Précise la façon dont doivent être titrés les sujets du forum présentation de projet"
 		},
