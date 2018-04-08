@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.9.5
+// @version			1.9.6
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
 // @grant			GM_setValue
@@ -274,7 +274,6 @@ function initPost() {
 				compteur++;
 			}
 			$(".oc-mod-addlink").click( function(e) {
-				let textareaHolder = $("#Comment_wysiwyg_message_ifr");
 				let newlink = ' <a href="'+$(this).parent().find(".oc-mod-link").attr("href")+'">'+$(this).parent().find(".oc-mod-link").text()+'</a> ';
 				tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, newlink );
 				$(window).scrollTop( $(document).height()-$("footer.footer").height() );
@@ -335,20 +334,13 @@ function initPost() {
 }
 
 function initMp() {
-	let mp = GM_getValue("answers").mp;
-	let messageMp = mp.message.replace( '$$', GM_getValue("lastPage") ) + GM_getValue( "mpContent" );
-	$("input#ThreadMessage_title").val( mp.title );
-	$("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
-	let mpHolder = $("#ThreadMessage_comments_0_wysiwyg_message_ifr");
-	if(mpHolder.length) {
-		console.log( 'iframe' );
-		mpHolder[0].contentDocument.body.innerHTML = messageMp;
-	} else {
-		console.log( 'textarea' );
-		$("#ThreadMessage_comments_0_wysiwyg_message")[0].value = messageMp;
-	}
-	GM_setValue( "mpContent", "" );
-	GM_setValue( "lastPage", "" );
+    setTimeout( function(e) {
+        let mp = GM_getValue("answers").mp;
+        let messageMp = mp.message.replace( '$$', GM_getValue("lastPage") ) + GM_getValue( "mpContent" );
+        $("input#ThreadMessage_title").val( mp.title );
+        $("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
+		tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, messageMp );
+    },1000 );
 }
 
 // Gestion déplacement sujet
@@ -473,11 +465,7 @@ $("#oc-mod-validation").click( () => {
 		}
 
 		// Ajout du message dans l'éditeur
-		var textareaHolder = $("#Comment_wysiwyg_message_ifr");
-		if(textareaHolder.length)
-			textareaHolder[0].contentDocument.body.innerHTML = moderationMessage;
-		else
-			$("#Comment_wysiwyg_message")[0].value = moderationMessage;
+        tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, moderationMessage );
 
 		// Validation du formulaire si demandée
 		if( $("input[name=postMessage]").prop('checked') )
