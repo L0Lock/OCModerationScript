@@ -289,6 +289,15 @@
 			"title": "Pas de publicité",
 			"message": "<p>Il est formellement interdit d'ouvrir un message dans le but d'assurer une promotion, une publicité. Par publicité, nous entendons tout élément externe au site qui n'a pas besoin de l'avis des zéros.</p>",
 			"infobulle": "Avertit sur l'interdiction des publicités"
+		},
+		
+		{
+			"id": 27,
+			"section": ["all"],
+			"exclude": ["Forum du staff"],
+			"title": "Écrivez dans un bon français",
+			"message": "<p>Il est important de faire des efforts d'écriture sur les forums d'Openclassrooms, notamment au niveau de l'orthographe pour bien se faire comprendre. Écrire convenablement est une marque de respect envers les personnes qui vous liront. Bien entendu il ne vous est pas demandé d'avoir une orthographe irréprochable mais nous attendons que vous fassiez des efforts. Les fautes élémentaires et volontaires ne sont pas admises. Par ailleurs, le langage SMS est sévèrement réprimé. Vous êtes sur un forum, pas un tchat, ne l'oubliez pas.</p><p>Si vous avez de réelles difficultés en orthographe, nous vous conseillons l'utilisation de sites qui vous aideront, notamment BonPatron.com ou encore Le Conjugueur.</p>",
+			"infobulle": "Pour les abus d'écriture."
 		}
 	]
 }
