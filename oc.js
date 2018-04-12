@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.9.8
+// @version			1.9.9
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -311,7 +311,7 @@ function initPost() {
 		$("#oc-mod-caret").css( {"cursor":"pointer"} );
 		$("#oc-mod-drag").css( {"cursor":"move"} );
 		$(".oc-mod-icon").css( {"margin-left":"5px","float":"right","color":"#4f8a03"} );
-		$(".oc-mod-column").css( {"float":"left","min-width":"250px","margin-bottom":"10px"} );
+		$(".oc-mod-column").css( {"float":"left","width":"250px","margin-bottom":"10px"} );
 		$("#oc-mod-valid").css( {"float":"right"} );
 		$(".oc-mod-title").css( {"font-size":"1.2em","color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
 		$("#oc-mod-version").css( {"font-size":"0.5em"} );
