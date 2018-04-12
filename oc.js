@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name			OC Moderation Script
-// @author			Sakuto, -L0Lock-, benzouye
+// @author			Sakuto, -L0Lock-, benzouye, Lamecarlate
 // @namespace   		https://github.com/L0Lock/OCModerationScript
 // @description 		Facilite la modération sur OpenClassrooms
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
