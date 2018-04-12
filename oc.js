@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.9.9
+// @version			1.9.10
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -104,8 +104,8 @@ const forums = {
 
 // Format d'affichage
 const formats = {
-	"vertical": [ 265, 309.6 ],
-	"horizontal":[ 500, 5 ]
+	"vertical": 265,
+	"horizontal": 500
 };
 if( GM_getValue( "modFormat" ) === undefined )
 	GM_setValue( "modFormat", "horizontal" );
@@ -352,10 +352,8 @@ $("#oc-mod-move").click( function(e) {
 			if( $(this).val() != "" )
 				$("#oc-mod-forum-select").append('<option value="'+$(this).val()+'">'+$(this).html()+'</option>');
 		});
-		$("#oc-mod-panel").height( formats[GM_getValue("modFormat")][1] + hauteurBox + 30 );
 	} else {
 		$("#oc-mod-select-span").html("");
-		$("#oc-mod-panel").height( formats[GM_getValue("modFormat")][1] + hauteurBox + 30 );
 	}
 });
 
@@ -384,8 +382,7 @@ $(".oc-mod-delete").click( function(e) {
 // Changement de format
 $("input[name=modFormat]").click( () => {
 	GM_setValue("modFormat", $("input[name=modFormat]:checked").val() );
-	$("#oc-mod-panel").width(formats[GM_getValue("modFormat")][0]);
-	$("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1] + hauteurBox );
+	$("#oc-mod-panel").width(formats[GM_getValue("modFormat")]);
 });
 
 // Ouverture / Fermeture du panneau
@@ -398,8 +395,7 @@ $("#oc-mod-caret").click( () => {
 		$("#oc-mod-caret").html("&#x25bc;");
 	} else {
 		modExpand = true;
-		$("#oc-mod-panel").width(formats[GM_getValue("modFormat")][0]);
-		$("#oc-mod-panel").height(formats[GM_getValue("modFormat")][1] + hauteurBox );
+		$("#oc-mod-panel").width(formats[GM_getValue("modFormat")]);
 		$("#oc-mod-content").show();
 		$("#oc-mod-caret").html("&#x25b2;");
 	}
