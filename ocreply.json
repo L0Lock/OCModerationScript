@@ -69,6 +69,14 @@
 			"exclude": [],
 			"title": "Si votre message est considéré comme spam",
 			"url": "https://openclassrooms.com/forum/sujet/si-votre-message-est-considere-comme-spam?page=1#message-92310368"
+		},
+
+		{
+			"id": 8,
+			"section": ["Graphisme 3D"],
+			"exclude": ["Forum du staff"],
+			"title": "Playlist Youtube Blender",
+			"url": "https://www.youtube.com/playlist?list=PLuZVx6uIcP-QSUx9zyGto6ZWSABeAH_76"
 		}
 	],
 
