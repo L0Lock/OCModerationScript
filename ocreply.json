@@ -337,7 +337,7 @@
 			"section": ["all"],
 			"exclude": ["Forum du staff"],
 			"title": "Majuscules abusives",
-			"message": "<p>L'écriture en MAJUSCULES est considérée comme une parole criée et diminue autant la lisibilité du texte que sa comprhéension. Les majuscules abusives sont donc interdites aussi bien dan les titres que dans les messages.</p>",
+			"message": "<p>L'écriture en MAJUSCULES est considérée comme une parole criée et diminue autant la lisibilité du texte que sa compréhension. Les majuscules abusives sont donc interdites aussi bien dan les titres que dans les messages.</p>",
 			"infobulle": "Pour les abus de majuscules."
 		}
 	]
