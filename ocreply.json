@@ -77,6 +77,22 @@
 			"exclude": ["Forum du staff"],
 			"title": "Playlist Youtube Blender",
 			"url": "https://www.youtube.com/playlist?list=PLuZVx6uIcP-QSUx9zyGto6ZWSABeAH_76"
+		},
+
+		{
+			"id": 9,
+			"section": ["Graphisme 3D"],
+			"exclude": ["Forum du staff"],
+			"title": "Règles Graphisme 3D",
+			"url": "https://openclassrooms.com/forum/sujet/regles-et-bonnes-pratiques-du-forum-graphisme-3d"
+		},
+
+		{
+			"id": 10,
+			"section": ["Graphisme 2D"],
+			"exclude": ["Forum du staff"],
+			"title": "Règles Graphisme 2D",
+			"url": "https://openclassrooms.com/forum/sujet/regles-et-bonnes-pratiques-du-forum-graphisme-2d"
 		}
 	],
 
