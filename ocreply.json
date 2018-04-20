@@ -247,7 +247,7 @@
 			"section": ["all"],
 			"exclude": ["Forum du staff"],
 			"title": "Doublon",
-			"message": "<p>Ce sujet est un doublon ...</p><p>Je vous invite à continuer la discussion sur l'autre sujet : ......</p>",
+			"message": "<p>Les doublons nuisent au bon fonctionnement du forum et sont donc interdits. Si vous vous êtes trompé de section, il suffit de signaler votre sujet au staff pour qu'il le déplace au bon endroit.</p><p>Je vous invite à continuer la discussion sur l'autre sujet : ......</p>",
 			"infobulle": "Signale que le sujet est un doublon et renvoit vers le sujet de départ"
 		},
 		
