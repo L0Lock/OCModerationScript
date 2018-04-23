@@ -341,7 +341,7 @@ function initMp() {
         $("input#ThreadMessage_title").val( mp.title );
         $("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
 		tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, messageMp );
-    },1000 );
+    },2000 );
 }
 
 // Gestion déplacement sujet
