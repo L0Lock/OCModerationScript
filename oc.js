@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.9.11
+// @version			1.9.12
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -127,6 +127,10 @@ if( GM_getValue( "postToDelete" ) != '' && GM_getValue( "postToDelete" ) !== und
 // Lien MAJ réponses
 $(".nav-tabs--searchField").css( {"width": "40%"} );
 $("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour les réponses</a></li>');
+
+// Correction CSS barre de recherche
+$(".button--iconOnly").css({"padding":"0px","min-height":"28px","height":"28px"});
+$(".inputGroup__icon.icon-search").css({"margin-top":"6px"});
 
 // Bouton top
 $("#mainContentWithHeader").append('<span title="Haut de la page" class="oc-mod-tooltip oc-mod-nav" id="oc-mod-top"><i class="icon-next"></i></span>');
