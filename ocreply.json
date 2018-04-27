@@ -327,7 +327,7 @@
 			"id": 27,
 			"section": ["all"],
 			"exclude": ["Forum du staff"],
-			"title": "Écrivez dans un bon français",
+			"title": "Ecrivez dans un bon français",
 			"message": "<p>Il est important de faire des efforts d'écriture sur les forums d'Openclassrooms, notamment au niveau de l'orthographe pour bien se faire comprendre. Écrire convenablement est une marque de respect envers les personnes qui vous liront. Bien entendu il ne vous est pas demandé d'avoir une orthographe irréprochable mais nous attendons que vous fassiez des efforts. Les fautes élémentaires et volontaires ne sont pas admises. Par ailleurs, le langage SMS est sévèrement réprimé. Vous êtes sur un forum, pas un tchat, ne l'oubliez pas.</p><p>Si vous avez de réelles difficultés en orthographe, nous vous conseillons l'utilisation de sites qui vous aideront, notamment <a href=\"https://bonpatron.com/\">BonPatron</a> ou encore <a href=\"https://www.scribens.fr/\">Scribens</a>.</p>",
 			"infobulle": "Pour les abus d'écriture."
 		},
