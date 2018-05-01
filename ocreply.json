@@ -347,7 +347,9 @@
 			"exclude": ["Forum du staff"],
 			"title": "Fermeture Mystique <img title=\":ninja:\" src=\"../../bundles/tinymce/vendor/tiny_mce/plugins/emotions/img/ninja.png\" alt=\":ninja:\" border=\"0\" />",
 			"message": "<p>Il semblerait qu'un membre ayant plus de pouvoir que vous ait décidé de fermer ce topic. Vous vous demandez peut-être la raison de cette fermeture...<br />Vous ne l'aurez pas.</p><p>En effet, les admins jouissent d'un pouvoir sans limite, leur permettant de châtier les zér0s, de fermer les topics et de faire pleuvoir des limaces (seulement en cas de pleine lune, période durant laquelle leurs pouvoirs augmentent considérablement).</p><p>Nous vous invitons à prendre peur et à ne plus poster de topic qui pourrait attirer l'attention... </p><p>Nous sommes persuadés que vous comprendrez, et vous remercions par avance de votre coopération. </p>",
-			"infobulle": "Pour les topics troll.",
+			"infobulle": "Pour les topics troll."
+			
+		},
 		
 		{
 			"id": 30,
