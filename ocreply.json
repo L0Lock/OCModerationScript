@@ -356,7 +356,7 @@
 			"section": ["all"],
 			"exclude": ["Forum du staff", "Choix du matériel & configuration"],
 			"title": "Redirection Choix du matériel & configuration",
-			"message": "<p>Le forum dispose d'une section \"<a href=\"https://openclassrooms.com/forum/categorie/choix-du-materiel-configuration\">Choix du matéreil & configuration</a>\" faite spécifiquement pour ce genre de demandes et où y répondent des gens dont c'est la spécialité</p><p>Je vous invite à y poster votre demande, en veillant à bien respecter le <strong><a href=\"https://openclassrooms.com/forum/sujet/pour-les-demandes-de-config-d-upgrade-et-autres\"></a></strong></p>",
+			"message": "<p>Le forum dispose d'une section \"<a href=\"https://openclassrooms.com/forum/categorie/choix-du-materiel-configuration\">Choix du matéreil & configuration</a>\" faite spécifiquement pour ce genre de demandes et où y répondent des gens dont c'est la spécialité</p><p>Je vous invite à y poster votre demande, en veillant à bien respecter le <strong><a href=\"https://openclassrooms.com/forum/sujet/pour-les-demandes-de-config-d-upgrade-et-autres\">format de demande</a></strong>.</p>",
 			"infobulle": "Redirection vers \"Choix du matériel & configuration\"."
 		}
 	]
