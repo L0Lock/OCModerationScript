@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.9.12
+// @version			1.9.13
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -112,8 +112,13 @@ if( GM_getValue( "modFormat" ) === undefined )
 
 // Fermeture du sujet si demandée
 if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== undefined ) {
+	// Trace pour https://github.com/L0Lock/OCModerationScript/issues/20
+	console.log( "Demande fermeture : "+GM_getValue( "threadToLock" ) );
 	promiseRequest("GET", GM_getValue( "threadToLock" ) )
-		.then( () => GM_setValue( "threadToLock", '' ) );
+		.then( () => {
+			console.log( "OK fermeture : "+GM_getValue( "threadToLock" ) );
+			GM_setValue( "threadToLock", '' );
+		});
 }
 
 // Suppression message si demandée
