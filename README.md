@@ -1,6 +1,6 @@
 # OC Moderation Script
 ## Script de modération pour les forums OpenClassrooms
-Depuis n'importe quel forum du site OpenClassrooms un lien "Mettre à jour les réponses" apparaît dans la barre de menu permettant d'actualiser la liste des messages de modérations possibles, basée sur le fichier JSON.
+Depuis n'importe-quel forum du site OpenClassrooms un lien "Mettre à jour les réponses" apparaît dans la barre de menu permettant d'actualiser la liste des messages de modérations possibles, basée sur le fichier JSON.
 
 Dans n'importe quel sujet, une boîte à outils s'affiche par défaut en haut à droite du sujet. Cette boîte à outils :
 - est déplaçable (icône "diamant)
