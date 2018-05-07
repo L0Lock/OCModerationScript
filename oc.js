@@ -121,12 +121,12 @@ if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== und
 // Suppression message si demandée
 if( GM_getValue( "postToDelete" ) != '' && GM_getValue( "postToDelete" ) !== undefined ) {
 	// Trace pour https://github.com/L0Lock/OCModerationScript/issues/20
-	console.log( "Demande fermeture : "+GM_getValue( "threadToLock" ) );
+	console.log( "Demande fermeture : "+GM_getValue( "postToDelete" ) );
 	let deleteLink = baseUri + deleteUrl + GM_getValue( "postToDelete" );
 	let postData = '';
 	promiseRequest("POST", deleteLink, postData )
 		.then(() => {
-			console.log( "OK fermeture : "+GM_getValue( "threadToLock" ) );
+			console.log( "OK fermeture : "+GM_getValue( "postToDelete" ) );
 			GM_setValue( "postToDelete", '' )
 		});
 }
