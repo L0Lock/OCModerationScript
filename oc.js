@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.9.15
+// @version			1.9.16
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
