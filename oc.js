@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.9.13
+// @version			1.9.14
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -113,7 +113,7 @@ if( GM_getValue( "modFormat" ) === undefined )
 // Fermeture du sujet si demandée
 if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== undefined ) {
 	promiseRequest("GET", GM_getValue( "threadToLock" ) )
-		.then( () => 
+		.then( () => {
 			GM_setValue( "threadToLock", '' );
 		});
 }
@@ -127,7 +127,7 @@ if( GM_getValue( "postToDelete" ) != '' && GM_getValue( "postToDelete" ) !== und
 	promiseRequest("POST", deleteLink, postData )
 		.then(() => {
 			console.log( "OK fermeture : "+GM_getValue( "postToDelete" ) );
-			GM_setValue( "postToDelete", '' )
+			GM_setValue( "postToDelete", '' );
 		});
 }
 
