@@ -112,21 +112,23 @@ if( GM_getValue( "modFormat" ) === undefined )
 
 // Fermeture du sujet si demandée
 if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== undefined ) {
-	// Trace pour https://github.com/L0Lock/OCModerationScript/issues/20
-	console.log( "Demande fermeture : "+GM_getValue( "threadToLock" ) );
 	promiseRequest("GET", GM_getValue( "threadToLock" ) )
-		.then( () => {
-			console.log( "OK fermeture : "+GM_getValue( "threadToLock" ) );
+		.then( () => 
 			GM_setValue( "threadToLock", '' );
 		});
 }
 
 // Suppression message si demandée
 if( GM_getValue( "postToDelete" ) != '' && GM_getValue( "postToDelete" ) !== undefined ) {
+	// Trace pour https://github.com/L0Lock/OCModerationScript/issues/20
+	console.log( "Demande fermeture : "+GM_getValue( "threadToLock" ) );
 	let deleteLink = baseUri + deleteUrl + GM_getValue( "postToDelete" );
 	let postData = '';
 	promiseRequest("POST", deleteLink, postData )
-		.then(() => GM_setValue( "postToDelete", '' ) );
+		.then(() => {
+			console.log( "OK fermeture : "+GM_getValue( "threadToLock" ) );
+			GM_setValue( "postToDelete", '' )
+		});
 }
 
 // Lien MAJ réponses
