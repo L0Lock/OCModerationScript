@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.9.16
+// @version			1.9.17
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -199,8 +199,6 @@ var messages = [];
 var modExpand = false;
 var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
 var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
-var largeurBox = 0;
-var hauteurBox = 0;
 
 // Ajout lien MP + suppression
 $(".author>a").each( function(e) {
@@ -240,8 +238,6 @@ function initPost() {
 	liens = liens.sort( comparaison );
 	let liensSection = getElementsBySection( liens, section );
 	nbLiens = liensSection.all.length + liensSection.specific.length;
-
-	hauteurBox = ( ( nbMessages + nbLiens ) * 17 ) + ( nbLiens ? 50 : 0 ) + ( messagesSection.all.length ? 34 : 0 ) + ( messagesSection.specific.length ? 34 : 0 );
 
 	// Copie du fil d'ariane en bas du sujet
 	$(".breadcrumb").clone().insertAfter($("section.comments"));
