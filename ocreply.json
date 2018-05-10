@@ -174,8 +174,8 @@
 			"id": 10,
 			"section": ["Programmation", "Site Web"],
 			"exclude": ["Forum du staff"],
-			"title": "Merci d'utiliser la mise en forme de code",
-			"message": "<p>Les forums d'Openclassrooms disposent d'une fonctionnalité permettant de colorer et mettre en forme les codes source afin de les rendre plus lisibles et faciles à manipuler par les intervenants. Pour celà, il faut utiliser le bouton <img src=\"https://sdz-upload.s3.amazonaws.com/prod/upload/code.gif\" alt=\"Image\" /> de l'éditeur, choisir un des langages proposés et coller votre code dans la zone prévue. Si vous utilisez l'éditeur de messages en mode Markdown, il faut utiliser les balises <code>&lt;pre class=\"brush: c;\"&gt;Votre code ici&lt;/pre&gt;</code>.</p>",
+			"title": "Merci d'utiliser la mise en forme de code <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_code.png\" alt=\"Image\" />",
+			"message": "<p>Les forums d'Openclassrooms disposent d'une fonctionnalité permettant de colorer et mettre en forme les codes source afin de les rendre plus lisibles et faciles à manipuler par les intervenants. Pour celà, il faut utiliser le bouton <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_code.png\" alt=\"Image\" /> de l'éditeur, choisir un des langages proposés et coller votre code dans la zone prévue. Si vous utilisez l'éditeur de messages en mode Markdown, il faut utiliser les balises <code>&lt;pre class=\"brush: c;\"&gt;Votre code ici&lt;/pre&gt;</code>.</p>",
 			"infobulle": "Précise le fonctionnement de la balise code sur le forum"
 		},
 		
@@ -364,7 +364,7 @@
 			"id": 31,
 			"section": ["all"],
 			"exclude": ["Forum du staff"],
-			"title": "Insertion des images",
+			"title": "Insertion des images <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_img.png\" alt=\"\" width=\"22\" height=\"22\" />",
 			"message": "<p>Le forum dispose d’un outil pour poster des images directement dans vos messages via ce bouton : <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_img.png\" alt=\"\" width=\"22\" height=\"22\" />. Vous avez la possibilité d’y mettre soit une image depuis votre ordinateur, soit un lien direct si l’image est déjà sur Internet. <strong>Utilisez toujours l’outil d’intégration d’images du site</strong>, c’est la seule manière d’afficher des images dans vos messages.</p>",
 			"infobulle": "Comment insérer des images."
 		}
