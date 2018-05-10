@@ -358,6 +358,15 @@
 			"title": "Redirection Choix du matériel & configuration",
 			"message": "<p>Le forum dispose d'une section \"<a href=\"https://openclassrooms.com/forum/categorie/choix-du-materiel-configuration\">Choix du matéreil & configuration</a>\" faite spécifiquement pour ce genre de demandes et où y répondent des gens dont c'est la spécialité</p><p>Je vous invite à y poster votre demande, en veillant à bien respecter le <strong><a href=\"https://openclassrooms.com/forum/sujet/pour-les-demandes-de-config-d-upgrade-et-autres\">format de demande</a></strong>.</p>",
 			"infobulle": "Redirection vers \"Choix du matériel & configuration\"."
+		},
+		
+		{
+			"id": 30,
+			"section": ["all"],
+			"exclude": ["Forum du staff"],
+			"title": "Insertion des images",
+			"message": "<p>Le forum dispose d’un outil pour poster des images directement dans vos messages via ce bouton : <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_img.png\" alt=\"\" width=\"22\" height=\"22\" />. Vous avez la possibilité d’y mettre soit une image depuis votre ordinateur, soit un lien direct si l’image est déjà sur Internet. <strong>Utilisez toujours l’outil d’intégration d’images du site</strong>, c’est la seule manière d’afficher des images dans vos messages.</p>",
+			"infobulle": "Comment insérer des images."
 		}
 	]
 }
