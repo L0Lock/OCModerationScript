@@ -384,5 +384,391 @@
 			"message": "<p>Le forum dispose d’un outil pour poster des images directement dans vos messages via ce bouton : <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_img.png\" alt=\"\" width=\"22\" height=\"22\" />. Vous avez la possibilité d’y mettre soit une image depuis votre ordinateur, soit un lien direct si l’image est déjà sur Internet. <strong>Utilisez toujours l’outil d’intégration d’images du site</strong>, c’est la seule manière d’afficher des images dans vos messages.</p>",
 			"infobulle": "Comment insérer des images."
 		}
+	],
+	
+		"sections": [
+		{
+			"nom": "Site Web",
+			"parent": null,
+			"links": []
+		},
+		
+		
+		{
+			"nom": "HTML / CSS",
+			"parent": "Site Web",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Javascript",
+			"parent": "Site Web",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "PHP",
+			"parent": "Site Web",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Entreprise",
+			"parent": null,
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Discussions entreprise",
+			"parent": "Entreprise",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Communication et marketing",
+			"parent": "Entreprise",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Entrepreneuriat",
+			"parent": "Entreprise",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Programmation",
+			"parent": null,
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Langage C",
+			"parent": "Programmation",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Langage C++",
+			"parent": "Programmation",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Langages.NET",
+			"parent": "Programmation",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Langage Java",
+			"parent": "Programmation",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Langage Python",
+			"parent": "Programmation",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Base de données",
+			"parent": "Programmation",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Mobile",
+			"parent": "Programmation",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Autres langages (VBA, Ruby,...)",
+			"parent": "Programmation",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Discussions développement",
+			"parent": "Programmation",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Système d'exploitation",
+			"parent": null,
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Windows",
+			"parent": "Système d'exploitation",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Linux & FreeBSD",
+			"parent": "Système d'exploitation",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Mac OS X",
+			"parent": "Système d'exploitation",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Design",
+			"parent": null,
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Graphisme 3D",
+			"parent": "Design",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Graphisme 2D",
+			"parent": "Design",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Design Thinking",
+			"parent": "Design",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Matériel et logiciel",
+			"parent": null,
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Discussions Hardware",
+			"parent": "Matériel et logiciel",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Disscussions Software",
+			"parent": "Matériel et logiciel",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Choix du matériel & configuration",
+			"parent": "Matériel et logiciel",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Problèmes techniques",
+			"parent": "Matériel et logiciel",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Vos réseaux",
+			"parent": "Matériel et logiciel",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Jeux vidéos",
+			"parent": null,
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Discussions jeux vidéo",
+			"parent": "Jeux vidéos",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Mapping & Modding",
+			"parent": "Jeux vidéos",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Sciences",
+			"parent": null,
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Mathématiques",
+			"parent": "Sciences",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Physique",
+			"parent": "Sciences",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Chimie",
+			"parent": "Sciences",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Biologie et Géologie",
+			"parent": "Sciences",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Électronique",
+			"parent": "Sciences",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Autres sciences",
+			"parent": "Sciences",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Communauté des Zéros",
+			"parent": null,
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Discussions générales",
+			"parent": "Communauté des Zéros",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Let's talk!",
+			"parent": "Communauté des Zéros",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Vos études",
+			"parent": "Communauté des Zéros",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Recrutements pour vos projets",
+			"parent": "Communauté des Zéros",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Présentation de vos projets",
+			"parent": "Communauté des Zéros",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Rédaction de cours",
+			"parent": "Communauté des Zéros",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Fonctionnement du site",
+			"parent": "Communauté des Zéros",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Forum des Premiums Plus",
+			"parent": "Communauté des Zéros",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "JSdZ et évènements",
+			"parent": "Communauté des Zéros",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Do It Yourself",
+			"parent": "Communauté des Zéros",
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Admin",
+			"parent": null,
+			"links": []
+		},
+		
+		
+		{
+			"nom": "Forum du staff",
+			"parent": "Admin",
+			"links": []
+		}
 	]
 }
