@@ -61,58 +61,12 @@ Pour ajouter un message, il faut simplement ajouter un élément de ce format da
 - "all" = toutes les sections
 - le nom d'une section de forum ou de son parent
 
-## Liste des sections :
-- Site Web
-	- HTML / CSS
-	- Javascript
-	- PHP
-- Entreprise
-	- Discussions entreprise
-	- Communication et marketing
-	- Entrepreneuriat
-- Programmation
-	- Langage C
-	- Langage C++
-	- Langages.NET
-	- Langage Java
-	- Langage Python
-	- Base de données
-	- Mobile
-	- Autres langages (VBA, Ruby,...)
-	- Discussions développement
-- Systeme d'exploitation	
-	- Windows
-	- Linux & FreeBSD
-	- Mac OS X
-- Design 
-	- Graphisme 3D
-	- Graphisme 2D
-	- Design Thinking
-- Matériel et logiciel
-	- Discussions Hardware
-	- Discussions Software
-	- Choix du matériel & configuration
-	- Problèmes techniques
-	- Vos réseaux
-- Jeux vidéos
-	- Discussions jeux vidéo
-	- Mapping & modding
-- Sciences
-	- Mathématiques
-	- Physique
-	- Chimie
-	- Biologie et Géologie
-	- Électronique
-	- Autres sciences
-- Communauté des Zéros
-	- Discussions générales
-	- Let's talk!
-	- Vos études
-	- Recrutements pour vos projets
-	- Présentation de vos projets
-	- Forum du staff
-	- Rédaction de cours
-	- Fonctionnement du site
-	- Forum des Premiums Plus
-	- JSdZ et évènements
-	- Do It Yourself
+## Liste des sections
+Selon vos droits, éditer le fichier JSON du dépôt GitHub, ou faite une demande (issue) de modification.
+Pour ajouter une section, il faut simplement ajouter un élément de ce format dans le bloc "sections" du fichier JSON.
+
+	{
+		"nom": "HTML / CSS",
+		"parent": "Site Web",
+		"links": []
+	},
