@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.10.1
+// @version			1.11.1
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -32,75 +32,6 @@ GM_setValue( "lastPage", GM_getValue("currentPage") );
 GM_setValue( "currentPage", window.location.pathname );
 if( GM_getValue( "mpClick" ) === undefined )
 	GM_setValue( "mpClick" , false );
-
-// Liste des forums hiérarchisée
-const forums = {
-	"Site Web" : [
-		"HTML / CSS",
-		"Javascript",
-		"PHP"
-	],
-	"Entreprise" : [
-		"Discussions entreprise",
-		"Communication et marketing",
-		"Entrepreneuriat"
-	],
-	"Programmation" : [
-		"Langage C",
-		"Langage C++",
-		"Langages.NET",
-		"Langage Java",
-		"Langage Python",
-		"Base de données",
-		"Mobile",
-		"Autres langages (VBA, Ruby,...)",
-		"Discussions développement"
-	],
-	"Système d'exploitation" : [
-		"Windows",
-		"Linux & FreeBSD",
-		"Mac OS X"
-	],
-	"Design" : [
-		"Graphisme 3D",
-		"Graphisme 2D",
-		"Design Thinking"
-	],
-	"Matériel et logiciel" : [
-		"Discussions Hardware",
-		"Disscussions Software",
-		"Choix du matériel & configuration",
-		"Problèmes techniques",
-		"Vos réseaux"
-	],
-	"Jeux vidéos" : [
-		"Discussions jeux vidéo",
-		"Mapping & Modding"
-	],
-	"Sciences" : [
-		"Mathématiques",
-		"Physique",
-		"Chimie",
-		"Biologie et Géologie",
-		"Électronique",
-		"Autres sciences"
-	],
-	"Communauté des Zéros" : [
-		"Discussions générales",
-		"Let's talk!",
-		"Vos études",
-		"Recrutements pour vos projets",
-		"Présentation de vos projets",
-		"Rédaction de cours",
-		"Fonctionnement du site",
-		"Forum des Premiums Plus",
-		"JSdZ et évènements",
-		"Do It Yourself"
-	],
-	"Admin" : [
-		"Forum du staff"
-	]
-};
 
 // Format d'affichage
 const formats = {
@@ -193,6 +124,7 @@ $(window).scroll( () => {
 $(".adviceBanner").remove();
 
 // Initialisation variables
+var forums;
 var section = $('span[itemprop="title"]').last().text();
 var nbMessages = 0;
 var configuration = [];
@@ -200,6 +132,7 @@ var messages = [];
 var modExpand = false;
 var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
 var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
+var hr = '<hr style="margin: 5px 15px; width: 200px;" />';
 
 // Ajout lien MP + suppression
 $(".author>a").each( function(e) {
@@ -229,22 +162,47 @@ $(".oc-mod-tooltip").tooltip( {
 
 function initPost() {
 	configuration = GM_getValue("answers").configuration;
+	forums = GM_getValue("answers").sections;
 
 	messages = GM_getValue("answers").answers;
 	messages = messages.sort( comparaison );
 	let messagesSection = getElementsBySection( messages, section );
 	nbMessages = messagesSection.all.length + messagesSection.specific.length;
 
-	liens = GM_getValue("answers").links;
+	let liens = GM_getValue("answers").links;
 	liens = liens.sort( comparaison );
 	let liensSection = getElementsBySection( liens, section );
-	nbLiens = liensSection.all.length + liensSection.specific.length;
+	let nbLiens = liensSection.all.length + liensSection.specific.length;
 
 	// Copie du fil d'ariane en bas du sujet
 	$(".breadcrumb").clone().insertAfter($("section.comments"));
 
-	if( nbMessages ) {
-		$("#mainContentWithHeader").append( '<div id="oc-mod-panel"><h2 class="oc-mod-title">Outils de modération <span id="oc-mod-version">'+GM_info.script.version+'</span><span id="oc-mod-drag" class="oc-mod-icon">&#x2756;</span><span id="oc-mod-caret" class="oc-mod-icon">&#x25bc;</span></h2><div id="oc-mod-content"><div id="oc-mod-reponses" class="oc-mod-column"><h3 class="oc-mod-subtitle">Messages possibles</h3></div><div id="oc-mod-options" class="oc-mod-column"><h3 class="oc-mod-subtitle">Options</h3></div><div id="oc-mod-formats" class="oc-mod-column"><h3 class="oc-mod-subtitle">Affichage</h3></div><div id="oc-mod-valid"></div></div></div>' );
+	if( nbMessages > 0 ) {
+		$("#mainContentWithHeader").append(
+			'<div id="oc-mod-panel">'+
+				'<h2 class="oc-mod-title">'+
+					'Outils de modération '+
+					'<span class="oc-mod-version">'+GM_info.script.version+'</span>'+
+					'<span id="oc-mod-drag" class="oc-mod-icon">&#x2756;</span>'+
+					'<span id="oc-mod-caret" class="oc-mod-icon">&#x25bc;</span>'+
+				'</h2>'+
+				'<div id="oc-mod-content">'+
+					'<div id="oc-mod-reponses" class="oc-mod-column">'+
+						'<h3 class="oc-mod-subtitle">'+
+							'Messages possibles '+
+							'<span class="oc-mod-version">'+GM_getValue("answers").version+'</span>'+
+						'</h3>'+
+					'</div>'+
+					'<div id="oc-mod-options" class="oc-mod-column">'+
+						'<h3 class="oc-mod-subtitle">Options</h3>'+
+					'</div>'+
+					'<div id="oc-mod-formats" class="oc-mod-column">'+
+						'<h3 class="oc-mod-subtitle">Affichage</h3>'+
+					'</div>'+
+					'<div id="oc-mod-valid"></div>'+
+				'</div>'+
+			'</div>'
+		);
 		$("#oc-mod-content").hide();
 
 		$("#oc-mod-panel").draggable({
@@ -265,22 +223,28 @@ function initPost() {
 		$("#oc-mod-valid").append( '<button id="oc-mod-validation" title="Valider les actions de modération" class="oc-mod-tooltip btn btn-danger">Modérer</button>' );
 
 		// Ajout menu liens
-		if( nbLiens ) {
+		if( nbLiens > 0 ) {
 			$("#oc-mod-options").before( '<div id="oc-mod-links" class="oc-mod-column"><h3 class="oc-mod-subtitle">Liens utiles</h3></div>' );
 			let compteur = 0;
-			for( let lien of liensSection.specific ) {
-				let idLink = 'oc-mod-link-'+compteur;
-				$("#oc-mod-links").append( '<div><a target="_blank" class="oc-mod-link oc-mod-tooltip" title="Ouvrir ce lien dans un nouvel onglet" href="'+lien.url+'">'+lien.title+'</a>&nbsp;<i id="'+idLink+'" data-clipboard-text="'+lien.url+'" title="Copier le lien dans le presse papier" class="icon-validated_doc oc-mod-tooltip"></i>&nbsp;<i title="Ajouter ce lien dans le message" class="oc-mod-addlink icon-test oc-mod-tooltip"></i></div>' );
-				let clipboard = new ClipboardJS( $("#"+idLink)[0] );
-				compteur++;
-			}
-			if( liensSection.specific.length )
-				$("#oc-mod-links").append( '<hr style="margin: 5px 15px; width: 200px;" />' );
-			for( let lien of liensSection.all ) {
-				let idLink = 'oc-mod-link-'+compteur;
-				$("#oc-mod-links").append( '<div><a target="_blank" class="oc-mod-link oc-mod-tooltip" title="Ouvrir ce lien dans un nouvel onglet" href="'+lien.url+'">'+lien.title+'</a>&nbsp;<i id="'+idLink+'" data-clipboard-text="'+lien.url+'" title="Copier le lien dans le presse papier" class="icon-validated_doc oc-mod-tooltip"></i>&nbsp;<i title="Ajouter ce lien dans le message" class="oc-mod-addlink icon-test oc-mod-tooltip"></i></div>' );
-				let clipboard = new ClipboardJS( $("#"+idLink)[0] );
-				compteur++;
+			let hrPlaced = false;
+			for( let typeLien in liensSection ) {
+				for( let lien of liensSection[typeLien] ) {
+					let idLink = 'oc-mod-link-'+compteur;
+					$("#oc-mod-links").append(
+						'<div>'+
+							'<input class="oc-mod-tooltip oc-mod-modolink" title="Cocher pour ajouter ce lien à la fin du message de modération" type="checkbox" value="1" /> '+
+							'<a target="_blank" class="oc-mod-link oc-mod-tooltip" title="Ouvrir ce lien dans un nouvel onglet" href="'+lien.url+'">'+lien.title+'</a>&nbsp;'+
+							'<i id="'+idLink+'" data-clipboard-text="'+lien.url+'" title="Copier le lien dans le presse papier" class="icon-validated_doc oc-mod-tooltip"></i>&nbsp;'+
+							'<i title="Ajouter ce lien dans le message" class="oc-mod-addlink icon-test oc-mod-tooltip"></i>'+
+						'</div>'
+					);
+					let clipboard = new ClipboardJS( $("#"+idLink)[0] );
+					compteur++;
+				}
+				if( liensSection.specific.length && !hrPlaced ) {
+					$("#oc-mod-links").append( hr );
+					hrPlaced = true;
+				}
 			}
 			$(".oc-mod-addlink").click( function(e) {
 				let newlink = ' <a href="'+$(this).parent().find(".oc-mod-link").attr("href")+'">'+$(this).parent().find(".oc-mod-link").text()+'</a> ';
@@ -290,20 +254,23 @@ function initPost() {
 		}
 
 		// Ajout des messages possibles
-		if( messagesSection.specific.length ) {
-			for( let message of messagesSection.specific ) {
+		let hrPlaced = false;
+		for( let typeMessage in messagesSection ) {
+			for( let message of messagesSection[typeMessage] ) {
 				$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'"><input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'</div>' );
 			}
-		}
-		if( messagesSection.all.length ) {
-			$("#oc-mod-reponses").append( '<hr style="margin: 5px 15px; width: 200px;" />' );
-			for( let message of messagesSection.all ) {
-				$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'"><input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'</div>' );
+			if( messagesSection.specific.length && !hrPlaced ) {
+				$("#oc-mod-reponses").append( hr );
+				hrPlaced = true;
 			}
 		}
 
 		// Déplacement
-		$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="Si cochée, laisse apparaître la liste des forums possibles pour déplacer le sujet"><input id="oc-mod-move" type="checkbox" value="1" /> Déplacer<br /><span id="oc-mod-select-span"></span>' );
+		$("#oc-mod-reponses").append(
+			'<div class="oc-mod-tooltip" title="Si cochée, laisse apparaître la liste des forums possibles pour déplacer le sujet">'+
+				'<input id="oc-mod-move" type="checkbox" value="1" /> Déplacer<br /><span id="oc-mod-select-span"></span>'+
+			'</div>'
+		);
 
 		// Style
 		$("#oc-mod-panel").css({
@@ -322,7 +289,7 @@ function initPost() {
 		$(".oc-mod-column").css( {"float":"left","width":"250px","margin-bottom":"10px"} );
 		$("#oc-mod-valid").css( {"float":"right"} );
 		$(".oc-mod-title").css( {"font-size":"1.2em","color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
-		$("#oc-mod-version").css( {"font-size":"0.5em"} );
+		$(".oc-mod-version").css( {"font-size":"0.5em"} );
 		$(".oc-mod-subtitle").css( {"font-size":"1.1em","color":"#000","font-weight":"bold","line-height":"1em"} );
 		$(".oc-mod-subsubtitle").css( {"font-size":"1em","color":"#4f8a03","font-weight":"bold","line-height":"1em"} );
 		$("#oc-mod-validation").css({
@@ -343,13 +310,13 @@ function initPost() {
 }
 
 function initMp() {
-    setTimeout( function(e) {
-        let mp = GM_getValue("answers").mp;
-        let messageMp = mp.message.replace( '$$', GM_getValue("lastPage") ) + GM_getValue( "mpContent" );
-        $("input#ThreadMessage_title").val( mp.title );
-        $("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
+	setTimeout( function(e) {
+		let mp = GM_getValue("answers").mp;
+		let messageMp = mp.message.replace( '$$', GM_getValue("lastPage") ) + GM_getValue( "mpContent" );
+		$("input#ThreadMessage_title").val( mp.title );
+		$("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
 		tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, messageMp );
-    },2000 );
+	},2000 );
 }
 
 // Gestion déplacement sujet
@@ -411,7 +378,7 @@ $("#oc-mod-caret").click( () => {
 
 // Validation modération
 $("#oc-mod-validation").click( () => {
-	let moderationMessage = configuration.intro;
+	let moderationMessage = '';
 
 	if( $("input[name=hasHeader]").prop('checked') )
 		moderationMessage += configuration.headers;
@@ -425,14 +392,22 @@ $("#oc-mod-validation").click( () => {
 			.then(() => console.log("Déplacement " + moveLink + " --- " + postData ) );
 	}
 
-	$(".oc-mod-checkboxes").each( function(e) {
-		if( $(this).prop('checked') ) {
-			moderationMessage += '<h1 style="text-align: center;">'+messages.filter( a => a.id == $(this).val() )[0].title+'</h1>';
-			moderationMessage += messages.filter( a => a.id == $(this).val() )[0].message;
-		}
+	$(".oc-mod-checkboxes:checked").each( function(e) {
+		let leMessage = messages.filter( a => a.id == $(this).val() )[0];
+		moderationMessage += '<h1 style="text-align: center;">'+leMessage.title+'</h1>';
+		moderationMessage += leMessage.message;
 	});
+	
+	if( $(".oc-mod-modolink:checked").length ) {
+		moderationMessage += '<h2>Liens conseillés</h2><ul>';
+		$(".oc-mod-modolink:checked").each( function(e) {
+			moderationMessage += '<li><a href="'+$(this).parent().find(".oc-mod-link").attr("href")+'">'+$(this).parent().find(".oc-mod-link").text()+'</a></li>';
+		});
+		moderationMessage += '</ul>';
+	}
 
 	if( moderationMessage.length ) {
+		moderationMessage = configuration.intro + moderationMessage;
 
 		// Retirer les alertes
 		if( $("input[name=dismissAlerts]").prop('checked') ) {
@@ -470,7 +445,7 @@ $("#oc-mod-validation").click( () => {
 		}
 
 		// Ajout du message dans l'éditeur
-        tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, moderationMessage );
+		tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, moderationMessage );
 
 		// Validation du formulaire si demandée
 		if( $("input[name=postMessage]").prop('checked') )
@@ -529,13 +504,13 @@ function promiseRequest(method, url, data = "" ) {
 function getElementsBySection( messages, section ) {
 	var forum = false;
 	var orgaMessages = {
-		"all": [],
-		"specific": []
+		"specific": [],
+		"all": []
 	};
 
-	for( var titre in forums ) {
-		if( $.inArray( section, forums[titre] ) > -1 )
-			forum = titre;
+	for( var forumObject in forums ) {
+		if( $.inArray( section, forumObject.name ) > -1 )
+			forum = forumObject.name;
 	}
 
 	for( var message in messages ) {
