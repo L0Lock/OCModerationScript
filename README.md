@@ -10,6 +10,7 @@ Dans n'importe quel sujet, une boîte à outils s'affiche par défaut en haut à
 ## Les actions possibles sur un sujet
 - Ajouter un entête de message "automatique"
 - Ajouter un ou plusieurs messages standards en cochant la ou les cases à cocher correspondantes
+- Insérer un bloc "Liens conseillés" avec le ou les messages standards
 - Retirer toutes les alertes d'un sujet (case à cocher)
 - Fermer le sujet (case à cocher), attention la fermeture est effective après validation et actualisation de la page
 - Passer le sujet à "Résolu" (case à cocher)
@@ -69,8 +70,5 @@ Pour ajouter une section, il faut simplement ajouter un élément de ce format d
 
 	{
 		"nom": "HTML / CSS",
-		"parent": "Site Web",
-		"links": []
+		"parent": "Site Web"
 	},
-
-L'éléments "links" est un tableau contenant les liens importants concernant la section (règles, FAQ, cours, etc.) qui seront repris dans certains messages (flag "addlinks").
