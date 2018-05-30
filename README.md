@@ -54,12 +54,14 @@ Pour ajouter un message, il faut simplement ajouter un élément de ce format da
 		"exclude": [],
 		"title": "Titre affiché sur le bouton",
 		"message": "<p>Mon message en \"html\"</p>",
-		"infobulle": "Aide à propose du message"
+		"infobulle": "Aide à propose du message",
+		"addlinks": false
 	},
 
 <em>section</em> et <em>exclude</em> seront des tableaux contenant :
 - "all" = toutes les sections
 - le nom d'une section de forum ou de son parent
+<em>addlinks</em> permet d'insérer dans le message les liens définis sur la section, voir ci-après.
 
 ## Liste des sections
 Selon vos droits, éditer le fichier JSON du dépôt GitHub, ou faite une demande (issue) de modification.
