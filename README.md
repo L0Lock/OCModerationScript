@@ -70,3 +70,5 @@ Pour ajouter une section, il faut simplement ajouter un élément de ce format d
 		"parent": "Site Web",
 		"links": []
 	},
+
+L'éléments "links" est un tableau contenant les liens importants concernant la section (règles, FAQ, cours, etc.) qui seront repris dans certains messages (flag "addlinks").
