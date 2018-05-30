@@ -93,6 +93,22 @@
 			"exclude": ["Forum du staff"],
 			"title": "Règles Graphisme 2D",
 			"url": "https://openclassrooms.com/forum/sujet/regles-et-bonnes-pratiques-du-forum-graphisme-2d"
+		},
+
+		{
+			"id": 11,
+			"section": ["PHP"],
+			"exclude": ["Forum du staff"],
+			"title": "FAQ PHP",
+			"url": "https://openclassrooms.com/forum/sujet/foire-aux-questions-php"
+		},
+
+		{
+			"id": 12,
+			"section": ["Base de données"],
+			"exclude": ["Forum du staff"],
+			"title": "FAQ BDD",
+			"url": "https://openclassrooms.com/forum/sujet/faq-du-forum-base-de-donnees-18896"
 		}
 	],
 
