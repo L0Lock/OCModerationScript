@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.11.1
+// @version			1.11.2
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -27,19 +27,17 @@ const messageUrl = "/forum/sujet/";
 const deleteUrl = "/message/supprimer/";
 const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
 
-// Mémorisation pages visitées
-GM_setValue( "lastPage", GM_getValue("currentPage") );
-GM_setValue( "currentPage", window.location.pathname );
-if( GM_getValue( "mpClick" ) === undefined )
-	GM_setValue( "mpClick" , false );
-
 // Format d'affichage
 const formats = {
 	"vertical": 265,
 	"horizontal": 500
 };
-if( GM_getValue( "modFormat" ) === undefined )
-	GM_setValue( "modFormat", "horizontal" );
+
+// Mémorisation pages visitées
+GM_setValue( "lastPage", GM_getValue("currentPage") );
+GM_setValue( "currentPage", window.location.pathname );
+if( GM_getValue( "mpClick" ) === undefined ) GM_setValue( "mpClick" , false );
+if( GM_getValue( "modFormat" ) === undefined ) GM_setValue( "modFormat", "horizontal" );
 
 // Fermeture du sujet si demandée
 if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== undefined ) {
@@ -508,23 +506,27 @@ function getElementsBySection( messages, section ) {
 		"all": []
 	};
 
-	for( var forumObject in forums ) {
-		if( $.inArray( section, forumObject.name ) > -1 )
-			forum = forumObject.name;
+	for( let forumObject in forums ) {
+		if( section == forums[forumObject].nom ) {
+			forum = forums[forumObject].parent;
+		}
 	}
+	console.log( forum );
 
 	for( var message in messages ) {
 		var sections = messages[message].section;
 		var excludes = messages[message].exclude;
 
-		if( $.inArray( section, excludes ) > -1 || $.inArray( forum, excludes ) > -1 || $.inArray( "all", excludes ) > -1 )
+		if( $.inArray( section, excludes ) > -1 || $.inArray( forum, excludes ) > -1 || $.inArray( "all", excludes ) > -1 ) {
 			continue;
+		}
 
 		if( $.inArray( section, sections ) > - 1 || $.inArray( forum, sections ) > -1 || $.inArray( "all", sections ) > -1 ) {
-			if( $.inArray( "all", sections ) > -1 )
+			if( $.inArray( "all", sections ) > -1 ) {
 				orgaMessages.all.push( messages[message] );
-			else
+			} else {
 				orgaMessages.specific.push( messages[message] );
+			}
 		}
 	}
 
