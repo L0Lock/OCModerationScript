@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.11.2
+// @version			1.12.1
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -71,18 +71,20 @@ $(".inputGroup__icon.icon-search").css({"margin-top":"6px"});
 
 // Bouton top
 $("#mainContentWithHeader").append('<span title="Haut de la page" class="oc-mod-tooltip oc-mod-nav" id="oc-mod-top"><i class="icon-next"></i></span>');
-if( $(window).scrollTop() < 100 )
+if( $(window).scrollTop() < 100 ) {
 	$("#oc-mod-top").hide();
+}
 $("#oc-mod-top").click( () => {
 	$(window).scrollTop( 0 );
 });
 
 // Bouton bottom
 $("#mainContentWithHeader").append('<span title="Bas de la page" class="oc-mod-tooltip oc-mod-nav" id="oc-mod-bottom"><i class="icon-next"></i></span>');
-if( $(window).height()+$(window).scrollTop() > $(document).height()-$("footer.footer").height()-100 )
+if( $(window).height()+$(window).scrollTop() > $(document).height()-250 ) {
 	$("#oc-mod-bottom").hide();
+}
 $("#oc-mod-bottom").click( () => {
-	$(window).scrollTop( $(document).height()-$("footer.footer").height() );
+	$(window).scrollTop( $(document).height()-200 );
 });
 
 // Style bouton top/bottom
@@ -108,14 +110,16 @@ $("#oc-mod-bottom>i").css({"transform":"rotate(90deg)"});
 
 // Gestion du scroll
 $(window).scroll( () => {
-	if( $(window).scrollTop() > 100 )
+	if( $(window).scrollTop() > 100 ) {
 		$("#oc-mod-top").show();
-	else
+	} else {
 		$("#oc-mod-top").hide();
-	if( $(window).height()+$(window).scrollTop() < $(document).height()-$("footer.footer").height()-100 )
+	}
+	if( $(window).height()+$(window).scrollTop() < $(document).height()-250 ) {
 		$("#oc-mod-bottom").show();
-	else
+	} else {
 		$("#oc-mod-bottom").hide();
+	}
 });
 
 // Suppression des pubs
@@ -247,7 +251,7 @@ function initPost() {
 			$(".oc-mod-addlink").click( function(e) {
 				let newlink = ' <a href="'+$(this).parent().find(".oc-mod-link").attr("href")+'">'+$(this).parent().find(".oc-mod-link").text()+'</a> ';
 				tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, newlink );
-				$(window).scrollTop( $(document).height()-$("footer.footer").height() );
+				$(window).scrollTop( $(document).height()-$("footer.oc-footer").height() );
 			});
 		}
 
@@ -302,8 +306,6 @@ function initPost() {
 			"text-shadow":"0 -1px 0 #1c181b",
 			"text-decoration":"none"
 		});
-	} else {
-
 	}
 }
 
@@ -349,7 +351,11 @@ $(".oc-mod-mp").click( function(e) {
 
 // Gestion suppression
 $(".oc-mod-delete").click( function(e) {
-	GM_setValue( "postToDelete", $(this).parent().parent().parent().find(".span10.comment").attr("id").replace( 'message-', '' ) );
+	if( confirm( "Voulez-vous vraiment supprimer ce message ?" ) ) {
+		GM_setValue( "postToDelete", $(this).parent().parent().parent().find(".span10.comment").attr("id").replace( 'message-', '' ) );
+	} else {
+		e.preventDefault();
+	}
 });
 
 // Changement de format
@@ -395,7 +401,7 @@ $("#oc-mod-validation").click( () => {
 		moderationMessage += '<h1 style="text-align: center;">'+leMessage.title+'</h1>';
 		moderationMessage += leMessage.message;
 	});
-	
+
 	if( $(".oc-mod-modolink:checked").length ) {
 		moderationMessage += '<h2>Liens conseillés</h2><ul>';
 		$(".oc-mod-modolink:checked").each( function(e) {
@@ -511,7 +517,6 @@ function getElementsBySection( messages, section ) {
 			forum = forums[forumObject].parent;
 		}
 	}
-	console.log( forum );
 
 	for( var message in messages ) {
 		var sections = messages[message].section;
