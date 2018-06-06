@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.12.1
+// @version			1.12.2
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -27,11 +27,17 @@ const messageUrl = "/forum/sujet/";
 const deleteUrl = "/message/supprimer/";
 const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
 
-// Format d'affichage
-const formats = {
-	"vertical": 265,
-	"horizontal": 500
-};
+// Variables de gestion
+const formats = { "vertical": 265, "horizontal": 500 };
+const hr = '<hr style="margin: 5px 15px; width: 200px;" />';
+var forums;
+var section = $('span[itemprop="title"]').last().text();
+var nbMessages = 0;
+var configuration = [];
+var messages = [];
+var modExpand = false;
+var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
+var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
 
 // Mémorisation pages visitées
 GM_setValue( "lastPage", GM_getValue("currentPage") );
@@ -49,13 +55,10 @@ if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== und
 
 // Suppression message si demandée
 if( GM_getValue( "postToDelete" ) != '' && GM_getValue( "postToDelete" ) !== undefined ) {
-	// Trace pour https://github.com/L0Lock/OCModerationScript/issues/20
-	console.log( "Demande fermeture : "+GM_getValue( "postToDelete" ) );
 	let deleteLink = baseUri + deleteUrl + GM_getValue( "postToDelete" );
 	let postData = '';
 	promiseRequest("POST", deleteLink, postData )
 		.then(() => {
-			console.log( "OK fermeture : "+GM_getValue( "postToDelete" ) );
 			GM_setValue( "postToDelete", '' );
 		});
 }
@@ -125,17 +128,6 @@ $(window).scroll( () => {
 // Suppression des pubs
 $(".adviceBanner").remove();
 
-// Initialisation variables
-var forums;
-var section = $('span[itemprop="title"]').last().text();
-var nbMessages = 0;
-var configuration = [];
-var messages = [];
-var modExpand = false;
-var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
-var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
-var hr = '<hr style="margin: 5px 15px; width: 200px;" />';
-
 // Ajout lien MP + suppression
 $(".author>a").each( function(e) {
 	if( $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri, '') != $(this).attr("href") ) {
@@ -144,16 +136,6 @@ $(".author>a").each( function(e) {
 	}
 });
 
-// Récupération du fichier JSON des messages si dans post
-if( $("input[name=submit_comment]").length )
-	getConfigurationFile( false ).then( initPost() );
-
-// Traitement MP
-if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
-	GM_setValue( "mpClick" , false );
-	getConfigurationFile( false ).then( initMp() );
-}
-
 // Gestion des infobulles
 $(".oc-mod-tooltip").tooltip( {
 	open: function( event, ui ) {
@@ -161,6 +143,48 @@ $(".oc-mod-tooltip").tooltip( {
    		$(".ui-widget-shadow").fadeTo(0,1);
 	}
 });
+
+// Traitement MP
+if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
+	GM_setValue( "mpClick" , false );
+	getConfigurationFile( false ).then( () => {
+		waitForTinymce( function(e) {
+			let mp = GM_getValue("answers").mp;
+			let messageMp = mp.message.replace( '$$', GM_getValue("lastPage") ) + GM_getValue( "mpContent" );
+			$("input#ThreadMessage_title").val( mp.title );
+			$("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
+			waitForEditor( function(e) {
+				setTimeout( function(e) {
+					tinyMCE.activeEditor.insertContent( messageMp );
+				},100);
+			});
+		});
+	});
+}
+// Attente TinyMCE
+function waitForTinymce( callback ) {
+	if( typeof( tinyMCE ) !== 'undefined' ) {
+		callback();
+	} else {
+		setTimeout( function(e) {
+			waitForTinymce( callback );
+		},100);
+	}
+}
+// Attente éditeur de message
+function waitForEditor( callback ) {
+	if( tinyMCE.activeEditor !== null ) {
+		callback();
+	} else {
+		setTimeout( function(e) {
+			waitForEditor( callback );
+		},100);
+	}
+}
+
+// Traitement sujet
+if( $("input[name=submit_comment]").length )
+	getConfigurationFile( false ).then( initPost() );
 
 function initPost() {
 	configuration = GM_getValue("answers").configuration;
@@ -251,7 +275,7 @@ function initPost() {
 			$(".oc-mod-addlink").click( function(e) {
 				let newlink = ' <a href="'+$(this).parent().find(".oc-mod-link").attr("href")+'">'+$(this).parent().find(".oc-mod-link").text()+'</a> ';
 				tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, newlink );
-				$(window).scrollTop( $(document).height()-$("footer.oc-footer").height() );
+				$(window).scrollTop( $(document).height()-200 );
 			});
 		}
 
@@ -307,16 +331,6 @@ function initPost() {
 			"text-decoration":"none"
 		});
 	}
-}
-
-function initMp() {
-	setTimeout( function(e) {
-		let mp = GM_getValue("answers").mp;
-		let messageMp = mp.message.replace( '$$', GM_getValue("lastPage") ) + GM_getValue( "mpContent" );
-		$("input#ThreadMessage_title").val( mp.title );
-		$("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
-		tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, messageMp );
-	},2000 );
 }
 
 // Gestion déplacement sujet
