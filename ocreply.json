@@ -1,5 +1,5 @@
 {
-	"version": "1.0.1",
+	"version": "1.0.3",
 	
 	"configuration": 
 	{
@@ -111,6 +111,22 @@
 			"exclude": ["Forum du staff"],
 			"title": "FAQ BDD",
 			"url": "https://openclassrooms.com/forum/sujet/faq-du-forum-base-de-donnees-18896"
+		},
+
+		{
+			"id": 13,
+			"section": ["Base de données"],
+			"exclude": ["Forum du staff"],
+			"title": "Cours MySQL",
+			"url": "https://openclassrooms.com/courses/administrez-vos-bases-de-donnees-avec-mysql"
+		},
+
+		{
+			"id": 14,
+			"section": ["Base de données","PHP"],
+			"exclude": ["Forum du staff"],
+			"title": "Cours PHP/MySQL",
+			"url": "https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql"
 		}
 	],
 
