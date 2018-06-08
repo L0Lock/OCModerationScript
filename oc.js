@@ -16,7 +16,7 @@
 // @grant			GM_setValue
 // @require			https://code.jquery.com/jquery-3.3.1.min.js
 // @require			https://code.jquery.com/ui/1.12.1/jquery-ui.min.js
-// @require			https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js 
+// @require			https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js
 // ==/UserScript==
 
 // URL et chemins
