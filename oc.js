@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			1.12.2
+// @version			2.0.0
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -68,79 +68,11 @@ $(".nav-tabs--searchField").css( {"width": "40%"} );
 $("#secondMenu li:eq(0)").before('<li><a href="https://openclassrooms.com/forum/sujet/regles-et-bonnes-pratiques-du-forum-9">Règles du forum</a></li>');
 $("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour les réponses</a></li>');
 
-// Correction CSS barre de recherche
-$(".button--iconOnly").css({"padding":"0px","min-height":"28px","height":"28px"});
-$(".inputGroup__icon.icon-search").css({"margin-top":"6px"});
-
-// Bouton top
-$("#mainContentWithHeader").append('<span title="Haut de la page" class="oc-mod-tooltip oc-mod-nav" id="oc-mod-top"><i class="icon-next"></i></span>');
-if( $(window).scrollTop() < 100 ) {
-	$("#oc-mod-top").hide();
-}
-$("#oc-mod-top").click( () => {
-	$(window).scrollTop( 0 );
-});
-
-// Bouton bottom
-$("#mainContentWithHeader").append('<span title="Bas de la page" class="oc-mod-tooltip oc-mod-nav" id="oc-mod-bottom"><i class="icon-next"></i></span>');
-if( $(window).height()+$(window).scrollTop() > $(document).height()-250 ) {
-	$("#oc-mod-bottom").hide();
-}
-$("#oc-mod-bottom").click( () => {
-	$(window).scrollTop( $(document).height()-200 );
-});
-
-// Style bouton top/bottom
-$(".icon-next").css({"display":"inline-block"});
-$(".oc-mod-nav").css({
-	"cursor":"pointer",
-	"position":"fixed",
-	"right":"50px",
-	"background":"#4f8a03",
-	"border-radius":"5px",
-	"color":"#fff"
-});
-$("#oc-mod-top").css({
-	"padding":"11px 15px 15px 15px",
-	"top":"38%"
-});
-$("#oc-mod-top>i").css({"transform":"rotate(-90deg)"});
-$("#oc-mod-bottom").css({
-	"padding":"17px 15px 9px 15px",
-	"bottom":"38%"
-});
-$("#oc-mod-bottom>i").css({"transform":"rotate(90deg)"});
-
-// Gestion du scroll
-$(window).scroll( () => {
-	if( $(window).scrollTop() > 100 ) {
-		$("#oc-mod-top").show();
-	} else {
-		$("#oc-mod-top").hide();
-	}
-	if( $(window).height()+$(window).scrollTop() < $(document).height()-250 ) {
-		$("#oc-mod-bottom").show();
-	} else {
-		$("#oc-mod-bottom").hide();
-	}
-});
-
-// Suppression des pubs
-$(".adviceBanner").remove();
-
 // Ajout lien MP + suppression
 $(".author>a").each( function(e) {
 	if( $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri, '') != $(this).attr("href") ) {
 		$(this).parent().parent().append('<a title="Ecrire un MP au membre" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp btn btn-default" target="_blank" style="margin-top: 5px;"><i class="icon-letter"></i></a>');
 		$(this).parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-delete oc-mod-mp btn btn-warning" style="margin-top: 5px;"><i class="icon-cross"></i></a>');
-	}
-});
-
-// Gestion des infobulles
-$(".oc-mod-tooltip").tooltip( {
-	open: function( event, ui ) {
-		$(".ui-widget-shadow").css({"background":"#fff"});
-   		$(".ui-widget-shadow").fadeTo(0,1);
 	}
 });
 
@@ -199,9 +131,6 @@ function initPost() {
 	liens = liens.sort( comparaison );
 	let liensSection = getElementsBySection( liens, section );
 	let nbLiens = liensSection.all.length + liensSection.specific.length;
-
-	// Copie du fil d'ariane en bas du sujet
-	$(".breadcrumb").clone().insertAfter($("section.comments"));
 
 	if( nbMessages > 0 ) {
 		$("#mainContentWithHeader").append(
