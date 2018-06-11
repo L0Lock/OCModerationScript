@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.0.1
+// @version			2.0.2
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -19,7 +19,7 @@
 // @require			https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js
 // ==/UserScript==
 
-(function($, document, undefined) {
+(function ($, document, undefined) {
     "use strict;"
 
     // URL et chemins
@@ -41,7 +41,6 @@
     var modExpand = false;
     var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
     var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
-    var tinyMCE = window.tinyMCE;
 
     // Mémorisation pages visitées
     GM_setValue( "lastPage", GM_getValue("currentPage") );
@@ -119,9 +118,8 @@
     }
 
     // Traitement sujet
-    if( $("input[name=submit_comment]").length ) {
+    if( $("input[name=submit_comment]").length )
         getConfigurationFile( false ).then( initPost() );
-    }
 
     function initPost() {
         configuration = GM_getValue("answers").configuration;
@@ -272,9 +270,8 @@
         if( $(this).prop("checked") ) {
             $("#oc-mod-select-span").append( '<select id="oc-mod-forum-select"></select>' );
             $("#CategoriesList_category>option").each( function(e) {
-                if( $(this).val() != "" ) {
+                if( $(this).val() != "" )
                     $("#oc-mod-forum-select").append('<option value="'+$(this).val()+'">'+$(this).html()+'</option>');
-                }
             });
         } else {
             $("#oc-mod-select-span").html("");
@@ -333,9 +330,8 @@
     $("#oc-mod-validation").click( () => {
         let moderationMessage = '';
 
-        if( $("input[name=hasHeader]").prop('checked') ) {
+        if( $("input[name=hasHeader]").prop('checked') )
             moderationMessage += configuration.headers;
-        }
 
         if( $("#oc-mod-move").prop("checked") ) {
             let moveLink = baseUri + $("#deplacerActionModal>form").attr('action');
@@ -402,11 +398,10 @@
             tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, moderationMessage );
 
             // Validation du formulaire si demandée
-            if( $("input[name=postMessage]").prop('checked') ) {
+            if( $("input[name=postMessage]").prop('checked') )
                 $("input[name=submit_comment]").click();
-            } else {
+            else
                 $(window).scrollTop( $(document).height() );
-            }
         } else {
             alert( 'Aucun message à poster !' );
         }
