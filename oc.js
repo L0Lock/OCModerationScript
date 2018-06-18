@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.1.0
+// @version			2.1.1
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -331,7 +331,6 @@
 		let moderationMessage = '';
 		let titreMessage = $('#mainSection>div>h1>a').first().text();
 		let sousTitreMessage = $('#mainSection>div>h2.subtitle').first().text();
-		console.log( titreMessage, sousTitreMessage );
 
 		if( $("input[name=hasHeader]").prop('checked') )
 			moderationMessage += configuration.headers;
@@ -348,7 +347,7 @@
 		$(".oc-mod-checkboxes:checked").each( function(e) {
 			let leMessage = messages.filter( a => a.id == $(this).val() )[0];
 			moderationMessage += '<h1 style="text-align: center;">'+leMessage.title+'</h1>';
-			if( $.inArray( leMessage.id, configuration.titleQuote ) > -1 ) {
+			if( leMessage.titleQuote ) {
 				moderationMessage += '<p style ="font-style: italic; text-align: center; color: #666;">"'+titreMessage;
 				if( sousTitreMessage.length ) {
 					moderationMessage += ' / '+sousTitreMessage;
