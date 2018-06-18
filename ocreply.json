@@ -1,5 +1,5 @@
 {
-	"version": "1.0.5",
+	"version": "1.0.6",
 	
 	"configuration": 
 	{
@@ -139,7 +139,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Mauvais format de Recrutement",
 			"message": "<p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">post-it de ce forum</a>. Un <a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-1\">format type</a> vous est proposé pour vous aider à rédiger votre message. Bien qu'il ne soit pas impératif de l'utiliser, il est tout de même nécessaire de présenter <strong>toutes</strong> les informations demandées, de façon <strong>claire</strong> et <strong>lisible</strong>.</p>",
-			"infobulle": "Il manque des infos (listées dans le format obligatoire), ou la présentation est insuffisante."
+			"infobulle": "Il manque des infos (listées dans le format obligatoire), ou la présentation est insuffisante.",
+			"titleQuote": false
 		},
 
 		{
@@ -148,7 +149,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Mauvais titre de Recrutement",
 			"message": "<p>Afin de maintenir le forum <em>Recrutements</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Recrutement\" n'est pas un type correct, nous nous doutons que vous recrutez pour votre projet si vous postez un message ici.</p><p>Quelques exemples de titres corrects :</p><ul><li>[Application] Tinder</li> <li>[MOBA] Heroes Of The Storm</li> <li>[Site Web] OpenClassRooms</li></ul>",
-			"infobulle": "Précise la façon dont doivent être titrés les sujets du forum recrutement"
+			"infobulle": "Précise la façon dont doivent être titrés les sujets du forum recrutement",
+			"titleQuote": true
 		},
 
 		{
@@ -157,7 +159,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Aucun projet / Aucune avancée",
 			"message": "<p>Afin de préserver le forum dans un état correct et de ne garder que des projets intéressants, nous demandons à quiconque créant un sujet dans cette section de respecter quelques règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">post-it de ce forum</a>. Il y est, entre autres, demandé de présenter une avancée concrète ou un véritable travail de recherche sur votre projet.</p>",
-			"infobulle": "À utiliser si le sujet ne présente pas d'avancée significative ou n'a pas de projet."
+			"infobulle": "À utiliser si le sujet ne présente pas d'avancée significative ou n'a pas de projet.",
+			"titleQuote": false
 		},
 
 		{
@@ -166,7 +169,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Manque de précisions",
 			"message": "<p>Vous êtes ici sur un forum d'entraide communautaire et non pas sur un forum de demande de service, le but n'est donc pas de fournir une réponse toute faite ou de directement fournir la solution à quiconque viendrait sans la moindre trace. Afin d'obtenir de l'aide et une solution à votre problème, il est fortement recommandé de présenter clairement l'état actuel du problème en nous fournissant :</p> <ul> <li>Un descriptif clair et précis du problème</li> <li>La tentative actuelle de résolution que vous avez effectué</li> <li>Le résultat attendu et le résultat actuel</li> <li>Toutes pistes de recherches pouvant aider à la résolution</li> </ul>",
-			"infobulle": "Manque de précision (descriptif clair du problème, tentatives de résolution, résultat attendu & obtenu ou pistes de recherches)."
+			"infobulle": "Manque de précision (descriptif clair du problème, tentatives de résolution, résultat attendu & obtenu ou pistes de recherches).",
+			"titleQuote": false
 		},
 
 		{
@@ -175,7 +179,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Hello @OC",
 			"message": "<p>Afin de vous assurer d'avoir une réponse le plus rapidement possible, je vous invite à directement contacter l'équipe du site via l'adresse <a href=\"mailto:hello@openclassrooms.com\">hello@openclassrooms.com</a>. En effet, l'équipe du site ne passant que très rarement sur les forums, il sera beaucoup plus efficace de les contacter directement.</p>",
-			"infobulle": "Propose au membre de contacter directement OC par email"
+			"infobulle": "Propose au membre de contacter directement OC par email",
+			"titleQuote": false
 		},
 
 		{
@@ -184,7 +189,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Mauvais format de présentation",
 			"message": "<p>Afin de maintenir le forum <em>Présentation</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de message, donc certaines règles. Ces règles sont listées dans le <a href=\"https://openclassrooms.com/forum/sujet/regles-obligatoires-a-respecter-sur-ce-forum-2\">post-it de ce forum</a>et doivent impérativement être respectées.</p>",
-			"infobulle": "Il manque des infos (listées dans le format obligatoire), ou la présentation est insuffisante."
+			"infobulle": "Il manque des infos (listées dans le format obligatoire), ou la présentation est insuffisante.",
+			"titleQuote": false
 		},
 
 		{
@@ -193,7 +199,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Mauvais titre de présentation",
 			"message": "<p>Afin de maintenir le forum <em>Présentation</em> dans un état lisible, nous demandons à chaque personne initiant un nouveau sujet de respecter un certain format de titre. Chaque titre de sujet présent dans cette catégorie doit se composer de manière à respecter le format [Type de Projet] Nom du projet. Attention, \"Présentation\" n'est pas un type correct, nous nous doutons que vous présentez votre projet si vous postez un message ici.</p> <p>Quelques exemples de titres correct :</p> <ul> <li>[Application] Tinder</li> <li>[MOBA] Heroes Of The Storm</li> <li>[Site Web] OpenClassrooms</li> </ul>",
-			"infobulle": "Précise la façon dont doivent être titrés les sujets du forum présentation de projet"
+			"infobulle": "Précise la façon dont doivent être titrés les sujets du forum présentation de projet",
+			"titleQuote": true
 		},
 		
 		{
@@ -202,7 +209,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Manque de Politesse",
 			"message": "<p>Votre message ne comporte pas ou peu de formules de politesse (« Bonjour », « Merci », « Au revoir », etc.). Les règles du site exigent que chaque nouveau message comporte un minimum de politesse. Après tout, les gens qui répondent le font gratuitement, sur leur temps libre. Ils méritent bien un minimum de considération, n'est-ce pas ?</p>",
-			"infobulle": "Rappelle les règles de politesse en vigueur sur le forum"
+			"infobulle": "Rappelle les règles de politesse en vigueur sur le forum",
+			"titleQuote": false
 		},
 		
 		{
@@ -211,7 +219,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Merci d'utiliser la mise en forme de code <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_code.png\" alt=\"Image\" />",
 			"message": "<p>Les forums d'Openclassrooms disposent d'une fonctionnalité permettant de colorer et mettre en forme les codes source afin de les rendre plus lisibles et faciles à manipuler par les intervenants. Pour cela, il faut utiliser le bouton <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_code.png\" alt=\"Image\" /> de l'éditeur, choisir un des langages proposés et coller votre code dans la zone prévue. Si vous utilisez l'éditeur de messages en mode Markdown, il faut utiliser les balises <code>&lt;pre class=\"brush: c;\"&gt;Votre code ici&lt;/pre&gt;</code>.</p>",
-			"infobulle": "Précise le fonctionnement de la balise code sur le forum"
+			"infobulle": "Précise le fonctionnement de la balise code sur le forum",
+			"titleQuote": false
 		},
 		
 		{
@@ -220,7 +229,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Déterrage",
 			"message": "<p><strong>Citation des <a title=\"Règles générales du forum\" href=\"regles-et-bonnes-pratiques-du-forum-9#message-84002601\">règles générales du forum</a> :</strong></p><blockquote><p>Avant de poster un message, vérifiez la date du sujet dans lequel vous comptiez intervenir.</p><p>Si le dernier message sur le sujet date de plus de deux mois, mieux vaut ne pas répondre.<br />En effet, le déterrage d'un sujet nuit au bon fonctionnement du forum, et l'informatique pouvant grandement changer en quelques mois il n'est donc que rarement pertinent de déterrer un vieux sujet.</p><p>Au lieu de déterrer un sujet il est préférable :</p><ul><li>soit de contacter directement le membre voulu par messagerie privée en cliquant sur son pseudonyme pour accéder à sa page profil, puis sur le lien \"Ecrire un message\"</li><li>soit de créer un nouveau sujet décrivant votre propre contexte</li><li>ne pas répondre à un déterrage et le signaler à la modération</li></ul></blockquote>",
-			"infobulle": "Précise les règles du forum contre le déterrage"
+			"infobulle": "Précise les règles du forum contre le déterrage",
+			"titleQuote": false
 		},
 		
 		{
@@ -229,7 +239,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Manque de recherche FAQ 3D",
 			"message": "<p>La question que vous posez est très fréquente, cela démontre un manque de recherche évident.</p><p>De plus, il semblerait que votre question soit abordée dans la <a href=\"https:/openclassrooms.com/forum/sujet/faq-blender-et-la-3d-en-general\">FAQ de la section Graphisme 3D</a>. Je vous invite donc à vous y rendre tout de suite.</p>",
-			"infobulle": "Renvoie vers la FAQ 3D"
+			"infobulle": "Renvoie vers la FAQ 3D",
+			"titleQuote": false
 		},
 		
 		{
@@ -239,7 +250,7 @@
 			"title": "Manquement global aux règles",
 			"message": "<p>Votre message enfreint beaucoup de règles basiques du forum à tel point qu'il serait fastidieux de les énumérer dans ce message. Je vous invite donc à lire de toute urgence les <a href=\"regles-et-bonnes-pratiques-du-forum-9#message-84002601\">règles générales du forum</a> ainsi que <a href=\"../../terms-conditions#code-of-conduct\">la Charte de Bonne Conduite</a> et les éventuelles règles additionnelles de la section du forum dans laquelle vous postez, visibles parmi les sujets épinglés lorsqu'il y en a.</p>",
 			"infobulle": "Renvoie vers les règles générales du forum",
-			"addlinks": true
+			"titleQuote": false
 		},
 		
 		{
@@ -248,7 +259,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Le tuto Blender est dépassé",
 			"message": "<p>Le cours Blender d'OpenClassrooms étant vastement obsolète et même faux par endroits, je te conseille vivement de t'orienter vers cette suite de tutos qui a l'avantage d'être à jour et d'être faite par un professionnel expérimenté :</p><p><a href=\"https://www.youtube.com/playlist?list=PLuZVx6uIcP-QSUx9zyGto6ZWSABeAH_76\">Formation Blender 2.73</a></p><p>Tu trouveras également d'autres tutos sur d'autres sujets plus poussés sur la même chaîne, et ailleurs. En tout cas, méfie-toi des tutos faits sur des versions antérieures à Blender 2.60.<p>En suivant ça correctement tu auras de quoi maîtriser les bases et être autonome assez rapidement.</p><p>N'hésite pas à faire un tour sur <a href=\"http://blenderlounge.fr/\" target=\"_blank\">le site</a> de la chaîne en question ainsi que <a href=\"https://discordapp.com/invite/qnBRzB\" target=\"_blank\">son serveur discord</a> (les liens sont sur la chaîne et le forum normalement). Il y a une assez grosse communauté francophone avec laquelle tu pourras apprendre et partager beaucoup.</p></p>",
-			"infobulle": "Avertit sur l'obsolescence du cours OC Blender"
+			"infobulle": "Avertit sur l'obsolescence du cours OC Blender",
+			"titleQuote": false
 		},
 		
 		{
@@ -257,7 +269,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Pas de données personnelles",
 			"message": "<p>Il est dangereux de poster des données personnelles à la vue de tout le monde sur Internet, car elles pourraient être utilisées à mauvais escient et entraîner des nuisances pour son propriétaire et ses proches.</p><p>Pour transmettre des données personnelles, préférez les messages privés.</p>",
-			"infobulle": "Précise qu'il est interdit de donner ses coordonnées personnelles"
+			"infobulle": "Précise qu'il est interdit de donner ses coordonnées personnelles",
+			"titleQuote": false
 		},
 		
 		{
@@ -266,7 +279,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Mise en page abusive",
 			"message": "<p>Les outils de mise en page on pour seul but de rendre votre message plus lisible et compréhensible. Pas à faire des décorations expérimentales ou à s'amuser à faire des textes arc-en-ciel.</p><p>Merci de toujours réduire la mise en page au strict nécessaire, aérer votre texte, éviter les pavés de texte indigestes, ...</p>",
-			"infobulle": "Avertit sur les abus dans la mise en page d'un message"
+			"infobulle": "Avertit sur les abus dans la mise en page d'un message",
+			"titleQuote": false
 		},
 
 		{
@@ -275,7 +289,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Manque de recherche",
 			"message": "<p>La question que vous posez est très fréquente, cela démontre un manque de recherche évident. Internet et ce forum fourmillent de ressources répondant à votre besoin.</p><p>Je vous invite à effectuer de vraies recherches qui sont à la base d'un bon apprentissage…</p>",
-			"infobulle": "Avertit sur le manque apparent de recherche avant de poster"
+			"infobulle": "Avertit sur le manque apparent de recherche avant de poster",
+			"titleQuote": false
 		},
 
 		{
@@ -284,7 +299,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Doublon",
 			"message": "<p>Les doublons nuisent au bon fonctionnement du forum et sont donc interdits. Si vous vous êtes trompé de section, il suffit de signaler votre sujet au staff pour qu'il le déplace au bon endroit.</p><p>Je vous invite à continuer la discussion sur l'autre sujet : ......</p>",
-			"infobulle": "Signale que le sujet est un doublon et renvoit vers le sujet de départ"
+			"infobulle": "Signale que le sujet est un doublon et renvoit vers le sujet de départ",
+			"titleQuote": false
 		},
 		
 		{
@@ -293,7 +309,8 @@
 			"exclude": ["Forum du staff","Recrutements pour vos projets","Présentation de vos projets"],
 			"title": "Mauvais titre",
 			"message": "<p>Le titre est un élément important qui ne doit pas être négligé. N'oubliez pas cette règle simple : <strong>le titre idéal résume la question que vous allez poser en une petite phrase. Il doit permettre aux visiteurs de se repérer facilement dans le forum visité et d'identifier le sujet à sa seule lecture.</strong></p><p>Vous pouvez utiliser divers préfixes comme [Erreur], [MySQL], [Compatibilité], etc... Aussi, pensez à consulter les règles propres à chaque forum (visibles dans les topics épinglés en haut des sections).</p><p>De plus, choisir un bon titre permet de rendre plus faciles les recherches des autres membres.</p><p>Les titres de type \"besoin d'aide\" ou \"problème\" ne sont pas tolérés.</p><p>Pour modifier votre titre, éditez le premier message de votre sujet.</p>",
-			"infobulle": "Précise la façon dont doivent être titrés les sujets sur les forums"
+			"infobulle": "Précise la façon dont doivent être titrés les sujets sur les forums",
+			"titleQuote": true
 		},
 		
 		{
@@ -302,7 +319,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Pas d'urgence dans le forum d'OC",
 			"message": "<p>Vous êtes sur un forum d'entraide, pas sur un site de service. Ici les intervenants vous répondent quand ils le veulent, s'ils le veulent, sans aucune obligation. Aussi, ce genre d'indications rendent le forum moins agréable à utiliser et moins équitable. De ce fait, les mentions de quelconque \"urgence\" ne sont pas admises sur ce forum. La meilleure façon d'avoir de l'aide rapidement ici est de fournir toutes les informations nécessaires et de les présenter correctement. N'hésitez pas à lire les règles épinglés en haut des sections du forum, elles indiquent généralement ce qui est nécessaire.</p>",
-			"infobulle": "Avertit sur la notion d'urgence incompatible sur les forums d'entraide"
+			"infobulle": "Avertit sur la notion d'urgence incompatible sur les forums d'entraide",
+			"titleQuote": false
 		},
 		
 		{
@@ -311,7 +329,8 @@
 			"exclude": ["Forum du staff", "Recrutements pour vos projets"],
 			"title": "Redirection Forum Recrutement",
 			"message": "<p>Ce forum dispose d'une <a href=\"https://openclassrooms.com/forum/categorie/recrutement-pour-vos-projets\">section dédiée aux recrutements pour projets amateurs</a>. Je vous invite à vous y rendre et à y poster votre topic en respectant <a href=\"https://openclassrooms.com/forum/sujet/mise-a-jour-du-reglement\">les règles particulières à cette section.</a></p>",
-			"infobulle": "Redirige vers le forum recrutement"
+			"infobulle": "Redirige vers le forum recrutement",
+			"titleQuote": false
 		},
 		
 		{
@@ -320,7 +339,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Recrutement professionnel",
 			"message": "<p>Les recrutements pour des entreprises ou des projets professionnels (avec un contrat à la clef) n’ont pas leur place sur ce forum, celui-ci est exclusivement réservé aux projets amateurs.</p>",
-			"infobulle": "Avertit sur l'interdiction de recrutement professionnel"
+			"infobulle": "Avertit sur l'interdiction de recrutement professionnel",
+			"titleQuote": false
 		},
 		
 		{
@@ -329,7 +349,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Sujet résolu",
 			"message": "Tu peux passer le sujet à \"résolu\" (bouton en haut à droite du sujet) et cliquer sur les pouces levés des messages qui t'ont aidé⋅e ;)",
-			"infobulle": "Avertit sur la façon de passer un sujet à \"Résolu\""
+			"infobulle": "Avertit sur la façon de passer un sujet à \"Résolu\"",
+			"titleQuote": false
 		},
 		
 		{
@@ -338,7 +359,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Accepter la critique",
 			"message": "<p>Lorsque vous postez votre sujet de recrutement ou de présentation pour votre projet, vous acceptez de recevoir des critiques/commentaires sur celui-ci, qu’elles soient positives ou négatives. Si un commentaire vous semble déplacé, merci de le signaler via la fonction prévue à cet effet.</p>",
-			"infobulle": "Informe sur l'importance d'accepter les critiques"
+			"infobulle": "Informe sur l'importance d'accepter les critiques",
+			"titleQuote": false
 		},
 		
 		{
@@ -347,7 +369,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Abus de citation",
 			"message": "<p>Il est inutile de citer un message se trouvant juste au dessus. Aussi, citer plus de quelques lignes n'a pour seuls effets que de rendre le message difficile à suivre et remplir la page inutilement.</p><p>Il est donc recommandé de n'utiliser les citations uniquement pour réagir sur un extrait de message.</p>",
-			"infobulle": "Avertit sur l'abus des citations"
+			"infobulle": "Avertit sur l'abus des citations",
+			"titleQuote": false
 		},
 		
 		{
@@ -356,7 +379,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Pas de publicité",
 			"message": "<p>Il est formellement interdit d'ouvrir un message dans le but d'assurer une promotion, une publicité. Par publicité, nous entendons tout élément externe au site qui n'a pas besoin de l'avis des membres.</p>",
-			"infobulle": "Avertit sur l'interdiction des publicités"
+			"infobulle": "Avertit sur l'interdiction des publicités",
+			"titleQuote": false
 		},
 		
 		{
@@ -365,7 +389,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Ecrivez dans un bon français",
 			"message": "<p>Il est important de faire des efforts d'écriture sur les forums d'Openclassrooms, notamment au niveau de l'orthographe pour bien se faire comprendre. Écrire convenablement est une marque de respect envers les personnes qui vous liront. Bien entendu il ne vous est pas demandé d'avoir une orthographe irréprochable mais nous attendons que vous fassiez des efforts. Les fautes élémentaires et volontaires ne sont pas admises. Par ailleurs, le langage SMS est sévèrement réprimé. Vous êtes sur un forum, pas un tchat, ne l'oubliez pas.</p><p>Si vous avez de réelles difficultés en orthographe, nous vous conseillons l'utilisation de sites qui vous aideront, notamment <a href=\"https://bonpatron.com/\">BonPatron</a> ou encore <a href=\"https://www.scribens.fr/\">Scribens</a>.</p>",
-			"infobulle": "Pour les abus d'écriture."
+			"infobulle": "Pour les abus d'écriture.",
+			"titleQuote": false
 		},
 		
 		{
@@ -374,7 +399,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Majuscules abusives",
 			"message": "<p>L'écriture en majuscules est considérée comme une parole criée et diminue autant la lisibilité du texte que sa compréhension. Les majuscules abusives sont donc interdites aussi bien dans les titres que dans les messages.</p>",
-			"infobulle": "Pour les abus de majuscules."
+			"infobulle": "Pour les abus de majuscules.",
+			"titleQuote": false
 		},
 		
 		{
@@ -383,7 +409,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Fermeture Mystique <img title=\":ninja:\" src=\"../../bundles/tinymce/vendor/tiny_mce/plugins/emotions/img/ninja.png\" alt=\":ninja:\" border=\"0\" />",
 			"message": "<p>Il semblerait qu'un membre ayant plus de pouvoir que vous ait décidé de fermer ce topic. Vous vous demandez peut-être la raison de cette fermeture...<br />Vous ne l'aurez pas.</p><p>En effet, les admins jouissent d'un pouvoir sans limite, leur permettant de châtier les zér0s, de fermer les topics et de faire pleuvoir des limaces (seulement en cas de pleine lune, période durant laquelle leurs pouvoirs augmentent considérablement).</p><p>Nous vous invitons à prendre peur et à ne plus poster de topic qui pourrait attirer l'attention... </p><p>Nous sommes persuadés que vous comprendrez, et vous remercions par avance de votre coopération. </p>",
-			"infobulle": "Pour les topics troll."
+			"infobulle": "Pour les topics troll.",
+			"titleQuote": false
 			
 		},
 		
@@ -393,7 +420,8 @@
 			"exclude": ["Forum du staff", "Choix du matériel & configuration"],
 			"title": "Redirection Choix du matériel & configuration",
 			"message": "<p>Le forum dispose d'une section \"<a href=\"https://openclassrooms.com/forum/categorie/choix-du-materiel-configuration\">Choix du matéreil & configuration</a>\" faite spécifiquement pour ce genre de demandes et où y répondent des gens dont c'est la spécialité</p><p>Je vous invite à y poster votre demande, en veillant à bien respecter le <strong><a href=\"https://openclassrooms.com/forum/sujet/pour-les-demandes-de-config-d-upgrade-et-autres\">format de demande</a></strong>.</p>",
-			"infobulle": "Redirection vers \"Choix du matériel & configuration\"."
+			"infobulle": "Redirection vers \"Choix du matériel & configuration\".",
+			"titleQuote": false
 		},
 		
 		{
@@ -402,7 +430,8 @@
 			"exclude": ["Forum du staff"],
 			"title": "Insertion des images <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_img.png\" alt=\"\" width=\"22\" height=\"22\" />",
 			"message": "<p>Le forum dispose d’un outil pour poster des images directement dans vos messages via ce bouton : <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_img.png\" alt=\"\" width=\"22\" height=\"22\" />. Vous avez la possibilité d’y mettre soit une image depuis votre ordinateur, soit un lien direct si l’image est déjà sur Internet. <strong>Utilisez toujours l’outil d’intégration d’images du site</strong>, c’est la seule manière d’afficher des images dans vos messages.</p>",
-			"infobulle": "Comment insérer des images."
+			"infobulle": "Comment insérer des images.",
+			"titleQuote": false
 		}
 	],
 	
