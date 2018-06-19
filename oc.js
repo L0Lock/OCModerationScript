@@ -347,14 +347,10 @@
 		$(".oc-mod-checkboxes:checked").each( function(e) {
 			let leMessage = messages.filter( a => a.id == $(this).val() )[0];
 			moderationMessage += '<h1 style="text-align: center;">'+leMessage.title+'</h1>';
-			if( leMessage.titleQuote ) {
-				moderationMessage += '<p style ="font-style: italic; text-align: center; color: #666;">"'+titreMessage;
-				if( sousTitreMessage.length ) {
-					moderationMessage += ' / '+sousTitreMessage;
-				}
-				moderationMessage += '"</p>';
-			}
 			moderationMessage += leMessage.message;
+			if( leMessage.titleQuote ) {
+				moderationMessage += '<p style="font-size: xx-small;">(titre originel : '+titreMessage+')</p>';
+			}
 		});
 
 		if( $(".oc-mod-modolink:checked").length ) {
