@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.1.3
+// @version			2.1.4
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -348,7 +348,7 @@
 			moderationMessage += '<h1 style="text-align: center;">'+leMessage.title+'</h1>';
 			moderationMessage += leMessage.message;
 			if( leMessage.titleQuote ) {
-				moderationMessage += '<p style="font-size: xx-small;">(titre originel : '+titreMessage+')</p>';
+				moderationMessage += '<p style="font-size: xx-small;">(titre originel : <span style="font-style:italic">'+titreMessage+'</span>)</p>';
 			}
 		});
 
