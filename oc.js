@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.1.2
+// @version			2.1.3
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -330,7 +330,6 @@
 	$("#oc-mod-validation").click( () => {
 		let moderationMessage = '';
 		let titreMessage = $('#mainSection>div>h1>a').first().text();
-		let sousTitreMessage = $('#mainSection>div>h2.subtitle').first().text();
 
 		if( $("input[name=hasHeader]").prop('checked') )
 			moderationMessage += configuration.headers;
