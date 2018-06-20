@@ -41,6 +41,9 @@
 	var modExpand = false;
 	var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
 	var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
+	
+	// Lien mise à jour message
+	$("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour les réponses</a></li>');
 
 	// Mémorisation pages visitées
 	GM_setValue( "lastPage", GM_getValue("currentPage") );
