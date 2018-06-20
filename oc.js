@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.1.4
+// @version			2.1.5
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -192,8 +192,8 @@
 							'<div>'+
 							'<input class="oc-mod-tooltip oc-mod-modolink" title="Cocher pour ajouter ce lien à la fin du message de modération" type="checkbox" value="1" /> '+
 							'<a target="_blank" class="oc-mod-link oc-mod-tooltip" title="Ouvrir ce lien dans un nouvel onglet" href="'+lien.url+'">'+lien.title+'</a>&nbsp;'+
-							'<i id="'+idLink+'" data-clipboard-text="'+lien.url+'" title="Copier le lien dans le presse papier" class="icon-validated_doc oc-mod-tooltip"></i>&nbsp;'+
-							'<i title="Ajouter ce lien dans le message" class="oc-mod-addlink icon-test oc-mod-tooltip"></i>'+
+							'<i id="'+idLink+'" data-clipboard-text="'+lien.url+'" title="Copier le lien dans le presse papier" class="icon-validated_doc oc-mod-tooltip oc-mod-pointer"></i>&nbsp;'+
+							'<i title="Ajouter ce lien dans le message" class="oc-mod-addlink icon-test oc-mod-tooltip oc-mod-pointer"></i>'+
 							'</div>'
 						);
 						let clipboard = new ClipboardJS( $("#"+idLink)[0] );
@@ -209,6 +209,7 @@
 					tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, newlink );
 					$(window).scrollTop( $(document).height()-200 );
 				});
+				$(".oc-mod-pointer").css({"cursor":"pointer"});
 			}
 
 			// Ajout des messages possibles
@@ -330,6 +331,7 @@
 	$("#oc-mod-validation").click( () => {
 		let moderationMessage = '';
 		let titreMessage = $('#mainSection>div>h1>a').first().text();
+		let sousTitreMessage = $('#mainSection>div>h2.subtitle').first().text();
 
 		if( $("input[name=hasHeader]").prop('checked') )
 			moderationMessage += configuration.headers;
@@ -348,7 +350,7 @@
 			moderationMessage += '<h1 style="text-align: center;">'+leMessage.title+'</h1>';
 			moderationMessage += leMessage.message;
 			if( leMessage.titleQuote ) {
-				moderationMessage += '<p style="font-size: xx-small;">(titre originel : <span style="font-style:italic">'+titreMessage+'</span>)</p>';
+				moderationMessage += '<p style="font-size: xx-small;">(titre originel : '+titreMessage+')</p>';
 			}
 		});
 
