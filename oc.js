@@ -66,11 +66,6 @@
 		});
 	}
 
-	// Lien MAJ réponses
-	$(".nav-tabs--searchField").css( {"width": "40%"} );
-	$("#secondMenu li:eq(0)").before('<li><a href="https://openclassrooms.com/forum/sujet/regles-et-bonnes-pratiques-du-forum-9">Règles du forum</a></li>');
-	$("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour les réponses</a></li>');
-
 	// Ajout lien MP + suppression
 	$(".author>a").each( function(e) {
 		if( $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri, '') != $(this).attr("href") ) {
