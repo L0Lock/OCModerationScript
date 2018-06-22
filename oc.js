@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.2.2
+// @version			2.3.0
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -338,7 +338,8 @@
 			let moveLink = baseUri + $("#deplacerActionModal>form").attr('action');
 			let postData = 'CategoriesList[category]='+$("#oc-mod-forum-select").val();
 			moderationMessage += '<h1 style="text-align: center;">Mauvais forum</h1>';
-			moderationMessage += configuration.deplacer.replace('$$', $( "#oc-mod-forum-select option:selected" ).text() );
+			moderationMessage += configuration.deplacer.replace('$$2', $( "#oc-mod-forum-select option:selected" ).text() );
+			moderationMessage = moderationMessage.replace('$$1', section );
 			promiseRequest("POST", moveLink, postData )
 				.then(() => console.log("Déplacement " + moveLink + " --- " + postData ) );
 		}
