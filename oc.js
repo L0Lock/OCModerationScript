@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.3.0
+// @version			2.3.1
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -361,6 +361,14 @@
 			moderationMessage += '</ul>';
 		}
 
+		// Gestion fermeture du sujet
+		if( $("input[name=shouldLock]").prop('checked') ) {
+			GM_setValue( "threadToLock", baseUri + $(".closeAction").attr('href') );
+			moderationMessage += configuration.fermer.replace( '$$', $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri+profilUrl, baseUri+mpUrl ) );
+		} else {
+			GM_setValue( "threadToLock", '' );
+		}
+
 		if( moderationMessage.length ) {
 			moderationMessage = configuration.intro + moderationMessage;
 
@@ -389,14 +397,6 @@
 				let followLink = baseUri + $("#follow>a").attr('href');
 				promiseRequest("GET", followLink )
 					.then(() => console.log("Stop suivi " + followLink ) );
-			}
-
-			// Gestion fermeture du sujet
-			if( $("input[name=shouldLock]").prop('checked') ) {
-				GM_setValue( "threadToLock", baseUri + $(".closeAction").attr('href') );
-				moderationMessage += configuration.fermer.replace( '$$', $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri+profilUrl, baseUri+mpUrl ) );
-			} else {
-				GM_setValue( "threadToLock", '' );
 			}
 
 			// Ajout du message dans l'éditeur
