@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.3.1
+// @version			2.3.2
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -280,12 +280,6 @@
 	// Gestion de la mise à jour manuelle
 	$("#oc-mod-update").click( () => {
 		getConfigurationFile( true ).then( () => alert('Mise à jour des réponses effectuée !') );
-	});
-
-	// Gestion des MP
-	$(".oc-mod-mp").click( function(e) {
-		GM_setValue( "mpContent", $(this).parent().parent().parent().find(".message.markdown-body").html() );
-		GM_setValue( "mpClick" , true );
 	});
 
 	// Gestion des MP
