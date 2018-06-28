@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.3.2
+// @version			2.3.3
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -81,38 +81,18 @@
 	if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
 		GM_setValue( "mpClick" , false );
 		getConfigurationFile( false ).then( () => {
-			waitForTinymce( function(e) {
-				let mp = GM_getValue("answers").mp;
-				let messageMp = mp.message.replace( '$$', GM_getValue("lastPage") ) + GM_getValue( "mpContent" );
-				$("input#ThreadMessage_title").val( mp.title );
-				$("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
-				waitForEditor( function(e) {
-					setTimeout( function(e) {
-						tinyMCE.activeEditor.insertContent( messageMp );
-					},100);
-				});
-			});
+			let mp = GM_getValue("answers").mp;
+			let messageMp = mp.message.replace( '$$', GM_getValue("lastPage") ) + GM_getValue( "mpContent" );
+			$("input#ThreadMessage_title").val( mp.title );
+			$("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
+            let textareaHolder = $("#ThreadMessage_comments_0_wysiwyg_message_ifr");
+
+            if(textareaHolder.length) {
+                textareaHolder[0].contentDocument.body.innerHTML = message;
+            } else {
+                $("#ThreadMessage_comments_0_wysiwyg_message")[0].value = messageMp;
+            }
 		});
-	}
-	// Attente TinyMCE
-	function waitForTinymce( callback ) {
-		if( typeof( tinyMCE ) !== 'undefined' ) {
-			callback();
-		} else {
-			setTimeout( function(e) {
-				waitForTinymce( callback );
-			},100);
-		}
-	}
-	// Attente éditeur de message
-	function waitForEditor( callback ) {
-		if( tinyMCE.activeEditor !== null ) {
-			callback();
-		} else {
-			setTimeout( function(e) {
-				waitForEditor( callback );
-			},100);
-		}
 	}
 
 	// Traitement sujet
