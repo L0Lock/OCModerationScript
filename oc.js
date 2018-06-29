@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.4.0
+// @version			2.5.0
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -32,7 +32,7 @@
 
 	// Variables de gestion
 	const formats = { "vertical": 265, "horizontal": 500 };
-	const hr = '<hr style="margin: 5px 15px; width: 200px;" />';
+	const hr = '<hr class="mod-oc-hr" />';
 	var forums;
 	var section = $('span[itemprop="title"]').last().text();
 	var nbMessages = 0;
@@ -72,8 +72,8 @@
 	// Ajout lien MP + suppression
 	$(".author>a").each( function(e) {
 		if( $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri, '') != $(this).attr("href") ) {
-			$(this).parent().parent().append('<a title="Ecrire un MP au membre" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp btn btn-default" target="_blank" style="margin-top: 5px;"><i class="icon-letter"></i></a>');
-			$(this).parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-delete oc-mod-mp btn btn-warning" style="margin-top: 5px;"><i class="icon-cross"></i></a>');
+			$(this).parent().parent().append('<a title="Ecrire un MP au membre" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp btn btn-default" target="_blank"><i class="icon-letter"></i></a>');
+			$(this).parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-delete oc-mod-mp btn btn-warning"><i class="icon-cross"></i></a>');
 		}
 	});
 
@@ -85,13 +85,13 @@
 			let messageMp = mp.message.replace( '$$', GM_getValue("lastPage") ) + GM_getValue( "mpContent" );
 			$("input#ThreadMessage_title").val( mp.title );
 			$("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
-            let textareaHolder = $("#ThreadMessage_comments_0_wysiwyg_message_ifr");
+			let textareaHolder = $("#ThreadMessage_comments_0_wysiwyg_message_ifr");
 
-            if(textareaHolder.length) {
-                textareaHolder[0].contentDocument.body.innerHTML = message;
-            } else {
-                $("#ThreadMessage_comments_0_wysiwyg_message")[0].value = messageMp;
-            }
+			if(textareaHolder.length) {
+				textareaHolder[0].contentDocument.body.innerHTML = message;
+			} else {
+				$("#ThreadMessage_comments_0_wysiwyg_message")[0].value = messageMp;
+			}
 		});
 	}
 
@@ -149,12 +149,12 @@
 				}
 			});
 
-			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Ajoute un entête de message pour préciser le caractère automatique de la modération"><label style="margin: 0px;"><input name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse</label></div>' );
-			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si décochée, vous permet de modifier le contenu du message avant de le publier"><label style="margin: 0px;"><input name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement</label></div>' );
-			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera fermé et une phrase le précisera dans le message"><label style="margin: 0px;"><input name="shouldLock" type="checkbox" value="1" /> 🔒 Fermer le sujet</label></div>' );
-			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, toutes les alertes du sujet seront retirées"><label style="margin: 0px;"><input name="dismissAlerts" type="checkbox" value="1" /> 🔔 Retirer les alertes</label></div>' );
-			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera passé à \'Résolu\'"><label style="margin: 0px;"><input name="resolveTopic" type="checkbox" value="1" /> ✔ Passer à résolu</label></div>' );
-			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera ajouté à votre liste de sujets suivis"><label style="margin: 0px;"><input name="followTopic" type="checkbox" value="1" /> ⚑ Suivre le sujet</label></div>' );
+			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Ajoute un entête de message pour préciser le caractère automatique de la modération"><label class="mod-oc-label"><input name="hasHeader" type="checkbox" value="1" /> Ajouter entête de réponse</label></div>' );
+			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si décochée, vous permet de modifier le contenu du message avant de le publier"><label class="mod-oc-label"><input name="postMessage" type="checkbox" checked="checked" value="1" /> Poster le message directement</label></div>' );
+			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera fermé et une phrase le précisera dans le message"><label class="mod-oc-label"><input name="shouldLock" type="checkbox" value="1" /> 🔒 Fermer le sujet</label></div>' );
+			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, toutes les alertes du sujet seront retirées"><label class="mod-oc-label"><input name="dismissAlerts" type="checkbox" value="1" /> 🔔 Retirer les alertes</label></div>' );
+			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera passé à \'Résolu\'"><label class="mod-oc-label"><input name="resolveTopic" type="checkbox" value="1" /> ✔ Passer à résolu</label></div>' );
+			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera ajouté à votre liste de sujets suivis"><label class="mod-oc-label"><input name="followTopic" type="checkbox" value="1" /> ⚑ Suivre le sujet</label></div>' );
 			$("#oc-mod-formats").append( '<span class="oc-mod-tooltip" title="Permet de définir un affichage vertical de la boîte à outils"><input name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "vertical" ? 'checked="checked"' : "")+' value="vertical" /> Vertical</span>&nbsp;<span class="oc-mod-tooltip" title="Permet de définir un affichage horizontal de la boîte à outils"><input name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "horizontal" ? 'checked="checked"' : "")+' value="horizontal" /> Horizontal</span>' );
 			$("#oc-mod-valid").append( '<button id="oc-mod-validation" title="Valider les actions de modération" class="oc-mod-tooltip btn btn-danger">Modérer</button>' );
 
@@ -187,14 +187,13 @@
 					tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, newlink );
 					$(window).scrollTop( $(document).height()-200 );
 				});
-				$(".oc-mod-pointer").css({"cursor":"pointer"});
 			}
 
 			// Ajout des messages possibles
 			let hrPlaced = false;
 			for( let typeMessage in messagesSection ) {
 				for( let message of messagesSection[typeMessage] ) {
-					$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'"><label style="margin: 0px;"><input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'</label></div>' );
+					$("#oc-mod-reponses").append( '<div class="oc-mod-tooltip" title="'+message.infobulle.replace('"',"")+'"><label class="mod-oc-label"><input class="oc-mod-checkboxes" type="checkbox" value="'+message.id+'" /> '+message.title+'</label></div>' );
 				}
 				if( messagesSection.specific.length && !hrPlaced ) {
 					$("#oc-mod-reponses").append( hr );
@@ -205,45 +204,12 @@
 			// Déplacement
 			$("#oc-mod-reponses").append(
 				'<div class="oc-mod-tooltip" title="Si cochée, laisse apparaître la liste des forums possibles pour déplacer le sujet">'+
-				'<label style="margin: 0px;"><input id="oc-mod-move" type="checkbox" value="1" /> Déplacer</label><br /><span id="oc-mod-select-span"></span>'+
+				'<label class="mod-oc-label"><input id="oc-mod-move" type="checkbox" value="1" /> Déplacer</label><br /><span id="oc-mod-select-span"></span>'+
 				'</div>'
 			);
-
-			// Style
-			$("#oc-mod-panel").css({
-				"z-index": "1000",
-				"position": "fixed",
-				"top": posY,
-				"left": posX,
-				"background": "#ececec",
-				"padding": "10px",
-				"border": "1px solid #4f8a03",
-				"border-radius": "5px"
-			});
-			$("#oc-mod-caret").css( {"cursor":"pointer"} );
-			$("#oc-mod-drag").css( {"cursor":"move"} );
-			$(".oc-mod-icon").css( {"margin-left":"5px","float":"right","color":"#4f8a03"} );
-			$(".oc-mod-column").css( {"float":"left","width":"250px","margin-bottom":"10px"} );
-			$("#oc-mod-valid").css( {"float":"right"} );
-			$(".oc-mod-title").css( {"font-size":"1.2em","color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
-			$(".oc-mod-version").css( {"font-size":"0.5em"} );
-			$(".oc-mod-subtitle").css( {"font-size":"1.1em","color":"#000","font-weight":"bold","line-height":"1em"} );
-			$(".oc-mod-subsubtitle").css( {"font-size":"1em","color":"#4f8a03","font-weight":"bold","line-height":"1em"} );
-			$("#oc-mod-validation").css({
-				"position":"absolute",
-				"bottom":"20px",
-				"right":"20px",
-				"margin":"10px 0 0 5px",
-				"border":"1px solid #380e00",
-				"box-shadow":"inset 0 1px 1px 0 #a95f47",
-				"background-color":"#691c02",
-				"background-image":"linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%)",
-				"text-shadow":"0 -1px 0 #1c181b",
-				"text-decoration":"none"
-			});
 		}
 	}
-
+	
 	// Gestion déplacement sujet
 	$("#oc-mod-move").click( function(e) {
 		if( $(this).prop("checked") ) {
@@ -311,7 +277,7 @@
 		if( $("#oc-mod-move").prop("checked") ) {
 			let moveLink = baseUri + $("#deplacerActionModal>form").attr('action');
 			let postData = 'CategoriesList[category]='+$("#oc-mod-forum-select").val();
-			moderationMessage += '<h1 style="text-align: center;">Mauvais forum</h1>';
+			moderationMessage += '<h1 class="mod-oc-h">Mauvais forum</h1>';
 			moderationMessage += configuration.deplacer.replace('$$2', $( "#oc-mod-forum-select option:selected" ).text() );
 			moderationMessage = moderationMessage.replace('$$1', section );
 			promiseRequest("POST", moveLink, postData )
@@ -320,10 +286,10 @@
 
 		$(".oc-mod-checkboxes:checked").each( function(e) {
 			let leMessage = messages.filter( a => a.id == $(this).val() )[0];
-			moderationMessage += '<h1 style="text-align: center;">'+leMessage.title+'</h1>';
+			moderationMessage += '<h1 class="mod-oc-h">'+leMessage.title+'</h1>';
 			moderationMessage += leMessage.message;
 			if( leMessage.titleQuote ) {
-				moderationMessage += '<p style="font-size: xx-small;">(titre originel : '+titreMessage+')</p>';
+				moderationMessage += '<p class="mod-oc-xs">(titre originel : '+titreMessage+')</p>';
 			}
 		});
 
@@ -386,13 +352,52 @@
 		}
 	});
 
+	// Style CSS
+	$('.mod-oc-hr').css({ "margin":"5px 15px", "width":"200px" });
+	$('.mod-oc-mp').css({ "margin-top":"5px" });
+	$('.mod-oc-label').css({ "margin":"0px" });
+	$('.mod-oc-h').css({ "text-align":"center" });
+	$('.mod-oc-xs').css({ "font-size":"xx-small" });
+	$("#oc-mod-panel").css({
+		"z-index": "1000",
+		"position": "fixed",
+		"top": posY,
+		"left": posX,
+		"background": "#ececec",
+		"padding": "10px",
+		"border": "1px solid #4f8a03",
+		"border-radius": "5px"
+	});
+	$(".oc-mod-pointer").css({"cursor":"pointer"});
+	$("#oc-mod-caret").css( {"cursor":"pointer"} );
+	$("#oc-mod-drag").css( {"cursor":"move"} );
+	$(".oc-mod-icon").css( {"margin-left":"5px","float":"right","color":"#4f8a03"} );
+	$(".oc-mod-column").css( {"float":"left","width":"250px","margin-bottom":"10px"} );
+	$("#oc-mod-valid").css( {"float":"right"} );
+	$(".oc-mod-title").css( {"font-size":"1.2em","color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
+	$(".oc-mod-version").css( {"font-size":"0.5em"} );
+	$(".oc-mod-subtitle").css( {"font-size":"1.1em","color":"#000","font-weight":"bold","line-height":"1em"} );
+	$(".oc-mod-subsubtitle").css( {"font-size":"1em","color":"#4f8a03","font-weight":"bold","line-height":"1em"} );
+	$("#oc-mod-validation").css({
+		"position":"absolute",
+		"bottom":"20px",
+		"right":"20px",
+		"margin":"10px 0 0 5px",
+		"border":"1px solid #380e00",
+		"box-shadow":"inset 0 1px 1px 0 #a95f47",
+		"background-color":"#691c02",
+		"background-image":"linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%)",
+		"text-shadow":"0 -1px 0 #1c181b",
+		"text-decoration":"none"
+	});
+
 	/**
- * Récupère le fichier de configuration du serveur si la dernière mise à jour
- * date de plus de 24 heures. Retourne une promesse pour poursuivre l'execution
- * de manière sécurisée.
- *
- * @returns Promise avec les valeurs
- */
+	 * Récupère le fichier de configuration du serveur si la dernière mise à jour
+	 * date de plus de 24 heures. Retourne une promesse pour poursuivre l'execution
+	 * de manière sécurisée.
+	 *
+	 * @returns Promise avec les valeurs
+	 */
 	function getConfigurationFile(forceCheck) {
 		if( forceCheck || (GM_getValue("answersLastFetch") === undefined || GM_getValue("answersLastFetch") + 86400000 > Date.now())) {
 			return promiseRequest("GET", answerFileLink)
@@ -404,12 +409,12 @@
 	}
 
 	/**
- * Crée une XML request sous forme de promise
- *
- * @param {any} method GET, POST, PUT, DELETE
- * @param {any} url URL à exploiter
- * @returns Promise contenant la requête
- */
+	 * Crée une XML request sous forme de promise
+	 *
+	 * @param {any} method GET, POST, PUT, DELETE
+	 * @param {any} url URL à exploiter
+	 * @returns Promise contenant la requête
+	 */
 	function promiseRequest(method, url, data = "" ) {
 		return new Promise((resolve, reject) => {
 			let xhr = GM_xmlhttpRequest({
@@ -426,10 +431,10 @@
 	}
 
 	/**
- * Récupère la liste filtrée des messages de modération
- *
- * @returns Liste d'objet de réponses
- */
+	 * Récupère la liste filtrée des messages de modération
+	 *
+	 * @returns Liste d'objet de réponses
+	 */
 	function getElementsBySection( messages, section ) {
 		var forum = false;
 		var orgaMessages = {
@@ -464,8 +469,8 @@
 	}
 
 	/**
- * Tri personnalisé selon colonne title
-*/
+	 * Tri personnalisé selon colonne title
+	*/
 	function comparaison( a, b ) {
 		if ( a.title < b.title ) return -1;
 		if ( a.title > b.title ) return 1;
