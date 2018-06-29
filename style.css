@@ -15,10 +15,10 @@
 	font-size: xx-small;
 }
 #oc-mod-panel {
-	z-index: 1000,
-	position: fixed,
-	background: #ececec,
-	padding: 0px,
+	z-index: 1000;
+	position: fixed;
+	background: #ececec;
+	padding: 0px;
 	border: 1px solid #4f8a03;
 	border-radius: 5px;
 }
