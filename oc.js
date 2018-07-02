@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.5.0
+// @version			2.5.1
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -277,7 +277,7 @@
 		if( $("#oc-mod-move").prop("checked") ) {
 			let moveLink = baseUri + $("#deplacerActionModal>form").attr('action');
 			let postData = 'CategoriesList[category]='+$("#oc-mod-forum-select").val();
-			moderationMessage += '<h1 class="mod-oc-h">Mauvais forum</h1>';
+			moderationMessage += '<h1 style="text-align: center;">Mauvais forum</h1>';
 			moderationMessage += configuration.deplacer.replace('$$2', $( "#oc-mod-forum-select option:selected" ).text() );
 			moderationMessage = moderationMessage.replace('$$1', section );
 			promiseRequest("POST", moveLink, postData )
@@ -286,7 +286,7 @@
 
 		$(".oc-mod-checkboxes:checked").each( function(e) {
 			let leMessage = messages.filter( a => a.id == $(this).val() )[0];
-			moderationMessage += '<h1 class="mod-oc-h">'+leMessage.title+'</h1>';
+			moderationMessage += '<h1 style="text-align: center;">'+leMessage.title+'</h1>';
 			moderationMessage += leMessage.message;
 			if( leMessage.titleQuote ) {
 				moderationMessage += '<p class="mod-oc-xs">(titre originel : '+titreMessage+')</p>';
@@ -356,7 +356,6 @@
 	$('.mod-oc-hr').css({ "margin":"5px 15px", "width":"200px" });
 	$('.mod-oc-mp').css({ "margin-top":"5px" });
 	$('.mod-oc-label').css({ "margin":"0px" });
-	$('.mod-oc-h').css({ "text-align":"center" });
 	$('.mod-oc-xs').css({ "font-size":"xx-small" });
 	$("#oc-mod-panel").css({
 		"z-index": "1000",
