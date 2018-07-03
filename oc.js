@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.5.1
+// @version			2.5.2
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -343,10 +343,12 @@
 			tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, moderationMessage );
 
 			// Validation du formulaire si demandée
-			if( $("input[name=postMessage]").prop('checked') )
+			if( $("input[name=postMessage]").prop('checked') ) {
 				$("input[name=submit_comment]").click();
-			else
+            } else {
+                $("#oc-mod-caret").trigger("click");
 				$(window).scrollTop( $(document).height() );
+            }
 		} else {
 			alert( 'Aucun message à poster !' );
 		}
