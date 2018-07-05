@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.5.2
+// @version			2.6.0
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -41,9 +41,6 @@
 	var modExpand = false;
 	var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
 	var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
-	
-	// Lien mise à jour message
-	$("#myFollowedThreads").after('<li><a href="#" id="oc-mod-update">Mettre à jour les réponses</a></li>');
 
 	// Mémorisation pages visitées
 	GM_setValue( "lastPage", GM_getValue("currentPage") );
@@ -114,6 +111,7 @@
 		let nbLiens = liensSection.all.length + liensSection.specific.length;
 
 		if( nbMessages > 0 ) {
+			// Lien mise à jour message
 			$("#mainContentWithHeader").append(
 				'<div id="oc-mod-panel">'+
 				'<h2 class="oc-mod-title">'+
@@ -126,14 +124,14 @@
 				'<div id="oc-mod-reponses" class="oc-mod-column">'+
 				'<h3 class="oc-mod-subtitle">'+
 				'Messages possibles '+
-				'<span class="oc-mod-version">'+GM_getValue("answers").version+'</span>'+
+				'<span class="oc-mod-version"><a href="#" id="oc-mod-update" class="oc-mod-tooltip" title="Mettre à jour les messages">'+GM_getValue("answers").version+' <i class="oc-mod-refresh icon-refresh"></i></a></span>'+
 				'</h3>'+
-				'</div>'+
-				'<div id="oc-mod-options" class="oc-mod-column">'+
-				'<h3 class="oc-mod-subtitle">Options</h3>'+
 				'</div>'+
 				'<div id="oc-mod-formats" class="oc-mod-column">'+
 				'<h3 class="oc-mod-subtitle">Affichage</h3>'+
+				'</div>'+
+				'<div id="oc-mod-options" class="oc-mod-column">'+
+				'<h3 class="oc-mod-subtitle">Options</h3>'+
 				'</div>'+
 				'<div id="oc-mod-valid"></div>'+
 				'</div>'+
@@ -209,7 +207,7 @@
 			);
 		}
 	}
-	
+
 	// Gestion déplacement sujet
 	$("#oc-mod-move").click( function(e) {
 		if( $(this).prop("checked") ) {
@@ -225,7 +223,7 @@
 
 	// Gestion de la mise à jour manuelle
 	$("#oc-mod-update").click( () => {
-		getConfigurationFile( true ).then( () => alert('Mise à jour des réponses effectuée !') );
+		getConfigurationFile( true ).then( () => location.reload(true) );
 	});
 
 	// Gestion des MP
@@ -369,6 +367,7 @@
 		"border": "1px solid #4f8a03",
 		"border-radius": "5px"
 	});
+    $(".oc-mod-refresh").css({"vertical-align":"baseline"});
 	$(".oc-mod-pointer").css({"cursor":"pointer"});
 	$("#oc-mod-caret").css( {"cursor":"pointer"} );
 	$("#oc-mod-drag").css( {"cursor":"move"} );
