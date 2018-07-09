@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.6.1
+// @version			2.7.0
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -34,6 +34,7 @@
 	const formats = { "vertical": 265, "horizontal": 500 };
 	const hr = '<hr class="mod-oc-hr" />';
 	var forums;
+	var code = "plain"
 	var section = $('span[itemprop="title"]').last().text();
 	var nbMessages = 0;
 	var configuration = [];
@@ -285,7 +286,20 @@
 		$(".oc-mod-checkboxes:checked").each( function(e) {
 			let leMessage = messages.filter( a => a.id == $(this).val() )[0];
 			moderationMessage += '<h1 style="text-align: center;">'+leMessage.title+'</h1>';
-			moderationMessage += leMessage.message;
+
+			for( let forumObject in forums ) {
+				if( section == forums[forumObject].nom ) {
+					code = forums[forumObject].code;
+				}
+			}
+			
+			// Ajout du nom du code sur la balise code (message 10)
+			if( leMessage.id == 10 ) {
+				moderationMessage += leMessage.message.replace( '$$', code );
+			} else {
+				moderationMessage += leMessage.message;
+			}
+			
 			if( leMessage.titleQuote ) {
 				moderationMessage += '<p style="font-size":"xx-small">(titre originel : '+titreMessage+')</p>';
 			}
