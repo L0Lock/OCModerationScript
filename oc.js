@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.7.1
+// @version			2.7.2
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -27,7 +27,7 @@
 	const mpUrl = "/mp/nouveau/";
 	const profilUrl = "/membres/";
 	const messageUrl = "/forum/sujet/";
-	const deleteUrl = "/message/supprimer/";
+	const deleteUrl = "/fr/message/supprimer/";
 	const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
 
 	// Variables de gestion
