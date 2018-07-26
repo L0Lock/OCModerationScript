@@ -301,7 +301,7 @@
 			}
 			
 			if( leMessage.titleQuote ) {
-				moderationMessage += '<p style="font-size":"xx-small">(titre originel : '+titreMessage+')</p>';
+				moderationMessage += '<p style="font-size:xx-small;">(titre originel : '+titreMessage+')</p>';
 			}
 		});
 
