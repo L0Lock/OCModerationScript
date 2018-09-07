@@ -129,6 +129,14 @@
 			"exclude": ["Forum du staff"],
 			"title": "Cours PHP/MySQL",
 			"url": "https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql"
+		},
+
+		{
+			"id": 15,
+			"section": ["Graphisme 3D"],
+			"exclude": ["Forum du staff"],
+			"title": "Formation Blender 2.73 par Blenderlounge",
+			"url": "https://www.youtube.com/playlist?list=PLuZVx6uIcP-QSUx9zyGto6ZWSABeAH_76"
 		}
 	],
 
