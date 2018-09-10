@@ -1,5 +1,5 @@
 {
-	"version": "1.2.1",
+	"version": "1.2.2",
 	
 	"configuration": 
 	{
@@ -137,6 +137,14 @@
 			"exclude": ["Forum du staff"],
 			"title": "Formation Blender 2.73 par Blenderlounge",
 			"url": "https://www.youtube.com/playlist?list=PLuZVx6uIcP-QSUx9zyGto6ZWSABeAH_76"
+		},
+
+		{
+			"id": 15,
+			"section": ["Graphisme 3D"],
+			"exclude": ["Forum du staff"],
+			"title": "Discord Blenderlounge",
+			"url": "https://discordapp.com/invite/naqPXz"
 		}
 	],
 
