@@ -1,5 +1,5 @@
 {
-	"version": "1.2.3",
+	"version": "1.2.4",
 	
 	"configuration": 
 	{
@@ -471,7 +471,7 @@
 		{"nom": "Mobile","parent": "Programmation","code": "java"},
 		{"nom": "Autres langages (VBA, Ruby,...)","parent": "Programmation","code": "vb"},
 		{"nom": "Discussions développement","parent": "Programmation","code": null},
-		{"nom": "Système d'exploitation","parent": null,"code": null},
+		{"nom": "Système d'exploitation","parent": null,"code": "bash"},
 		{"nom": "Windows","parent": "Système d'exploitation","code": null},
 		{"nom": "Linux & FreeBSD","parent": "Système d'exploitation","code": null},
 		{"nom": "Mac OS X","parent": "Système d'exploitation","code": null},
