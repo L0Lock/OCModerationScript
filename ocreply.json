@@ -1,5 +1,5 @@
 {
-	"version": "1.2.4",
+	"version": "1.2.5",
 	
 	"configuration": 
 	{
@@ -448,6 +448,16 @@
 			"title": "Insertion des images <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_img.png\" alt=\"\" width=\"22\" height=\"22\" />",
 			"message": "<p>Le forum dispose d’un outil pour poster des images directement dans vos messages via ce bouton : <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_img.png\" alt=\"\" width=\"22\" height=\"22\" />. Vous avez la possibilité d’y mettre soit une image depuis votre ordinateur, soit un lien direct si l’image est déjà sur Internet. <strong>Utilisez toujours l’outil d’intégration d’images du site</strong>, c’est la seule manière d’afficher des images dans vos messages.</p>",
 			"infobulle": "Comment insérer des images.",
+			"titleQuote": false
+		},
+		
+		{
+			"id": 32,
+			"section": ["all"],
+			"exclude": ["Forum du staff"],
+			"title": "Hors sujet",
+			"message": "<p>Ton message est hors sujet. Afin de garder un forum clair où chaque fil de discussion répond à une problématique, il est nécessaire de ne pas multiplier les sujets à l'intérieur du même fil de discussion. Merci de créer ton propre sujet à l'aide du bouton bleu « Créer un sujet » en haut à droite du forum adéquat.",
+			"infobulle": "Message HS, poster ailleurs.",
 			"titleQuote": false
 		}
 	],
