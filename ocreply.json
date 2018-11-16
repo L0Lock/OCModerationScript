@@ -1,5 +1,5 @@
 {
-	"version": "1.2.5",
+	"version": "1.2.6",
 	
 	"configuration": 
 	{
@@ -13,7 +13,7 @@
 	"mp": 
 	{
 		"title": "Modération",
-		"message": "<p>Bonjour,</p><p>Je viens de supprimer ton dernier message sur <a href='$$'>ce sujet</a> car ...</p><p>Merci de créer ton propre sujet à l'aide du bouton bleu \"Créer un sujet\" en haut à droite du forum adéquat ;)</p><p>Par ailleurs je te conseille fortement la lecture des <a href=\"https://openclassrooms.com/forum/sujet/regles-et-bonnes-pratiques-du-forum-9\">Règles générales du forum</a> avant de poster.</p><hr />",
+		"message": "<p>Bonjour,</p><p>Je viens de supprimer ton dernier message sur <a href='$$'>ce sujet</a> car ...</p><p>Merci de créer ton propre sujet à l'aide du bouton bleu \"Créer un sujet\" en haut à droite du forum adéquat ;)</p><p>Par ailleurs je te conseille fortement la lecture des <a href=\"https://openclassrooms.com/forum/sujet/regles-et-bonnes-pratiques-du-forum-9\">Règles générales du forum</a> avant de poster.</p><p>Merci de ta compréhension.<hr />",
 		"softmp": "<p>Bonjour,</p><p>Je te contacte par rapport à ton message sur <a href='$$'>ce sujet</a> car ...</p><p>Par ailleurs je te rappelle les <a href=\"https://openclassrooms.com/forum/sujet/regles-et-bonnes-pratiques-du-forum-9\">Règles générales du forum</a>.</p><hr />"
 	},
 	
