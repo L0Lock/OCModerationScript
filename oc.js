@@ -414,10 +414,10 @@
 		"text-decoration":"none"
 	});
 	$(".btn-warning").css({
-		"background-color": "#7451eb"
-    "border-bottom": "3px solid rgba(0,0,0,.25)"
-    "border-top": "none"
-    "color": "#fff"
+		"background-color": "#7451eb",
+    "border-bottom": "3px solid rgba(0,0,0,.25)",
+    "border-top": "none",
+    "color": "#fff",
     "text-decoration": "none"
 	});
 
