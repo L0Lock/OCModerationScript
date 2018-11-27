@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.8.3
+// @version			2.8.4
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -71,8 +71,8 @@
 	// Ajout lien MP + suppression
 	$(".author>a").each( function(e) {
 		if( $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri, '') != $(this).attr("href") ) {
-			$(this).parent().parent().append('<a title="Ecrire un MP au membre" data-delete="0" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp btn btn-default" target="_blank"><i class="icon-letter"></i></a>');
-			$(this).parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" data-delete="1" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp btn btn-warning"><i class="icon-cross"></i></a>');
+			$(this).parent().parent().append('<a title="Ecrire un MP au membre" data-delete="0" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--primary" style="margin:5px;padding:5px;text-decoration:none;" target="_blank"><i class="icon-letter"></i></a>');
+			$(this).parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" data-delete="1" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--danger" style="margin:5px;padding:5px;text-decoration:none;"><i class="icon-cross"></i></a>');
 		}
 	});
 
@@ -165,7 +165,7 @@
 			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera passé à \'Résolu\'"><label class="mod-oc-label"><input name="resolveTopic" type="checkbox" value="1" /> ✔ Passer à résolu</label></div>' );
 			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera ajouté à votre liste de sujets suivis"><label class="mod-oc-label"><input name="followTopic" type="checkbox" value="1" /> ⚑ Suivre le sujet</label></div>' );
 			$("#oc-mod-formats").append( '<span class="oc-mod-tooltip" title="Permet de définir un affichage vertical de la boîte à outils"><input name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "vertical" ? 'checked="checked"' : "")+' value="vertical" /> Vertical</span>&nbsp;<span class="oc-mod-tooltip" title="Permet de définir un affichage horizontal de la boîte à outils"><input name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "horizontal" ? 'checked="checked"' : "")+' value="horizontal" /> Horizontal</span>' );
-			$("#oc-mod-valid").append( '<button id="oc-mod-validation" title="Valider les actions de modération" class="oc-mod-tooltip btn btn-danger">Modérer</button>' );
+			$("#oc-mod-valid").append( '<button id="oc-mod-validation" title="Valider les actions de modération" class="oc-mod-tooltip button--warning">Modérer</button>' );
 
 			// Ajout menu liens
 			if( nbLiens > 0 ) {
@@ -378,7 +378,6 @@
 
 	// Style CSS
 	$('.mod-oc-hr').css({ "margin":"5px 15px", "width":"200px" });
-	$('.mod-oc-mp').css({ "margin-top":"5px" });
 	$('.mod-oc-label').css({ "margin":"0px" });
 	$("#oc-mod-panel").css({
 		"z-index": "1000",
@@ -387,40 +386,25 @@
 		"left": posX,
 		"background": "#ececec",
 		"padding": "10px",
-		"border": "1px solid #4f8a03",
+		"border": "1px solid #f52",
 		"border-radius": "5px"
 	});
     $(".oc-mod-refresh").css({"vertical-align":"baseline"});
 	$(".oc-mod-pointer").css({"cursor":"pointer"});
 	$("#oc-mod-caret").css( {"cursor":"pointer"} );
 	$("#oc-mod-drag").css( {"cursor":"move"} );
-	$(".oc-mod-icon").css( {"margin-left":"5px","float":"right","color":"#4f8a03"} );
+	$(".oc-mod-icon").css( {"margin-left":"5px","float":"right","color":"#f52"} );
 	$(".oc-mod-column").css( {"float":"left","width":"250px","margin-bottom":"10px"} );
 	$("#oc-mod-valid").css( {"float":"right"} );
-	$(".oc-mod-title").css( {"font-size":"1.2em","color":"#4f8a03","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
+	$(".oc-mod-title").css( {"font-size":"1.2em","color":"#f52","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
 	$(".oc-mod-version").css( {"font-size":"0.5em"} );
 	$(".oc-mod-subtitle").css( {"font-size":"1.1em","color":"#000","font-weight":"bold","line-height":"1em"} );
-	$(".oc-mod-subsubtitle").css( {"font-size":"1em","color":"#4f8a03","font-weight":"bold","line-height":"1em"} );
+	$(".oc-mod-subsubtitle").css( {"font-size":"1em","color":"#f52","font-weight":"bold","line-height":"1em"} );
 	$("#oc-mod-validation").css({
 		"position":"absolute",
 		"bottom":"20px",
-		"right":"20px",
-		"margin":"10px 0 0 5px",
-		"border":"1px solid #380e00",
-		"box-shadow":"inset 0 1px 1px 0 #a95f47",
-		"background-color":"#691c02",
-		"background-image":"linear-gradient(to bottom,#872403 0,#763019 49%,#691c02 50%,#421100 100%)",
-		"text-shadow":"0 -1px 0 #1c181b",
-		"text-decoration":"none"
+		"right":"20px"
 	});
-	$(".btn-warning").css({
-		"background-color": "#7451eb",
-    "border-bottom": "3px solid rgba(0,0,0,.25)",
-    "border-top": "none",
-    "color": "#fff",
-    "text-decoration": "none"
-	});
-
 
 	/**
 	 * Récupère le fichier de configuration du serveur si la dernière mise à jour
