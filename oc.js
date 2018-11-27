@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.8.4
+// @version			2.8.5
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -405,6 +405,7 @@
 		"bottom":"20px",
 		"right":"20px"
 	});
+	$(".avatar-oc>a>img").css({"margin-bottom":"10px"});
 
 	/**
 	 * Récupère le fichier de configuration du serveur si la dernière mise à jour
