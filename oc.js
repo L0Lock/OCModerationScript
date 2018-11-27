@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.8.5
+// @version			2.8.6
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -71,8 +71,8 @@
 	// Ajout lien MP + suppression
 	$(".author>a").each( function(e) {
 		if( $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri, '') != $(this).attr("href") ) {
-			$(this).parent().parent().append('<a title="Ecrire un MP au membre" data-delete="0" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--primary" style="margin:5px;padding:5px;text-decoration:none;" target="_blank"><i class="icon-letter"></i></a>');
-			$(this).parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" data-delete="1" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--danger" style="margin:5px;padding:5px;text-decoration:none;"><i class="icon-cross"></i></a>');
+			$(this).parent().parent().parent().append('<a title="Ecrire un MP au membre" data-delete="0" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--primary" style="margin:5px;padding:5px;text-decoration:none;" target="_blank"><i class="icon-letter"></i></a>');
+			$(this).parent().parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" data-delete="1" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--danger" style="margin:5px;padding:5px;text-decoration:none;"><i class="icon-cross"></i></a>');
 		}
 	});
 
@@ -405,7 +405,7 @@
 		"bottom":"20px",
 		"right":"20px"
 	});
-	$(".avatar-oc>a>img").css({"margin-bottom":"10px"});
+	$(".skills").css({"margin-bottom":"5px"});
 
 	/**
 	 * Récupère le fichier de configuration du serveur si la dernière mise à jour
