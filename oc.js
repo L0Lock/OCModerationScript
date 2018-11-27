@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.8.1
+// @version			2.8.2
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -413,6 +413,14 @@
 		"text-shadow":"0 -1px 0 #1c181b",
 		"text-decoration":"none"
 	});
+	$(".btn-warning").css({
+		"background-color": "#7451eb"
+    "border-bottom": "3px solid rgba(0,0,0,.25)"
+    "border-top": "none"
+    "color": "#fff"
+    "text-decoration": "none"
+	});
+
 
 	/**
 	 * Récupère le fichier de configuration du serveur si la dernière mise à jour
