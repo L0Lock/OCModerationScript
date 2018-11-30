@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.8.6
+// @version			2.8.7
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -242,7 +242,7 @@
 		GM_setValue( "mpDelete" , false );
 		if( $(this).data('delete') ) {
 			if( confirm( "Voulez-vous vraiment supprimer ce message ?" ) ) {
-				GM_setValue( "postToDelete", $(this).parent().parent().parent().find(".span10.comment").attr("id").replace( 'message-', '' ) );
+				GM_setValue( "postToDelete", $(this).parent().parent().find(".span10.comment").attr("id").replace( 'message-', '' ) );
 				GM_setValue( "mpDelete" , true );
 			} else {
 				e.preventDefault();
