@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.8.7
+// @version			2.8.8
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -248,7 +248,7 @@
 				e.preventDefault();
 			}
 		}
-		GM_setValue( "mpContent", $(this).parent().parent().parent().find(".message.markdown-body").html() );
+		GM_setValue( "mpContent", $(this).parent().parent().find(".message.markdown-body").html() );
 		GM_setValue( "mpClick" , true );
 	});
 
