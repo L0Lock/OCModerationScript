@@ -24,8 +24,9 @@ Dans n'importe quel sujet, une boîte à outils s'affiche par défaut en haut à
 Une fois vos choix fait, cliquez sur le bouton "Modérer", le tour est joué !
 
 ## Les actions possibles par MP
-Sur tout message, à côté de l'avatar du membre, deux boutons permettent de :
+Sur tout message, à côté de l'avatar du membre, trois boutons permettent de :
 - Contacter l'auteur d'un message par MP
+- Masquer le message avec "autre motif" automatique (cf. fichier JSON index "masquer")
 - Supprimer un message et contacter l'auteur par MP
 Le MP créé reprend le nom du sujet ainsi que le contenu du message cliqué.
 
