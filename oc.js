@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.8.8
+// @version			2.9.0
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -28,6 +28,7 @@
 	const profilUrl = "/membres/";
 	const messageUrl = "/forum/sujet/";
 	const deleteUrl = "/fr/message/supprimer/";
+	const moderateUrl = "/fr/message/moderer/";
 	const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
 
 	// Variables de gestion
@@ -71,8 +72,9 @@
 	// Ajout lien MP + suppression
 	$(".author>a").each( function(e) {
 		if( $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri, '') != $(this).attr("href") ) {
-			$(this).parent().parent().parent().append('<a title="Ecrire un MP au membre" data-delete="0" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--primary" style="margin:5px;padding:5px;text-decoration:none;" target="_blank"><i class="icon-letter"></i></a>');
-			$(this).parent().parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" data-delete="1" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--danger" style="margin:5px;padding:5px;text-decoration:none;"><i class="icon-cross"></i></a>');
+			$(this).parent().parent().parent().append('<a title="Ecrire un MP au membre" data-delete="1" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--primary" target="_blank"><i class="icon-letter"></i></a>');
+			$(this).parent().parent().parent().append('<a title="Modérer le message" data-moderate="1" href="#" class="oc-mod-tooltip oc-mod-mp button--warning"><i class="icon-eye"></i></a>');
+			$(this).parent().parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" data-delete="1" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--danger"><i class="icon-cross"></i></a>');
 		}
 	});
 
@@ -240,16 +242,29 @@
 	// Gestion des MP
 	$(".oc-mod-mp").click( function(e) {
 		GM_setValue( "mpDelete" , false );
-		if( $(this).data('delete') ) {
-			if( confirm( "Voulez-vous vraiment supprimer ce message ?" ) ) {
-				GM_setValue( "postToDelete", $(this).parent().parent().find(".span10.comment").attr("id").replace( 'message-', '' ) );
-				GM_setValue( "mpDelete" , true );
-			} else {
-				e.preventDefault();
+		
+		if( $(this).data('moderate') ) {
+			let masquer = GM_getValue("answers").masquer;
+			let moderateLink = baseUri + moderateUrl + $(this).parent().parent().find(".span10.comment").attr("id").replace( 'message-', '' );
+			let postData = 'moderation[moderate]='+masquer.idMasquer+'&moderation[otherReason]='+masquer.message+'&moderation[_token]='+$('#moderation__token').val();
+			console.log( moderateLink, postData );
+			promiseRequest("POST", moderateLink, postData )
+				.then(() => {
+					console.log( "Envoi masquage OK" );
+				}
+			);
+		} else {
+			if( $(this).data('delete') ) {
+				if( confirm( "Voulez-vous vraiment supprimer ce message ?" ) ) {
+					GM_setValue( "postToDelete", $(this).parent().parent().find(".span10.comment").attr("id").replace( 'message-', '' ) );
+					GM_setValue( "mpDelete" , true );
+				} else {
+					e.preventDefault();
+				}
 			}
+			GM_setValue( "mpContent", $(this).parent().parent().find(".message.markdown-body").html() );
+			GM_setValue( "mpClick" , true );
 		}
-		GM_setValue( "mpContent", $(this).parent().parent().find(".message.markdown-body").html() );
-		GM_setValue( "mpClick" , true );
 	});
 
 	// Changement de format
@@ -406,6 +421,7 @@
 		"right":"20px"
 	});
 	$(".skills").css({"margin-bottom":"5px"});
+    $(".oc-mod-mp").css({"margin":"1px","padding":"5px","text-decoration":"none" });
 
 	/**
 	 * Récupère le fichier de configuration du serveur si la dernière mise à jour
