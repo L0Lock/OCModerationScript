@@ -240,7 +240,7 @@
 			"id": 10,
 			"section": ["Programmation", "Site Web", "Système d'exploitation"],
 			"exclude": ["Forum du staff"],
-			"title": "Merci d'utiliser la mise en forme de code <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_code.png\" alt=\"Image\" />",
+			"title": "Merci d'utiliser la balise code <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_code.png\" alt=\"Image\" />",
 			"message": "<p>Les forums d'Openclassrooms disposent d'une fonctionnalité permettant de colorer et mettre en forme les codes source afin de les rendre plus lisibles et faciles à manipuler par les intervenants. Pour cela, il faut utiliser le bouton <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_code.png\" alt=\"Image\" /> de l'éditeur, choisir un des langages proposés et coller votre code dans la zone prévue. Si vous utilisez l'éditeur de messages en mode Markdown, il faut utiliser les balises <code>&lt;pre class=\"brush: $$;\"&gt;Votre code ici&lt;/pre&gt;</code>.</p>",
 			"infobulle": "Précise le fonctionnement de la balise code sur le forum",
 			"titleQuote": false
@@ -340,7 +340,7 @@
 			"id": 20,
 			"section": ["all"],
 			"exclude": ["Forum du staff"],
-			"title": "Pas d'urgence dans le forum d'OC",
+			"title": "Pas d'urgence sur ce forum",
 			"message": "<p>Vous êtes sur un forum d'entraide, pas sur un site de service. Ici les intervenants vous répondent quand ils le veulent, s'ils le veulent, sans aucune obligation. Aussi, ce genre d'indications rendent le forum moins agréable à utiliser et moins équitable. De ce fait, les mentions de quelconque \"urgence\" ne sont pas admises sur ce forum. La meilleure façon d'avoir de l'aide rapidement ici est de fournir toutes les informations nécessaires et de les présenter correctement. N'hésitez pas à lire les règles épinglés en haut des sections du forum, elles indiquent généralement ce qui est nécessaire.</p>",
 			"infobulle": "Avertit sur la notion d'urgence incompatible sur les forums d'entraide",
 			"titleQuote": false
@@ -441,7 +441,7 @@
 			"id": 30,
 			"section": ["all"],
 			"exclude": ["Forum du staff", "Choix du matériel & configuration"],
-			"title": "Redirection Choix du matériel & configuration",
+			"title": "Redirection Choix matériel & confign",
 			"message": "<p>Le forum dispose d'une section \"<a href=\"https://openclassrooms.com/forum/categorie/choix-du-materiel-configuration\">Choix du matéreil & configuration</a>\" faite spécifiquement pour ce genre de demandes et où y répondent des gens dont c'est la spécialité</p><p>Je vous invite à y poster votre demande, en veillant à bien respecter le <strong><a href=\"https://openclassrooms.com/forum/sujet/pour-les-demandes-de-config-d-upgrade-et-autres\">format de demande</a></strong>.</p>",
 			"infobulle": "Redirection vers \"Choix du matériel & configuration\".",
 			"titleQuote": false
@@ -469,7 +469,8 @@
 	],
 	
 	"sections": [
-		{"nom": "Site Web","parent": null,"code": null},
+		{"nom": "Site Web","parent": null,"
+		 ": null},
 		{"nom": "HTML / CSS","parent": "Site Web","code": "xml"},
 		{"nom": "Javascript","parent": "Site Web","code": "jscript"},
 		{"nom": "PHP","parent": "Site Web","code": "php"},
