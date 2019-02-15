@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.9.0
+// @version			2.9.1
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -401,7 +401,7 @@
 		"left": posX,
 		"background": "#ececec",
 		"padding": "10px",
-		"border": "1px solid #f52",
+		"border": "2px solid #f52",
 		"border-radius": "5px"
 	});
     $(".oc-mod-refresh").css({"vertical-align":"baseline"});
