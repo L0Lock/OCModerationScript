@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.9.2
+// @version			2.9.3
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -78,6 +78,18 @@
 		}
 	});
 
+	// ajout bouton suppression alertes
+	if( $(".span12>a").length ) {
+		$("#mainContentWithHeader").append('<span title="Retirer les alertes de la page" class="oc-mod-tooltip button--primary" id="oc-mod-dismiss"><i class="icon-garbage"></i></span>');
+		$("#oc-mod-dismiss").click( dismissPageAlerts() );
+		$("#oc-mod-dismiss").css({
+			"cursor":"pointer",
+			"position":"fixed",
+			"left":"50px",
+			"top":"50%"
+		});
+	}
+
 	// Traitement MP
 	if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
 		GM_setValue( "mpClick" , false );
@@ -98,7 +110,7 @@
 			let textareaHolder = $("#ThreadMessage_comments_0_wysiwyg_message_ifr");
 
 			if(textareaHolder.length) {
-				textareaHolder[0].contentDocument.body.innerHTML = message;
+				textareaHolder[0].contentDocument.body.innerHTML = messageMp;
 			} else {
 				$("#ThreadMessage_comments_0_wysiwyg_message")[0].value = messageMp;
 			}
@@ -106,8 +118,9 @@
 	}
 
 	// Traitement sujet
-	if( $("input[name=submit_comment]").length )
+	if( $("input[name=submit_comment]").length ) {
 		getConfigurationFile( false ).then( initPost() );
+	}
 
 	function initPost() {
 		configuration = GM_getValue("answers").configuration;
@@ -226,8 +239,9 @@
 		if( $(this).prop("checked") ) {
 			$("#oc-mod-select-span").append( '<select id="oc-mod-forum-select"></select>' );
 			$("#CategoriesList_category>option").each( function(e) {
-				if( $(this).val() != "" )
+				if( $(this).val() != "" ) {
 					$("#oc-mod-forum-select").append('<option value="'+$(this).val()+'">'+$(this).html()+'</option>');
+				}
 			});
 		} else {
 			$("#oc-mod-select-span").html("");
@@ -242,7 +256,7 @@
 	// Gestion des MP
 	$(".oc-mod-mp").click( function(e) {
 		GM_setValue( "mpDelete" , false );
-		
+
 		if( $(this).data('moderate') ) {
 			let masquer = GM_getValue("answers").masquer;
 			let moderateLink = baseUri + moderateUrl + $(this).parent().parent().find(".span10.comment").attr("id").replace( 'message-', '' );
@@ -295,8 +309,9 @@
 		let titreMessage = $('#mainSection .grid-wrapper .grid-inner h1 a').first().text();
 		let sousTitreMessage = $('#mainSection .grid-wrapper .grid-inner h2.subtitle').first().text();
 
-		if( $("input[name=hasHeader]").prop('checked') )
+		if( $("input[name=hasHeader]").prop('checked') ) {
 			moderationMessage += configuration.headers;
+		}
 
 		if( $("#oc-mod-move").prop("checked") ) {
 			let moveLink = baseUri + $("#deplacerActionModal>form").attr('action');
@@ -351,11 +366,7 @@
 
 			// Retirer les alertes
 			if( $("input[name=dismissAlerts]").prop('checked') ) {
-				$(".span12>a").each( function(e) {
-					let alertLink = baseUri + $(this).attr('href');
-					promiseRequest("GET", alertLink )
-						.then(() => console.log("Retrait alerte " + alertLink ) );
-				});
+				dismissPageAlerts();
 			}
 
 			// Résoudre le sujet
@@ -382,10 +393,10 @@
 			// Validation du formulaire si demandée
 			if( $("input[name=postMessage]").prop('checked') ) {
 				$("input[name=submit_comment]").click();
-            } else {
-                $("#oc-mod-caret").trigger("click");
+			} else {
+				$("#oc-mod-caret").trigger("click");
 				$(window).scrollTop( $(document).height() );
-            }
+			}
 		} else {
 			alert( 'Aucun message à poster !' );
 		}
@@ -404,7 +415,7 @@
 		"border": "2px solid #f52",
 		"border-radius": "5px"
 	});
-    $(".oc-mod-refresh").css({"vertical-align":"baseline"});
+	$(".oc-mod-refresh").css({"vertical-align":"baseline"});
 	$(".oc-mod-pointer").css({"cursor":"pointer"});
 	$("#oc-mod-caret").css( {"cursor":"pointer"} );
 	$("#oc-mod-drag").css( {"cursor":"move"} );
@@ -421,7 +432,19 @@
 		"right":"20px"
 	});
 	$(".skills").css({"margin-bottom":"5px"});
-    $(".oc-mod-mp").css({"margin":"1px","padding":"5px","text-decoration":"none" });
+	$(".oc-mod-mp").css({"margin":"1px","padding":"5px","text-decoration":"none" });
+	$("#oc-mod-dismiss").css({"top":"50%","left":"50px"});
+
+	/**
+	 * Retire les alertes de signalement de la page
+	 */
+	function dismissPageAlerts() {
+		$(".span12>a").each( function(e) {
+			let alertLink = baseUri + $(this).attr('href');
+			promiseRequest("GET", alertLink )
+				.then(() => console.log("Retrait alerte " + alertLink ) );
+		});
+	}
 
 	/**
 	 * Récupère le fichier de configuration du serveur si la dernière mise à jour
