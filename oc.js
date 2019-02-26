@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.9.3
+// @version			2.9.4
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -80,13 +80,13 @@
 
 	// ajout bouton suppression alertes
 	if( $(".span12>a").length ) {
-		$("#mainContentWithHeader").append('<span title="Retirer les alertes de la page" class="oc-mod-tooltip button--primary" id="oc-mod-dismiss"><i class="icon-garbage"></i></span>');
+		$("#mainContentWithHeader").append('<span title="Retirer les alertes de la page" class="oc-mod-tooltip button--warning" id="oc-mod-dismiss"><i class="icon-garbage"></i></span>');
 		$("#oc-mod-dismiss").click( dismissPageAlerts() );
 		$("#oc-mod-dismiss").css({
 			"cursor":"pointer",
 			"position":"fixed",
-			"left":"50px",
-			"top":"50%"
+			"left":"290px",
+			"top":"230px"
 		});
 	}
 
