@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.9.4
+// @version			2.9.5
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -81,12 +81,15 @@
 	// ajout bouton suppression alertes
 	if( $(".span12>a").length ) {
 		$("#mainContentWithHeader").append('<span title="Retirer les alertes de la page" class="oc-mod-tooltip button--warning" id="oc-mod-dismiss"><i class="icon-garbage"></i></span>');
-		$("#oc-mod-dismiss").click( dismissPageAlerts() );
 		$("#oc-mod-dismiss").css({
 			"cursor":"pointer",
 			"position":"fixed",
 			"left":"290px",
 			"top":"230px"
+		});
+
+		$("#oc-mod-dismiss").click( function(e) {
+			dismissPageAlerts();
 		});
 	}
 
@@ -433,17 +436,18 @@
 	});
 	$(".skills").css({"margin-bottom":"5px"});
 	$(".oc-mod-mp").css({"margin":"1px","padding":"5px","text-decoration":"none" });
-	$("#oc-mod-dismiss").css({"top":"50%","left":"50px"});
 
 	/**
 	 * Retire les alertes de signalement de la page
 	 */
 	function dismissPageAlerts() {
-		$(".span12>a").each( function(e) {
-			let alertLink = baseUri + $(this).attr('href');
-			promiseRequest("GET", alertLink )
-				.then(() => console.log("Retrait alerte " + alertLink ) );
-		});
+		if( confirm( "Voulez-vous vraiment retirer les alertes ?" ) ) {
+			$(".span12>a").each( function(e) {
+				let alertLink = baseUri + $(this).attr('href');
+				promiseRequest("GET", alertLink )
+					.then(() => console.log("Retrait alerte " + alertLink ) );
+			});
+		}
 	}
 
 	/**
