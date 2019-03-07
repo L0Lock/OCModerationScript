@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.9.5
+// @version			2.9.6
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -92,7 +92,15 @@
 			dismissPageAlerts();
 		});
 	}
-
+	
+	// réparation boutons modération
+	$("a[data-simpleit-show='modal-moderate']").click( function(e) {
+		$("div.modal-moderate").show();
+	});
+	$("a[data-simpleit-show='modal-delete']").click( function(e) {
+		$("div.modal-delete").show();
+	});
+	
 	// Traitement MP
 	if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
 		GM_setValue( "mpClick" , false );
