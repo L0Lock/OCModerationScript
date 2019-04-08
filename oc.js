@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.9.6
+// @version			2.9.7
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -100,6 +100,18 @@
 	$("a[data-simpleit-show='modal-delete']").click( function(e) {
 		$("div.modal-delete").show();
 	});
+	
+	// Supprimer modale bleue lors du déplacement
+	var observer = new MutationObserver(function(mutations) {
+		mutations.forEach(function(mutation) {
+			if( mutation.addedNodes && mutation.addedNodes.length > 0 ) {
+				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("modal-backdrop") ) {
+					$(".modal-backdrop").remove();
+				}
+			}
+		});
+	});
+	observer.observe(document.body, {childList: true});
 	
 	// Traitement MP
 	if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
