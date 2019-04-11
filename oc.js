@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.9.7
+// @version			2.9.8
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -73,7 +73,6 @@
 	$(".author>a").each( function(e) {
 		if( $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri, '') != $(this).attr("href") ) {
 			$(this).parent().parent().parent().append('<a title="Ecrire un MP au membre" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--primary" target="_blank"><i class="icon-letter"></i></a>');
-			$(this).parent().parent().parent().append('<a title="Modérer le message" data-moderate="1" href="#" class="oc-mod-tooltip oc-mod-mp button--warning"><i class="icon-eye"></i></a>');
 			$(this).parent().parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" data-delete="1" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--danger"><i class="icon-cross"></i></a>');
 		}
 	});
