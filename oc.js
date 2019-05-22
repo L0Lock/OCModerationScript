@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.9.8
+// @version			2.9.9
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -91,7 +91,7 @@
 			dismissPageAlerts();
 		});
 	}
-	
+
 	// réparation boutons modération
 	$("a[data-simpleit-show='modal-moderate']").click( function(e) {
 		$("div.modal-moderate").show();
@@ -99,7 +99,7 @@
 	$("a[data-simpleit-show='modal-delete']").click( function(e) {
 		$("div.modal-delete").show();
 	});
-	
+
 	// Supprimer modale bleue lors du déplacement
 	var observer = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {
@@ -111,7 +111,7 @@
 		});
 	});
 	observer.observe(document.body, {childList: true});
-	
+
 	// Traitement MP
 	if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
 		GM_setValue( "mpClick" , false );
@@ -464,7 +464,11 @@
 			$(".span12>a").each( function(e) {
 				let alertLink = baseUri + $(this).attr('href');
 				promiseRequest("GET", alertLink )
-					.then(() => console.log("Retrait alerte " + alertLink ) );
+					.then(() => {
+                        console.log("Retrait alerte " + alertLink );
+                        $(".alerted").removeClass("alerted");
+                        $(".span12").remove();
+                    });
 			});
 		}
 	}
