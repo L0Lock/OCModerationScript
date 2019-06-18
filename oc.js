@@ -9,7 +9,7 @@
 // @include			*openclassrooms.com/*mp/*
 // @include			*openclassrooms.com/interventions/*
 // @include			*openclassrooms.com/sujets/*
-// @version			2.9.9
+// @version			2.9.10
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -69,6 +69,26 @@
 		});
 	}
 
+	// Suppression alertes buggées
+	var nbAlertes = 0;
+	var nbAlertesSuppr = 0;
+	var alertesBuggees = [
+		baseUri+"/forum/sujet/regles-a-respecter-sur-ce-forum-67262/4845960",
+		baseUri+"/forum/sujet/upload-une-image/92459544",
+		baseUri+"/forum/sujet/staff-counter-strike-source-game-38097/1325646",
+		baseUri+"/forum/sujet/a-supprimer-234/92872493"
+	];
+	$(".notificationsList__list>li>a").each( function( i ) {
+		nbAlertes += 1;
+		if( $.inArray( $(this)[0].href , alertesBuggees ) > -1 ) {
+			$(this).parent().remove();
+			nbAlertesSuppr += 1;
+		}
+	});
+	if( nbAlertes === nbAlertesSuppr ) {
+		$(".notificationsList").remove();
+	}
+
 	// Ajout lien MP + suppression
 	$(".author>a").each( function(e) {
 		if( $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri, '') != $(this).attr("href") ) {
@@ -100,17 +120,21 @@
 		$("div.modal-delete").show();
 	});
 
-	// Supprimer modale bleue lors du déplacement
-	var observer = new MutationObserver(function(mutations) {
+	var observer = new MutationObserver( function(mutations) {
 		mutations.forEach(function(mutation) {
 			if( mutation.addedNodes && mutation.addedNodes.length > 0 ) {
+				// Supprimer modale bleue lors du déplacement
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("modal-backdrop") ) {
 					$(".modal-backdrop").remove();
+				}
+				// MAJ décompte alertes
+				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("notificationsList__count") ) {
+                    $(".notificationsList__count").text( nbAlertes - nbAlertesSuppr );
 				}
 			}
 		});
 	});
-	observer.observe(document.body, {childList: true});
+	observer.observe( document.body, {childList: true, subtree: true} );
 
 	// Traitement MP
 	if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
@@ -465,10 +489,10 @@
 				let alertLink = baseUri + $(this).attr('href');
 				promiseRequest("GET", alertLink )
 					.then(() => {
-                        console.log("Retrait alerte " + alertLink );
-                        $(".alerted").removeClass("alerted");
-                        $(".span12").remove();
-                    });
+						console.log("Retrait alerte " + alertLink );
+						$(".alerted").removeClass("alerted");
+						$(".span12").remove();
+					});
 			});
 		}
 	}
