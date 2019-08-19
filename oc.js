@@ -10,7 +10,7 @@
 // @include			*openclassrooms.com/fr/interventions/*
 // @include			*openclassrooms.com/fr/sujets/*
 // @include			*openclassrooms.com/fr/alertes/*
-// @version			2.9.11
+// @version			2.9.12
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -99,18 +99,6 @@
 		$("div.modal-delete").show();
 	});
 
-	var observer = new MutationObserver( function(mutations) {
-		mutations.forEach(function(mutation) {
-			if( mutation.addedNodes && mutation.addedNodes.length > 0 ) {
-				// Supprimer modale bleue
-				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("modal-backdrop") ) {
-					$(".modal-backdrop").remove();
-				}
-			}
-		});
-	});
-	observer.observe( document.body, { childList: true, subtree: true } );
-
     // Suppressions alertes buggées
     if( document.location.pathname.indexOf( "/alertes/" ) > -1 ) {
         var alertesBuggees = [
@@ -130,27 +118,38 @@
             }
         });
     }
-    setTimeout( majBadgeAlertes, 3000);
-    function majBadgeAlertes() {
-        var nbAlertesBuggees = 10;
-        var nbAlertes = $(".oc-mainHeader__avatarBadge").text();
-        if( nbAlertes <= nbAlertesBuggees ) {
-            $(".oc-mainHeader__avatarBadge").remove();
-            $(".oc-mainHeaderMenu__item").each( function(e) {
-                if( $(this).attr("href") == "/alertes" ) {
-                    $(this).find("div>span").text("Aucune alerte de modération");
-                }
-            });
-        } else {
-            $(".oc-mainHeader__avatarBadge").text( nbAlertes - nbAlertesBuggees );
-            $(".oc-mainHeaderMenu__item").each( function(e) {
-                if( $(this).attr("href") == "/alertes" ) {
-					var pluriel = ( nbAlertes - nbAlertesBuggees ) > 1 ? "s" : "";
-                    $(this).find("div>span").text( ( nbAlertes - nbAlertesBuggees ) + " alerte"+pluriel+" de modération");
-                }
-            });
-        }
-    }
+
+	var observer = new MutationObserver( function(mutations) {
+		mutations.forEach(function(mutation) {
+			if( mutation.addedNodes && mutation.addedNodes.length > 0 ) {
+				// Supprimer modale bleue
+				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("modal-backdrop") ) {
+					$(".modal-backdrop").remove();
+				}
+                // Suppressions alertes buggées
+				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("oc-mainHeader") ) {
+                    var nbAlertesBuggees = 10;
+                    var nbAlertes = $(".oc-mainHeader__avatarBadge").text();
+                    var pluriel = ( nbAlertes - nbAlertesBuggees ) > 1 ? "s" : "";
+					var texteMenu = "";
+
+                    if( nbAlertes <= nbAlertesBuggees ) {
+						texteMenu = "Aucune alerte de modération";
+                        $(".oc-mainHeader__avatarBadge").remove();
+                    } else {
+						texteMenu = ( nbAlertes - nbAlertesBuggees ) + " alerte" + pluriel + " de modération";
+                    }
+
+					$(".oc-mainHeaderMenu__item").each( function(e) {
+						if( $(this).attr("href") == "/alertes" ) {
+							$(this).find("div>span").text( texteMenu );
+						}
+					});
+				}
+			}
+		});
+	});
+	observer.observe( document.body, { childList: true, subtree: true } );
 
 	// Traitement MP
 	if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
