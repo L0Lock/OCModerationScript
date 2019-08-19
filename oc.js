@@ -6,10 +6,11 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/forum/*
-// @include			*openclassrooms.com/*mp/*
-// @include			*openclassrooms.com/interventions/*
-// @include			*openclassrooms.com/sujets/*
-// @version			2.9.10
+// @include			*openclassrooms.com/fr/mp/*
+// @include			*openclassrooms.com/fr/interventions/*
+// @include			*openclassrooms.com/fr/sujets/*
+// @include			*openclassrooms.com/fr/alertes/*
+// @version			2.9.11
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -69,32 +70,10 @@
 		});
 	}
 
-	// Suppression alertes buggées
-	var nbAlertes = 0;
-	var nbAlertesSuppr = 0;
-	var alertesBuggees = [
-		baseUri+"/forum/sujet/regles-a-respecter-sur-ce-forum-67262/4845960",
-		baseUri+"/forum/sujet/upload-une-image/92459544",
-		baseUri+"/forum/sujet/staff-counter-strike-source-game-38097/1325646",
-		baseUri+"/forum/sujet/a-supprimer-234/92872493"
-	];
-	$(".notificationsList__list>li>a").each( function( i ) {
-		nbAlertes += 1;
-		if( $.inArray( $(this)[0].href , alertesBuggees ) > -1 ) {
-			$(this).parent().remove();
-			nbAlertesSuppr += 1;
-		}
-	});
-	if( nbAlertes === nbAlertesSuppr ) {
-		$(".notificationsList").remove();
-	}
-
 	// Ajout lien MP + suppression
 	$(".author>a").each( function(e) {
-		if( $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri, '') != $(this).attr("href") ) {
-			$(this).parent().parent().parent().append('<a title="Ecrire un MP au membre" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--primary" target="_blank"><i class="icon-letter"></i></a>');
-			$(this).parent().parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" data-delete="1" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--danger"><i class="icon-cross"></i></a>');
-		}
+        $(this).parent().parent().parent().append('<a title="Ecrire un MP au membre" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--primary" target="_blank"><i class="icon-letter"></i></a>');
+		$(this).parent().parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" data-delete="1" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--danger"><i class="icon-cross"></i></a>');
 	});
 
 	// ajout bouton suppression alertes
@@ -123,18 +102,55 @@
 	var observer = new MutationObserver( function(mutations) {
 		mutations.forEach(function(mutation) {
 			if( mutation.addedNodes && mutation.addedNodes.length > 0 ) {
-				// Supprimer modale bleue lors du déplacement
+				// Supprimer modale bleue
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("modal-backdrop") ) {
 					$(".modal-backdrop").remove();
-				}
-				// MAJ décompte alertes
-				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("notificationsList__count") ) {
-                    $(".notificationsList__count").text( nbAlertes - nbAlertesSuppr );
 				}
 			}
 		});
 	});
-	observer.observe( document.body, {childList: true, subtree: true} );
+	observer.observe( document.body, { childList: true, subtree: true } );
+
+    // Suppressions alertes buggées
+    if( document.location.pathname.indexOf( "/alertes/" ) > -1 ) {
+        var alertesBuggees = [
+            messageUrl + "site-web-summiz-com-un-generateur-darticles/92249684",
+            messageUrl + "graphisme-unai-une-web-serie-spatiale/92186294",
+            messageUrl + "graphisme-unai-une-web-serie-spatiale/92357114",
+            messageUrl + "site-web-high-news-fr/93364387",
+            messageUrl + "regles-a-respecter-sur-ce-forum-67262/4845960",
+            messageUrl + "upload-une-image/92459544",
+            messageUrl + "a-supprimer-234/92872493",
+            messageUrl + "staff-counter-strike-source-game-38097/1325646"
+        ];
+
+        $(".list-msg__item>td>a").each( function(e) {
+            if( $.inArray( $(this).attr("href"), alertesBuggees ) > -1 ) {
+                $(this).parent().parent().remove();
+            }
+        });
+    }
+    setTimeout( majBadgeAlertes, 3000);
+    function majBadgeAlertes() {
+        var nbAlertesBuggees = 10;
+        var nbAlertes = $(".oc-mainHeader__avatarBadge").text();
+        if( nbAlertes <= nbAlertesBuggees ) {
+            $(".oc-mainHeader__avatarBadge").remove();
+            $(".oc-mainHeaderMenu__item").each( function(e) {
+                if( $(this).attr("href") == "/alertes" ) {
+                    $(this).find("div>span").text("Aucune alerte de modération");
+                }
+            });
+        } else {
+            $(".oc-mainHeader__avatarBadge").text( nbAlertes - nbAlertesBuggees );
+            $(".oc-mainHeaderMenu__item").each( function(e) {
+                if( $(this).attr("href") == "/alertes" ) {
+					var pluriel = ( nbAlertes - nbAlertesBuggees ) > 1 ? "s" : "";
+                    $(this).find("div>span").text( ( nbAlertes - nbAlertesBuggees ) + " alerte"+pluriel+" de modération");
+                }
+            });
+        }
+    }
 
 	// Traitement MP
 	if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
@@ -401,10 +417,16 @@
 
 		// Gestion fermeture du sujet
 		if( $("input[name=shouldLock]").prop('checked') ) {
+			let memberUrl = "";
 			GM_setValue( "threadToLock", baseUri + $(".closeAction").attr('href') );
-			moderationMessage += configuration.fermer.replace( '$$', $(".avatarPopout__itemPremium>.popOutList__link").attr("href").replace( baseUri+profilUrl, baseUri+mpUrl ) );
+            $(".oc-mainHeaderMenu__item").each( function(e) {
+                if( $(this).attr("href").indexOf( "/membres/" ) > -1 && $(this).attr("href").indexOf( "/parametres" ) == -1 ) {
+                    memberUrl = $(this).attr("href");
+                }
+            });
+			moderationMessage += configuration.fermer.replace( "$$", memberUrl.replace( baseUri+profilUrl, baseUri+mpUrl ) );
 		} else {
-			GM_setValue( "threadToLock", '' );
+			GM_setValue( "threadToLock", "" );
 		}
 
 		if( moderationMessage.length ) {
@@ -452,7 +474,7 @@
 	$('.mod-oc-hr').css({ "margin":"5px 15px", "width":"200px" });
 	$('.mod-oc-label').css({ "margin":"0px" });
 	$("#oc-mod-panel").css({
-		"z-index": "1000",
+		"z-index": "1200",
 		"position": "fixed",
 		"top": posY,
 		"left": posX,
