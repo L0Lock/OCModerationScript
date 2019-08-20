@@ -5,12 +5,8 @@
 // @description 		Facilite la modération sur OpenClassrooms
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
-// @include			*openclassrooms.com/forum/*
-// @include			*openclassrooms.com/fr/mp/*
-// @include			*openclassrooms.com/fr/interventions/*
-// @include			*openclassrooms.com/fr/sujets/*
-// @include			*openclassrooms.com/fr/alertes/*
-// @version			2.9.12
+// @include			*openclassrooms.com/*
+// @version			2.10.0
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -129,22 +125,42 @@
                 // Suppressions alertes buggées
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("oc-mainHeader") ) {
                     var nbAlertesBuggees = 10;
-                    var nbAlertes = $(".oc-mainHeader__avatarBadge").text();
-                    var pluriel = ( nbAlertes - nbAlertesBuggees ) > 1 ? "s" : "";
-					var texteMenu = "";
+                    var nbNotifications = $(".oc-mainHeader__avatarBadge").text();
+                    var nbAlertesModeration = 0;
 
-                    if( nbAlertes <= nbAlertesBuggees ) {
-						texteMenu = "Aucune alerte de modération";
+					$(".oc-mainHeaderMenu__item").each( function(e) {
+						if( $(this).attr("href") == "/alertes" ) {
+							nbAlertesModeration = $(this).find("div>span").text().substring(0, 2);
+						}
+					});
+
+                    var pluriel = ( nbAlertesModeration - nbAlertesBuggees ) > 1 ? "s" : "";
+					var texteMenu = ( nbAlertesModeration - nbAlertesBuggees ) + " alerte" + pluriel + " de modération";
+                    if( nbNotifications <= nbAlertesBuggees ) {
                         $(".oc-mainHeader__avatarBadge").remove();
-                    } else {
-						texteMenu = ( nbAlertes - nbAlertesBuggees ) + " alerte" + pluriel + " de modération";
                     }
-
+                    if( nbAlertesModeration <= nbAlertesBuggees ) {
+						texteMenu = "Aucune alerte de modération";
+                    } else {
+                        $(".oc-mainHeader__linksWrapper").append('<div class="oc-mainHeader__navLinkWrapper"><a href="https://openclassrooms.com/alertes"><svg id="oc-mod-badge-alerte" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"></path><path fill="none" d="M0 0h24v24H0z"></path></svg> '+(nbAlertesModeration - nbAlertesBuggees)+'</a></div>');
+                        $("#oc-mod-badge-alerte").css({
+                            "fill": "currentColor",
+                            "width": "1em",
+                            "height": "1em",
+                            "display": "inline-block",
+                            "font-size": "24px",
+                            "transition": "fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+                            "user-select": "none",
+                            "flex-shrink": "0"
+                        });
+                    }
 					$(".oc-mainHeaderMenu__item").each( function(e) {
 						if( $(this).attr("href") == "/alertes" ) {
 							$(this).find("div>span").text( texteMenu );
 						}
 					});
+
+                    $(".oc-mainHeader__avatarBadge").text( nbNotifications - nbAlertesBuggees );
 				}
 			}
 		});
