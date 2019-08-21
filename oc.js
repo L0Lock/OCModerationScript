@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.10.0
+// @version			2.10.1
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -68,7 +68,7 @@
 
 	// Ajout lien MP + suppression
 	$(".author>a").each( function(e) {
-        $(this).parent().parent().parent().append('<a title="Ecrire un MP au membre" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--primary" target="_blank"><i class="icon-letter"></i></a>');
+		$(this).parent().parent().parent().append('<a title="Ecrire un MP au membre" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--primary" target="_blank"><i class="icon-letter"></i></a>');
 		$(this).parent().parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" data-delete="1" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--danger"><i class="icon-cross"></i></a>');
 	});
 
@@ -95,72 +95,65 @@
 		$("div.modal-delete").show();
 	});
 
-    // Suppressions alertes buggées
-    if( document.location.pathname.indexOf( "/alertes/" ) > -1 ) {
-        var alertesBuggees = [
-            messageUrl + "site-web-summiz-com-un-generateur-darticles/92249684",
-            messageUrl + "graphisme-unai-une-web-serie-spatiale/92186294",
-            messageUrl + "graphisme-unai-une-web-serie-spatiale/92357114",
-            messageUrl + "site-web-high-news-fr/93364387",
-            messageUrl + "regles-a-respecter-sur-ce-forum-67262/4845960",
-            messageUrl + "upload-une-image/92459544",
-            messageUrl + "a-supprimer-234/92872493",
-            messageUrl + "staff-counter-strike-source-game-38097/1325646"
-        ];
+	// Suppressions alertes buggées
+	if( document.location.pathname.indexOf( "/alertes/" ) > -1 ) {
+		var alertesBuggees = [
+			messageUrl + "site-web-summiz-com-un-generateur-darticles/92249684",
+			messageUrl + "graphisme-unai-une-web-serie-spatiale/92186294",
+			messageUrl + "graphisme-unai-une-web-serie-spatiale/92357114",
+			messageUrl + "site-web-high-news-fr/93364387",
+			messageUrl + "regles-a-respecter-sur-ce-forum-67262/4845960",
+			messageUrl + "upload-une-image/92459544",
+			messageUrl + "a-supprimer-234/92872493",
+			messageUrl + "staff-counter-strike-source-game-38097/1325646"
+		];
 
-        $(".list-msg__item>td>a").each( function(e) {
-            if( $.inArray( $(this).attr("href"), alertesBuggees ) > -1 ) {
-                $(this).parent().parent().remove();
-            }
-        });
-    }
+		$(".list-msg__item>td>a").each( function(e) {
+			if( $.inArray( $(this).attr("href"), alertesBuggees ) > -1 ) {
+				$(this).parent().parent().remove();
+			}
+		});
+	}
 
 	var observer = new MutationObserver( function(mutations) {
 		mutations.forEach(function(mutation) {
 			if( mutation.addedNodes && mutation.addedNodes.length > 0 ) {
+
 				// Supprimer modale bleue
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("modal-backdrop") ) {
 					$(".modal-backdrop").remove();
 				}
-                // Suppressions alertes buggées
+
+				// Suppressions alertes buggées
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("oc-mainHeader") ) {
-                    var nbAlertesBuggees = 10;
-                    var nbNotifications = $(".oc-mainHeader__avatarBadge").text();
-                    var nbAlertesModeration = 0;
-
-					$(".oc-mainHeaderMenu__item").each( function(e) {
-						if( $(this).attr("href") == "/alertes" ) {
-							nbAlertesModeration = $(this).find("div>span").text().substring(0, 2);
-						}
-					});
-
-                    var pluriel = ( nbAlertesModeration - nbAlertesBuggees ) > 1 ? "s" : "";
+					var nbAlertesBuggees = 10;
+					var nbNotifications = $(".oc-mainHeader__avatarBadge").text();
+					var nbAlertesModeration = $('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text().substring(0, 2);
+					var pluriel = ( nbAlertesModeration - nbAlertesBuggees ) > 1 ? "s" : "";
 					var texteMenu = ( nbAlertesModeration - nbAlertesBuggees ) + " alerte" + pluriel + " de modération";
-                    if( nbNotifications <= nbAlertesBuggees ) {
-                        $(".oc-mainHeader__avatarBadge").remove();
-                    }
-                    if( nbAlertesModeration <= nbAlertesBuggees ) {
-						texteMenu = "Aucune alerte de modération";
-                    } else {
-                        $(".oc-mainHeader__linksWrapper").append('<div class="oc-mainHeader__navLinkWrapper"><a href="https://openclassrooms.com/alertes"><svg id="oc-mod-badge-alerte" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"></path><path fill="none" d="M0 0h24v24H0z"></path></svg> '+(nbAlertesModeration - nbAlertesBuggees)+'</a></div>');
-                        $("#oc-mod-badge-alerte").css({
-                            "fill": "currentColor",
-                            "width": "1em",
-                            "height": "1em",
-                            "display": "inline-block",
-                            "font-size": "24px",
-                            "transition": "fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-                            "user-select": "none",
-                            "flex-shrink": "0"
-                        });
-                    }
-					$(".oc-mainHeaderMenu__item").each( function(e) {
-						if( $(this).attr("href") == "/alertes" ) {
-							$(this).find("div>span").text( texteMenu );
-						}
-					});
 
-                    $(".oc-mainHeader__avatarBadge").text( nbNotifications - nbAlertesBuggees );
+					if( nbNotifications <= nbAlertesBuggees ) {
+						$(".oc-mainHeader__avatarBadge").remove();
+					}
+
+					if( nbAlertesModeration <= nbAlertesBuggees ) {
+						texteMenu = "Aucune alerte de modération";
+					} else {
+						$(".oc-mainHeader__linksWrapper").after('<div class="oc-mainHeader__navLinkWrapper"><a href="https://openclassrooms.com/alertes"><svg id="oc-mod-badge-alerte" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"></path><path fill="none" d="M0 0h24v24H0z"></path></svg> '+(nbAlertesModeration - nbAlertesBuggees)+'</a></div>');
+						$("#oc-mod-badge-alerte").css({
+							"fill": "currentColor",
+							"width": "1em",
+							"height": "1em",
+							"display": "inline-block",
+							"font-size": "24px",
+							"transition": "fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+							"user-select": "none",
+							"flex-shrink": "0"
+						});
+					}
+
+					$('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text( texteMenu );
+					$(".oc-mainHeader__avatarBadge").text( nbNotifications - nbAlertesBuggees );
 				}
 			}
 		});
@@ -434,11 +427,11 @@
 		if( $("input[name=shouldLock]").prop('checked') ) {
 			let memberUrl = "";
 			GM_setValue( "threadToLock", baseUri + $(".closeAction").attr('href') );
-            $(".oc-mainHeaderMenu__item").each( function(e) {
-                if( $(this).attr("href").indexOf( "/membres/" ) > -1 && $(this).attr("href").indexOf( "/parametres" ) == -1 ) {
-                    memberUrl = $(this).attr("href");
-                }
-            });
+			$(".oc-mainHeaderMenu__item").each( function(e) {
+				if( $(this).attr("href").indexOf( "/membres/" ) > -1 && $(this).attr("href").indexOf( "/parametres" ) == -1 ) {
+					memberUrl = $(this).attr("href");
+				}
+			});
 			moderationMessage += configuration.fermer.replace( "$$", memberUrl.replace( baseUri+profilUrl, baseUri+mpUrl ) );
 		} else {
 			GM_setValue( "threadToLock", "" );
