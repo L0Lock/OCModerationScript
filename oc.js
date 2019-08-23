@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.10.1
+// @version			2.10.2
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -139,7 +139,7 @@
 					if( nbAlertesModeration <= nbAlertesBuggees ) {
 						texteMenu = "Aucune alerte de modération";
 					} else {
-						$(".oc-mainHeader__linksWrapper").after('<div class="oc-mainHeader__navLinkWrapper"><a href="https://openclassrooms.com/alertes"><svg id="oc-mod-badge-alerte" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"></path><path fill="none" d="M0 0h24v24H0z"></path></svg> '+(nbAlertesModeration - nbAlertesBuggees)+'</a></div>');
+						$(".oc-mainHeader__linksWrapper").after('<a href="https://openclassrooms.com/alertes"><svg id="oc-mod-badge-alerte" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"></path><path fill="none" d="M0 0h24v24H0z"></path></svg> <span id="oc-mod-alert-count">'+(nbAlertesModeration - nbAlertesBuggees)+'</span></a>');
 						$("#oc-mod-badge-alerte").css({
 							"fill": "currentColor",
 							"width": "1em",
@@ -149,6 +149,24 @@
 							"transition": "fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
 							"user-select": "none",
 							"flex-shrink": "0"
+						});
+                        $("#oc-mod-alert-count").css({
+                            "background-color": "#7451eb",
+                            "position": "absolute",
+                            "height": "20px",
+                            "display": "flex",
+                            "padding": "0 4px",
+                            "position": "absolute",
+                            "flex-wrap": "wrap",
+                            "font-size": "0.75rem",
+                            "min-width": "20px",
+                            "transform": "scale(1) translate(50%, -50%)",
+                            "font-weight": "500",
+                            "align-content": "center",
+                            "border-radius": "10px",
+                            "flex-direction": "row",
+                            "justify-content": "center",
+                            "color": "#fff",
 						});
 					}
 
