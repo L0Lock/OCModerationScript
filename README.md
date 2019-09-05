@@ -7,6 +7,8 @@ Dans n'importe quel sujet, une boîte à outils s'affiche par défaut en haut à
 - s'ouvre pour faire apparaître les actions possibles pour la section de forum actuelle (icône "flèche")
 - dispose de deux affichages différents : "Horizontal" et "Vertical" (menu Affichage)
 
+Si vous utilisez également le OC Tweak Script, pensez à mettre OC Moderation Script en second dans l'ordre d'exécution des scripts par Grease/TamperMonkey.
+
 ## Les actions possibles sur un sujet
 - Ajouter un entête de message "automatique"
 - Ajouter un ou plusieurs messages standards en cochant la ou les cases à cocher correspondantes
