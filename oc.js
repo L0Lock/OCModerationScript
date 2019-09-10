@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.10.2
+// @version			2.10.3
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -139,7 +139,7 @@
 					if( nbAlertesModeration <= nbAlertesBuggees ) {
 						texteMenu = "Aucune alerte de modération";
 					} else {
-						$(".oc-mainHeader__linksWrapper").after('<a href="https://openclassrooms.com/alertes"><svg id="oc-mod-badge-alerte" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"></path><path fill="none" d="M0 0h24v24H0z"></path></svg> <span id="oc-mod-alert-count">'+(nbAlertesModeration - nbAlertesBuggees)+'</span></a>');
+						$(".oc-mainHeader__linksWrapper").append('<a href="https://openclassrooms.com/alertes"><svg id="oc-mod-badge-alerte" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"></path><path fill="none" d="M0 0h24v24H0z"></path></svg> <span id="oc-mod-alert-count">'+(nbAlertesModeration - nbAlertesBuggees)+'</span></a>');
 						$("#oc-mod-badge-alerte").css({
 							"fill": "currentColor",
 							"width": "1em",
