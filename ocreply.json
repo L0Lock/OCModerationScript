@@ -1,5 +1,5 @@
 {
-	"version": "1.3.4",
+	"version": "1.3.5",
 	
 	"configuration": 
 	{
@@ -462,8 +462,18 @@
 			"section": ["all"],
 			"exclude": ["Forum du staff"],
 			"title": "Hors sujet",
-			"message": "<p>Ton message est hors sujet. Afin de garder un forum clair où chaque fil de discussion répond à une problématique, il est nécessaire de ne pas multiplier les sujets à l'intérieur du même fil de discussion. Merci de créer ton propre sujet à l'aide du bouton bleu « Créer un sujet » en haut à droite du forum adéquat.",
+			"message": "<p>Ton message est hors sujet. Afin de garder un forum clair où chaque fil de discussion répond à une problématique, il est nécessaire de ne pas multiplier les sujets à l'intérieur du même fil de discussion. Merci de créer ton propre sujet à l'aide du bouton bleu « Créer un sujet » en haut à droite du forum adéquat.</p>",
 			"infobulle": "Message HS, poster ailleurs.",
+			"titleQuote": false
+		},
+		
+		{
+			"id": 33,
+			"section": ["Fonctionnement du site"],
+			"exclude": ["Forum du staff"],
+			"title": "Gestion des données publiées",
+			"message": '<p>Seul les modérateurs (étiquette verte "Staff"), l\'équipe du site (étiquette orange "Team OC") et les administrateurs peuvent supprimer des messages ou un fil de discussion complet.</p><p>Si il s\'agit d\'un problème sur le forum, d\'illégalité ou du non respect de <a href="https://openclassrooms.com/fr/terms-conditions#code-of-conduct">la charte de bonne conduite</a>, c\'est l\'équipe de modération qui modérera le sujet ou le(s) message(s).</p><p>Pour signaler un message à la modération : En passant votre souris sur un message vous verrez apparaitre un lien "signaler", indiquez-y la raison de votre signalement à la modération.</p><p>Si c\'est pour supprimer un sujet complet pour, ce que j\'appelle motif de complaisance (ex: mon sujet est référencer sur Google), c\'est à mon sens la loi qui s\'applique et non pas une mesure de l\'équipe de modération puisque le sujet n\'est pas contraire aux règles du forum et des CGU. Conformément au <a href="https://openclassrooms.com/fr/terms-conditions#policy_83">point 8.1 des CGU</a> c\'est de la responsabilité d\'OC, donc il faut les contacter.</p><ul><li>soit via l\'adresse mail générale hello@openclassrooms.com</li><li>soit via l\'adresse mail spécifique pour ce genre de demande data-protection@openclassrooms.com</li><li>soit par courrier, cf. <a href="https://openclassrooms.com/fr/legal-information">Mentions légales</a></li></ul>',
+			"infobulle": "Pour expliquer quand et comment sont supprimés des messages",
 			"titleQuote": false
 		}
 	],
