@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.10.3
+// @version			2.10.4
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -126,7 +126,7 @@
 
 				// Suppressions alertes buggées
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("oc-mainHeader") ) {
-					var nbAlertesBuggees = 12;
+					var nbAlertesBuggees = 5;
 					var nbNotifications = $(".oc-mainHeader__avatarBadge").text();
 					var nbAlertesModeration = $('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text().substring(0, 2);
 					var pluriel = ( nbAlertesModeration - nbAlertesBuggees ) > 1 ? "s" : "";
