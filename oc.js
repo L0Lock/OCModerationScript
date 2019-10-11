@@ -126,7 +126,7 @@
 
 				// Suppressions alertes buggées
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("oc-mainHeader") ) {
-					var nbAlertesBuggees = 5;
+					var nbAlertesBuggees = 0;
 					var nbNotifications = $(".oc-mainHeader__avatarBadge").text();
 					var nbAlertesModeration = $('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text().substring(0, 2);
 					var pluriel = ( nbAlertesModeration - nbAlertesBuggees ) > 1 ? "s" : "";
