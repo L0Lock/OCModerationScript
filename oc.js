@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.10.6
+// @version			2.10.7
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -125,21 +125,20 @@
 				}
 
 				// Suppressions alertes buggées
-				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("oc-mainHeader") ) {
-					var nbNotifications = parseInt($(".oc-mainHeader__avatarBadge").text(),10);
+				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("MuiPaper-root") ) {
+					var nbNotifications = parseInt($(".MuiBadge-badge").text(),10);
 					var nbAlertesModeration = parseInt($('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text().substring(0, 2),10);
 					var pluriel = nbAlertesModeration > 1 ? "s" : "";
 					var texteMenu = nbAlertesModeration + " alerte" + pluriel + " de modération";
-                    console.log( nbNotifications, nbAlertesModeration );
 
 					if( !nbNotifications ) {
-						$(".oc-mainHeader__avatarBadge").remove();
+						$(".MuiBadge-badge").remove();
 					}
 
 					if( !nbAlertesModeration ) {
 						texteMenu = "Aucune alerte de modération";
 					} else {
-						$(".oc-mainHeader__linksWrapper").append('<a href="https://openclassrooms.com/alertes"><svg id="oc-mod-badge-alerte" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"></path><path fill="none" d="M0 0h24v24H0z"></path></svg> <span id="oc-mod-alert-count">'+(nbAlertesModeration)+'</span></a>');
+						$("#main-menu-navigation").append('<a href="https://openclassrooms.com/alertes"><svg id="oc-mod-badge-alerte" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"></path><path fill="none" d="M0 0h24v24H0z"></path></svg> <span id="oc-mod-alert-count">'+(nbAlertesModeration)+'</span></a>');
 						$("#oc-mod-badge-alerte").css({
 							"fill": "currentColor",
 							"width": "1em",
@@ -171,7 +170,7 @@
 					}
 
 					$('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text( texteMenu );
-					$(".oc-mainHeader__avatarBadge").text( nbNotifications );
+					$(".MuiBadge-badge").text( nbNotifications );
 				}
 			}
 		});
