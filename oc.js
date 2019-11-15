@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.10.7
+// @version			2.10.8
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -95,26 +95,6 @@
 		$("div.modal-delete").show();
 	});
 
-	// Suppressions alertes buggées
-	if( document.location.pathname.indexOf( "/alertes/" ) > -1 ) {
-		var alertesBuggees = [
-			messageUrl + "site-web-summiz-com-un-generateur-darticles/92249684",
-			messageUrl + "graphisme-unai-une-web-serie-spatiale/92186294",
-			messageUrl + "graphisme-unai-une-web-serie-spatiale/92357114",
-			messageUrl + "site-web-high-news-fr/93364387",
-			messageUrl + "regles-a-respecter-sur-ce-forum-67262/4845960",
-			messageUrl + "upload-une-image/92459544",
-			messageUrl + "a-supprimer-234/92872493",
-			messageUrl + "staff-counter-strike-source-game-38097/1325646"
-		];
-
-		$(".list-msg__item>td>a").each( function(e) {
-			if( $.inArray( $(this).attr("href"), alertesBuggees ) > -1 ) {
-				$(this).parent().parent().remove();
-			}
-		});
-	}
-
 	var observer = new MutationObserver( function(mutations) {
 		mutations.forEach(function(mutation) {
 			if( mutation.addedNodes && mutation.addedNodes.length > 0 ) {
@@ -124,53 +104,34 @@
 					$(".modal-backdrop").remove();
 				}
 
-				// Suppressions alertes buggées
+				// Mise en forme lien alertes
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("MuiPaper-root") ) {
-					var nbNotifications = parseInt($(".MuiBadge-badge").text(),10);
-					var nbAlertesModeration = parseInt($('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text().substring(0, 2),10);
-					var pluriel = nbAlertesModeration > 1 ? "s" : "";
-					var texteMenu = nbAlertesModeration + " alerte" + pluriel + " de modération";
+					observer.disconnect();
+					let nbNotifications = parseInt($(".MuiBadge-badge").text(),10);
+					let nbAlertesModeration = parseInt($('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text().substring(0, 2),10);
+					let nbAlertes = nbNotifications - nbAlertesModeration;
+					let badgeMenu = $(".MuiBadge-badge");
+					let badgeAlertes = badgeMenu.clone();
+					console.log( badgeAlertes );
 
-					if( !nbNotifications ) {
-						$(".MuiBadge-badge").remove();
+					if( nbAlertesModeration ) {
+						let lienAlertes = $("#main-menu-navigation>div:first-child>div:first-child").clone();
+						let iconeAlertes = $('#main-header-menu>a[href*="/alertes"]>.MuiListItemIcon-root').clone();
+						badgeAlertes.text( nbAlertesModeration );
+						badgeAlertes.css({ "top": "40px", "right": "320px"});
+						lienAlertes.find("span>a>span").remove();
+						lienAlertes.find("span>a").append( iconeAlertes );
+						lienAlertes.find("span>a").append( badgeAlertes );
+						lienAlertes.find("span>a").attr("href", "/alertes");
+						$("#main-menu-navigation>div:first-child").append( $("#main-menu-navigation>div:first-child>div:nth-child(4)").clone() );
+						$("#main-menu-navigation>div:first-child").append( lienAlertes );
 					}
 
-					if( !nbAlertesModeration ) {
-						texteMenu = "Aucune alerte de modération";
+					if( !nbAlertes ) {
+						badgeMenu.remove();
 					} else {
-						$("#main-menu-navigation").append('<a href="https://openclassrooms.com/alertes"><svg id="oc-mod-badge-alerte" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"></path><path fill="none" d="M0 0h24v24H0z"></path></svg> <span id="oc-mod-alert-count">'+(nbAlertesModeration)+'</span></a>');
-						$("#oc-mod-badge-alerte").css({
-							"fill": "currentColor",
-							"width": "1em",
-							"height": "1em",
-							"display": "inline-block",
-							"font-size": "24px",
-							"transition": "fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-							"user-select": "none",
-							"flex-shrink": "0"
-						});
-                        $("#oc-mod-alert-count").css({
-                            "background-color": "#7451eb",
-                            "position": "absolute",
-                            "height": "20px",
-                            "display": "flex",
-                            "padding": "0 4px",
-                            "position": "absolute",
-                            "flex-wrap": "wrap",
-                            "font-size": "0.75rem",
-                            "min-width": "20px",
-                            "transform": "scale(1) translate(50%, -50%)",
-                            "font-weight": "500",
-                            "align-content": "center",
-                            "border-radius": "10px",
-                            "flex-direction": "row",
-                            "justify-content": "center",
-                            "color": "#fff",
-						});
+						badgeMenu.text( nbAlertes );
 					}
-
-					$('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text( texteMenu );
-					$(".MuiBadge-badge").text( nbNotifications );
 				}
 			}
 		});
