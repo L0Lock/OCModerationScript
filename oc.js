@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.10.8
+// @version			2.10.9
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -107,12 +107,11 @@
 				// Mise en forme lien alertes
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("MuiPaper-root") ) {
 					observer.disconnect();
-					let nbNotifications = parseInt($(".MuiBadge-badge").text(),10);
-					let nbAlertesModeration = parseInt($('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text().substring(0, 2),10);
-					let nbAlertes = nbNotifications - nbAlertesModeration;
 					let badgeMenu = $(".MuiBadge-badge");
+					let nbNotifications = isNaN( parseInt($(".MuiBadge-badge").text(),10) ) ? 0 : parseInt($(".MuiBadge-badge").text(),10);
+					let nbAlertesModeration = isNaN( parseInt($('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text().substring(0, 2),10) ) ? 0 : parseInt($('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text().substring(0, 2),10);
+					let nbAlertes = nbNotifications - nbAlertesModeration;
 					let badgeAlertes = badgeMenu.clone();
-					console.log( badgeAlertes );
 
 					if( nbAlertesModeration ) {
 						let lienAlertes = $("#main-menu-navigation>div:first-child>div:first-child").clone();
