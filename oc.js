@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.10.9
+// @version			2.10.10
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -95,18 +95,25 @@
 		$("div.modal-delete").show();
 	});
 
-	var observer = new MutationObserver( function(mutations) {
+	$(".admin.soc_hello_ials").css({"z-index":6});
+	var observerModale = new MutationObserver( function(mutations) {
 		mutations.forEach(function(mutation) {
 			if( mutation.addedNodes && mutation.addedNodes.length > 0 ) {
-
 				// Supprimer modale bleue
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("modal-backdrop") ) {
 					$(".modal-backdrop").remove();
 				}
+			}
+		});
+	});
+	observerModale.observe( document.body, { childList: true, subtree: true } );
 
+	var observerMenu = new MutationObserver( function(mutations) {
+		mutations.forEach(function(mutation) {
+			if( mutation.addedNodes && mutation.addedNodes.length > 0 ) {
 				// Mise en forme lien alertes
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("MuiPaper-root") ) {
-					observer.disconnect();
+					observerMenu.disconnect();
 					let badgeMenu = $(".MuiBadge-badge");
 					let nbNotifications = isNaN( parseInt($(".MuiBadge-badge").text(),10) ) ? 0 : parseInt($(".MuiBadge-badge").text(),10);
 					let nbAlertesModeration = isNaN( parseInt($('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text().substring(0, 2),10) ) ? 0 : parseInt($('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text().substring(0, 2),10);
@@ -135,7 +142,7 @@
 			}
 		});
 	});
-	observer.observe( document.body, { childList: true, subtree: true } );
+	observerMenu.observe( document.body, { childList: true, subtree: true } );
 
 	// Traitement MP
 	if( $("input#ThreadMessage_title").length && GM_getValue( "mpClick" ) ) {
