@@ -1,5 +1,5 @@
 {
-	"version": "1.3.7",
+	"version": "1.3.8",
 	
 	"configuration": 
 	{
@@ -241,7 +241,7 @@
 			"section": ["Programmation", "Site Web", "Système d'exploitation"],
 			"exclude": ["Forum du staff"],
 			"title": "Merci de colorer votre code à l'aide du bouton Code <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_code.png\" alt=\"\" />",
-			"message": "<p>Les forums d'Openclassrooms disposent d'une fonctionnalité permettant de colorer et mettre en forme les codes source afin de les rendre plus lisibles et faciles à manipuler par les intervenants. Pour cela, il faut utiliser le bouton <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_code.png\" alt=\"Code\" /> de l'éditeur, choisir un des langages proposés et coller votre code dans la zone prévue. Si vous utilisez l'éditeur de messages en mode Markdown, il faut utiliser les balises <code>&lt;pre class=\"brush: $$;\"&gt;Votre code ici&lt;/pre&gt;</code>.</p>",
+			"message": "<p>Les forums d'Openclassrooms disposent d'une fonctionnalité permettant de colorer et mettre en forme les codes source afin de les rendre plus lisibles et faciles à manipuler par les intervenants. Pour cela, il faut utiliser le bouton <img src=\"https://openclassrooms.com/bundles/tinymce/vendor/tiny_mce/themes/advanced/skins/sdz/img/ico_code.png\" alt=\"Code\" /> de l'éditeur, choisir un des langages proposés et coller votre code dans la zone prévue. Si vous utilisez l'éditeur de messages en mode Markdown, il faut utiliser les balises <code>&lt;pre class=\"brush: $$;\"&gt;Votre code ici&lt;/pre&gt;</code>.</p><p>Merci de modifier votre message d'origine en fonction.</p>",
 			"infobulle": "Précise le fonctionnement du bouton Code sur le forum",
 			"titleQuote": false
 		},
