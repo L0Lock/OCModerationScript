@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.10.10
+// @version			2.10.11
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -370,7 +370,7 @@
 		if( $("#oc-mod-move").prop("checked") ) {
 			let moveLink = baseUri + $("#deplacerActionModal>form").attr('action');
 			let postData = 'CategoriesList[category]='+$("#oc-mod-forum-select").val();
-			moderationMessage += '<h1 style="text-align: center;">Mauvais forum</h1>';
+			moderationMessage += '<h1 style="text-align: center;">Déplacement vers un forum plus approprié</h1>';
 			moderationMessage += configuration.deplacer.replace('$$2', $( "#oc-mod-forum-select option:selected" ).text() );
 			moderationMessage = moderationMessage.replace('$$1', section );
 			promiseRequest("POST", moveLink, postData )
