@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.10.11
+// @version			2.10.12
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -29,7 +29,7 @@
 	const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
 
 	// Variables de gestion
-	const formats = { "vertical": 265, "horizontal": 500 };
+	const expandWidth = 500;
 	const hr = '<hr class="mod-oc-hr" />';
 	var forums;
 	var code = "plain"
@@ -46,7 +46,6 @@
 	GM_setValue( "currentPage", window.location.pathname );
 	if( GM_getValue( "mpClick" ) === undefined ) GM_setValue( "mpClick" , false );
 	if( GM_getValue( "mpDelete" ) === undefined ) GM_setValue( "mpDelete" , false );
-	if( GM_getValue( "modFormat" ) === undefined ) GM_setValue( "modFormat", "horizontal" );
 
 	// Fermeture du sujet si demandée
 	if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== undefined ) {
@@ -207,9 +206,6 @@
 				'<span class="oc-mod-version"><a href="#" id="oc-mod-update" class="oc-mod-tooltip" title="Mettre à jour les messages">'+GM_getValue("answers").version+' <i class="oc-mod-refresh icon-refresh"></i></a></span>'+
 				'</h3>'+
 				'</div>'+
-				'<div id="oc-mod-formats" class="oc-mod-column">'+
-				'<h3 class="oc-mod-subtitle">Affichage</h3>'+
-				'</div>'+
 				'<div id="oc-mod-options" class="oc-mod-column">'+
 				'<h3 class="oc-mod-subtitle">Options</h3>'+
 				'</div>'+
@@ -233,7 +229,6 @@
 			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, toutes les alertes du sujet seront retirées"><label class="mod-oc-label"><input name="dismissAlerts" type="checkbox" value="1" /> 🔔 Retirer les alertes</label></div>' );
 			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera passé à \'Résolu\'"><label class="mod-oc-label"><input name="resolveTopic" type="checkbox" value="1" /> ✔ Passer à résolu</label></div>' );
 			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera ajouté à votre liste de sujets suivis"><label class="mod-oc-label"><input name="followTopic" type="checkbox" value="1" /> ⚑ Suivre le sujet</label></div>' );
-			$("#oc-mod-formats").append( '<span class="oc-mod-tooltip" title="Permet de définir un affichage vertical de la boîte à outils"><input name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "vertical" ? 'checked="checked"' : "")+' value="vertical" /> Vertical</span>&nbsp;<span class="oc-mod-tooltip" title="Permet de définir un affichage horizontal de la boîte à outils"><input name="modFormat" type="radio" '+(GM_getValue( "modFormat" ) == "horizontal" ? 'checked="checked"' : "")+' value="horizontal" /> Horizontal</span>' );
 			$("#oc-mod-valid").append( '<button id="oc-mod-validation" title="Valider les actions de modération" class="oc-mod-tooltip button--warning">Modérer</button>' );
 
 			// Ajout menu liens
@@ -335,12 +330,6 @@
 		}
 	});
 
-	// Changement de format
-	$("input[name=modFormat]").click( () => {
-		GM_setValue("modFormat", $("input[name=modFormat]:checked").val() );
-		$("#oc-mod-panel").width(formats[GM_getValue("modFormat")]);
-	});
-
 	// Ouverture / Fermeture du panneau
 	$("#oc-mod-caret").click( () => {
 		if( modExpand ) {
@@ -351,7 +340,7 @@
 			$("#oc-mod-caret").html("&#x25bc;");
 		} else {
 			modExpand = true;
-			$("#oc-mod-panel").width(formats[GM_getValue("modFormat")]);
+			$("#oc-mod-panel").width(expandWidth);
 			$("#oc-mod-content").show();
 			$("#oc-mod-caret").html("&#x25b2;");
 		}
