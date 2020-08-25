@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.10.12
+// @version			2.10.13
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -115,7 +115,7 @@
 					observerMenu.disconnect();
 					let badgeMenu = $(".MuiBadge-badge");
 					let nbNotifications = isNaN( parseInt($(".MuiBadge-badge").text(),10) ) ? 0 : parseInt($(".MuiBadge-badge").text(),10);
-					let nbAlertesModeration = isNaN( parseInt($('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text().substring(0, 2),10) ) ? 0 : parseInt($('.oc-mainHeaderMenu__item[href*="/alertes"]>div>span').text().substring(0, 2),10);
+					let nbAlertesModeration = isNaN( parseInt($('.MuiListItem-button[href*="/alertes"]>div>span').text().substring(0, 2),10) ) ? 0 : parseInt($('.MuiListItem-button[href*="/alertes"]>div>span').text().substring(0, 2),10);
 					let nbAlertes = nbNotifications - nbAlertesModeration;
 					let badgeAlertes = badgeMenu.clone();
 
