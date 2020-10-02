@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.10.13
+// @version			2.11.1
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -64,12 +64,6 @@
 			GM_setValue( "postToDelete", '' );
 		});
 	}
-
-	// Ajout lien MP + suppression
-	$(".author>a").each( function(e) {
-		$(this).parent().parent().parent().append('<a title="Ecrire un MP au membre" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--primary" target="_blank"><i class="icon-letter"></i></a>');
-		$(this).parent().parent().parent().append('<a title="Supprimer le message et écrire un MP au membre" data-delete="1" href="'+$(this).attr("href").replace( profilUrl, mpUrl )+'" class="oc-mod-tooltip oc-mod-mp button--danger"><i class="icon-cross"></i></a>');
-	});
 
 	// ajout bouton suppression alertes
 	if( $(".span12>a").length ) {
