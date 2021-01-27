@@ -117,11 +117,12 @@
 						let lienAlertes = $("#main-menu-navigation>div:first-child>div:first-child").clone();
 						let iconeAlertes = $('#main-header-menu>a[href*="/alertes"]>.MuiListItemIcon-root').clone();
 						badgeAlertes.text( nbAlertesModeration );
-						badgeAlertes.css({ "top": "40px", "right": "320px"});
+						badgeAlertes.css({ "right": "15px"});
 						lienAlertes.find("span>a>span").remove();
 						lienAlertes.find("span>a").append( iconeAlertes );
 						lienAlertes.find("span>a").append( badgeAlertes );
 						lienAlertes.find("span>a").attr("href", "/alertes");
+						lienAlertes.children().first().addClass("MuiBadge-root");
 						$("#main-menu-navigation>div:first-child").append( $("#main-menu-navigation>div:first-child>div:nth-child(4)").clone() );
 						$("#main-menu-navigation>div:first-child").append( lienAlertes );
 					}
