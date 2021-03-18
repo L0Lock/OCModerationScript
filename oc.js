@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.11.2
+// @version			2.11.3
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -105,7 +105,7 @@
 		mutations.forEach(function(mutation) {
 			if( mutation.addedNodes && mutation.addedNodes.length > 0 ) {
 				// Mise en forme lien alertes
-				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("MuiPaper-root") ) {
+				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("ais-InstantSearch__root") ) {
 					observerMenu.disconnect();
 					let badgeMenu = $(".MuiBadge-badge");
 					let nbNotifications = isNaN( parseInt($(".MuiBadge-badge").text(),10) ) ? 0 : parseInt($(".MuiBadge-badge").text(),10);
@@ -114,7 +114,7 @@
 					let badgeAlertes = badgeMenu.clone();
 
 					if( nbAlertesModeration ) {
-						let lienAlertes = $("#main-menu-navigation>div:first-child>div:first-child").clone();
+						let lienAlertes = $("#main-menu-navigation>div>last-child").clone();
 						let iconeAlertes = $('#main-header-menu>a[href*="/alertes"]>.MuiListItemIcon-root').clone();
 						badgeAlertes.text( nbAlertesModeration );
 						badgeAlertes.css({ "right": "15px"});
@@ -123,8 +123,8 @@
 						lienAlertes.find("span>a").append( badgeAlertes );
 						lienAlertes.find("span>a").attr("href", "/alertes");
 						lienAlertes.children().first().addClass("MuiBadge-root");
-						$("#main-menu-navigation>div:first-child").append( $("#main-menu-navigation>div:first-child>div:nth-child(4)").clone() );
-						$("#main-menu-navigation>div:first-child").append( lienAlertes );
+						$("#main-menu-navigation>div").append( $("#main-menu-navigation>div>nth-child(5)").clone() );
+						$("#main-menu-navigation>div").append( lienAlertes );
 					}
 
 					if( !nbAlertes ) {
