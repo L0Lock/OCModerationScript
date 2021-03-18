@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.11.3
+// @version			2.11.4
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -114,7 +114,7 @@
 					let badgeAlertes = badgeMenu.clone();
 
 					if( nbAlertesModeration ) {
-						let lienAlertes = $("#main-menu-navigation>div>last-child").clone();
+						let lienAlertes = $("#main-menu-navigation>div>div:last-child").clone();
 						let iconeAlertes = $('#main-header-menu>a[href*="/alertes"]>.MuiListItemIcon-root').clone();
 						badgeAlertes.text( nbAlertesModeration );
 						badgeAlertes.css({ "right": "15px"});
@@ -123,7 +123,7 @@
 						lienAlertes.find("span>a").append( badgeAlertes );
 						lienAlertes.find("span>a").attr("href", "/alertes");
 						lienAlertes.children().first().addClass("MuiBadge-root");
-						$("#main-menu-navigation>div").append( $("#main-menu-navigation>div>nth-child(5)").clone() );
+						$("#main-menu-navigation>div").append( $("#main-menu-navigation>div>div:nth-child(5)").clone() );
 						$("#main-menu-navigation>div").append( lienAlertes );
 					}
 
