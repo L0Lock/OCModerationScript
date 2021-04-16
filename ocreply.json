@@ -1,5 +1,5 @@
 {
-	"version": "1.3.11",
+	"version": "1.3.12",
 	
 	"configuration": 
 	{
@@ -484,6 +484,16 @@
 			"title": "Demande potentiellement illégale",
 			"message": "<p>En aucun cas ce forum ne saurait être utilisé pour répondre à une demande potentiellement illégale.</p><p>Si votre demande vous paraît légitime, afin que l'équipe de modération puisse déterminer la légalité de votre demande et sa pertinence sur ce forum, merci de préciser au maximum le contexte, et de donner les liens vers les cibles en question et les conditions générales d'utilisation (CGU) qui s'y appliquent.</p>",
 			"infobulle": "Pour avertir sur la légalité des questions posées sur le forum",
+			"titleQuote": false
+		},
+		
+		{
+			"id": 34,
+			"section": ["Graphisme 3D"],
+			"exclude": ["Forum du staff"],
+			"title": "Pasteall.org",
+			"message": "<p>Pour pouvoir aider plus rapidement, peux-tu envoyer ton fichier .blend sur <a href=\"https://pasteall.org/blend/\" target=\"_blank\">parsteall.org</a> et envoyer le lien de téléchargement ici, merci. Si tu as besoin de nous transférer des textures avec ton fichier, crée une copie de ton fichier puis va dans File → External Data → Pack all into .blend file et sauvegarde.</p>",
+			"infobulle": "Invite à poster son fichier sur Pasteall.org",
 			"titleQuote": false
 		}
 	],
