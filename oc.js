@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.11.4
+// @version			2.11.5
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -107,20 +107,20 @@
 				// Mise en forme lien alertes
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("ais-InstantSearch__root") ) {
 					observerMenu.disconnect();
-					let badgeMenu = $(".MuiBadge-badge");
-					let nbNotifications = isNaN( parseInt($(".MuiBadge-badge").text(),10) ) ? 0 : parseInt($(".MuiBadge-badge").text(),10);
-					let nbAlertesModeration = isNaN( parseInt($('.MuiListItem-button[href*="/alertes"]>div>span').text().substring(0, 2),10) ) ? 0 : parseInt($('.MuiListItem-button[href*="/alertes"]>div>span').text().substring(0, 2),10);
+					let badgeMenu = $(".main-header-2-MuiBadge-badge");
+					let nbNotifications = isNaN( parseInt($(".main-header-2-MuiBadge-badge").text(),10) ) ? 0 : parseInt($(".main-header-2-MuiBadge-badge").text(),10);
+					let nbAlertesModeration = isNaN( parseInt($('.main-header-2-MuiListItem-root[href*="/alertes"]>div>span').text().substring(0, 2),10) ) ? 0 : parseInt($('.main-header-2-MuiListItem-root[href*="/alertes"]>div>span').text().substring(0, 2),10);
 					let nbAlertes = nbNotifications - nbAlertesModeration;
 					let badgeAlertes = badgeMenu.clone();
 
 					if( nbAlertesModeration ) {
 						let lienAlertes = $("#main-menu-navigation>div>div:last-child").clone();
-						let iconeAlertes = $('#main-header-menu>a[href*="/alertes"]>.MuiListItemIcon-root').clone();
+						let iconeAlertes = $('.main-header-2-MuiListItem-root[href*="/alertes"]>div>svg').clone();
 						badgeAlertes.text( nbAlertesModeration );
-						badgeAlertes.css({ "right": "15px"});
+						badgeAlertes.css({ "right": "380px" , "top" : "15px" });
 						lienAlertes.find("span>a>span").remove();
 						lienAlertes.find("span>a").append( iconeAlertes );
-						lienAlertes.find("span>a").append( badgeAlertes );
+						//lienAlertes.find("span>a").append( badgeAlertes );
 						lienAlertes.find("span>a").attr("href", "/alertes");
 						lienAlertes.children().first().addClass("MuiBadge-root");
 						$("#main-menu-navigation>div").append( $("#main-menu-navigation>div>div:nth-child(5)").clone() );
