@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.11.6
+// @version			2.11.7
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -108,11 +108,12 @@
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("ais-InstantSearch__root") ) {
 					observerMenu.disconnect();
 					let badgeMenu = $(".main-header-2-MuiBadge-badge");
-					let nbNotifications = isNaN( parseInt($(".main-header-2-MuiBadge-badge").text(),10) ) ? 0 : parseInt($(".main-header-2-MuiBadge-badge").text(),10);
-					let nbAlertesModeration = isNaN( parseInt($('.main-header-2-MuiListItem-root[href*="/alertes"]>div>span').text().substring(0, 2),10) ) ? 0 : parseInt($('.main-header-2-MuiListItem-root[href*="/alertes"]>div>span').text().substring(0, 2),10);
-					let nbAlertes = nbNotifications - nbAlertesModeration;
+					let nbMessages = parseInt( $('.main-header-2-MuiListItem-root[href*="/mp"]>div>span').text().match( '[0-9]+' )[0] );
+					let nbNotifications = parseInt( $('.main-header-2-MuiListItem-root[href*="/notifications"]>div>span').text().match( '[0-9]+' )[0] );
+					let nbAlertesModeration = parseInt( $('.main-header-2-MuiListItem-root[href*="/alertes"]>div>span').text().match( '[0-9]+' )[0] );
+					let nbAlertes = nbMessages + nbNotifications;
 					let badgeAlertes = badgeMenu.clone();
-
+					console.log( nbMessages, nbNotifications, nbAlertesModeration );
 					if( nbAlertesModeration ) {
 						let lienAlertes = $("#main-menu-navigation>div>div:last-child").clone();
 						let iconeAlertes = $('.main-header-2-MuiListItem-root[href*="/alertes"]>div>svg').clone();
