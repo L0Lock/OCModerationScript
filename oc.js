@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.11.7
+// @version			2.11.8
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -113,13 +113,13 @@
 					let nbAlertesModeration = parseInt( $('.main-header-2-MuiListItem-root[href*="/alertes"]>div>span').text().match( '[0-9]+' )[0] );
 					let nbAlertes = nbMessages + nbNotifications;
 					let badgeAlertes = badgeMenu.clone();
-					console.log( nbMessages, nbNotifications, nbAlertesModeration );
+
 					if( nbAlertesModeration ) {
 						let lienAlertes = $("#main-menu-navigation>div>div:last-child").clone();
 						let iconeAlertes = $('.main-header-2-MuiListItem-root[href*="/alertes"]>div>svg').clone();
 						badgeAlertes.text( nbAlertesModeration );
                         badgeAlertes.removeClass("main-header-2-MuiBadge-anchorOriginTopRightRectangle");
-                        badgeAlertes.removeClass("main-header-2-main-header35");
+                        badgeAlertes.removeClass("main-header-2-main-header38");
 						badgeAlertes.css({ "top" : "15px" });
 						lienAlertes.find("span>a>span").remove();
 						lienAlertes.find("span>a").append( iconeAlertes );
@@ -127,7 +127,6 @@
 						lienAlertes.find("span>a").attr("href", "/alertes");
 						lienAlertes.find("span>a").attr("title", nbAlertesModeration+" alertes");
 						lienAlertes.children().first().addClass("MuiBadge-root");
-						$("#main-menu-navigation>div").append( $("#main-menu-navigation>div>div:nth-child(5)").clone() );
 						$("#main-menu-navigation>div").append( lienAlertes );
 					}
 
