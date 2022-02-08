@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.11.8
+// @version			2.11.9
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -107,26 +107,24 @@
 				// Mise en forme lien alertes
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("ais-InstantSearch__root") ) {
 					observerMenu.disconnect();
-					let badgeMenu = $(".main-header-2-MuiBadge-badge");
-					let nbMessages = parseInt( $('.main-header-2-MuiListItem-root[href*="/mp"]>div>span').text().match( '[0-9]+' )[0] );
-					let nbNotifications = parseInt( $('.main-header-2-MuiListItem-root[href*="/notifications"]>div>span').text().match( '[0-9]+' )[0] );
-					let nbAlertesModeration = parseInt( $('.main-header-2-MuiListItem-root[href*="/alertes"]>div>span').text().match( '[0-9]+' )[0] );
+					let badgeMenu = $(".MuiBadge-badge");
+					let nbMessages = parseInt( $('.MuiMenuItem-root[href*="/mp"]>div>span').text().match( '[0-9]+' )[0] );
+					let nbNotifications = parseInt( $('.MuiMenuItem-root[href*="/notifications"]>div>span').text().match( '[0-9]+' )[0] );
+					let nbAlertesModeration = parseInt( $('.MuiMenuItem-root[href*="/alertes"]>div>span').text().match( '[0-9]+' )[0] );
 					let nbAlertes = nbMessages + nbNotifications;
 					let badgeAlertes = badgeMenu.clone();
 
 					if( nbAlertesModeration ) {
 						let lienAlertes = $("#main-menu-navigation>div>div:last-child").clone();
-						let iconeAlertes = $('.main-header-2-MuiListItem-root[href*="/alertes"]>div>svg').clone();
+						let iconeAlertes = $('.MuiMenuItem-root[href*="/alertes"]>div>svg').clone();
 						badgeAlertes.text( nbAlertesModeration );
-                        badgeAlertes.removeClass("main-header-2-MuiBadge-anchorOriginTopRightRectangle");
-                        badgeAlertes.removeClass("main-header-2-main-header38");
-						badgeAlertes.css({ "top" : "15px" });
+						badgeAlertes.css({ "right" : "0px" });
 						lienAlertes.find("span>a>span").remove();
 						lienAlertes.find("span>a").append( iconeAlertes );
 						lienAlertes.find("span>a").append( badgeAlertes );
 						lienAlertes.find("span>a").attr("href", "/alertes");
-						lienAlertes.find("span>a").attr("title", nbAlertesModeration+" alertes");
-						lienAlertes.children().first().addClass("MuiBadge-root");
+						lienAlertes.find("span>a").attr("title", nbAlertesModeration+" alerte"+(nbAlertesModeration>1?"s":""));
+                        lienAlertes.find("span>a").css( { "position":"absolute", "top":"10px" } );
 						$("#main-menu-navigation>div").append( lienAlertes );
 					}
 
