@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.11.9
+// @version			2.12.0
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -55,16 +55,6 @@
 		});
 	}
 
-	// Suppression message si demandée
-	if( GM_getValue( "postToDelete" ) != '' && GM_getValue( "postToDelete" ) !== undefined ) {
-		let deleteLink = baseUri + deleteUrl + GM_getValue( "postToDelete" );
-		let postData = '';
-		promiseRequest("POST", deleteLink, postData )
-			.then(() => {
-			GM_setValue( "postToDelete", '' );
-		});
-	}
-
 	// ajout bouton suppression alertes
 	if( $(".span12>a").length ) {
 		$("#mainContentWithHeader").append('<span title="Retirer les alertes de la page" class="oc-mod-tooltip button--warning" id="oc-mod-dismiss"><i class="icon-garbage"></i></span>');
@@ -87,7 +77,8 @@
 	$("a[data-simpleit-show='modal-delete']").click( function(e) {
 		$("div.modal-delete").show();
 	});
-
+	
+	// Suppression fond bleu modale
 	$(".admin.soc_hello_ials").css({"z-index":6});
 	var observerModale = new MutationObserver( function(mutations) {
 		mutations.forEach(function(mutation) {
@@ -298,34 +289,6 @@
 		getConfigurationFile( true ).then( () => location.reload(true) );
 	});
 
-	// Gestion des MP
-	$(".oc-mod-mp").click( function(e) {
-		GM_setValue( "mpDelete" , false );
-
-		if( $(this).data('moderate') ) {
-			let masquer = GM_getValue("answers").masquer;
-			let moderateLink = baseUri + moderateUrl + $(this).parent().parent().find(".span10.comment").attr("id").replace( 'message-', '' );
-			let postData = 'moderation[moderate]='+masquer.idMasquer+'&moderation[otherReason]='+masquer.message+'&moderation[_token]='+$('#moderation__token').val();
-			console.log( moderateLink, postData );
-			promiseRequest("POST", moderateLink, postData )
-				.then(() => {
-					console.log( "Envoi masquage OK" );
-				}
-			);
-		} else {
-			if( $(this).data('delete') ) {
-				if( confirm( "Voulez-vous vraiment supprimer ce message ?" ) ) {
-					GM_setValue( "postToDelete", $(this).parent().parent().find(".span10.comment").attr("id").replace( 'message-', '' ) );
-					GM_setValue( "mpDelete" , true );
-				} else {
-					e.preventDefault();
-				}
-			}
-			GM_setValue( "mpContent", $(this).parent().parent().find(".message.markdown-body").html() );
-			GM_setValue( "mpClick" , true );
-		}
-	});
-
 	// Ouverture / Fermeture du panneau
 	$("#oc-mod-caret").click( () => {
 		if( modExpand ) {
@@ -467,17 +430,15 @@
 	$(".oc-mod-icon").css( {"margin-left":"5px","float":"right","color":"#f52"} );
 	$(".oc-mod-column").css( {"float":"left","width":"250px","margin-bottom":"10px"} );
 	$("#oc-mod-valid").css( {"float":"right"} );
-	$(".oc-mod-title").css( {"font-size":"1.2em","color":"#f52","font-weight":"bold","line-height":"1em","margin-bottom":"10px"} );
+	$(".oc-mod-title").css( {"font-size":"1.2em","color":"#f52","font-weight":"bold","line-height":"1em","margin-bottom":"0px"} );
 	$(".oc-mod-version").css( {"font-size":"0.5em"} );
-	$(".oc-mod-subtitle").css( {"font-size":"1.1em","color":"#000","font-weight":"bold","line-height":"1em"} );
-	$(".oc-mod-subsubtitle").css( {"font-size":"1em","color":"#f52","font-weight":"bold","line-height":"1em"} );
+	$(".oc-mod-subtitle").css( {"font-size":"1.1em","color":"#000","font-weight":"bold","line-height":"1em","margin-bottom":"0px"} );
 	$("#oc-mod-validation").css({
 		"position":"absolute",
 		"bottom":"20px",
 		"right":"20px"
 	});
 	$(".skills").css({"margin-bottom":"5px"});
-	$(".oc-mod-mp").css({"margin":"1px","padding":"5px","text-decoration":"none" });
 
 	/**
 	 * Retire les alertes de signalement de la page
