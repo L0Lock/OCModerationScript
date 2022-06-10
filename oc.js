@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.12.0
+// @version			2.12.1
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -438,7 +438,6 @@
 		"bottom":"20px",
 		"right":"20px"
 	});
-	$(".skills").css({"margin-bottom":"5px"});
 
 	/**
 	 * Retire les alertes de signalement de la page
