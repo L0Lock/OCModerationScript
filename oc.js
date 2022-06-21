@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.12.1
+// @version			2.13.0
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -22,10 +22,8 @@
 	// URL et chemins
 	const baseUri = "https://openclassrooms.com";
 	const mpUrl = "/mp/nouveau/";
-	const profilUrl = "/membres/";
+	const profilUrl = "/fr/members/";
 	const messageUrl = "/forum/sujet/";
-	const deleteUrl = "/fr/message/supprimer/";
-	const moderateUrl = "/fr/message/moderer/";
 	const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
 
 	// Variables de gestion
@@ -40,12 +38,14 @@
 	var modExpand = false;
 	var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
 	var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
+	var ocUserId = '';
+	var ocUserPage = '';
+	var ocAdminMp = '';
 
 	// Mémorisation pages visitées
 	GM_setValue( "lastPage", GM_getValue("currentPage") );
 	GM_setValue( "currentPage", window.location.pathname );
 	if( GM_getValue( "mpClick" ) === undefined ) GM_setValue( "mpClick" , false );
-	if( GM_getValue( "mpDelete" ) === undefined ) GM_setValue( "mpDelete" , false );
 
 	// Fermeture du sujet si demandée
 	if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== undefined ) {
@@ -70,14 +70,32 @@
 		});
 	}
 
-	// réparation boutons modération
-	$("a[data-simpleit-show='modal-moderate']").click( function(e) {
-		$("div.modal-moderate").show();
-	});
-	$("a[data-simpleit-show='modal-delete']").click( function(e) {
-		$("div.modal-delete").show();
-	});
-	
+    // Ajout bouton MP membre
+    $('.author>a').each( function(e) {
+        let ocUserId = $(this).attr("href").substring(12);
+        let ocMemberId = '';
+        let parentDiv = $(this).parent().parent().parent();
+		$.ajax({
+			method: "GET",
+			url: baseUri+profilUrl+ocUserId,
+			dataType: 'html',
+			success: function( response ) {
+                let docHtml = $(new DOMParser().parseFromString( response, "text/html" ));
+                ocMemberId = docHtml.find("[href*='mp/nouveau']").attr("href")
+                if( ocMemberId !== undefined ) {
+					let uniqid = Math.round(Math.random()*1000000);
+					parentDiv.append('<a href="'+baseUri+ocMemberId+'" class="button--primary btn'+uniqid+'" target="_blank" title="Ecrire un MP au membre"><i class="icon-letter"></i></a>');
+					$('.btn'+uniqid).css({"margin":"1px","padding":"5px","text-decoration":"none" });
+					$('.btn'+uniqid).click( function(e) {
+						GM_setValue( "mpContent", $(this).parent().parent().find(".message.markdown-body").html() );
+						GM_setValue( "mpClick" , true );
+					});
+                };
+			},
+			error: function( response ) { console.log( response ); }
+		});
+    });
+
 	// Suppression fond bleu modale
 	$(".admin.soc_hello_ials").css({"z-index":6});
 	var observerModale = new MutationObserver( function(mutations) {
@@ -98,6 +116,20 @@
 				// Mise en forme lien alertes
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("ais-InstantSearch__root") ) {
 					observerMenu.disconnect();
+
+					ocUserId = $('.MuiMenuItem-root[href*="/members"]').attr("href").substring(12);
+					ocUserPage = baseUri+profilUrl+ocUserId;
+					$.ajax({
+						method: "GET",
+						url: ocUserPage,
+						dataType: 'html',
+						success: function( response ) {
+							let docHtml = $(new DOMParser().parseFromString( response, "text/html" ));
+							ocAdminMp = docHtml.find("[href*='mp/nouveau']").attr("href");
+						},
+						error: function( response ) { console.log( response ); }
+					});
+
 					let badgeMenu = $(".MuiBadge-badge");
 					let nbMessages = parseInt( $('.MuiMenuItem-root[href*="/mp"]>div>span').text().match( '[0-9]+' )[0] );
 					let nbNotifications = parseInt( $('.MuiMenuItem-root[href*="/notifications"]>div>span').text().match( '[0-9]+' )[0] );
@@ -135,15 +167,7 @@
 		GM_setValue( "mpClick" , false );
 		getConfigurationFile( false ).then( () => {
 			let mp = GM_getValue("answers").mp;
-			let mpMessage = '';
-
-			if( GM_getValue("mpDelete") ) {
-				GM_setValue( "mpDelete" , false );
-				mpMessage = mp.message;
-			} else {
-				mpMessage = mp.softmp;
-			}
-
+			let mpMessage = mp.softmp;
 			let messageMp = mpMessage.replace( '$$', GM_getValue("lastPage") ) + GM_getValue( "mpContent" );
 			$("input#ThreadMessage_title").val( mp.title );
 			$("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
@@ -438,6 +462,7 @@
 		"bottom":"20px",
 		"right":"20px"
 	});
+	$(".skills").css({"margin-bottom":"5px"});
 
 	/**
 	 * Retire les alertes de signalement de la page
