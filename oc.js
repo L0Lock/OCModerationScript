@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.13.0
+// @version			2.14.0
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -24,6 +24,7 @@
 	const mpUrl = "/mp/nouveau/";
 	const profilUrl = "/fr/members/";
 	const messageUrl = "/forum/sujet/";
+	const deleteUrl = "/fr/message/supprimer/";
 	const answerFileLink = "https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/ocreply.json";
 
 	// Variables de gestion
@@ -38,14 +39,14 @@
 	var modExpand = false;
 	var posX = GM_getValue( "modPosX" ) !== undefined ? GM_getValue( "modPosX" )+"px" : "10px";
 	var posY = GM_getValue( "modPosY" ) !== undefined ? GM_getValue( "modPosY" )+"px" : "175px";
-	var ocUserId = '';
-	var ocUserPage = '';
-	var ocAdminMp = '';
 
 	// Mémorisation pages visitées
 	GM_setValue( "lastPage", GM_getValue("currentPage") );
 	GM_setValue( "currentPage", window.location.pathname );
 	if( GM_getValue( "mpClick" ) === undefined ) GM_setValue( "mpClick" , false );
+	if( GM_getValue( "deleteToken" ) === undefined ) GM_setValue( "deleteToken" , false );
+	if( GM_getValue( "postToDelete" ) === undefined ) GM_setValue( "postToDelete" , false );
+	if( GM_getValue( "mpDelete" ) === undefined ) GM_setValue( "mpDelete" , false );
 
 	// Fermeture du sujet si demandée
 	if( GM_getValue( "threadToLock" ) != '' && GM_getValue( "threadToLock" ) !== undefined ) {
@@ -70,31 +71,53 @@
 		});
 	}
 
-    // Ajout bouton MP membre
-    $('.author>a').each( function(e) {
-        let ocUserId = $(this).attr("href").substring(12);
-        let ocMemberId = '';
-        let parentDiv = $(this).parent().parent().parent();
+	// Ajout boutons MP membre
+	$('.author>a').each( function(e) {
+		let ocUserId = $(this).attr("href").substring(12);
+		let ocMemberId = '';
+		let parentDiv = $(this).parent().parent().parent();
 		$.ajax({
 			method: "GET",
 			url: baseUri+profilUrl+ocUserId,
 			dataType: 'html',
 			success: function( response ) {
-                let docHtml = $(new DOMParser().parseFromString( response, "text/html" ));
-                ocMemberId = docHtml.find("[href*='mp/nouveau']").attr("href")
-                if( ocMemberId !== undefined ) {
+				let docHtml = $(new DOMParser().parseFromString( response, "text/html" ));
+				ocMemberId = docHtml.find("[href*='mp/nouveau']").attr("href")
+				if( ocMemberId !== undefined ) {
 					let uniqid = Math.round(Math.random()*1000000);
 					parentDiv.append('<a href="'+baseUri+ocMemberId+'" class="button--primary btn'+uniqid+'" target="_blank" title="Ecrire un MP au membre"><i class="icon-letter"></i></a>');
+					parentDiv.append('<a href="'+baseUri+ocMemberId+'" class="button--danger  btn'+uniqid+'" target="_blank" data-delete="1" title="Supprimer ce message et écrire un MP au membre"><i class="icon-garbage"></i></a>');
 					$('.btn'+uniqid).css({"margin":"1px","padding":"5px","text-decoration":"none" });
 					$('.btn'+uniqid).click( function(e) {
 						GM_setValue( "mpContent", $(this).parent().parent().find(".message.markdown-body").html() );
 						GM_setValue( "mpClick" , true );
+						if( $(this).data('delete') ) {
+							if( confirm( "Voulez-vous vraiment supprimer ce message ?" ) ) {
+								GM_setValue( "postToDelete", $(this).parent().parent().find(".span10.comment").attr("id").replace( 'message-', '' ) );
+								GM_setValue( "deleteToken", $('[name="deletion[_token]"]').val() );
+								GM_setValue( "mpDelete", true );
+							} else {
+								e.preventDefault();
+							}
+						}
 					});
-                };
+				};
 			},
 			error: function( response ) { console.log( response ); }
 		});
-    });
+	});
+	
+	// Suppression message si demandée
+	if( GM_getValue( "postToDelete" ) && GM_getValue( "deleteToken" ) ) {
+		let deleteLink = baseUri + deleteUrl + GM_getValue( "postToDelete" );
+		let postData = 'deletion[_token]='+GM_getValue( "deleteToken" );
+		console.log( deleteLink, postData );
+		promiseRequest("POST", deleteLink, postData )
+			.then(() => {
+			GM_setValue( "postToDelete", false );
+			GM_setValue( "deleteToken", false );
+		});
+	}
 
 	// Suppression fond bleu modale
 	$(".admin.soc_hello_ials").css({"z-index":6});
@@ -109,26 +132,14 @@
 		});
 	});
 	observerModale.observe( document.body, { childList: true, subtree: true } );
-
+	
+	// Traitement badges et lien alertes et MP modo
 	var observerMenu = new MutationObserver( function(mutations) {
 		mutations.forEach(function(mutation) {
 			if( mutation.addedNodes && mutation.addedNodes.length > 0 ) {
 				// Mise en forme lien alertes
 				if( mutation.addedNodes[0].classList && mutation.addedNodes[0].classList.contains("ais-InstantSearch__root") ) {
 					observerMenu.disconnect();
-
-					ocUserId = $('.MuiMenuItem-root[href*="/members"]').attr("href").substring(12);
-					ocUserPage = baseUri+profilUrl+ocUserId;
-					$.ajax({
-						method: "GET",
-						url: ocUserPage,
-						dataType: 'html',
-						success: function( response ) {
-							let docHtml = $(new DOMParser().parseFromString( response, "text/html" ));
-							ocAdminMp = docHtml.find("[href*='mp/nouveau']").attr("href");
-						},
-						error: function( response ) { console.log( response ); }
-					});
 
 					let badgeMenu = $(".MuiBadge-badge");
 					let nbMessages = parseInt( $('.MuiMenuItem-root[href*="/mp"]>div>span').text().match( '[0-9]+' )[0] );
@@ -147,7 +158,7 @@
 						lienAlertes.find("span>a").append( badgeAlertes );
 						lienAlertes.find("span>a").attr("href", "/alertes");
 						lienAlertes.find("span>a").attr("title", nbAlertesModeration+" alerte"+(nbAlertesModeration>1?"s":""));
-                        lienAlertes.find("span>a").css( { "position":"absolute", "top":"10px" } );
+						lienAlertes.find("span>a").css( { "position":"absolute", "top":"10px" } );
 						$("#main-menu-navigation>div").append( lienAlertes );
 					}
 
@@ -167,7 +178,12 @@
 		GM_setValue( "mpClick" , false );
 		getConfigurationFile( false ).then( () => {
 			let mp = GM_getValue("answers").mp;
-			let mpMessage = mp.softmp;
+			if( GM_getValue("mpDelete") ) {
+				GM_setValue( "mpDelete" , false );
+				mpMessage = mp.message;
+			} else {
+				mpMessage = mp.softmp;
+			}
 			let messageMp = mpMessage.replace( '$$', GM_getValue("lastPage") ) + GM_getValue( "mpContent" );
 			$("input#ThreadMessage_title").val( mp.title );
 			$("input#ThreadMessage_subtitle").val( GM_getValue("lastPage").replace( messageUrl, "" ) );
@@ -381,14 +397,8 @@
 
 		// Gestion fermeture du sujet
 		if( $("input[name=shouldLock]").prop('checked') ) {
-			let memberUrl = "";
 			GM_setValue( "threadToLock", baseUri + $(".closeAction").attr('href') );
-			$(".oc-mainHeaderMenu__item").each( function(e) {
-				if( $(this).attr("href").indexOf( "/membres/" ) > -1 && $(this).attr("href").indexOf( "/parametres" ) == -1 ) {
-					memberUrl = $(this).attr("href");
-				}
-			});
-			moderationMessage += configuration.fermer.replace( "$$", memberUrl.replace( baseUri+profilUrl, baseUri+mpUrl ) );
+			moderationMessage += configuration.fermer.replace( "$$", baseUri+profilUrl+$('.MuiMenuItem-root[href*="/members"]').attr("href").substring(12) );
 		} else {
 			GM_setValue( "threadToLock", "" );
 		}
