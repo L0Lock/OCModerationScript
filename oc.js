@@ -6,7 +6,7 @@
 // @updateURL   		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @downloadURL 		https://raw.githubusercontent.com/L0Lock/OCModerationScript/master/oc.js
 // @include			*openclassrooms.com/*
-// @version			2.14.0
+// @version			2.14.1
 // @noframes
 // @grant			GM_xmlhttpRequest
 // @grant			GM_getValue
@@ -63,7 +63,10 @@
 			"cursor":"pointer",
 			"position":"fixed",
 			"left":"290px",
-			"top":"230px"
+			"top":"230px",
+			"border":"none",
+			"background":"#f00",
+			"color":"#fff"
 		});
 
 		$("#oc-mod-dismiss").click( function(e) {
@@ -87,7 +90,22 @@
 					let uniqid = Math.round(Math.random()*1000000);
 					parentDiv.append('<a href="'+baseUri+ocMemberId+'" class="button--primary btn'+uniqid+'" target="_blank" title="Ecrire un MP au membre"><i class="icon-letter"></i></a>');
 					parentDiv.append('<a href="'+baseUri+ocMemberId+'" class="button--danger  btn'+uniqid+'" target="_blank" data-delete="1" title="Supprimer ce message et écrire un MP au membre"><i class="icon-garbage"></i></a>');
-					$('.btn'+uniqid).css({"margin":"1px","padding":"5px","text-decoration":"none" });
+					$('.button--primary.btn'+uniqid).css({
+                        "border":"none",
+                        "background":"#7451eb",
+                        "color":"#fff",
+                        "margin":"1px",
+                        "padding":"5px",
+                        "text-decoration":"none"
+                    });
+					$('.button--danger.btn'+uniqid).css({
+                        "border":"none",
+                        "background":"#f00",
+                        "color":"#fff",
+                        "margin":"1px",
+                        "padding":"5px",
+                        "text-decoration":"none"
+                    });
 					$('.btn'+uniqid).click( function(e) {
 						GM_setValue( "mpContent", $(this).parent().parent().find(".message.markdown-body").html() );
 						GM_setValue( "mpClick" , true );
@@ -106,7 +124,7 @@
 			error: function( response ) { console.log( response ); }
 		});
 	});
-	
+
 	// Suppression message si demandée
 	if( GM_getValue( "postToDelete" ) && GM_getValue( "deleteToken" ) ) {
 		let deleteLink = baseUri + deleteUrl + GM_getValue( "postToDelete" );
@@ -132,7 +150,7 @@
 		});
 	});
 	observerModale.observe( document.body, { childList: true, subtree: true } );
-	
+
 	// Traitement badges et lien alertes et MP modo
 	var observerMenu = new MutationObserver( function(mutations) {
 		mutations.forEach(function(mutation) {
@@ -257,6 +275,11 @@
 			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera passé à \'Résolu\'"><label class="mod-oc-label"><input name="resolveTopic" type="checkbox" value="1" /> ✔ Passer à résolu</label></div>' );
 			$("#oc-mod-options").append( '<div class="oc-mod-tooltip" title="Si cochée, le sujet sera ajouté à votre liste de sujets suivis"><label class="mod-oc-label"><input name="followTopic" type="checkbox" value="1" /> ⚑ Suivre le sujet</label></div>' );
 			$("#oc-mod-valid").append( '<button id="oc-mod-validation" title="Valider les actions de modération" class="oc-mod-tooltip button--warning">Modérer</button>' );
+            $("#oc-mod-validation").css({
+                "border":"none",
+                "background":"#f52",
+                "color":"#fff"
+            });
 
 			// Ajout menu liens
 			if( nbLiens > 0 ) {
